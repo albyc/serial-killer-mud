@@ -7,12 +7,12 @@ import Players.Player;
 
 public abstract class Room {
 
-	private String name;
-	private String description;
-	private List<Item> items;
-	private List<Player> players;
-	private List<MOB> mobs;
-	private List<Room> references;
+	protected String name;
+	protected String description;
+	protected List<Item> items;
+	protected List<Player> players;
+	protected List<MOB> mobs;
+	protected List<Room> references;
 	
 	public Room(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<Room> refs){
 		this.name = name;
