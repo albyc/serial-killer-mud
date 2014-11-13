@@ -27,15 +27,7 @@ public class Casino extends Room
 		super(name, description, items, players, mobs, references);
 	}
 
-	/**
-	 * 
-	 */
-	@Override
-	public void setNextRoom(Room room) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	
 }

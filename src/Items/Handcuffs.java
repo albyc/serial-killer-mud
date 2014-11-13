@@ -9,8 +9,8 @@ import Rooms.Room;
  */
 public class Handcuffs extends Item{
 
-	public Handcuffs(String name, String description, Room currentLocation, boolean isVisible){
-		super(name, description, currentLocation, isVisible);
+	public Handcuffs(String name, String description, Room currentLocation, boolean isVisible, boolean isPickedUp){
+		super(name, description, currentLocation, isVisible, isPickedUp);
 	}
 
 	//add unique methods here

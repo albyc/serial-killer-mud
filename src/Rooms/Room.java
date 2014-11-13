@@ -19,6 +19,7 @@ public abstract class Room
 	protected List<Player> players; // list of players in the room
 	protected List<MOB> mobs; // list of mobs in the room
 	protected List<Room> references; // list of references?
+	protected RoomCollection roomCollection;
 	
 	/**
 	 * This constructor creates a new Room 
@@ -44,8 +45,15 @@ public abstract class Room
 	 * 
 	 * @param room
 	 */
+	//do we really want this? or should we keep our room collection constant?
 	public void setNextRoom(Room room, String direction){
+		roomCollection.getRoomRow(room);
+		roomCollection.getRoomCol(room);
+		roomCollection.getRoomHeight(room);
 		
+		if(direction.equals("up")){
+			
+		}
 	}
 	
 	/**
