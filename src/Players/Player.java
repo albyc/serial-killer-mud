@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import Items.Item;
 import Rooms.Room;
 
+/**
+ * 
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ *
+ */
 public abstract class Player {
  
     private String username;

@@ -1,6 +1,12 @@
 package Rooms;
 
-public class RoomCollection {
+/**
+ * 
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ *
+ */
+public class RoomCollection 
+{
 	private Room[][][] roomCollection = new Room[3][4][3];
 	
 	public RoomCollection(Room room1, Room room2, Room room3, Room room4, Room room5, Room room6,Room room7,Room room8,
@@ -37,16 +43,16 @@ public class RoomCollection {
 		roomCollection[0][2][1] = room27;
 		roomCollection[0][3][1] = room28;
 		roomCollection[1][0][2] = room29;
-		roomCollection[1][1][2] = room30;
-		
-		
+		roomCollection[1][1][2] = room30;	
 	}
 	
-	public Room getRoomAt(int row, int col, int height){
+	public Room getRoomAt(int row, int col, int height)
+	{
 		return roomCollection[row][col][height];
 	}
 	
-	public void setRoomAt(int row, int col, int height, Room room){
+	public void setRoomAt(int row, int col, int height, Room room)
+	{
 		roomCollection[row][col][height] = room;
 	}
 	
