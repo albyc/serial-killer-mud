@@ -6,28 +6,50 @@ import Rooms.Room;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Item {
-
+public abstract class Item 
+{
 	protected String name;
 	protected String description;
 	protected Room currentLocation;
 	protected boolean isVisible;
 	
-	public Item(String name, String description, Room currentLocation, boolean isVisible){
+	/**
+	 * 
+	 * @param name Name of the item
+	 * @param description Description of the item
+	 * @param currentLocation The room in which the item is currently located
+	 * @param isVisible Indicates whether item is currently visible
+	 */
+	public Item (String name, String description, Room currentLocation, boolean isVisible)
+	{
 		this.name = name;
 		this.description = description;
 		this.currentLocation = currentLocation;
 	}
 	
-	public void setLocation(Room room){
+	/**
+	 * Sets the location of the item. 
+	 * 
+	 * @param room The room in which the item is currently located
+	 */
+	public void setLocation(Room room)
+	{
 		currentLocation = room;
 	}
 	
-	public void hide(){
+	/**
+	 * Hides item from players.
+	 */
+	public void hide()
+	{
 		isVisible = false;
 	}
 	
-	public void reveal(){
+	/**
+	 * Allows players to see the item. 
+	 */
+	public void reveal()
+	{
 		isVisible = true;
 	}
-}
+} // end of class Item

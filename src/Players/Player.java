@@ -10,70 +10,136 @@ import Rooms.Room;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Player {
- 
+public abstract class Player 
+{
     private String username;
     private String password;
     private String gameName;
     private Room currentLocation;
     private ArrayList<Item> backpack;
      
-    public Player(String userName, String password, String gameName){
+    /**
+     * 
+     * @param userName
+     * @param password
+     * @param gameName
+     */
+    public Player(String userName, String password, String gameName)
+    {
         this.username = username;
         this.password = password;
         this.gameName = gameName;
     }
      
-    public String getUsername(){
+    /**
+     * 
+     * @return
+     */
+    public String getUsername()
+    {
         return username;
     }
      
-    public String getPassword(){
+    /**
+     * 
+     * @return
+     */
+    public String getPassword()
+    {
         return password;
     }
      
-    public String getGameName(){
+    /**
+     * 
+     * @return
+     */
+    public String getGameName()
+    {
         return gameName;
     }
-     
-    public Room getCurrentLocation(){
+    
+    /**
+     * 
+     * @return
+     */
+    public Room getCurrentLocation()
+    {
         return currentLocation;
     }
-     
-    public ArrayList getItemsList(){
+    
+    /**
+     * 
+     * @return
+     */
+    public ArrayList getItemsList()
+    {
         return backpack;
     }
-     
-    public void changeRoom(Room newRoom){
+    
+    /**
+     * 
+     * @param newRoom
+     */
+    public void changeRoom(Room newRoom)
+    {
         currentLocation = newRoom;
     }
-     
-    public void pickUpItem(Item newItem){
+    
+    /**
+     * 
+     * @param newItem
+     */
+    public void pickUpItem(Item newItem)
+    {
         backpack.add(newItem);
     }
-     
-    public void dropItem(Item itemToGetRidOf){
+    
+    /**
+     * 
+     * @param itemToGetRidOf
+     */
+    public void dropItem(Item itemToGetRidOf)
+    {
         backpack.remove(itemToGetRidOf);
     }
-     
-    public void interactWithOtherPlayer(){
+    
+    /**
+     * 
+     */
+    public void interactWithOtherPlayer()
+    {
          
     }
-     
-    public void InteractWithMOB(){
+    
+    /**
+     * 
+     */
+    public void InteractWithMOB()
+    {
          
     }
-     
-    public void fight(){
+    
+    /**
+     * 
+     */
+    public void fight()
+    {
          
     }
-     
-    public void defend(){
+    
+    /**
+     * 
+     */
+    public void defend()
+    {
          
     }
-     
-    public void run(){
+    
+    /**
+     * 
+     */
+    public void run()
+    {
          
     }
-     
-}//end Player class
+}//end of class Player
