@@ -37,14 +37,5 @@ public class Casino extends Room
 		
 	}
 
-	/**
-	 * 
-	 */
-	@Override
-	public void removePlayer(Player player) 
-	{
-		// TODO Auto-generated method stub
-		players.remove(player);
-	}
 	
 }

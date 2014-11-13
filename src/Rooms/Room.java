@@ -44,13 +44,17 @@ public abstract class Room
 	 * 
 	 * @param room
 	 */
-	public abstract void setNextRoom(Room room);
+	public void setNextRoom(Room room, String direction){
+		
+	}
 	
 	/**
 	 * 
 	 * @param player
 	 */
-	public abstract void removePlayer(Player player);
+	public void removePlayer(Player player){
+		players.remove(player);
+	}
 		
 	
 	
