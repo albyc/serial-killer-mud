@@ -4,17 +4,26 @@ import Rooms.Room;
 
 public abstract class Item {
 
-	private String name;
-	private String description;
+	protected String name;
+	protected String description;
+	protected Room currentLocation;
+	protected boolean isVisible;
 	
-	public Item(String name, String description){
+	public Item(String name, String description, Room currentLocation, boolean isVisible){
 		this.name = name;
 		this.description = description;
+		this.currentLocation = currentLocation;
 	}
 	
-	public abstract void setLocation(Item item, Room room);
+	public void setLocation(Room room){
+		currentLocation = room;
+	}
 	
-	public abstract void hide(Item item);
+	public void hide(){
+		isVisible = false;
+	}
 	
-	public abstract void reveal(Item item);
+	public void reveal(){
+		isVisible = true;
+	}
 }
