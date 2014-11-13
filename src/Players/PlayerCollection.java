@@ -3,6 +3,11 @@ package Players;
 
 import java.util.ArrayList;
  
+/**
+ * 
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ *
+ */
 public class PlayerCollection {
  
     private ArrayList<Player> players;

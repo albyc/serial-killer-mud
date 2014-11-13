@@ -1,7 +1,11 @@
 package Items;
 import Rooms.Room;
 
-
+/**
+ * 
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ *
+ */
 public abstract class Item {
 
 	private String name;
