@@ -7,6 +7,7 @@ import Rooms.Room;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
+<<<<<<< HEAD
 public class Handcuffs extends Item
 {
 	/**
@@ -19,6 +20,12 @@ public class Handcuffs extends Item
 	public Handcuffs(String name, String description, Room currentLocation, boolean isVisible)
 	{
 		super(name, description, currentLocation, isVisible);
+=======
+public class Handcuffs extends Item{
+
+	public Handcuffs(String name, String description, Room currentLocation, boolean isVisible, boolean isPickedUp){
+		super(name, description, currentLocation, isVisible, isPickedUp);
+>>>>>>> d84c7b4567b93f1408103968792191f9976ebb2f
 	}
 
 	//add unique methods here

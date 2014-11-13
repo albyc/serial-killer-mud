@@ -56,5 +56,43 @@ public class RoomCollection
 		roomCollection[row][col][height] = room;
 	}
 	
+	public int getRoomRow(Room room){
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 4; j++){
+				for(int k = 0; k < 3; k++){
+					if(roomCollection[i][j][k] == room){
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+	}
+
+	public int getRoomCol(Room room) {
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 4; j++){
+				for(int k = 0; k < 3; k++){
+					if(roomCollection[i][j][k] == room){
+						return j;
+					}
+				}
+			}
+		}
+		return -1;
+	}
+
+	public int getRoomHeight(Room room) {
+		for(int i = 0; i < 3; i++){
+			for(int j = 0; j < 4; j++){
+				for(int k = 0; k < 3; k++){
+					if(roomCollection[i][j][k] == room){
+						return k;
+					}
+				}
+			}
+		}
+		return -1;		
+	}
 	
 }

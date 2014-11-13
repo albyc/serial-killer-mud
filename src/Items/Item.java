@@ -12,7 +12,9 @@ public abstract class Item
 	protected String description;
 	protected Room currentLocation;
 	protected boolean isVisible;
+	protected boolean isPickedUp;
 	
+<<<<<<< HEAD
 	/**
 	 * 
 	 * @param name Name of the item
@@ -22,9 +24,13 @@ public abstract class Item
 	 */
 	public Item (String name, String description, Room currentLocation, boolean isVisible)
 	{
+=======
+	public Item(String name, String description, Room currentLocation, boolean isVisible, boolean isPickedUp){
+>>>>>>> d84c7b4567b93f1408103968792191f9976ebb2f
 		this.name = name;
 		this.description = description;
 		this.currentLocation = currentLocation;
+		this.isPickedUp = isPickedUp;
 	}
 	
 	/**
