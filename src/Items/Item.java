@@ -1,5 +1,5 @@
 package Items;
-import Rooms.Room;
+import Rooms.SceneRoom;
 
 /**
  * 
@@ -10,18 +10,18 @@ public abstract class Item {
 
 	protected String name;
 	protected String description;
-	protected Room currentLocation;
+	protected SceneRoom currentLocation;
 	protected boolean isVisible;
 	protected boolean isPickedUp;
 	
-	public Item(String name, String description, Room currentLocation, boolean isVisible, boolean isPickedUp){
+	public Item(String name, String description, SceneRoom currentLocation, boolean isVisible, boolean isPickedUp){
 		this.name = name;
 		this.description = description;
 		this.currentLocation = currentLocation;
 		this.isPickedUp = isPickedUp;
 	}
 	
-	public void setLocation(Room room){
+	public void setLocation(SceneRoom room){
 		currentLocation = room;
 	}
 	

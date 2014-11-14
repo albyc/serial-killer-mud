@@ -7,12 +7,12 @@ package Rooms;
  */
 public class RoomCollection 
 {
-	private Room[][][] roomCollection = new Room[3][4][3];
+	private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
 	
-	public RoomCollection(Room room1, Room room2, Room room3, Room room4, Room room5, Room room6,Room room7,Room room8,
-			Room room9, Room room10,Room room11,Room room12,Room room13,Room room14,Room room15,Room room16,Room room17,Room room18,
-			Room room19,Room room20,Room room21,Room room22,Room room23,Room room24,Room room25,Room room26,Room room27,Room room28,
-			Room room29,Room room30){
+	public RoomCollection(SceneRoom room1, SceneRoom room2, SceneRoom room3, SceneRoom room4, SceneRoom room5, SceneRoom room6,SceneRoom room7,SceneRoom room8,
+			SceneRoom room9, SceneRoom room10,SceneRoom room11,SceneRoom room12,SceneRoom room13,SceneRoom room14,SceneRoom room15,SceneRoom room16,SceneRoom room17,SceneRoom room18,
+			SceneRoom room19,SceneRoom room20,SceneRoom room21,SceneRoom room22,SceneRoom room23,SceneRoom room24,SceneRoom room25,SceneRoom room26,SceneRoom room27,SceneRoom room28,
+			SceneRoom room29,SceneRoom room30){
 		
 		roomCollection[0][0][0] = room1;
 		roomCollection[0][1][0] = room2;
@@ -46,17 +46,17 @@ public class RoomCollection
 		roomCollection[1][1][2] = room30;	
 	}
 	
-	public Room getRoomAt(int row, int col, int height)
+	public SceneRoom getRoomAt(int row, int col, int height)
 	{
 		return roomCollection[row][col][height];
 	}
 	
-	public void setRoomAt(int row, int col, int height, Room room)
+	public void setRoomAt(int row, int col, int height, SceneRoom room)
 	{
 		roomCollection[row][col][height] = room;
 	}
 	
-	public int getRoomRow(Room room){
+	public int getRoomRow(SceneRoom room){
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 4; j++){
 				for(int k = 0; k < 3; k++){
@@ -69,7 +69,7 @@ public class RoomCollection
 		return -1;
 	}
 
-	public int getRoomCol(Room room) {
+	public int getRoomCol(SceneRoom room) {
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 4; j++){
 				for(int k = 0; k < 3; k++){
@@ -82,7 +82,7 @@ public class RoomCollection
 		return -1;
 	}
 
-	public int getRoomHeight(Room room) {
+	public int getRoomHeight(SceneRoom room) {
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j < 4; j++){
 				for(int k = 0; k < 3; k++){
