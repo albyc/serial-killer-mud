@@ -6,15 +6,16 @@ import java.util.Random;
 import MOBs.MOB;
 import Players.Player;
 
-public abstract class TrappingRoom 
+public class TrappingRoom extends Room 
 {
+	//need a rooom abstract class with TR and SR subclasses
 
-	protected String name;
-	protected String description;
-	protected List<Player> players;
-	protected List<MOB> mobs;
-	protected RoomCollection roomCollection;
-	protected SceneRoom onlyWayOut;
+	private String name;
+	private String description;
+	private List<Player> players;
+	private List<MOB> mobs;
+	private RoomCollection roomCollection;
+	private SceneRoom onlyWayOut;
 	
 	
 	public TrappingRoom(String name, String description, List<Player> players, List<MOB> mobs, SceneRoom onlyWayOut, RoomCollection roomCollection)

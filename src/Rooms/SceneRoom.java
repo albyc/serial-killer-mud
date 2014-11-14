@@ -11,7 +11,7 @@ import Players.Player;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class SceneRoom 
+public class SceneRoom extends Room 
 {
 	protected String name; // name of the room
 	protected String description; // description of the room
