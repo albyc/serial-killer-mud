@@ -18,12 +18,12 @@ import java.util.List;
  */
 public class Client 
 {
-	//needs a lot of fixing
+	//needs a lot of fixing - just testing to see if room abstract class/ subclass objects work
 	List<Player> playersInRoom = new ArrayList<Player>();
 	List<MOB> mobsInRoom = new ArrayList<MOB>(); 
-	SceneRoom exit = new SceneRoom(need args here);
-	RoomCollection roomCollection = new RoomCollection(need all 30 rooms here);
-	TrappingRoom desert = new TrappingRoom("Desert", "The Desert room is a trapping room, so your chance of escaping is 50/50.", playersInRoom, mobsInRoom, exit, roomCollection);
+	RoomCollection roomCollection = new RoomCollection(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+	SceneRoom exit = new SceneRoom(null, null, null, playersInRoom, mobsInRoom, null);
+	TrappingRoom desert = new TrappingRoom("Desert", "The Desert room is a trapping room, so your chance of escaping is 50/50.", playersInRoom, mobsInRoom, exit);
 
 
 	public void update(List<String> messages) {

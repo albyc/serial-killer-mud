@@ -12,13 +12,18 @@ public abstract class Room {
 	protected List<MOB> mobs;
 	protected RoomCollection roomCollection;
 	
-	public Room(String name, String description, List<Player> players, List<MOB> mobs, RoomCollection roomCollection){
+	public Room(String name, String description, List<Player> players, List<MOB> mobs){
 		this.name = name;
 		this.description = description;
 		this.players = players;
 		this.mobs = mobs;
-		this.roomCollection = roomCollection;
 		
+		
+	}
+	
+	public void removePlayer(Player player)
+	{
+		players.remove(player);
 	}
 	
 	

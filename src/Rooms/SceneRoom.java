@@ -13,13 +13,10 @@ import Players.Player;
  */
 public class SceneRoom extends Room 
 {
-	protected String name; // name of the room
-	protected String description; // description of the room
-	protected List<Item> items; // list of items in the room
-	protected List<Player> players; // list of players in the room
-	protected List<MOB> mobs; // list of mobs in the room
-	protected List<SceneRoom> references; // list of references?
-	protected RoomCollection roomCollection;
+	
+	private List<Item> items; // list of items in the room
+	private List<SceneRoom> references; // list of references?
+	
 	
 	/**
 	 * This constructor creates a new Room 
@@ -33,11 +30,9 @@ public class SceneRoom extends Room
 	 */
 	public SceneRoom(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<SceneRoom> refs)
 	{
-		this.name = name;
-		this.description = description;
+		super(name, description, players, mobs);
+		
 		this.items = items;
-		this.players = players;
-		this.mobs = mobs;
 		this.references = refs;
 	} // end of constructor Room
 	
@@ -62,10 +57,7 @@ public class SceneRoom extends Room
 	 * 
 	 * @param player
 	 */
-	public void removePlayer(Player player)
-	{
-		players.remove(player);
-	}
+	
 		
 	
 	

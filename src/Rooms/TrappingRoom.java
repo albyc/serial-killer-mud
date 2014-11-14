@@ -18,13 +18,9 @@ public class TrappingRoom extends Room
 	private SceneRoom onlyWayOut;
 	
 	
-	public TrappingRoom(String name, String description, List<Player> players, List<MOB> mobs, SceneRoom onlyWayOut, RoomCollection roomCollection)
+	public TrappingRoom(String name, String description, List<Player> players, List<MOB> mobs, SceneRoom onlyWayOut)
 	{
-		this.name = name;
-		this.description = description;
-		this.players = players;
-		this.mobs = mobs;
-		this.roomCollection = roomCollection;
+		super(name, description, players, mobs);
 		this.onlyWayOut = onlyWayOut;
 		
 	}
