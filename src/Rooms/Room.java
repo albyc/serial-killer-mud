@@ -46,7 +46,8 @@ public abstract class Room
 	 * @param room
 	 */
 	//do we really want this? or should we keep our room collection constant?
-	public void setNextRoom(Room room, String direction){
+	public void setNextRoom(Room room, String direction)
+	{
 		roomCollection.getRoomRow(room);
 		roomCollection.getRoomCol(room);
 		roomCollection.getRoomHeight(room);

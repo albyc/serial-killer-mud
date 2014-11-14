@@ -14,7 +14,6 @@ public abstract class Item
 	protected boolean isVisible;
 	protected boolean isPickedUp;
 	
-<<<<<<< HEAD
 	/**
 	 * 
 	 * @param name Name of the item
@@ -22,11 +21,9 @@ public abstract class Item
 	 * @param currentLocation The room in which the item is currently located
 	 * @param isVisible Indicates whether item is currently visible
 	 */
-	public Item (String name, String description, Room currentLocation, boolean isVisible)
+
+	public Item(String name, String description, Room currentLocation, boolean isVisible, boolean isPickedUp)
 	{
-=======
-	public Item(String name, String description, Room currentLocation, boolean isVisible, boolean isPickedUp){
->>>>>>> d84c7b4567b93f1408103968792191f9976ebb2f
 		this.name = name;
 		this.description = description;
 		this.currentLocation = currentLocation;
