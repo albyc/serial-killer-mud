@@ -3,7 +3,7 @@ package Players;
 import java.util.ArrayList;
 
 import Items.Item;
-import Rooms.Room;
+import Rooms.SceneRoom;
 
 /**
  * 
@@ -15,7 +15,7 @@ public abstract class Player {
     private String username;
     private String password;
     private String gameName;
-    private Room currentLocation;
+    private SceneRoom currentLocation;
     private ArrayList<Item> backpack;
      
     public Player(String userName, String password, String gameName){
@@ -36,7 +36,7 @@ public abstract class Player {
         return gameName;
     }
      
-    public Room getCurrentLocation(){
+    public SceneRoom getCurrentLocation(){
         return currentLocation;
     }
      
@@ -44,7 +44,7 @@ public abstract class Player {
         return backpack;
     }
      
-    public void changeRoom(Room newRoom){
+    public void changeRoom(SceneRoom newRoom){
         currentLocation = newRoom;
     }
      
