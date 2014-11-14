@@ -37,4 +37,16 @@ public class TrappingRoom extends Room
 		else
 			return false;
 	}
+	@Override
+	public void removePlayer(Player player)
+	{
+		if(canEscape())
+		{
+			players.remove(player);
+		}
+		else
+		{
+			//you lose?
+		}
+	}
 }
