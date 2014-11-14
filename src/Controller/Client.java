@@ -24,10 +24,10 @@ public class Client
 	RoomCollection roomCollection = new RoomCollection(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	SceneRoom exit = new SceneRoom(null, null, null, playersInRoom, mobsInRoom, null);
 	TrappingRoom desert = new TrappingRoom("Desert", "The Desert room is a trapping room, so your chance of escaping is 50/50.", playersInRoom, mobsInRoom, exit);
+	TrappingRoom jail = new TrappingRoom("Jail", "The Jail room is a trapping room, so your chance of escaping is 50/50.", playersInRoom, mobsInRoom, exit);
 
 
 	public void update(List<String> messages) {
-		// TODO Auto-generated method stub
 		
 	}
 
