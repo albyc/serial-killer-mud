@@ -12,7 +12,7 @@ import Players.Player;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public class Casino extends Room
+public class Casino extends SceneRoom
 {
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class Casino extends Room
 	 * @param mobs
 	 * @param references
 	 */
-	public Casino(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<Room> references){
+	public Casino(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<SceneRoom> references){
 		super(name, description, items, players, mobs, references);
 	}
 

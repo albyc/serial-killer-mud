@@ -11,14 +11,14 @@ import Players.Player;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Room 
+public abstract class SceneRoom 
 {
 	protected String name; // name of the room
 	protected String description; // description of the room
 	protected List<Item> items; // list of items in the room
 	protected List<Player> players; // list of players in the room
 	protected List<MOB> mobs; // list of mobs in the room
-	protected List<Room> references; // list of references?
+	protected List<SceneRoom> references; // list of references?
 	protected RoomCollection roomCollection;
 	
 	/**
@@ -31,7 +31,7 @@ public abstract class Room
 	 * @param mobs
 	 * @param refs
 	 */
-	public Room(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<Room> refs)
+	public SceneRoom(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<SceneRoom> refs)
 	{
 		this.name = name;
 		this.description = description;
@@ -46,13 +46,18 @@ public abstract class Room
 	 * @param room
 	 */
 	//do we really want this? or should we keep our room collection constant?
+<<<<<<< HEAD:src/Rooms/Room.java
 	public void setNextRoom(Room room, String direction)
+=======
+	public void setNextRoom(SceneRoom room, String direction)
+>>>>>>> 9df47dc168dc11191d7b5deff0d61b4b0d58b35f:src/Rooms/SceneRoom.java
 	{
 		roomCollection.getRoomRow(room);
 		roomCollection.getRoomCol(room);
 		roomCollection.getRoomHeight(room);
 		
-		if(direction.equals("up")){
+		if(direction.equals("up"))
+		{
 			
 		}
 	}
@@ -61,7 +66,8 @@ public abstract class Room
 	 * 
 	 * @param player
 	 */
-	public void removePlayer(Player player){
+	public void removePlayer(Player player)
+	{
 		players.remove(player);
 	}
 		
