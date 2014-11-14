@@ -46,11 +46,7 @@ public abstract class SceneRoom
 	 * @param room
 	 */
 	//do we really want this? or should we keep our room collection constant?
-<<<<<<< HEAD:src/Rooms/Room.java
-	public void setNextRoom(Room room, String direction)
-=======
 	public void setNextRoom(SceneRoom room, String direction)
->>>>>>> 9df47dc168dc11191d7b5deff0d61b4b0d58b35f:src/Rooms/SceneRoom.java
 	{
 		roomCollection.getRoomRow(room);
 		roomCollection.getRoomCol(room);

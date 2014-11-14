@@ -57,18 +57,12 @@ public abstract class Player
     {
         return gameName;
     }
-<<<<<<< HEAD
     
     /**
      * 
      * @return
      */
-    public Room getCurrentLocation()
-    {
-=======
-     
     public SceneRoom getCurrentLocation(){
->>>>>>> 9df47dc168dc11191d7b5deff0d61b4b0d58b35f
         return currentLocation;
     }
     
@@ -80,18 +74,12 @@ public abstract class Player
     {
         return backpack;
     }
-<<<<<<< HEAD
     
     /**
      * 
      * @param newRoom
      */
-    public void changeRoom(Room newRoom)
-    {
-=======
-     
     public void changeRoom(SceneRoom newRoom){
->>>>>>> 9df47dc168dc11191d7b5deff0d61b4b0d58b35f
         currentLocation = newRoom;
     }
     

@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.*;
 
+import Model.AddMessageCommand;
+
 /**
  * 
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
@@ -50,7 +52,11 @@ public class MUDView extends JFrame
 			
 			try
 			{
-				output.writeObject(new AddMessageCommand(clientName + ":  " + s))
+				output.writeObject(new AddMessageCommand(clientName + ":  " + s));
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
 			}
 		}
 	}
