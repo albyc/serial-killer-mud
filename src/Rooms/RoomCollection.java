@@ -7,7 +7,25 @@ package Rooms;
  */
 public class RoomCollection 
 {
-	private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
+	
+	private Room[] roomCollection = new Room[2];
+	
+	public RoomCollection(Room room1, Room room2)
+	{
+		roomCollection[0] = room1;
+		roomCollection[1] = room2;
+	}
+	
+	public Room getRoomAt(int index)
+	{
+		return roomCollection[index];
+	}
+	
+	public void setRoomAt(int index, Room room)
+	{
+		roomCollection[index] = room;
+	}
+	/*private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
 	
 	public RoomCollection(SceneRoom room1, SceneRoom room2, SceneRoom room3, SceneRoom room4, SceneRoom room5, SceneRoom room6,SceneRoom room7,SceneRoom room8,
 			SceneRoom room9, SceneRoom room10,SceneRoom room11,SceneRoom room12,SceneRoom room13,SceneRoom room14,SceneRoom room15,SceneRoom room16,SceneRoom room17,SceneRoom room18,
@@ -93,6 +111,6 @@ public class RoomCollection
 			}
 		}
 		return -1;		
-	}
+	}*/
 	
 }
