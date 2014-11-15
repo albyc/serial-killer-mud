@@ -1,11 +1,10 @@
 package Controller;
 
 import java.io.*;
-import java.util.*;
 import java.net.*;
+import java.util.*;
 
-import Model.Command;
-import Model.UpdateClientCommand;
+import Model.*;
 
 /**
  * The class is the server side of the Serial Killer MUD. The server communicates with clients,

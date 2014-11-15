@@ -1,6 +1,6 @@
-package Controller;
+package Model;
 
-import Model.Command;
+import Controller.*;
 
 public class DisconnectCommand extends Command<Server>
 {

@@ -1,9 +1,9 @@
 package Model;
 
-import Controller.Server;
+import Controller.*;
 
 /**
- * Adds a text message to the server's chat log
+ * Adds a message to the server's chat log
  * 
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
