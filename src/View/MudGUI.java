@@ -100,7 +100,7 @@ public class MudGUI extends JFrame
 	{
 		JPanel top = new JPanel();
 		
-		JLabel banner = new JLabel("SAVE YO ASS", JLabel.CENTER);
+		JLabel banner = new JLabel("TITLE IN THE WORKS", JLabel.CENTER);
 		banner.setPreferredSize(new Dimension(1100, 60));
 		banner.setForeground(Color.RED);
         banner.setOpaque(true);
