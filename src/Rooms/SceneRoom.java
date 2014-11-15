@@ -43,9 +43,9 @@ public class SceneRoom extends Room
 	//do we really want this? or should we keep our room collection constant?
 	public void setNextRoom(SceneRoom room, String direction)
 	{
-		roomCollection.getRoomRow(room);
-		roomCollection.getRoomCol(room);
-		roomCollection.getRoomHeight(room);
+		//roomCollection.getRoomRow(room);
+		//roomCollection.getRoomCol(room);
+		//roomCollection.getRoomHeight(room);
 		
 		if(direction.equals("up"))
 		{
