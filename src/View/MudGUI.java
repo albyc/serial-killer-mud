@@ -71,20 +71,14 @@ public class MudGUI extends JFrame
 	{		
 		this.setLayout(new BorderLayout());
 		
-		JLabel background = new JLabel(new ImageIcon("images/scary-wall.JPG"));
-		
-		background.setLayout(new BorderLayout());
-		
 		// create and add top panel of MudGUI
-		background.add(createTopPanel(), BorderLayout.NORTH);
+		this.add(createTopPanel(), BorderLayout.NORTH);
 		
 		// create and add center panel of MudGUI
-		background.add(createCenterPanel(), BorderLayout.CENTER);
+		this.add(createCenterPanel(), BorderLayout.CENTER);
 		
 		// create and add bottom panel of MudGUI
-		background.add(createBottomPanel(), BorderLayout.SOUTH);
-		
-		this.add(background);
+		this.add(createBottomPanel(), BorderLayout.SOUTH);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
@@ -186,7 +180,11 @@ public class MudGUI extends JFrame
 		textField.setForeground(Color.WHITE);
 		
 		enterButton = new JButton("Enter");
-		enterButton.setPreferredSize(new Dimension(75, 40));
+		enterButton.setOpaque(true);
+		enterButton.setBorderPainted(false);
+		//enterButton.setContentAreaFilled(false);
+		enterButton.setBackground(Color.RED);
+		enterButton.setPreferredSize(new Dimension(100, 40));
 		
 		// add button and field to the bottom panel
 		bottomPanel.add(textField);
