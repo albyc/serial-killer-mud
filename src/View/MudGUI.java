@@ -98,7 +98,7 @@ public class MudGUI extends JFrame
 		banner.setPreferredSize(new Dimension(1100, 60));
 		banner.setForeground(Color.RED);
         banner.setOpaque(true);
-        banner.setFont(getFont("cenobyte.ttf"));
+        banner.setFont(getFont("fonts/cenobyte.ttf"));
         
         top.add(banner);
         
@@ -147,6 +147,7 @@ public class MudGUI extends JFrame
 		chatArea.setBackground(Color.BLACK);
 		chatArea.setForeground(Color.WHITE);
 		chatArea.setEditable(false);
+		chatArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		chatPanel.add(new JScrollPane(chatArea), BorderLayout.CENTER);
 		
 		JPanel commandPanel = new JPanel();
@@ -158,6 +159,7 @@ public class MudGUI extends JFrame
 		commandArea.setBackground(Color.BLACK);
 		commandArea.setForeground(Color.WHITE);
 		commandArea.setEditable(false);
+		commandArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		commandPanel.add(new JScrollPane(commandArea), BorderLayout.CENTER);
 		
 		center.add(chatPanel);
@@ -178,12 +180,15 @@ public class MudGUI extends JFrame
 		textField.setPreferredSize(new Dimension(500, 40));
 		textField.setBackground(Color.BLACK);
 		textField.setForeground(Color.WHITE);
+		textField.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		
 		enterButton = new JButton("Enter");
 		enterButton.setOpaque(true);
 		enterButton.setBorderPainted(false);
 		//enterButton.setContentAreaFilled(false);
 		enterButton.setBackground(Color.RED);
+		enterButton.setForeground(Color.WHITE);
+		enterButton.setFont(getFont("fonts/cenobyte.ttf").deriveFont(14f));
 		enterButton.setPreferredSize(new Dimension(100, 40));
 		
 		// add button and field to the bottom panel
