@@ -15,4 +15,10 @@ public class FightingItem extends Item
 	{
 		isUsedUp = true;
 	}
+
+	@Override
+	public void use() {
+		// TODO Auto-generated method stub
+		
+	}
 }

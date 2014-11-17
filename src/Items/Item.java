@@ -57,4 +57,33 @@ public abstract class Item
 	{
 		isVisible = true;
 	}
+	
+	public abstract void use();
+	
+	public Room getLocation()
+	{
+		return currentLocation;
+	}
+	
+	public void setLocation(Room room)
+	{
+		currentLocation = room;
+	}
+	
+	public boolean getIsVisible()
+	{
+		return isVisible;
+	}
+	public boolean getIsPickedUp()
+	{
+		return isPickedUp;
+	}
+	
+	public void setIsPickedUp(boolean isPickedUp)
+	{
+		this.isPickedUp = isPickedUp;
+	}
+		
+	
+	
 } // end of class Item

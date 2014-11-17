@@ -10,4 +10,10 @@ public class EnergyBoostItem extends Item{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void use() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
