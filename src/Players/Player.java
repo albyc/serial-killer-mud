@@ -1,5 +1,6 @@
 package Players;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Items.Item;
@@ -10,7 +11,7 @@ import Rooms.SceneRoom;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Player 
+public abstract class Player implements Serializable
 {
     private String username;
     private String password;
@@ -26,10 +27,20 @@ public abstract class Player
      */
     public Player(String userName, String password, String gameName)
     {
-        this.username = username;
+        this.username = userName;
         this.password = password;
         this.gameName = gameName;
     }
+    
+    /**
+     * 
+     * @param entered
+     * @return
+     */
+	public boolean matches(char[] entered)
+	{
+		return new String(entered).equals(password); 
+	}
      
     /**
      * 

@@ -193,7 +193,7 @@ public class MainView extends JPanel
 		
 		try
 		{
-			g2.drawImage(ImageIO.read(new File("scary-wall.JPG")), 0, 0, null);
+			g2.drawImage(ImageIO.read(new File("images/scary-wall.JPG")), 0, 0, null);
 		}
 		catch (Exception e)
 		{
