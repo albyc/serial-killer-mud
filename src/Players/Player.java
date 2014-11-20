@@ -11,18 +11,23 @@ import Rooms.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Player
+public class Player
 {
     private String username;
     private String password;
     private Room currentLocation;
     private List<Item> backpack;
      
-    public Player(String username, String password)
+    public Player(String username)
     {
         this.username = username;
-        this.password = password;
+        //this.password = password;
         backpack = new ArrayList<Item>();
+    }
+    
+    public void setLocation(Room aRoom)
+    {
+    	currentLocation = aRoom;
     }
     
 	public boolean matches(char[] entered)
@@ -34,11 +39,9 @@ public abstract class Player
      
     // public String getPassword() { return password; }
     
-    public Room getCurrentLocation() { return currentLocation; }
+    public Room getLocation() { return currentLocation; }
     
     public List<Item> getItems() { return backpack; }
-    
-    public void changeCurrRoom(Room aRoom) { currentLocation = aRoom; }
     
     /**
      * 

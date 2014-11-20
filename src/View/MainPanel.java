@@ -27,7 +27,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import Model.AddMessageCommand;
+import Model.AddChatMessageCommand;
 
 public class MainPanel extends JPanel
 {
@@ -65,7 +65,7 @@ public class MainPanel extends JPanel
 	{
 		JPanel top = new JPanel();
 		
-		JLabel banner = new JLabel("DEATH MATCH", JLabel.CENTER);
+		JLabel banner = new JLabel("SAVE YO ASS", JLabel.CENTER);
 		banner.setPreferredSize(new Dimension(1100, 60));
 		banner.setForeground(Color.RED);
         banner.setOpaque(true);
@@ -115,6 +115,7 @@ public class MainPanel extends JPanel
 		
 		// initialize the text area and add it to the chat panel
 		chatArea = new JTextArea();
+		chatArea.setLineWrap(true);
 		chatArea.setBackground(Color.BLACK);
 		chatArea.setForeground(Color.WHITE);
 		chatArea.setEditable(false);
@@ -127,6 +128,7 @@ public class MainPanel extends JPanel
 
 		// initialize the text area and add it to the command panel
 		commandArea = new JTextArea();
+		commandArea.setLineWrap(true);
 		commandArea.setBackground(Color.BLACK);
 		commandArea.setForeground(Color.WHITE);
 		commandArea.setEditable(false);
@@ -180,50 +182,67 @@ public class MainPanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
-			String s = textField.getText();
+			String s = textField.getText().toUpperCase();
+			String[] splitS = s.split(" ", 2);
+			String command = splitS[0];
+			String argument = splitS[1];
+			
+			Commands c = Commands.valueOf(command);
 			
 			try
 			{
-				output.writeObject(new AddMessageCommand(clientName + ":  " + s));
+				switch(c)
+				{
+				case SAY:
+				case TELL:
+				case OOC:
+					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
+					break;
+				case COMMANDS:
+				case WHO:
+				case SCORE:
+				case GIVE:
+				case GET:
+				case INVENTORY:
+				case DROP:
+				case USE:
+				case QUIT:
+					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
+					break;
+				default:
+					break;
+				}
 			}
 			catch (Exception e)
 			{
 				e.printStackTrace();
 			}
+			
 			textField.setText("");
 		}
 	} // end of private class EnterListener
 	
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		
-		Graphics2D g2 = (Graphics2D) g;
-		
-		try
-		{
-			g2.drawImage(ImageIO.read(new File("images/scary-wall.JPG")), 0, 0, null);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			System.out.println("stuff");
-		}
-	}
-	
 	/**
-	 * Updates the chat log. Called by UpdateClientCommands
+	 * Updates the chat log and command log. Called by UpdateClientCommands
 	 * 
-	 * @param messages The current chat log
+	 * @param chatMessages The current chat log
 	 */
-	public void update(List<String> messages) 
+	public void update(List<String> chatMessages, List<String> commandMessages) 
 	{
-		String s = "";
-		for (String message: messages)
-			s = s + message + "\n";
+		String chat = "";
+		for (String message: chatMessages)
+			chat = chat + message + "\n";
 		
-		chatArea.setText(s);
-		chatArea.setCaretPosition(s.length());
+		chatArea.setText(chat);
+		chatArea.setCaretPosition(chat.length());
+		
+		String command = "";
+		for (String message: commandMessages)
+			command = command + message + "\n";
+		
+		commandArea.setText(command);
+		commandArea.setCaretPosition(command.length());
+		
 		repaint();
 	} // end of method update
 }
