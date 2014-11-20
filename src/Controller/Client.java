@@ -1,5 +1,7 @@
 package Controller;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -19,12 +21,14 @@ import Players.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public class Client 
+public class Client extends JFrame
 {	
-	private String username; // username of the client
-	private MudGUI mudGUI; 
+	private static final long serialVersionUID = 7356738763172150406L;
+	
+	private MainPanel mainPanel;
 	private SerialKillerMud mud;
 	
+	private String username; // username of the client
 	private Socket server; // connection to the server
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
@@ -57,10 +61,29 @@ public class Client
 			// write out the name of this client
 			out.writeObject(username);
 			
-			mudGUI = new MudGUI(username, out);
 			mud = new SerialKillerMud();
 			
 			// here we would add the player to the list of players
+			
+			// add a listener that sends a disconnect command to when closing
+			this.addWindowListener(new WindowAdapter()
+			{
+				public void windowClosing(WindowEvent arg0) 
+				{
+					try 
+					{
+						out.writeObject(new DisconnectCommand(username));
+						out.close();
+						in.close();
+					} 
+					catch (IOException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+			});
+						
+			setupGUI();
 			
 			// start a thread for handling server events
 			new Thread(new ServerHandler()).start();
@@ -70,6 +93,18 @@ public class Client
 			e.printStackTrace();
 		} // end of try/catch statement
 	} // end of constructor Client
+	
+	private void setupGUI()
+	{
+		// create mainPanel and add it the the Frame
+		mainPanel = new MainPanel(username, out);
+		this.add(mainPanel);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.pack();
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
 
 	/**
 	 * This class reads and executes commands sent from the server
@@ -110,7 +145,6 @@ public class Client
 	 */
 	public void update(List<String> messages) 
 	{
-		mudGUI.update(messages);
+		mainPanel.update(messages);
 	}
-
 }
