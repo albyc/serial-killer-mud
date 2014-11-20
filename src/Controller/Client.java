@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import MOBs.*;
 import View.*;
+import View.Commands;
 import Rooms.*;
 import Model.*;
 import Players.*;
@@ -29,6 +30,7 @@ public class Client extends JFrame
 	
 	private MainPanel mainPanel;
 	private SerialKillerMud mud;
+	private List<String> commandMessages; // the command log
 	
 	private String username; // username of the client
 	private Socket server; // connection to the server
@@ -72,13 +74,11 @@ public class Client extends JFrame
 			server = new Socket(host, Integer.parseInt(port));
 			out = new ObjectOutputStream(server.getOutputStream());
 			in = new ObjectInputStream(server.getInputStream());
+			commandMessages = new ArrayList<String>();
+			commandMessages.add(welcomeMessage(username));
 			
 			// write out the name of this client
 			out.writeObject(username);
-			
-			mud = new SerialKillerMud();
-			
-			// here we would add the player to the list of players
 			
 			// add a listener that sends a disconnect command to when closing
 			this.addWindowListener(new WindowAdapter()
@@ -149,17 +149,25 @@ public class Client extends JFrame
 			catch (Exception e)
 			{
 				e.printStackTrace();
-			} // end of try/catch statement
+			} // end of try/catch statements
 		} // end of method run
 	} // end of private class ServerHandler
 	
 	/**
-	 * Updates the MudView with the updated message log
+	 * Updates the view with the updated message log
 	 * 
 	 * @param messages The current log of messages to display
 	 */
-	public void update(List<String> messages) 
+	public void update(List<String> chatMessages) 
 	{
-		mainPanel.update(messages);
+		mainPanel.update(chatMessages, commandMessages);
+	}
+	
+	private String welcomeMessage(String username)
+	{
+		String welcomeMessage = "Hello " + username + " and welcome to <TITLE IN THE WORKS>.\n\n"
+				+ "For a list of commands at your disposal, type: commands";
+		
+		return welcomeMessage;
 	}
 }

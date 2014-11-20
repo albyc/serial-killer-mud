@@ -4,7 +4,10 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import MOBs.*;
 import Model.*;
+import Players.*;
+import Rooms.*;
 
 /**
  * The class is the server side of the Serial Killer MUD. The server communicates with clients,
@@ -17,21 +20,20 @@ public class Server
 {
 	private ServerSocket socket; // the server socket
 	
-	private List<String> messages; // the chat log
+	private List<String> chatMessages; // the chat log
 	private HashMap<String, ObjectOutputStream> outputs; // map of all connected user's output streams
+	private SerialKillerMud mud;
 	
 	public static void main(String [] args)
 	{
 		new Server();
 	}
 	
-	/**
-	 * 
-	 */
 	public Server()
 	{
-		this.messages = new ArrayList<String>(); // create the chat log
-		this.outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
+		chatMessages = new ArrayList<String>(); // create the chat log
+		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
+		mud = new SerialKillerMud();
 		
 		try
 		{
@@ -66,8 +68,12 @@ public class Server
 					ObjectOutputStream output = new ObjectOutputStream(s.getOutputStream());
 					ObjectInputStream input = new ObjectInputStream(s.getInputStream());
 					
-					// read the client's name
+					// read the client's information (here it's just name)
+					// but later we'll add the password, too
 					String clientName = (String)input.readObject();
+					
+					// set up the client as a player in game
+					mud.setUpNewPlayer(clientName);
 					
 					// map the client name to the output stream
 					outputs.put(clientName, output);
@@ -77,6 +83,8 @@ public class Server
 					
 					// add a notification message to the chat log
 					addMessage(clientName + " connected");
+					
+					// 
 				}
 			}
 			catch (Exception e)
@@ -130,7 +138,7 @@ public class Server
 	 */
 	public void addMessage(String message) 
 	{
-		messages.add(message);
+		chatMessages.add(message);
 		updateClients();
 	} // end of method addMessage
 	
@@ -140,7 +148,7 @@ public class Server
 	public void updateClients()
 	{
 		// make an UpdatedClientCommand, write to all connected users
-		UpdateClientCommand update = new UpdateClientCommand(messages);
+		UpdateClientCommand update = new UpdateClientCommand(chatMessages);
 		
 		try
 		{

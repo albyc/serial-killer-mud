@@ -8,7 +8,7 @@ import Controller.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public class AddMessageCommand extends Command<Server>
+public class AddChatMessageCommand extends Command<Server>
 {
 	private static final long serialVersionUID = 9182181964927575026L;
 	private String message; // text message from the client
@@ -18,7 +18,7 @@ public class AddMessageCommand extends Command<Server>
 	 * 
 	 * @param message Message to add to the chat log
 	 */
-	public AddMessageCommand(String message)
+	public AddChatMessageCommand(String message)
 	{
 		this.message = message;
 	}

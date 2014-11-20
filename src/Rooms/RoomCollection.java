@@ -2,6 +2,8 @@ package Rooms;
 
 import java.util.*;
 
+import Players.*;
+
 /**
  * 
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron     
@@ -10,6 +12,7 @@ import java.util.*;
 public class RoomCollection 
 {
 	private List<Room> rooms;
+	private Room entrance;
 	
 	public RoomCollection()
 	{
@@ -21,9 +24,23 @@ public class RoomCollection
 	{
 		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", null);
 		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", null);
+		Room lawn = new SceneRoom("The Lawn", "stuff...", null);
+		entrance = lawn;
 		
+		lawn.setNorthRoom(murderCastle);
 		murderCastle.setNorthRoom(farmhouse);
+		murderCastle.setSouthRoom(lawn);
 		farmhouse.setSouthRoom(murderCastle);
+	}
+
+	public void addPlayerToRooms(Player player)
+	{
+		entrance.addPlayer(player);
+		
+		// Make sure that the player is holding a reference
+		// to the room it is located in. In this case, that
+		// would be the entrance to the game. 
+		player.setLocation(entrance);
 	}
 
 //	public Room getRoomAt(int index)
