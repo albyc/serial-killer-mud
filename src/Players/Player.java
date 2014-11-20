@@ -1,98 +1,44 @@
 package Players;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
-import Items.Item;
-import Rooms.SceneRoom;
+import Items.*;
+import Rooms.*;
 
 /**
  * 
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Player implements Serializable
+public abstract class Player
 {
     private String username;
     private String password;
-    private String gameName;
-    private SceneRoom currentLocation;
-    private ArrayList<Item> backpack;
+    private Room currentLocation;
+    private List<Item> backpack;
      
-    /**
-     * 
-     * @param userName
-     * @param password
-     * @param gameName
-     */
-    public Player(String userName, String password, String gameName)
+    public Player(String username, String password)
     {
-        this.username = userName;
+        this.username = username;
         this.password = password;
-        this.gameName = gameName;
+        backpack = new ArrayList<Item>();
     }
     
-    /**
-     * 
-     * @param entered
-     * @return
-     */
 	public boolean matches(char[] entered)
 	{
 		return new String(entered).equals(password); 
 	}
-     
-    /**
-     * 
-     * @return
-     */
-    public String getUsername()
-    {
-        return username;
-    }
-     
-    /**
-     * 
-     * @return
-     */
-    public String getPassword()
-    {
-        return password;
-    }
-     
-    /**
-     * 
-     * @return
-     */
-    public String getGameName()
-    {
-        return gameName;
-    }
     
-    /**
-     * 
-     * @return
-     */
-    public SceneRoom getCurrentLocation(){
-        return currentLocation;
-    }
+    public String getUsername() { return username; }
+     
+    // public String getPassword() { return password; }
     
-    /**
-     * 
-     * @return
-     */
-    public ArrayList getItemsList()
-    {
-        return backpack;
-    }
+    public Room getCurrentLocation() { return currentLocation; }
     
-    /**
-     * 
-     * @param newRoom
-     */
-    public void changeRoom(SceneRoom newRoom){
-        currentLocation = newRoom;
-    }
+    public List<Item> getItems() { return backpack; }
+    
+    public void changeCurrRoom(Room aRoom) { currentLocation = aRoom; }
     
     /**
      * 

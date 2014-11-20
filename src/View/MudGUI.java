@@ -27,8 +27,9 @@ public class MudGUI extends JFrame
 	
 	private ObjectOutputStream output; // output stream to server
 	private String clientName;
+	private SerialKillerMud mud;
 	
-	private MainView mainview;
+	//private MainView mainview;
 	
 	/**
 	 * Constructs a new MUD view for given username, using the given OutputStream
@@ -36,7 +37,7 @@ public class MudGUI extends JFrame
 	 * @param clientName username of the client
 	 * @param output Output stream to server
 	 */
-	public MudGUI(String clientName, ObjectOutputStream output)
+	public MudGUI(final String clientName, final ObjectOutputStream output)
 	{
 		this.output = output;
 		this.clientName = clientName;
@@ -46,20 +47,20 @@ public class MudGUI extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
-//		this.addWindowListener(new WindowAdapter()
-//		{
-//			public void windowClosing(WindowEvent arg0)
-//			{
-//				try
-//				{
-//					
-//				}
-//				catch (Exception e)
-//				{
-//					e.printStackTrace();
-//				}
-//			}
-//		});
+		addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent arg0)
+			{
+				try
+				{
+					output.writeObject(new DisconnectCommand(clientName));
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
 		
 		setupGUI();
 	} // end of constructor 
