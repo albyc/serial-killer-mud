@@ -28,12 +28,11 @@ public class SceneRoom extends Room
 	 * @param mobs
 	 * @param refs
 	 */
-	public SceneRoom(String name, String description, List<Item> items, List<Player> players, List<MOB> mobs, List<SceneRoom> refs)
+	public SceneRoom(String name, String description, List<Item> items)
 	{
-		super(name, description, players, mobs);
+		super(name, description);
 		
 		this.items = items;
-		this.references = refs;
 	} // end of constructor Room
 	
 	/**

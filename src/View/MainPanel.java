@@ -13,63 +13,39 @@ import java.awt.event.*;
 
 import Model.*;
 
-/**
- * 
- * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
- *
- */
-public class MudGUI extends JFrame
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+import Model.AddMessageCommand;
+
+public class MainPanel extends JPanel
 {
-	private static final long serialVersionUID = 7477644930151827118L;
+	private static final long serialVersionUID = 818711182821925316L;
 	private JTextArea chatArea, commandArea; 
 	private JTextField textField; // field where user enters text
-	private JButton enterButton, signoutButton;
+	private JButton enterButton;
 	
 	private ObjectOutputStream output; // output stream to server
 	private String clientName;
 	
-	private MainView mainview;
-	
-	/**
-	 * Constructs a new MUD view for given username, using the given OutputStream
-	 * 
-	 * @param clientName username of the client
-	 * @param output Output stream to server
-	 */
-	public MudGUI(String clientName, ObjectOutputStream output)
+	public MainPanel(String clientName, ObjectOutputStream output)
 	{
 		this.output = output;
 		this.clientName = clientName;
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		
-//		this.addWindowListener(new WindowAdapter()
-//		{
-//			public void windowClosing(WindowEvent arg0)
-//			{
-//				try
-//				{
-//					
-//				}
-//				catch (Exception e)
-//				{
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-		
-		setupGUI();
-	} // end of constructor 
-	
-	/**
-	 * 
-	 */
-	public void setupGUI()
-	{		
 		this.setLayout(new BorderLayout());
+		//background.setLayout(new BorderLayout());
 		
 		// create and add top panel of MudGUI
 		this.add(createTopPanel(), BorderLayout.NORTH);
@@ -79,12 +55,7 @@ public class MudGUI extends JFrame
 		
 		// create and add bottom panel of MudGUI
 		this.add(createBottomPanel(), BorderLayout.SOUTH);
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	} // end of method setupGUI
+	}
 	
 	/**
 	 * 
@@ -94,7 +65,7 @@ public class MudGUI extends JFrame
 	{
 		JPanel top = new JPanel();
 		
-		JLabel banner = new JLabel("TITLE IN THE WORKS", JLabel.CENTER);
+		JLabel banner = new JLabel("DEATH MATCH", JLabel.CENTER);
 		banner.setPreferredSize(new Dimension(1100, 60));
 		banner.setForeground(Color.RED);
         banner.setOpaque(true);
@@ -205,9 +176,6 @@ public class MudGUI extends JFrame
 		return bottomPanel;
 	} // end of method createBottomPanel
 	
-	/**
-	 *
-	 */
 	private class EnterListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent arg0)
@@ -226,6 +194,23 @@ public class MudGUI extends JFrame
 		}
 	} // end of private class EnterListener
 	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		
+		try
+		{
+			g2.drawImage(ImageIO.read(new File("images/scary-wall.JPG")), 0, 0, null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("stuff");
+		}
+	}
+	
 	/**
 	 * Updates the chat log. Called by UpdateClientCommands
 	 * 
@@ -241,4 +226,4 @@ public class MudGUI extends JFrame
 		chatArea.setCaretPosition(s.length());
 		repaint();
 	} // end of method update
-} // end of class MUDView
+}

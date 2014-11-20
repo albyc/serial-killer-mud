@@ -1,30 +1,40 @@
 package Rooms;
 
+import java.util.*;
+
 /**
  * 
- * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron     
  *
  */
 public class RoomCollection 
 {
+	private List<Room> rooms;
 	
-	private Room[] roomCollection = new Room[2];
-	
-	public RoomCollection(Room room1, Room room2)
+	public RoomCollection()
 	{
-		roomCollection[0] = room1;
-		roomCollection[1] = room2;
+		rooms = new ArrayList<Room>();
+		addDefaultRooms();
 	}
 	
-	public Room getRoomAt(int index)
+	private void addDefaultRooms()
 	{
-		return roomCollection[index];
+		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", null);
+		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", null);
+		
+		murderCastle.setNorthRoom(farmhouse);
+		farmhouse.setSouthRoom(murderCastle);
 	}
-	
-	public void setRoomAt(int index, Room room)
-	{
-		roomCollection[index] = room;
-	}
+
+//	public Room getRoomAt(int index)
+//	{
+//		return roomCollection[index];
+//	}
+//	
+//	public void setRoomAt(int index, Room room)
+//	{
+//		roomCollection[index] = room;
+//	}
 	/*private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
 	
 	public RoomCollection(SceneRoom room1, SceneRoom room2, SceneRoom room3, SceneRoom room4, SceneRoom room5, SceneRoom room6,SceneRoom room7,SceneRoom room8,
