@@ -2,6 +2,8 @@ package Rooms;
 
 import java.util.*;
 
+import Items.Item;
+import Items.ItemCollection;
 import Players.*;
 
 /**
@@ -12,19 +14,31 @@ import Players.*;
 public class RoomCollection 
 {
 	private List<Room> rooms;
+	private List<Item> itemsInMurderCastle;
+	private List<Item> itemsInFarmhouse;
+	private List<Item> itemsInLawn;
 	private Room entrance;
-	
+	private Item[] items;
+	private ItemCollection itemCollection = new ItemCollection(items);
 	public RoomCollection()
 	{
 		rooms = new ArrayList<Room>();
+		itemsInMurderCastle = new ArrayList<Item>();
+		itemsInFarmhouse = new ArrayList<Item>();
+		itemsInLawn = new ArrayList<Item>();
+		itemsInMurderCastle.add(itemCollection.getItem(0));
+		itemsInMurderCastle.add(itemCollection.getItem(1));
+		itemsInFarmhouse.add(itemCollection.getItem(2));
+		itemsInFarmhouse.add(itemCollection.getItem(3));
+		itemsInLawn.add(itemCollection.getItem(4));
 		addDefaultRooms();
 	}
 	
 	private void addDefaultRooms()
 	{
-		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", null);
-		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", null);
-		Room lawn = new SceneRoom("The Lawn", "stuff...", null);
+		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", itemsInMurderCastle);
+		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", itemsInFarmhouse);
+		Room lawn = new SceneRoom("The Lawn", "stuff...", itemsInLawn);
 		entrance = lawn;
 		
 		lawn.setNorthRoom(murderCastle);
