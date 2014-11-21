@@ -8,9 +8,11 @@ import java.util.*;
 
 import javax.swing.*;
 
+import Items.EnergyBoostItem;
+import Items.FightingItem;
+import Items.ReusableItem;
 import MOBs.*;
 import View.*;
-import View.Commands;
 import Rooms.*;
 import Model.*;
 import Players.*;
@@ -41,10 +43,15 @@ public class Client extends JFrame
 		//2 rooms - mansion (start on front porch), there's a front yard where you can die
 		List<Player> playersInRoom = new ArrayList<Player>();
 		List<MOB> mobsInRoom = new ArrayList<MOB>(); 
-		MOB mob = new MOB();
-		RoomCollection roomCollection = new RoomCollection(null, null);
-		SceneRoom frontPorch = new SceneRoom("Front Porch" , "This is your initial starting location.", null, username, mob, frontYard);
-		TrappingRoom frontYard = new TrappingRoom("Front Yard", "The front yard is a trapping room, so your chance of escaping is 50/50.", null, mob, frontPorch);
+		RoomCollection roomCollection = new RoomCollection();
+		EnergyBoostItem water = new EnergyBoostItem("water", "you drink it to stay alive", true, false);
+		EnergyBoostItem food = new EnergyBoostItem("food", "you eat it to stay alive", true, false);
+		FightingItem knife = new FightingItem("knife", "You can stab people with it", true, false, false);
+		ReusableItem nightVisionGoggles = new ReusableItem("Night Vision Goggles", "Use these to see in dark places", true, false, false);
+		FightingItem key = new FightingItem("key", "use this to unlock doors", true, false, false);
+		
+		/*SceneRoom frontPorch = new SceneRoom("Front Porch" , "This is your initial starting location.", null, username, mob, frontYard);
+		TrappingRoom frontYard = new TrappingRoom("Front Yard", "The front yard is a trapping room, so your chance of escaping is 50/50.", null, mob, frontPorch);*/
 		/*SceneRoom exit = new SceneRoom(null, null, null, playersInRoom, mobsInRoom, null);
 		TrappingRoom desert = new TrappingRoom("Desert", "The Desert room is a trapping room, so your chance of escaping is 50/50.", playersInRoom, mobsInRoom, exit);
 		TrappingRoom jail = new TrappingRoom("Jail", "The Jail room is a trapping room, so your chance of escaping is 50/50.", playersInRoom, mobsInRoom, exit);
