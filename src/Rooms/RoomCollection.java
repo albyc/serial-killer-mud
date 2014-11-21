@@ -17,6 +17,9 @@ public class RoomCollection
 	private List<Item> itemsInMurderCastle;
 	private List<Item> itemsInFarmhouse;
 	private List<Item> itemsInLawn;
+	private List<Player> playersInMurderCastle;
+	private List<Player> playersInFarmhouse;
+	private List<Player> playersInLawn;
 	private Room entrance;
 	private Item[] items;
 	private ItemCollection itemCollection = new ItemCollection(items);
@@ -31,6 +34,10 @@ public class RoomCollection
 		itemsInFarmhouse.add(itemCollection.getItem(2));
 		itemsInFarmhouse.add(itemCollection.getItem(3));
 		itemsInLawn.add(itemCollection.getItem(4));
+		
+		playersInMurderCastle = new ArrayList<Player>();
+		playersInFarmhouse = new ArrayList<Player>();
+		playersInLawn = new ArrayList<Player>();
 		addDefaultRooms();
 	}
 	
@@ -45,6 +52,9 @@ public class RoomCollection
 		murderCastle.setNorthRoom(farmhouse);
 		murderCastle.setSouthRoom(lawn);
 		farmhouse.setSouthRoom(murderCastle);
+		rooms.add(murderCastle);
+		rooms.add(farmhouse);
+		rooms.add(lawn);
 	}
 
 	public void addPlayerToRooms(Player player)
@@ -57,10 +67,33 @@ public class RoomCollection
 		player.setLocation(entrance);
 	}
 
-//	public Room getRoomAt(int index)
-//	{
-//		return roomCollection[index];
-//	}
+	public Room getRoomAt(int index)
+	{
+		return rooms.get(index);
+	}
+	
+	public void setRoomsPlayerList(ArrayList<Player> players, int index)
+	{
+		switch(index)
+		{
+		case 0:
+			playersInMurderCastle = players;
+			break;
+		case 1:
+			playersInFarmhouse = players;
+			break;
+		case 2:
+			playersInLawn = players;
+		}
+	}
+	
+	/*public List<Player> getPlayers(int index) 
+	{ 
+		switch(index){
+		case 0:
+			return 
+		}
+	}*/
 //	
 //	public void setRoomAt(int index, Room room)
 //	{

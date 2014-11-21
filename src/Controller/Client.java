@@ -41,7 +41,7 @@ public class Client extends JFrame
 	
 	//needs a lot of fixing - just testing to see if room abstract class/ subclass objects work
 		//2 rooms - mansion (start on front porch), there's a front yard where you can die
-		List<Player> playersInStartingRoom = new ArrayList<Player>();
+		ArrayList<Player> playersInStartingRoom = new ArrayList<Player>();
 		//List<MOB> mobsInRoom = new ArrayList<MOB>(); 
 		RoomCollection roomCollection = new RoomCollection();
 		
@@ -79,6 +79,8 @@ public class Client extends JFrame
 			//add player to starting room
 			Player newPlayer = new Player(username);
 			playersInStartingRoom.add(newPlayer);
+			roomCollection.setRoomsPlayerList(playersInStartingRoom, 2);
+			
 			
 			// add a listener that sends a disconnect command to when closing
 			this.addWindowListener(new WindowAdapter()
