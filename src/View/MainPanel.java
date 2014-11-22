@@ -183,16 +183,27 @@ public class MainPanel extends JPanel
 		public void actionPerformed(ActionEvent arg0)
 		{
 			String s = textField.getText().toUpperCase();
-			String[] splitS = s.split(" ", 2);
-			String command = splitS[0];
-			String argument = splitS[1];
+			String command = new String();
+			String argument = new String();
+			
+			if (s.indexOf(" ") > 0)
+			{
+				String[] splitS = s.split(" ", 2);
+				command = splitS[0];
+				argument = splitS[1];
+			}
+			
+			else
+			{
+				command = s;
+			}
 			
 			Commands c = Commands.valueOf(command);
 			
 			try
 			{
-//				switch(c)
-//				{
+				switch(c)
+				{
 //				case MOVE:
 //					output.writeObject();
 //					break;
@@ -217,16 +228,17 @@ public class MainPanel extends JPanel
 //				case SCORE:
 //					output.writeObject();
 //					break;
-//				case OOC:
-//					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
-//					break;
-//				case QUIT:
-//					break;
+				case OOC:
+					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
+					break;
+				case QUIT:
+					output.writeObject(new DisconnectCommand(clientName));
+					break;
 //				case SHUTDOWN:
 //					break;
 //				default:
 //					break;
-//				}
+				}
 			}
 			catch (Exception e)
 			{

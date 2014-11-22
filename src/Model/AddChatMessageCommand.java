@@ -10,7 +10,7 @@ import Controller.*;
  */
 public class AddChatMessageCommand extends Command<Server>
 {
-	private static final long serialVersionUID = 9182181964927575026L;
+	private static final long serialVersionUID = -5235647728757594981L;
 	private String message; // text message from the client
 	
 	/**
