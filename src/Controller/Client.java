@@ -77,7 +77,10 @@ public class Client extends JFrame
 			out.writeObject(username);
 			
 			//add player to starting room
-			Player newPlayer = new Player(username);
+			
+			//need to get their password
+			String password = "";
+			Player newPlayer = new Player(username, password);
 			playersInStartingRoom.add(newPlayer);
 			roomCollection.setRoomsPlayerList(playersInStartingRoom, 2);
 			

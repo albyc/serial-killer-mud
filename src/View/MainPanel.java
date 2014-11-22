@@ -204,7 +204,7 @@ public class MainPanel extends JPanel
 			
 			try
 			{
-<<<<<<< HEAD
+
 				switch(c)
 				{
 				case SAY:
