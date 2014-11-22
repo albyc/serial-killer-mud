@@ -11,7 +11,7 @@ public class ItemCollection {
 	
 	public ItemCollection(Item[] items){
 		
-		items = new Item[5];
+		this.items = new Item[5];
 		
 		this.items[0] = water;
 		this.items[1] = food;
