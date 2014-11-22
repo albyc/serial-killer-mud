@@ -2,6 +2,8 @@ package Rooms;
 
 import java.util.*;
 
+import Items.Item;
+import Items.ItemCollection;
 import Players.*;
 
 /**
@@ -12,25 +14,47 @@ import Players.*;
 public class RoomCollection 
 {
 	private List<Room> rooms;
+	private List<Item> itemsInMurderCastle;
+	private List<Item> itemsInFarmhouse;
+	private List<Item> itemsInLawn;
+	private List<Player> playersInMurderCastle;
+	private List<Player> playersInFarmhouse;
+	private List<Player> playersInLawn;
 	private Room entrance;
-	
+	private Item[] items;
+	private ItemCollection itemCollection = new ItemCollection(items);
 	public RoomCollection()
 	{
 		rooms = new ArrayList<Room>();
+		itemsInMurderCastle = new ArrayList<Item>();
+		itemsInFarmhouse = new ArrayList<Item>();
+		itemsInLawn = new ArrayList<Item>();
+		itemsInMurderCastle.add(itemCollection.getItem(0));
+		itemsInMurderCastle.add(itemCollection.getItem(1));
+		itemsInFarmhouse.add(itemCollection.getItem(2));
+		itemsInFarmhouse.add(itemCollection.getItem(3));
+		itemsInLawn.add(itemCollection.getItem(4));
+		
+		playersInMurderCastle = new ArrayList<Player>();
+		playersInFarmhouse = new ArrayList<Player>();
+		playersInLawn = new ArrayList<Player>();
 		addDefaultRooms();
 	} 
 	
 	private void addDefaultRooms()
 	{
-		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", null);
-		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", null);
-		Room lawn = new SceneRoom("The Lawn", "stuff...", null);
+		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", itemsInMurderCastle);
+		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", itemsInFarmhouse);
+		Room lawn = new SceneRoom("The Lawn", "stuff...", itemsInLawn);
 		entrance = lawn;
 		
 		lawn.setNorthRoom(murderCastle);
 		murderCastle.setNorthRoom(farmhouse);
 		murderCastle.setSouthRoom(lawn);
 		farmhouse.setSouthRoom(murderCastle);
+		rooms.add(murderCastle);
+		rooms.add(farmhouse);
+		rooms.add(lawn);
 	}
 
 	public void addPlayerToRooms(Player player)
@@ -45,10 +69,33 @@ public class RoomCollection
 	
 	
 
-//	public Room getRoomAt(int index)
-//	{
-//		return roomCollection[index];
-//	}
+	public Room getRoomAt(int index)
+	{
+		return rooms.get(index);
+	}
+	
+	public void setRoomsPlayerList(ArrayList<Player> players, int index)
+	{
+		switch(index)
+		{
+		case 0:
+			playersInMurderCastle = players;
+			break;
+		case 1:
+			playersInFarmhouse = players;
+			break;
+		case 2:
+			playersInLawn = players;
+		}
+	}
+	
+	/*public List<Player> getPlayers(int index) 
+	{ 
+		switch(index){
+		case 0:
+			return 
+		}
+	}*/
 //	
 //	public void setRoomAt(int index, Room room)
 //	{
