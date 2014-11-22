@@ -204,6 +204,7 @@ public class MainPanel extends JPanel
 			
 			try
 			{
+<<<<<<< HEAD
 				switch(c)
 				{
 				case SAY:
@@ -227,6 +228,7 @@ public class MainPanel extends JPanel
 				default:
 					break;
 				}
+
 			}
 			catch (Exception e)
 			{

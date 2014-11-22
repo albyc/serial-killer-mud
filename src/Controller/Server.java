@@ -96,9 +96,6 @@ public class Server
 		}	
 	} // end of private class ClientAccepter
 	
-	/**
-	 *
-	 */
 	private class ClientHandler implements Runnable
 	{
 		private ObjectInputStream input; // the input stream from the client
@@ -134,10 +131,6 @@ public class Server
 		}
 	} // end of private class ClientHandler
 
-	/**
-	 * 
-	 * @param message Message to add
-	 */
 	public void addMessage(String message) 
 	{
 		chatMessages.add(message);
@@ -145,10 +138,6 @@ public class Server
 	} // end of method addMessage
 	
 
-	
-	/**
-	 * 
-	 */
 	public void updateClients()
 	{
 		// make an UpdatedClientCommand, write to all connected users
@@ -165,10 +154,6 @@ public class Server
 		}
 	} // end of method updateClients
 	
-	/**
-	 * 
-	 * @param clientName User to disconnect
-	 */
 	public void disconnect(String clientName)
 	{
 		try

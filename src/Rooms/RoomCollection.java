@@ -39,7 +39,7 @@ public class RoomCollection
 		playersInFarmhouse = new ArrayList<Player>();
 		playersInLawn = new ArrayList<Player>();
 		addDefaultRooms();
-	}
+	} 
 	
 	private void addDefaultRooms()
 	{
@@ -66,6 +66,8 @@ public class RoomCollection
 		// would be the entrance to the game. 
 		player.setLocation(entrance);
 	}
+	
+	
 
 	public Room getRoomAt(int index)
 	{
