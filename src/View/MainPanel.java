@@ -191,27 +191,42 @@ public class MainPanel extends JPanel
 			
 			try
 			{
-				switch(c)
-				{
-				case SAY:
-				case TELL:
-				case OOC:
-					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
-					break;
-				case COMMANDS:
-				case WHO:
-				case SCORE:
-				case GIVE:
-				case GET:
-				case INVENTORY:
-				case DROP:
-				case USE:
-				case QUIT:
-					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
-					break;
-				default:
-					break;
-				}
+//				switch(c)
+//				{
+//				case MOVE:
+//					output.writeObject();
+//					break;
+//				case LOOK:
+//					output.writeObject();
+//					break;
+//				case GET:
+//					output.writeObject();
+//					break;
+//				case DROP:
+//					output.writeObject();
+//					break;
+//				case INVENTORY:
+//					output.writeObject();
+//					break;
+//				case COMMANDS:
+//					output.writeObject();
+//					break;
+//				case WHO:
+//					output.writeObject();
+//					break;
+//				case SCORE:
+//					output.writeObject();
+//					break;
+//				case OOC:
+//					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
+//					break;
+//				case QUIT:
+//					break;
+//				case SHUTDOWN:
+//					break;
+//				default:
+//					break;
+//				}
 			}
 			catch (Exception e)
 			{

@@ -18,7 +18,7 @@ public class RoomCollection
 	{
 		rooms = new ArrayList<Room>();
 		addDefaultRooms();
-	}
+	} 
 	
 	private void addDefaultRooms()
 	{
@@ -42,6 +42,8 @@ public class RoomCollection
 		// would be the entrance to the game. 
 		player.setLocation(entrance);
 	}
+	
+	
 
 //	public Room getRoomAt(int index)
 //	{

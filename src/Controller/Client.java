@@ -150,7 +150,7 @@ public class Client extends JFrame
 	
 	private String welcomeMessage(String username)
 	{
-		String welcomeMessage = "Hello " + username + " and welcome to <TITLE IN THE WORKS>.\n\n"
+		String welcomeMessage = "Hello " + username + " and welcome to SAVE YO ASS.\n\n"
 				+ "For a list of commands at your disposal, type: commands";
 		
 		return welcomeMessage;
