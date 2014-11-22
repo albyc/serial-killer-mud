@@ -205,23 +205,37 @@ public class MainPanel extends JPanel
 			{
 				switch(c)
 				{
-				case SAY:
-				case TELL:
+				case DROP:
+				case GET:
+				case MOVE:
+					if(!argument.equals(""))
+					{
+						output.writeObject(new PrintWArgsCommand(clientName, argument, c));
+					}
+					break;
+				case LOOK:
+					if(argument.equals(""))
+					{
+						output.writeObject(new PrintCommand(clientName, c));
+					}
+					else
+					{
+						output.writeObject(new PrintWArgsCommand(clientName, argument, c));
+					}
+					break;
 				case OOC:
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
+				case SCORE:
+				case INVENTORY:
 				case COMMANDS:
 				case WHO:
 					output.writeObject(new PrintCommand(clientName, c));
 					break;
-				case SCORE:
-				case GIVE:
-				case GET:
-				case INVENTORY:
-				case DROP:
-				case USE:
 				case QUIT:
 					output.writeObject(new DisconnectCommand(clientName));
+					break;
+				case SHUTDOWN:
 					break;
 				default:
 					break;

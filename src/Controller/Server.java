@@ -183,5 +183,18 @@ public class Server
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
+	}
+	
+	public void PrintToClientWArgs(String clientName, String arguments, Commands command)
+	{
+		UpdateAClientWArgsCommand update = new UpdateAClientWArgsCommand(command, arguments);
+		
+		ObjectOutputStream out = outputs.get(clientName);
+		try {
+			out.writeObject(update);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 } // end of class Server
