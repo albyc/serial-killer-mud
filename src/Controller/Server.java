@@ -8,6 +8,7 @@ import MOBs.*;
 import Model.*;
 import Players.*;
 import Rooms.*;
+import View.Commands;
 
 /**
  * The class is the server side of the Serial Killer MUD. The server communicates with clients,
@@ -23,6 +24,7 @@ public class Server
 	private List<String> chatMessages; // the chat log
 	private HashMap<String, ObjectOutputStream> outputs; // map of all connected user's output streams
 	private SerialKillerMud mud;
+	private String commands;
 	
 	public static void main(String [] args)
 	{
@@ -142,13 +144,15 @@ public class Server
 		updateClients();
 	} // end of method addMessage
 	
+
+	
 	/**
 	 * 
 	 */
 	public void updateClients()
 	{
 		// make an UpdatedClientCommand, write to all connected users
-		UpdateClientCommand update = new UpdateClientCommand(chatMessages);
+		UpdateClientsCommand update = new UpdateClientsCommand(chatMessages);
 		
 		try
 		{
@@ -180,4 +184,19 @@ public class Server
 			e.printStackTrace();
 		}
 	} // end of method disconnect
+
+	public void PrintToClient(String clientName, Commands command) 
+	{
+		//print commands in client's right side text area
+		// make an UpdatedClientCommand, write to all connected users
+		UpdateAClientCommand update = new UpdateAClientCommand(command);
+				
+		ObjectOutputStream out = outputs.get(clientName);
+		try {
+			out.writeObject(update);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
 } // end of class Server

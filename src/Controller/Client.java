@@ -172,4 +172,18 @@ public class Client extends JFrame
 		
 		return welcomeMessage;
 	}
+
+	public void listCommands() 
+	{
+		String listOfCommands = "Here are the commands...";
+		commandMessages.add(listOfCommands);
+		mainPanel.updateCommands(commandMessages);
+	}
+
+	public void listWho() 
+	{
+		String listOfCommands = "Here are the players...";
+		commandMessages.add(listOfCommands);
+		mainPanel.updateCommands(commandMessages);	
+	}
 }
