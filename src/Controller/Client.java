@@ -189,4 +189,19 @@ public class Client extends JFrame
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);	
 	}
+	
+	public void closeByInput()
+	{
+		try 
+		{
+			out.writeObject(new DisconnectCommand(username));
+			out.close();
+			in.close();
+			System.exit(0);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
 }

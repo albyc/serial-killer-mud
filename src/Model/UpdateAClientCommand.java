@@ -34,6 +34,9 @@ public class UpdateAClientCommand extends Command<Client>
 		case WHO:
 			executeOn.listWho();
 			break;
+		case QUIT:
+			executeOn.closeByInput();
+			break;
 		default:
 			break;
 		}

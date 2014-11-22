@@ -210,30 +210,28 @@ public class MainPanel extends JPanel
 				case MOVE:
 					if(!argument.equals(""))
 					{
-						output.writeObject(new PrintWArgsCommand(clientName, argument, c));
+						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
 					}
-					break;
-				case LOOK:
-					if(argument.equals(""))
-					{
-						output.writeObject(new PrintCommand(clientName, c));
-					}
-					else
-					{
-						output.writeObject(new PrintWArgsCommand(clientName, argument, c));
-					}
-					break;
-				case OOC:
-					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SCORE:
 				case INVENTORY:
 				case COMMANDS:
 				case WHO:
-					output.writeObject(new PrintCommand(clientName, c));
-					break;
 				case QUIT:
-					output.writeObject(new DisconnectCommand(clientName));
+					output.writeObject(new ForServerCommand(clientName, c));
+					break;
+				case LOOK:
+					if(argument.equals(""))
+					{
+						output.writeObject(new ForServerCommand(clientName, c));
+					}
+					else
+					{
+						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
+					}
+					break;
+				case OOC:
+					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SHUTDOWN:
 					break;

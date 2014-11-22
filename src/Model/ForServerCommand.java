@@ -1,30 +1,27 @@
 package Model;
 
-import View.Commands;
-import Controller.Server;
+import View.*;
+import Controller.*;
 
-public class PrintCommand extends Command<Server>
+/**
+ * 
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ *
+ */
+public class ForServerCommand extends Command<Server>
 {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4617032470436109312L;
 	private String clientName;
 	private Commands command;
 	
-	public PrintCommand(String clientName, Commands command)
+	public ForServerCommand(String clientName, Commands command)
 	{
 		this.clientName = clientName;
 		this.command = command;
 	}
 
-	@Override
 	public void execute(Server executeOn) 
 	{
 		executeOn.PrintToClient(clientName, command);
-		
 	}
-
-	
-}
+} // end of class ForServerCommand
