@@ -25,7 +25,9 @@ public class SerialKillerMud
 	public void setUpNewPlayer(String username)
 	{
 		// Create the player from the user's information
-		Player player = new Player(username);
+		//change password
+		String password = "";
+		Player player = new Player(username, password);
 		
 		// Add the new player to the collection of existing players
 		players.addPlayer(player);
