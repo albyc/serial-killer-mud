@@ -18,10 +18,10 @@ public class Player
     private Room currentLocation;
     private List<Item> backpack;
      
-    public Player(String username)
+    public Player(String username, String password)
     {
         this.username = username;
-        //this.password = password;
+        this.password = password;
         backpack = new ArrayList<Item>();
     }
     

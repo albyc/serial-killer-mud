@@ -11,7 +11,7 @@ import Controller.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public class UpdateClientCommand extends Command<Client> 
+public class UpdateClientsCommand extends Command<Client> 
 {
 	private static final long serialVersionUID = 4222014184904080846L;
 	private List<String> messages;
@@ -21,7 +21,7 @@ public class UpdateClientCommand extends Command<Client>
 	 * 
 	 * @param messages The current log of messages
 	 */
-	public UpdateClientCommand(List<String> messages)
+	public UpdateClientsCommand(List<String> messages)
 	{
 		this.messages = new LinkedList<String>(messages);
 	}

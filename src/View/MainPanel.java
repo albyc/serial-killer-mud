@@ -183,6 +183,7 @@ public class MainPanel extends JPanel
 		public void actionPerformed(ActionEvent arg0)
 		{
 			String s = textField.getText().toUpperCase();
+<<<<<<< HEAD
 			String command = new String();
 			String argument = new String();
 			
@@ -196,12 +197,30 @@ public class MainPanel extends JPanel
 			else
 			{
 				command = s;
+=======
+			Commands c;
+			String argument;
+			String command;
+			if (s.indexOf(" ") > 0)
+			{
+			String[] splitS = s.split(" ", 2);
+			command = splitS[0];
+			argument = splitS[1];
+			c = Commands.valueOf(command);
+>>>>>>> 00a90af1ce64a91ccdf716eb117d4fcaf368d3ce
 			}
 			
-			Commands c = Commands.valueOf(command);
+			else
+			{
+				command = s;
+				c = Commands.valueOf(command);
+				argument = "";
+				
+			}
 			
 			try
 			{
+<<<<<<< HEAD
 				switch(c)
 				{
 //				case MOVE:
@@ -239,6 +258,33 @@ public class MainPanel extends JPanel
 //				default:
 //					break;
 				}
+=======
+
+				switch(c)
+				{
+				case SAY:
+				case TELL:
+				case OOC:
+					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
+					break;
+				case COMMANDS:
+				case WHO:
+					output.writeObject(new PrintCommand(clientName, c));
+					break;
+				case SCORE:
+				case GIVE:
+				case GET:
+				case INVENTORY:
+				case DROP:
+				case USE:
+				case QUIT:
+					output.writeObject(new DisconnectCommand(clientName));
+					break;
+				default:
+					break;
+				}
+
+>>>>>>> 00a90af1ce64a91ccdf716eb117d4fcaf368d3ce
 			}
 			catch (Exception e)
 			{
@@ -272,4 +318,16 @@ public class MainPanel extends JPanel
 		
 		repaint();
 	} // end of method update
+	
+	public void updateCommands(List<String> commandMessages)
+	{
+		String command = "";
+		for (String message: commandMessages)
+			command = command + message + "\n";
+		
+		commandArea.setText(command);
+		commandArea.setCaretPosition(command.length());
+		
+		repaint();
+	}
 }

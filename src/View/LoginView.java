@@ -5,9 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -18,19 +22,24 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Players.Player;
+
 public class LoginView extends JFrame 
-{
+{	
+	private Map<String, Player> players = new HashMap<String, Player>(); // the players will be be stored here 
+	private Player current; // current login person
+	
 	private BufferedImage image;
 	private JLabel title;
-	
+	private JLabel error;
 	private JLabel oldy;
 	private JLabel oldUN;
 	private JLabel oldUP;
-	private JTextField oldUserName;
-	private JPasswordField oldUserPass;
+	private JTextField username;
+	private JPasswordField userPass;
 
-	private JButton loginB;
-	private JButton createB;
+	private JButton loginButton;
+	private JButton createButton;
 	
 
 	public static void main(String[] args) 
@@ -73,7 +82,6 @@ public class LoginView extends JFrame
 		} 
 		catch (IOException e) 
 		{
-			
 			e.printStackTrace();
 		}
 		
@@ -86,68 +94,135 @@ public class LoginView extends JFrame
 		
 		
 		// make AWESOME title
-		title = new JLabel("save yo ass");
+/*		title = new JLabel(" ");
 		title.setFont(getFont("fonts/cenobyte.ttf").deriveFont(38f));
 		title.setForeground(Color.RED);
 		title.setSize(600,40);
 		title.setLocation(92,5);
-		
+		*/
 		// Returning user JLabel and text fields
 		oldy = new JLabel("Player Login:");
 		oldy.setFont(getFont("fonts/trajan.ttf").deriveFont(20f));
 		oldy.setForeground(Color.RED);
 		oldy.setSize(250,30);
-		oldy.setLocation(45,70);
+		oldy.setLocation(60,50);
 		
 		oldUN = new JLabel("Username:");
 		oldUN.setFont(getFont("fonts/trajan.ttf").deriveFont(16f));
 		oldUN.setForeground(Color.GREEN);
 		oldUN.setSize(250,30);
-		oldUN.setLocation(100,115);
+		oldUN.setLocation(100,100);
 		
-		oldUserName = new JTextField("");
-		oldUserName.setSize(175,30);
-		oldUserName.setLocation(200,115);
+		username = new JTextField("");
+		username.setSize(175,30);
+		username.setLocation(200,100);
 		
 		oldUP = new JLabel("Password:");
 		oldUP.setFont(getFont("fonts/trajan.ttf").deriveFont(16f));
 		oldUP.setForeground(Color.GREEN);
 		oldUP.setSize(250,30);
-		oldUP.setLocation(100,165);
+		oldUP.setLocation(100,150);
 		
-		oldUserPass = new JPasswordField("");
-		oldUserPass.setSize(175,30);
-		oldUserPass.setLocation(200,165);
+		userPass = new JPasswordField("");
+		userPass.setSize(175,30);
+		userPass.setLocation(200,150);
+		
+		error = new JLabel("");
+		error.setFont(getFont("fonts/trajan.ttf").deriveFont(16f));
+		error.setForeground(Color.YELLOW);
+		error.setSize(400,30);
+		error.setLocation(95,260);
 				
-		loginB = new JButton("Login");
-		loginB.setOpaque(true);
-		loginB.setBorderPainted(false);
-		loginB.setBackground(Color.RED);
-		loginB.setForeground(Color.WHITE);
-		loginB.setFont(getFont("fonts/trajan.ttf").deriveFont(14f));
-		loginB.setSize(130, 30);
-		loginB.setLocation(90, 225);
+		loginButton = new JButton("Login");
+		loginButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				login();
+			}
+		});		
+		loginButton.setOpaque(true);
+		loginButton.setBorderPainted(false);
+		loginButton.setBackground(Color.RED);
+		loginButton.setForeground(Color.WHITE);
+		loginButton.setFont(getFont("fonts/trajan.ttf").deriveFont(14f));
+		loginButton.setSize(130, 30);
+		loginButton.setLocation(90, 205);
 		
 		
-		createB = new JButton("Create Account");
-		createB.setOpaque(true);
-		createB.setBorderPainted(false);
-		createB.setBackground(Color.RED);
-		createB.setForeground(Color.WHITE);
-		createB.setFont(getFont("fonts/trajan.ttf").deriveFont(14f));
-		createB.setSize(180, 30);
-		createB.setLocation(245, 225);
+		createButton = new JButton("Create Account");
+		createButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0)
+			{
+				addPlayer();
+			}
+		});
+		createButton.setOpaque(true);
+		createButton.setBorderPainted(false);
+		createButton.setBackground(Color.RED);
+		createButton.setForeground(Color.WHITE);
+		createButton.setFont(getFont("fonts/trajan.ttf").deriveFont(14f));
+		createButton.setSize(180, 30);
+		createButton.setLocation(245, 205);
 		//Adding components to Panel and JFrame
 		
-		this.add(title);
+		//this.add(title);
 		this.add(oldy);
 		this.add(oldUN);
-		this.add(oldUserName);
+		this.add(username);
 		this.add(oldUP);
-		this.add(oldUserPass);
-		this.add(loginB);
-		this.add(createB);
+		this.add(userPass);
+		this.add(loginButton);
+		this.add(createButton);
+		this.add(error);
 		
 		
+	}
+	
+	public void login()
+	{
+		String gamename = username.getText();
+		Player person = players.get(gamename);
+		if(person == null || !person.matches(userPass.getPassword()))
+		{
+			error.setText("Invalid username or password");
+			error.setLocation(115,260);
+			username.setText("");
+			userPass.setText("");
+			return;
+		}
+		
+		current = person;
+		username.setText("");
+		userPass.setText("");
+		error.setText("");
+		
+	}
+	
+	public void addPlayer()
+	{
+		String gamename = username.getText();
+		String password = new String(userPass.getPassword());
+		
+		if(gamename.equals("") || userPass.equals(""))
+		{
+			error.setText("Enter a valid username or password");
+			error.setLocation(90,260);
+			username.setText("");
+			userPass.setText("");
+			return;
+		}
+		
+		if(players.get(gamename) != null)
+		{
+			error.setText("An account exists with that name");
+			error.setLocation(95,260);
+			username.setText("");
+			userPass.setText("");
+			return;
+		}
+		error.setText("");
+		players.put(gamename, new Player(gamename, password));
+		login();
 	}
 }

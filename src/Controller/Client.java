@@ -77,7 +77,10 @@ public class Client extends JFrame
 			out.writeObject(username);
 			
 			//add player to starting room
-			Player newPlayer = new Player(username);
+			
+			//need to get their password
+			String password = "";
+			Player newPlayer = new Player(username, password);
 			playersInStartingRoom.add(newPlayer);
 			roomCollection.setRoomsPlayerList(playersInStartingRoom, 2);
 			
@@ -172,6 +175,7 @@ public class Client extends JFrame
 		
 		return welcomeMessage;
 	}
+<<<<<<< HEAD
 	
 	public void finishClosing()
 	{
@@ -186,5 +190,20 @@ public class Client extends JFrame
 				e.printStackTrace();
 				System.out.println();
 			}
+=======
+
+	public void listCommands() 
+	{
+		String listOfCommands = "Here are the commands...";
+		commandMessages.add(listOfCommands);
+		mainPanel.updateCommands(commandMessages);
+	}
+
+	public void listWho() 
+	{
+		String listOfCommands = "Here are the players...";
+		commandMessages.add(listOfCommands);
+		mainPanel.updateCommands(commandMessages);	
+>>>>>>> 00a90af1ce64a91ccdf716eb117d4fcaf368d3ce
 	}
 }
