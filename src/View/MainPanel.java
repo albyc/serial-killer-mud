@@ -183,7 +183,7 @@ public class MainPanel extends JPanel
 		public void actionPerformed(ActionEvent arg0)
 		{
 			String s = textField.getText().toUpperCase();
-<<<<<<< HEAD
+
 			String command = new String();
 			String argument = new String();
 			
@@ -197,69 +197,12 @@ public class MainPanel extends JPanel
 			else
 			{
 				command = s;
-=======
-			Commands c;
-			String argument;
-			String command;
-			if (s.indexOf(" ") > 0)
-			{
-			String[] splitS = s.split(" ", 2);
-			command = splitS[0];
-			argument = splitS[1];
-			c = Commands.valueOf(command);
->>>>>>> 00a90af1ce64a91ccdf716eb117d4fcaf368d3ce
 			}
 			
-			else
-			{
-				command = s;
-				c = Commands.valueOf(command);
-				argument = "";
-				
-			}
+			Commands c = Commands.valueOf(command);
 			
 			try
 			{
-<<<<<<< HEAD
-				switch(c)
-				{
-//				case MOVE:
-//					output.writeObject();
-//					break;
-//				case LOOK:
-//					output.writeObject();
-//					break;
-//				case GET:
-//					output.writeObject();
-//					break;
-//				case DROP:
-//					output.writeObject();
-//					break;
-//				case INVENTORY:
-//					output.writeObject();
-//					break;
-//				case COMMANDS:
-//					output.writeObject();
-//					break;
-//				case WHO:
-//					output.writeObject();
-//					break;
-//				case SCORE:
-//					output.writeObject();
-//					break;
-				case OOC:
-					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
-					break;
-				case QUIT:
-					output.writeObject(new DisconnectCommand(clientName));
-					break;
-//				case SHUTDOWN:
-//					break;
-//				default:
-//					break;
-				}
-=======
-
 				switch(c)
 				{
 				case SAY:
@@ -284,7 +227,6 @@ public class MainPanel extends JPanel
 					break;
 				}
 
->>>>>>> 00a90af1ce64a91ccdf716eb117d4fcaf368d3ce
 			}
 			catch (Exception e)
 			{

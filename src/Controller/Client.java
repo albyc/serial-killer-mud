@@ -175,22 +175,6 @@ public class Client extends JFrame
 		
 		return welcomeMessage;
 	}
-<<<<<<< HEAD
-	
-	public void finishClosing()
-	{
-			try
-			{
-				out.close();
-				in.close();
-				this.dispose();
-			} catch (IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println();
-			}
-=======
 
 	public void listCommands() 
 	{
@@ -204,6 +188,5 @@ public class Client extends JFrame
 		String listOfCommands = "Here are the players...";
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);	
->>>>>>> 00a90af1ce64a91ccdf716eb117d4fcaf368d3ce
 	}
 }
