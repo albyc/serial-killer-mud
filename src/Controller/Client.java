@@ -78,7 +78,7 @@ public class Client extends JFrame
 			// to determine whether the motherheffer trying to access the game
 			// is allowed the privilege. If not, there's no fucking point in 
 			// letting them in...
-			players = (List<Player>)in.readObject();
+			players = (ArrayList<Player>)in.readObject();
 		}
 		catch (Exception e)
 		{
@@ -165,8 +165,13 @@ public class Client extends JFrame
 
 	public void listWho() 
 	{
+		//doesn't work yet. if 2nd client is added, in the 1st client's view, only the 1st client player exists. :(
 		
-		String listOfCommands = "Here are the players...\n";
+		String listOfCommands = "Here are the players: \n";
+		for (int i = 0; i < players.size(); i++ )
+		{
+			listOfCommands += players.get(i).getUsername() + '\n';
+		}
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);	
 	}
