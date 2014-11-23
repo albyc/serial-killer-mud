@@ -15,7 +15,7 @@ public abstract class Room
 	protected String name;
 	protected String description;
 	protected List<Player> players;
-	protected List<MOB> mobs;
+	protected List<Player> mobs;
 	private Room northRoom, southRoom, eastRoom, westRoom;
 	//protected RoomCollection roomCollection;
 	
@@ -23,8 +23,8 @@ public abstract class Room
 	{
 		this.name = name;
 		this.description = description;
-		this.players = new ArrayList<>();
-		this.mobs = new ArrayList<>();
+		this.players = new ArrayList<Player>();
+		this.mobs = new ArrayList<Player>();
 		
 		// initially, a Room does not have any adjacent Rooms
 		northRoom = null;
@@ -39,13 +39,13 @@ public abstract class Room
 	
 	public List<Player> getPlayers() { return players; }
 	
-	public List<MOB> getMOBs() { return mobs; }
+	public List<Player> getMOBs() { return mobs; }
 	
 	public void addPlayer(Player aPlayer) { players.add(aPlayer); }
 	
 	public void removePlayer(Player player) { players.remove(player); }	
 	
-	public void addMOB(MOB anMOB) { mobs.add(anMOB); }
+	public void addMOB(MOB anMOB) { mobs.addAll((Collection<? extends Player>) anMOB); }
 	
 	public void removeMOB(MOB anMOB) { mobs.remove(anMOB); }
 	
