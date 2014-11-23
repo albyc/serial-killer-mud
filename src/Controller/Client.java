@@ -10,6 +10,8 @@ import javax.swing.*;
 
 import Items.EnergyBoostItem;
 import Items.FightingItem;
+import Items.Item;
+import Items.ItemCollection;
 import Items.ReusableItem;
 import MOBs.*;
 import View.*;
@@ -37,6 +39,7 @@ public class Client extends JFrame
 	private String username; // username of the client
 	private Socket server; // connection to the server
 	private Player newPlayer;
+	private Item[] items;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
@@ -45,22 +48,23 @@ public class Client extends JFrame
 		ArrayList<Player> playersInStartingRoom = new ArrayList<Player>();
 		//List<MOB> mobsInRoom = new ArrayList<MOB>(); 
 		RoomCollection roomCollection = new RoomCollection();
+		ItemCollection itemCollection = new ItemCollection(items);
 		
-		
-	public static void main (String []args)
+	// Not from damaris you can't have a main if you do the login view won't work 	
+	/*public static void main (String []args)
 	{
 		new Client();
 	} // end of method main
-
+*/
 	/**
 	 * Asks the user for a host, port, and username. Sets up the
 	 * connection to the server and sets up the GUI
 	 */
-	public Client()
+	public Client(String gamename)
 	{
 		String host = JOptionPane.showInputDialog("Host address:");
 		String port = JOptionPane.showInputDialog("Host port:");
-		username = JOptionPane.showInputDialog("User name:");
+		username = gamename;
 		
 		if (host == null || port == null || username == null)
 			return;
@@ -207,6 +211,7 @@ public class Client extends JFrame
 	}
 
 	public void dropItem(String argument) {
-		newPlayer.
+		Item item = itemCollection.getItemFromName(argument);
+		newPlayer.dropItem(item);
 	}
 }

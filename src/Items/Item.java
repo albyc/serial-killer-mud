@@ -15,6 +15,7 @@ public abstract class Item
 	protected boolean isVisible;
 	protected boolean isPickedUp;
 	
+	
 	/**
 	 * 
 	 * @param name Name of the item
@@ -83,6 +84,12 @@ public abstract class Item
 	{
 		this.isPickedUp = isPickedUp;
 	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	
 		
 	
 	

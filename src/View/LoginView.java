@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Controller.Client;
 import Players.Player;
 
 public class LoginView extends JFrame 
@@ -193,6 +194,8 @@ public class LoginView extends JFrame
 		}
 		
 		current = person;
+		dispose();
+		Client client = new Client(gamename);
 		username.setText("");
 		userPass.setText("");
 		error.setText("");
