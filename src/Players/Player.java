@@ -45,6 +45,7 @@ public abstract class Player {
     }
      
     public void changeRoom(SceneRoom newRoom){
+    	//erase self from room and add self to new room
         currentLocation = newRoom;
     }
      
