@@ -25,6 +25,7 @@ public class UpdateAClientCommand extends Command<Client>
 		switch(command)
 		{
 		case SCORE:
+			executeOn.listScore();
 			break;
 		case INVENTORY:
 			executeOn.listInventory();
