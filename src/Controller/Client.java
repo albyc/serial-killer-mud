@@ -27,7 +27,7 @@ import Players.*;
  *
  */
 
-	
+	// who dat
 public class Client extends JFrame
 {	
 	private static final long serialVersionUID = 7356738763172150406L;
