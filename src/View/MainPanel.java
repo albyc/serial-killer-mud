@@ -223,6 +223,7 @@ public class MainPanel extends JPanel
 					//get player's score
 				case INVENTORY:
 					//get player's items
+					output.writeObject(new ForServerCommand(clientName, c));
 				case COMMANDS:
 				case WHO:
 				case QUIT:

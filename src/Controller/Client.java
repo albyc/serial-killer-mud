@@ -191,6 +191,7 @@ public class Client extends JFrame
 
 	public void listWho() 
 	{
+		
 		String listOfCommands = "Here are the players...";
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);	
@@ -211,8 +212,35 @@ public class Client extends JFrame
 		}
 	}
 
-	public void dropItem(String argument) {
+	public void dropItem(String argument) 
+	{
 		Item item = itemCollection.getItemFromName(argument);
-		newPlayer.dropItem(item);
+		if(newPlayer.getItems() != null){
+			for (Item i : newPlayer.getItems())
+			{
+				if(i.getName() == argument)
+				{
+					newPlayer.dropItem(item);
+				}
+			}
+		}
+		
+	}
+
+	public void listInventory() 
+	{
+		List<Item> list = newPlayer.getItems();
+		String allItems = "";
+		if(list == null)
+		{
+			allItems = "You have no items in your backpack.";
+		}
+		else{
+			for (Item item : list){
+				allItems += item.getName();
+			}
+		}
+		commandMessages.add(allItems);
+		mainPanel.updateCommands(commandMessages);
 	}
 }
