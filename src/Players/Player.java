@@ -17,12 +17,14 @@ public class Player
     private String password;
     private Room currentLocation;
     private List<Item> backpack;
+    private int health; //max health is 100
      
     public Player(String username, String password, List<Item> backpack)
     {
         this.username = username;
         this.password = password;
         backpack = new ArrayList<Item>();
+        health = 50;
     }
     
     public void setLocation(Room aRoom)
@@ -47,6 +49,8 @@ public class Player
     public Room getLocation() { return currentLocation; }
     
     public List<Item> getItems() { return backpack; }
+    
+    public int getHealth() { return health; }
     
     /**
      * 
