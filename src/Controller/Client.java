@@ -231,14 +231,15 @@ public class Client extends JFrame
 	{
 		List<Item> list = newPlayer.getItems();
 		String allItems = "";
-		if(list == null)
+		if(list != null)
 		{
-			allItems = "You have no items in your backpack.";
-		}
-		else{
 			for (Item item : list){
 				allItems += item.getName();
 			}
+		}
+		else{
+			allItems = "You have no items in your backpack.";
+
 		}
 		commandMessages.add(allItems);
 		mainPanel.updateCommands(commandMessages);
@@ -251,5 +252,22 @@ public class Client extends JFrame
 		commandMessages.add(sc);
 		mainPanel.updateCommands(commandMessages);
 		
+	}
+
+	public void pickUp(String argument) {
+		Item item = itemCollection.getItemFromName(argument.toLowerCase());
+		List<Item> playersInventory = newPlayer.getItems();
+/*		String name = item.toString();
+		commandMessages.add(argument);
+		mainPanel.updateCommands(commandMessages);*/
+		if(newPlayer.getItems() != null){
+			if(newPlayer.getItems().size() < 5)
+			{
+				newPlayer.pickUpItem(item);
+				playersInventory.add(item);
+				newPlayer.setBackpack(playersInventory);
+				
+			}
+		}
 	}
 }

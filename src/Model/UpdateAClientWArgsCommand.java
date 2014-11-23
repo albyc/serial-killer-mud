@@ -31,6 +31,7 @@ public class UpdateAClientWArgsCommand extends Command<Client> {
 			executeOn.dropItem(argument);
 			break;
 		case GET:
+			executeOn.pickUp(argument);
 			break;
 		default:
 			break;

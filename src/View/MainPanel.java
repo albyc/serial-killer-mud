@@ -206,14 +206,14 @@ public class MainPanel extends JPanel
 				switch(c)
 				{
 				case DROP:
-					//eliminate item from player's inventory
-					//set item's new location
-					//set item's boolean value isPickedUp to false
 					output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
 				case GET:
+					output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
+					//not done yet
 					//add item to player's inventory
 					//set item's boolean value isPickedUp to true
 				case MOVE:
+					//not done yet
 					if(!argument.equals(""))
 					{
 						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
@@ -221,8 +221,10 @@ public class MainPanel extends JPanel
 					break;
 				case SCORE:
 					//get player's score
+					//prints 3 times for some reason?
 					output.writeObject(new ForServerCommand(clientName, c));
 				case INVENTORY:
+					//prints out twice for some reason?
 					//get player's items
 					output.writeObject(new ForServerCommand(clientName, c));
 				case COMMANDS:
@@ -231,6 +233,7 @@ public class MainPanel extends JPanel
 					output.writeObject(new ForServerCommand(clientName, c));
 					break;
 				case LOOK:
+					//not done yet
 					if(argument.equals(""))
 					{
 						output.writeObject(new ForServerCommand(clientName, c));

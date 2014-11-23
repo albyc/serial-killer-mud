@@ -89,6 +89,14 @@ public abstract class Item
 		return name;
 	}
 	
+	public String toString()
+	{
+		String toReturn = "";
+		toReturn += name;
+		return toReturn;
+				
+	}
+	
 	
 		
 	

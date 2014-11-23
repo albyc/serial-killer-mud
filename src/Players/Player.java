@@ -109,4 +109,9 @@ public class Player
     {
          
     }
+    
+    public void setBackpack(List<Item> list)
+    {
+    	backpack = list;
+    }
 }//end of class Player
