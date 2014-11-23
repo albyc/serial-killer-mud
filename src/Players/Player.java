@@ -17,7 +17,8 @@ public class Player
     private String password;
     private Room currentLocation;
     private List<Item> backpack;
-    private int health; //max health is 100
+    private int health;
+    private final static int MAXHEALTH = 100;
      
     public Player(String username, String password, List<Item> backpack)
     {
@@ -51,6 +52,20 @@ public class Player
     public List<Item> getItems() { return backpack; }
     
     public int getHealth() { return health; }
+    
+    public void incrementHealth(int amount){
+    	int newHealth = health + amount;
+    	if(newHealth > MAXHEALTH)
+    		health = 100;
+    	else if(newHealth <= 0)
+    		death();
+    	else
+    		health = newHealth;
+    }
+    
+    public void death(){
+    	//create window to state death //deactivate button listener for commands
+    }
     
     /**
      * 
