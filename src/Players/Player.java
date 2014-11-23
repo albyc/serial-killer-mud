@@ -37,6 +37,11 @@ public class Player
     
     public String getUsername() { return username; }
      
+    public void changeRoom(SceneRoom newRoom){
+    	//erase self from room and add self to new room
+        currentLocation = newRoom;
+    }
+
     // public String getPassword() { return password; }
     
     public Room getLocation() { return currentLocation; }
