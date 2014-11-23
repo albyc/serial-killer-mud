@@ -146,14 +146,19 @@ public class Client extends JFrame
 	private String welcomeMessage(String username)
 	{
 		String welcomeMessage = "Hello " + username + " and welcome to SAVE YO ASS.\n\n"
-				+ "For a list of commands at your disposal, type: commands";
+				+ "For a list of commands at your disposal, type: commands\n";
 		
 		return welcomeMessage;
 	}
 
 	public void listCommands() 
 	{
-		String listOfCommands = "Here are the commands...";
+		String listOfCommands = "Here are the commands: \nMOVE <direction>: Move into the room to the <direction>"
+				+ "\nCOMMANDS: List all of the available commands\nOOC <message>: Send <message> to all players\n"
+				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
+				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
+				+ "\nDROP <item>: Removes the item from your backpack\nQUIT: quits the game and closes the window\n"
+				+ "SHUTDOWN: Used by admin only - shuts down the server\n";
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);
 	}
@@ -161,7 +166,7 @@ public class Client extends JFrame
 	public void listWho() 
 	{
 		
-		String listOfCommands = "Here are the players...";
+		String listOfCommands = "Here are the players...\n";
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);	
 	}
@@ -200,14 +205,15 @@ public class Client extends JFrame
 	{
 		List<Item> list = player.getItems();
 		String allItems = "";
-		if(list != null)
+		if(list == null)
 		{
+			allItems = "You have no items in your backpack.\n";
+			
+		}
+		else{
 			for (Item item : list){
 				allItems += item.getName();
 			}
-		}
-		else{
-			allItems = "You have no items in your backpack.";
 
 		}
 		commandMessages.add(allItems);
