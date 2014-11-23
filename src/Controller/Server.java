@@ -174,7 +174,7 @@ public class Server
 	public void PrintToClient(String clientName, Commands command) 
 	{
 		//print commands in client's right side text area
-		// make an UpdatedClientCommand, write to all connected users
+		// make an UpdatedAClientCommand, write specific user
 		UpdateAClientCommand update = new UpdateAClientCommand(command);
 				
 		ObjectOutputStream out = outputs.get(clientName);
