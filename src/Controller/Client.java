@@ -36,6 +36,7 @@ public class Client extends JFrame
 	
 	private String username; // username of the client
 	private Socket server; // connection to the server
+	private Player newPlayer;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
@@ -80,7 +81,7 @@ public class Client extends JFrame
 			
 			//need to get their password
 			String password = "";
-			Player newPlayer = new Player(username, password);
+			newPlayer = new Player(username, password);
 			playersInStartingRoom.add(newPlayer);
 			roomCollection.setRoomsPlayerList(playersInStartingRoom, 2);
 			
@@ -203,5 +204,9 @@ public class Client extends JFrame
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public void dropItem(String argument) {
+		newPlayer.
 	}
 }

@@ -206,7 +206,13 @@ public class MainPanel extends JPanel
 				switch(c)
 				{
 				case DROP:
+					//eliminate item from player's inventory
+					//set item's new location
+					//set item's boolean value isPickedUp to false
+					output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
 				case GET:
+					//add item to player's inventory
+					//set item's boolean value isPickedUp to true
 				case MOVE:
 					if(!argument.equals(""))
 					{
@@ -214,7 +220,9 @@ public class MainPanel extends JPanel
 					}
 					break;
 				case SCORE:
+					//get player's score
 				case INVENTORY:
+					//get player's items
 				case COMMANDS:
 				case WHO:
 				case QUIT:
@@ -234,6 +242,7 @@ public class MainPanel extends JPanel
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SHUTDOWN:
+					//make one of the player's an admin - only they can shut down if they input their password?
 					break;
 				default:
 					break;

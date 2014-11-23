@@ -28,6 +28,7 @@ public class UpdateAClientWArgsCommand extends Command<Client> {
 		case MOVE:
 			break;
 		case DROP:
+			executeOn.dropItem(argument);
 			break;
 		case GET:
 			break;
