@@ -221,6 +221,7 @@ public class MainPanel extends JPanel
 					break;
 				case SCORE:
 					//get player's score
+					output.writeObject(new ForServerCommand(clientName, c));
 				case INVENTORY:
 					//get player's items
 					output.writeObject(new ForServerCommand(clientName, c));

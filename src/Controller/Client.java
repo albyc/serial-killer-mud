@@ -243,4 +243,13 @@ public class Client extends JFrame
 		commandMessages.add(allItems);
 		mainPanel.updateCommands(commandMessages);
 	}
+
+	public void listScore() 
+	{
+		int score = newPlayer.getHealth();
+		String sc = "" + score + "";
+		commandMessages.add(sc);
+		mainPanel.updateCommands(commandMessages);
+		
+	}
 }
