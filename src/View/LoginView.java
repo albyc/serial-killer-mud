@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -23,6 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.Client;
+import Items.Item;
 import Players.Player;
 
 public class LoginView extends JFrame 
@@ -41,6 +43,7 @@ public class LoginView extends JFrame
 
 	private JButton loginButton;
 	private JButton createButton;
+	private List<Item> backpack;
 	
 
 	public static void main(String[] args) 
@@ -225,7 +228,7 @@ public class LoginView extends JFrame
 			return;
 		}
 		error.setText("");
-		players.put(gamename, new Player(gamename, password));
+		players.put(gamename, new Player(gamename, password, backpack));
 		login();
 	}
 }

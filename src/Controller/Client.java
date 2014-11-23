@@ -85,7 +85,8 @@ public class Client extends JFrame
 			
 			//need to get their password
 			String password = "";
-			newPlayer = new Player(username, password);
+			List<Item> backpack = new ArrayList<Item>(5);
+			newPlayer = new Player(username, password,backpack);
 			playersInStartingRoom.add(newPlayer);
 			roomCollection.setRoomsPlayerList(playersInStartingRoom, 2);
 			

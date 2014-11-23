@@ -18,7 +18,7 @@ public class Player
     private Room currentLocation;
     private List<Item> backpack;
      
-    public Player(String username, String password)
+    public Player(String username, String password, List<Item> backpack)
     {
         this.username = username;
         this.password = password;

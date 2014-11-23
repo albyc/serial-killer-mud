@@ -1,6 +1,10 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Rooms.*;
+import Items.Item;
 import MOBs.*;
 import Players.*;
 
@@ -27,7 +31,8 @@ public class SerialKillerMud
 		// Create the player from the user's information
 		//change password
 		String password = "";
-		Player player = new Player(username, password);
+		List<Item> backpack = new ArrayList<Item>(5);
+		Player player = new Player(username, password, backpack);
 		
 		// Add the new player to the collection of existing players
 		players.addPlayer(player);
