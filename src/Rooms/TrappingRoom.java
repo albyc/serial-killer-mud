@@ -9,7 +9,7 @@ import Players.Player;
 public class TrappingRoom extends Room 
 {
 	//need a rooom abstract class with TR and SR subclasses
-
+	private static final long serialVersionUID = 4686921958139749488L;
 	private String name;
 	private String description;
 	private List<Player> players;

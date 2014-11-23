@@ -11,20 +11,22 @@ import Rooms.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public class Player
+public class Player implements Serializable
 {
-    private String username;
+	private static final long serialVersionUID = 273382826880053009L;
+	private String username;
     private String password;
     private Room currentLocation;
     private List<Item> backpack;
     private int health;
     private final static int MAXHEALTH = 100;
+    private final static int MAX_ITEMS = 5;
      
-    public Player(String username, String password, List<Item> backpack)
+    public Player(String username, String password)
     {
         this.username = username;
         this.password = password;
-        backpack = new ArrayList<Item>();
+        backpack = new ArrayList<Item>(MAX_ITEMS);
         health = 50;
     }
     

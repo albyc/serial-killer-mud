@@ -1,80 +1,47 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.Client;
-import Items.Item;
+import Controller.*;
 import Players.Player;
 
+/**
+ * 
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite Wolf-Squadron
+ *
+ */
 public class LoginView extends JFrame 
 {	
-	private Map<String, Player> players = new HashMap<String, Player>(); // the players will be be stored here 
-	private Player current; // current login person
+	private static final long serialVersionUID = 4033594531497903499L;
+	private List<Player> players;
+	private Client client; // Client to be associated with this new player
 	
 	private BufferedImage image;
-	private JLabel title;
-	private JLabel error;
-	private JLabel oldy;
-	private JLabel oldUN;
-	private JLabel oldUP;
-	private JTextField username;
-	private JPasswordField userPass;
-
-	private JButton loginButton;
-	private JButton createButton;
-	private List<Item> backpack;
+	private JLabel error, oldy, oldUN, oldUP;
+	private JTextField usernameField;
+	private JPasswordField passwordField;
+	private JButton loginButton, createButton;
 	
-
-	public static void main(String[] args) 
+	public LoginView(Client client, List<Player> playas) 
 	{
-		new LoginView().setVisible(true);
-	}
-	
-	/**
-	 * Sets the font
-	 * 
-	 * @param filename
-	 * @return
-	 */
-	private static Font getFont(String filename)
-	{
-		Font font = null;
+		this.client = client;
+		this.players = playas;
 		
-		try 
-        {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File(filename));
-		} 
-        catch (Exception e) 
-        {
-			e.printStackTrace();
-		}
-		
-		return font.deriveFont(50f);
-	} // end of private method getFont
-	
-	public LoginView() 
-	{
 		this.setTitle("Login");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -96,14 +63,6 @@ public class LoginView extends JFrame
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
-		
-		// make AWESOME title
-/*		title = new JLabel(" ");
-		title.setFont(getFont("fonts/cenobyte.ttf").deriveFont(38f));
-		title.setForeground(Color.RED);
-		title.setSize(600,40);
-		title.setLocation(92,5);
-		*/
 		// Returning user JLabel and text fields
 		oldy = new JLabel("Player Login:");
 		oldy.setFont(getFont("fonts/trajan.ttf").deriveFont(20f));
@@ -117,9 +76,10 @@ public class LoginView extends JFrame
 		oldUN.setSize(250,30);
 		oldUN.setLocation(100,100);
 		
-		username = new JTextField("");
-		username.setSize(175,30);
-		username.setLocation(200,100);
+		usernameField = new JTextField("");
+		usernameField.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
+		usernameField.setSize(175,30);
+		usernameField.setLocation(200,100);
 		
 		oldUP = new JLabel("Password:");
 		oldUP.setFont(getFont("fonts/trajan.ttf").deriveFont(16f));
@@ -127,9 +87,9 @@ public class LoginView extends JFrame
 		oldUP.setSize(250,30);
 		oldUP.setLocation(100,150);
 		
-		userPass = new JPasswordField("");
-		userPass.setSize(175,30);
-		userPass.setLocation(200,150);
+		passwordField = new JPasswordField("");
+		passwordField.setSize(175,30);
+		passwordField.setLocation(200,150);
 		
 		error = new JLabel("");
 		error.setFont(getFont("fonts/trajan.ttf").deriveFont(16f));
@@ -173,62 +133,108 @@ public class LoginView extends JFrame
 		//this.add(title);
 		this.add(oldy);
 		this.add(oldUN);
-		this.add(username);
+		this.add(usernameField);
 		this.add(oldUP);
-		this.add(userPass);
+		this.add(passwordField);
 		this.add(loginButton);
 		this.add(createButton);
 		this.add(error);
 		
+		this.setVisible(true);
 		
+		//setupLoginView();
 	}
 	
+	/**
+	 * This method allows a player to login to the MUD. 
+	 */
 	public void login()
 	{
-		String gamename = username.getText();
-		Player person = players.get(gamename);
-		if(person == null || !person.matches(userPass.getPassword()))
+		String username = usernameField.getText();
+		Player person = null;
+		
+		for (Player p: players)
+		{
+			if (username.equals(p.getUsername()))
+				person = p;
+		}
+		
+		// If the username does not exist in the current map of players or 
+		// the password does not match the username's stored password, 
+		// return an error. 
+		if(person == null || !person.matches(passwordField.getPassword()))
 		{
 			error.setText("Invalid username or password");
 			error.setLocation(115,260);
-			username.setText("");
-			userPass.setText("");
+			usernameField.setText("");
+			passwordField.setText("");
 			return;
 		}
 		
-		current = person;
 		dispose();
-		Client client = new Client(gamename);
-		username.setText("");
-		userPass.setText("");
-		error.setText("");
-		
-	}
+		client.finishSettingUpPlayer();
+	} // end of method login
 	
+	/**
+	 * This method adds a new player to the MUD.
+	 */
 	public void addPlayer()
 	{
-		String gamename = username.getText();
-		String password = new String(userPass.getPassword());
+		String username = usernameField.getText();
+		String password = new String(passwordField.getPassword());
 		
-		if(gamename.equals("") || userPass.equals(""))
+		// If either the username or password field are empty, return an error. 
+		if(username.equals("") || passwordField.equals(""))
 		{
 			error.setText("Enter a valid username or password");
 			error.setLocation(90,260);
-			username.setText("");
-			userPass.setText("");
+			usernameField.setText("");
+			passwordField.setText("");
 			return;
 		}
 		
-		if(players.get(gamename) != null)
+		// If trying to create a new account with a username that already 
+		// exists, return an error. 
+		for (Player p: players)
 		{
-			error.setText("An account exists with that name");
-			error.setLocation(95,260);
-			username.setText("");
-			userPass.setText("");
-			return;
+			if(username.equals(p.getUsername()))
+			{
+				error.setText("An account exists with that name");
+				error.setLocation(95,260);
+				usernameField.setText("");
+				passwordField.setText("");
+				return;
+			}
 		}
+		
+		Player newPlayer = new Player(username, password);
+		client.setPlayer(newPlayer);
+		players.add(newPlayer);
 		error.setText("");
-		players.put(gamename, new Player(gamename, password, backpack));
 		login();
-	}
-}
+	} // end of method addPlayer
+	
+	/**
+	 * This method sets up the login view. 
+	 */
+	private void setupLoginView()
+	{
+		
+	} // end of private method setupLoginView
+	
+	private static Font getFont(String filename)
+	{
+		Font font = null;
+		
+		try 
+        {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(filename));
+		} 
+        catch (Exception e) 
+        {
+			e.printStackTrace();
+		}
+		
+		return font;
+	} // end of private method getFont
+} // end of class LoginView

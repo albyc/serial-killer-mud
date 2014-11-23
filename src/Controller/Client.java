@@ -26,8 +26,6 @@ import Players.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-
-	// who dat
 public class Client extends JFrame
 {	
 	private static final long serialVersionUID = 7356738763172150406L;
@@ -38,86 +36,57 @@ public class Client extends JFrame
 	
 	private String username; // username of the client
 	private Socket server; // connection to the server
-	private Player newPlayer;
+	private Player player;
+	private List<Player> players;
 	private Item[] items;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
 	//needs a lot of fixing - just testing to see if room abstract class/ subclass objects work
 		//2 rooms - mansion (start on front porch), there's a front yard where you can die
-		ArrayList<Player> playersInStartingRoom = new ArrayList<Player>();
 		//List<MOB> mobsInRoom = new ArrayList<MOB>(); 
 		RoomCollection roomCollection = new RoomCollection();
 		ItemCollection itemCollection = new ItemCollection(items);
-		
-	// Not from damaris you can't have a main if you do the login view won't work 	
-	/*public static void main (String []args)
+			
+	public static void main (String []args)
 	{
 		new Client();
 	} // end of method main
-*/
+
 	/**
-	 * Asks the user for a host, port, and username. Sets up the
-	 * connection to the server and sets up the GUI
+	 * Sets up the connection between the server and the
+	 * client. Sets up the GUI.
 	 */
-	public Client(String gamename)
+	@SuppressWarnings("unchecked")
+	public Client()
 	{
 		String host = JOptionPane.showInputDialog("Host address:");
 		String port = JOptionPane.showInputDialog("Host port:");
-		username = gamename;
 		
-		if (host == null || port == null || username == null)
+		if (host == null || port == null)
 			return;
 		
 		try
 		{
-			// open a connection to the server
+			// Open a connection to the server
 			server = new Socket(host, Integer.parseInt(port));
 			out = new ObjectOutputStream(server.getOutputStream());
 			in = new ObjectInputStream(server.getInputStream());
-			commandMessages = new ArrayList<String>();
-			commandMessages.add(welcomeMessage(username));
 			
-			// write out the name of this client
-			out.writeObject(username);
-			
-			//add player to starting room
-			
-			//need to get their password
-			String password = "";
-			List<Item> backpack = new ArrayList<Item>(5);
-			newPlayer = new Player(username, password,backpack);
-			playersInStartingRoom.add(newPlayer);
-			roomCollection.setRoomsPlayerList(playersInStartingRoom, 2);
-			
-			
-			// add a listener that sends a disconnect command to when closing
-			this.addWindowListener(new WindowAdapter()
-			{
-				public void windowClosing(WindowEvent arg0) 
-				{
-					try 
-					{
-						out.writeObject(new DisconnectCommand(username));
-						out.close();
-						in.close();
-					} 
-					catch (IOException e) 
-					{
-						e.printStackTrace();
-					}
-				}
-			});
-						
-			setupGUI();
-			
-			// start a thread for handling server events
-			new Thread(new ServerHandler()).start();
+			// Once the connection is open, the client will read in from the
+			// server the current list of players. It will then use this list
+			// to determine whether the motherheffer trying to access the game
+			// is allowed the privilege. If not, there's no fucking point in 
+			// letting them in...
+			players = (List<Player>)in.readObject();
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		} // end of try/catch statement
+		}
+		
+		// From here, the LoginView will take the reins.
+		new LoginView(Client.this, players);	
 	} // end of constructor Client
 	
 	private void setupGUI()
@@ -215,12 +184,12 @@ public class Client extends JFrame
 	public void dropItem(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument);
-		if(newPlayer.getItems() != null){
-			for (Item i : newPlayer.getItems())
+		if(player.getItems() != null){
+			for (Item i : player.getItems())
 			{
 				if(i.getName() == argument)
 				{
-					newPlayer.dropItem(item);
+					player.dropItem(item);
 				}
 			}
 		}
@@ -229,7 +198,7 @@ public class Client extends JFrame
 
 	public void listInventory() 
 	{
-		List<Item> list = newPlayer.getItems();
+		List<Item> list = player.getItems();
 		String allItems = "";
 		if(list != null)
 		{
@@ -247,7 +216,7 @@ public class Client extends JFrame
 
 	public void listScore() 
 	{
-		int score = newPlayer.getHealth();
+		int score = player.getHealth();
 		String sc = "" + score + "";
 		commandMessages.add(sc);
 		mainPanel.updateCommands(commandMessages);
@@ -256,18 +225,76 @@ public class Client extends JFrame
 
 	public void pickUp(String argument) {
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
-		List<Item> playersInventory = newPlayer.getItems();
+		List<Item> playersInventory = player.getItems();
 /*		String name = item.toString();
 		commandMessages.add(argument);
 		mainPanel.updateCommands(commandMessages);*/
-		if(newPlayer.getItems() != null){
-			if(newPlayer.getItems().size() < 5)
+		if(player.getItems() != null){
+			if(player.getItems().size() < 5)
 			{
-				newPlayer.pickUpItem(item);
+				player.pickUpItem(item);
 				playersInventory.add(item);
-				newPlayer.setBackpack(playersInventory);
+				player.setBackpack(playersInventory);
 				
 			}
 		}
+	}
+
+	/**
+	 * Associates this client with a player account. Called 
+	 * by LoginView.
+	 * 
+	 * @param player The player this client is associated with. 
+	 */
+	public void setPlayer(Player player)
+	{
+		this.player = player;
+	}
+
+	/**
+	 * Finishes setting up the player as well as displaying the main 
+	 * view of the MUD. Called by LoginView.
+	 */
+	public void finishSettingUpPlayer()
+	{
+		try
+		{
+			username = player.getUsername();
+			commandMessages = new ArrayList<String>();
+			commandMessages.add(welcomeMessage(username));
+			
+			// Write out player associated with this client
+			out.writeObject(player);
+			
+			players.add(player);
+			roomCollection.setRoomsPlayerList(players, 2);
+			
+			// Add a listener that sends a disconnect command to when closing
+			this.addWindowListener(new WindowAdapter()
+			{
+				public void windowClosing(WindowEvent arg0) 
+				{
+					try 
+					{
+						out.writeObject(new DisconnectCommand(username));
+						out.close();
+						in.close();
+					} 
+					catch (IOException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+			});
+						
+			setupGUI();
+			
+			// Start a thread for handling server events.
+			new Thread(new ServerHandler()).start();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		} // end of try/catch statement
 	}
 }

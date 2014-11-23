@@ -4,6 +4,7 @@ import Rooms.Room;
 
 public class FightingItem extends Item
 {
+	private static final long serialVersionUID = -4379094510571054869L;
 	private boolean isUsedUp;
 	public FightingItem(String name, String description, boolean isVisible, boolean isPickedUp, boolean isUsedUp)
 	{

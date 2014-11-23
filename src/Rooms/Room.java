@@ -1,5 +1,6 @@
 package Rooms;
 
+import java.io.Serializable;
 import java.util.*;
 
 import MOBs.*;
@@ -10,8 +11,9 @@ import Players.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Room 
+public abstract class Room implements Serializable
 {
+	private static final long serialVersionUID = -392554011670131427L;
 	protected String name;
 	protected String description;
 	protected List<Player> players;

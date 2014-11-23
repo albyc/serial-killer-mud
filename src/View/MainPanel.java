@@ -57,10 +57,6 @@ public class MainPanel extends JPanel
 		this.add(createBottomPanel(), BorderLayout.SOUTH);
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public JPanel createTopPanel()
 	{
 		JPanel top = new JPanel();
@@ -98,10 +94,6 @@ public class MainPanel extends JPanel
 		return font.deriveFont(50f);
 	} // end of private method getFont
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public JPanel createCenterPanel()
 	{	
 		JPanel center = new JPanel();
@@ -141,10 +133,6 @@ public class MainPanel extends JPanel
 		return center;
 	} // end of method createCenterPanel
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public JPanel createBottomPanel()
 	{
 		JPanel bottomPanel = new JPanel();
@@ -297,5 +285,5 @@ public class MainPanel extends JPanel
 		commandArea.setCaretPosition(command.length());
 		
 		repaint();
-	}
-}
+	} // end of method updateCommands
+} // end of class MainPanel

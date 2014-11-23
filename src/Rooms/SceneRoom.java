@@ -13,7 +13,7 @@ import Players.Player;
  */
 public class SceneRoom extends Room 
 {
-	
+	private static final long serialVersionUID = 2209867918182281481L;
 	private List<Item> items; // list of items in the room
 	private List<SceneRoom> references; // list of references?
 	

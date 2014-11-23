@@ -1,4 +1,6 @@
 package Items;
+import java.io.Serializable;
+
 import Rooms.Room;
 import Rooms.SceneRoom;
 
@@ -7,8 +9,9 @@ import Rooms.SceneRoom;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Item 
+public abstract class Item implements Serializable
 {
+	private static final long serialVersionUID = -6308308364879333586L;
 	protected String name;
 	protected String description;
 	//protected Room currentLocation;

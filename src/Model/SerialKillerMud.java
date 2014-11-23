@@ -16,30 +16,29 @@ import Players.*;
 public class SerialKillerMud
 {
 	private RoomCollection rooms;
-	private PlayerCollection players;
+	private transient List<Player> players;
 	private MOBCollection mobs;
 	
 	public SerialKillerMud()
 	{
 		rooms = new RoomCollection();
-		players = new PlayerCollection();
+		players = new ArrayList<Player>();
 		mobs = new MOBCollection();
 	}
 
-	public void setUpNewPlayer(String username)
-	{
-		// Create the player from the user's information
-		//change password
-		String password = "";
-		List<Item> backpack = new ArrayList<Item>(5);
-		Player player = new Player(username, password, backpack);
-		
+	public void addPlayerToGame(Player player)
+	{		
 		// Add the new player to the collection of existing players
-		players.addPlayer(player);
+		players.add(player);
 		
 		// Add the player to the rooms. Initially, every new player
 		// will start out in the same location. 
 		rooms.addPlayerToRooms(player);
+	}
+	
+	public List<Player> getPlayers()
+	{
+		return players;
 	}
 	
 } // end of class SerialKillerMud

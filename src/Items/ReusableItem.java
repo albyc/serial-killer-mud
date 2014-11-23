@@ -2,11 +2,13 @@ package Items;
 
 import Rooms.Room;
 
-public class ReusableItem extends Item{
-
+public class ReusableItem extends Item
+{
+	private static final long serialVersionUID = -118299505046449139L;
 	private boolean isUsedUp;
-	public ReusableItem(String name, String description,
-		 boolean isVisible, boolean isPickedUp, boolean isUsedUp) {
+	
+	public ReusableItem(String name, String description, boolean isVisible, boolean isPickedUp, boolean isUsedUp) 
+	{
 		super(name, description, isVisible, isPickedUp);
 		this.isUsedUp = isUsedUp;
 	}
@@ -25,5 +27,4 @@ public class ReusableItem extends Item{
 	{
 		this.isUsedUp = isUsedUp;
 	}
-
 }

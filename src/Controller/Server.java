@@ -20,11 +20,10 @@ import View.Commands;
 public class Server 
 {
 	private ServerSocket socket; // the server socket
+	private HashMap<String, ObjectOutputStream> outputs; // map of all connected user's output streams
 	
 	private List<String> chatMessages; // the chat log
-	private HashMap<String, ObjectOutputStream> outputs; // map of all connected user's output streams
 	private SerialKillerMud mud;
-	private String commands;
 	
 	public static void main(String [] args)
 	{
@@ -65,28 +64,31 @@ public class Server
 			{
 				while (true)
 				{
-					// accept a new client, get output & input streams
+					// Accept a new client then get its output/input streams.
 					Socket s = socket.accept();
 					ObjectOutputStream output = new ObjectOutputStream(s.getOutputStream());
 					ObjectInputStream input = new ObjectInputStream(s.getInputStream());
 					
-					// read the client's information (here it's just name)
-					// but later we'll add the password, too
-					String clientName = (String)input.readObject();
+					// The first thing the server needs to do is send the client a list of the 
+					// current players. This is so when someone is logging in, the system is able 
+					// to determine whether the user is already logged in, thereby disallowing 
+					// the same user to be logged in multiple times. 
+					output.writeObject(mud.getPlayers());
 					
-					// set up the client as a player in game
-					mud.setUpNewPlayer(clientName);
+					// Read in the information of the player associated with this client.
+					Player player = (Player)input.readObject();
 					
-					// map the client name to the output stream
-					outputs.put(clientName, output);
+					// Add the player to the MUD. 
+					mud.addPlayerToGame(player);
 					
-					// spawn a thread to handle communication with this client
+					// Map the player's username to the output stream.
+					outputs.put(player.getUsername(), output);
+					
+					// Spawn a thread to handle communication with this client. 
 					new Thread(new ClientHandler(input)).start();
 					
-					// add a notification message to the chat log
-					addMessage(clientName + " connected");
-					
-					// 
+					// Add a notification message to the chat log
+					addMessage(player.getUsername() + " connected");
 				}
 			}
 			catch (Exception e)
@@ -112,11 +114,11 @@ public class Server
 			{
 				while(true)
 				{
-					// read a command from the client, execute on the server
+					// Read a command from the client, execute on the server.
 					Command<Server> command = (Command<Server>)input.readObject();
 					command.execute(Server.this);
 					
-					// terminate if client is disconnecting
+					// Terminate if client is disconnecting
 					if (command instanceof DisconnectCommand)
 					{
 						input.close();
@@ -136,7 +138,6 @@ public class Server
 		chatMessages.add(message);
 		updateClients();
 	} // end of method addMessage
-	
 
 	public void updateClients()
 	{

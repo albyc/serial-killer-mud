@@ -74,7 +74,7 @@ public class RoomCollection
 		return rooms.get(index);
 	}
 	
-	public void setRoomsPlayerList(ArrayList<Player> players, int index)
+	public void setRoomsPlayerList(List<Player> players, int index)
 	{
 		switch(index)
 		{
