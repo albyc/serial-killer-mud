@@ -37,14 +37,11 @@ public class Player
     
     public String getUsername() { return username; }
      
-<<<<<<< HEAD
     public void changeRoom(SceneRoom newRoom){
     	//erase self from room and add self to new room
         currentLocation = newRoom;
     }
-     
-    public void pickUpItem(Item newItem){
-=======
+
     // public String getPassword() { return password; }
     
     public Room getLocation() { return currentLocation; }
@@ -57,7 +54,6 @@ public class Player
      */
     public void pickUpItem(Item newItem)
     {
->>>>>>> 0e6dbad85a1e0692ff665f6d4febe37ac91a0826
         backpack.add(newItem);
     }
     
