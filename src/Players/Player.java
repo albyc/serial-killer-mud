@@ -1,80 +1,112 @@
 package Players;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
-import Items.Item;
-import Rooms.SceneRoom;
+import Items.*;
+import Rooms.*;
 
 /**
  * 
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
  *
  */
-public abstract class Player {
- 
+public class Player
+{
     private String username;
     private String password;
-    private String gameName;
-    private SceneRoom currentLocation;
-    private ArrayList<Item> backpack;
+    private Room currentLocation;
+    private List<Item> backpack;
      
-    public Player(String userName, String password, String gameName){
+    public Player(String username, String password)
+    {
         this.username = username;
         this.password = password;
-        this.gameName = gameName;
+        backpack = new ArrayList<Item>();
     }
-     
-    public String getUsername(){
-        return username;
+    
+    public void setLocation(Room aRoom)
+    {
+    	currentLocation = aRoom;
     }
+    
+	public boolean matches(char[] entered)
+	{
+		return new String(entered).equals(password); 
+	}
+    
+    public String getUsername() { return username; }
      
-    public String getPassword(){
-        return password;
-    }
-     
-    public String getGameName(){
-        return gameName;
-    }
-     
-    public SceneRoom getCurrentLocation(){
-        return currentLocation;
-    }
-     
-    public ArrayList getItemsList(){
-        return backpack;
-    }
-     
+<<<<<<< HEAD
     public void changeRoom(SceneRoom newRoom){
     	//erase self from room and add self to new room
         currentLocation = newRoom;
     }
      
     public void pickUpItem(Item newItem){
+=======
+    // public String getPassword() { return password; }
+    
+    public Room getLocation() { return currentLocation; }
+    
+    public List<Item> getItems() { return backpack; }
+    
+    /**
+     * 
+     * @param newItem
+     */
+    public void pickUpItem(Item newItem)
+    {
+>>>>>>> 0e6dbad85a1e0692ff665f6d4febe37ac91a0826
         backpack.add(newItem);
     }
-     
-    public void dropItem(Item itemToGetRidOf){
+    
+    /**
+     * 
+     * @param itemToGetRidOf
+     */
+    public void dropItem(Item itemToGetRidOf)
+    {
         backpack.remove(itemToGetRidOf);
     }
-     
-    public void interactWithOtherPlayer(){
+    
+    /**
+     * 
+     */
+    public void interactWithOtherPlayer()
+    {
          
     }
-     
-    public void InteractWithMOB(){
+    
+    /**
+     * 
+     */
+    public void InteractWithMOB()
+    {
          
     }
-     
-    public void fight(){
+    
+    /**
+     * 
+     */
+    public void fight()
+    {
          
     }
-     
-    public void defend(){
+    
+    /**
+     * 
+     */
+    public void defend()
+    {
          
     }
-     
-    public void run(){
+    
+    /**
+     * 
+     */
+    public void run()
+    {
          
     }
-     
-}//end Player class
+}//end of class Player

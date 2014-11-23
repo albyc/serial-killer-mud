@@ -1,13 +1,107 @@
 package Rooms;
 
+import java.util.*;
+
+import Items.Item;
+import Items.ItemCollection;
+import Players.*;
+
 /**
  * 
- * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron
+ * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron     
  *
  */
 public class RoomCollection 
 {
-	private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
+	private List<Room> rooms;
+	private List<Item> itemsInMurderCastle;
+	private List<Item> itemsInFarmhouse;
+	private List<Item> itemsInLawn;
+	private List<Player> playersInMurderCastle;
+	private List<Player> playersInFarmhouse;
+	private List<Player> playersInLawn;
+	private Room entrance;
+	private Item[] items;
+	private ItemCollection itemCollection = new ItemCollection(items);
+	public RoomCollection()
+	{
+		rooms = new ArrayList<Room>();
+		itemsInMurderCastle = new ArrayList<Item>();
+		itemsInFarmhouse = new ArrayList<Item>();
+		itemsInLawn = new ArrayList<Item>();
+		itemsInMurderCastle.add(itemCollection.getItem(0));
+		itemsInMurderCastle.add(itemCollection.getItem(1));
+		itemsInFarmhouse.add(itemCollection.getItem(2));
+		itemsInFarmhouse.add(itemCollection.getItem(3));
+		itemsInLawn.add(itemCollection.getItem(4));
+		
+		playersInMurderCastle = new ArrayList<Player>();
+		playersInFarmhouse = new ArrayList<Player>();
+		playersInLawn = new ArrayList<Player>();
+		addDefaultRooms();
+	} 
+	
+	private void addDefaultRooms()
+	{
+		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", itemsInMurderCastle);
+		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", itemsInFarmhouse);
+		Room lawn = new SceneRoom("The Lawn", "stuff...", itemsInLawn);
+		entrance = lawn;
+		
+		lawn.setNorthRoom(murderCastle);
+		murderCastle.setNorthRoom(farmhouse);
+		murderCastle.setSouthRoom(lawn);
+		farmhouse.setSouthRoom(murderCastle);
+		rooms.add(murderCastle);
+		rooms.add(farmhouse);
+		rooms.add(lawn);
+	}
+
+	public void addPlayerToRooms(Player player)
+	{
+		entrance.addPlayer(player);
+		
+		// Make sure that the player is holding a reference
+		// to the room it is located in. In this case, that
+		// would be the entrance to the game. 
+		player.setLocation(entrance);
+	}
+	
+	
+
+	public Room getRoomAt(int index)
+	{
+		return rooms.get(index);
+	}
+	
+	public void setRoomsPlayerList(ArrayList<Player> players, int index)
+	{
+		switch(index)
+		{
+		case 0:
+			playersInMurderCastle = players;
+			break;
+		case 1:
+			playersInFarmhouse = players;
+			break;
+		case 2:
+			playersInLawn = players;
+		}
+	}
+	
+	/*public List<Player> getPlayers(int index) 
+	{ 
+		switch(index){
+		case 0:
+			return 
+		}
+	}*/
+//	
+//	public void setRoomAt(int index, Room room)
+//	{
+//		roomCollection[index] = room;
+//	}
+	/*private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
 	
 	public RoomCollection(SceneRoom room1, SceneRoom room2, SceneRoom room3, SceneRoom room4, SceneRoom room5, SceneRoom room6,SceneRoom room7,SceneRoom room8,
 			SceneRoom room9, SceneRoom room10,SceneRoom room11,SceneRoom room12,SceneRoom room13,SceneRoom room14,SceneRoom room15,SceneRoom room16,SceneRoom room17,SceneRoom room18,
@@ -93,6 +187,6 @@ public class RoomCollection
 			}
 		}
 		return -1;		
-	}
+	}*/
 	
 }
