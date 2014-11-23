@@ -223,13 +223,11 @@ public class MainPanel extends JPanel
 				case LOOK:
 					//not done yet
 					if(argument.equals(""))
-					{
 						output.writeObject(new ForServerCommand(clientName, c));
-					}
+					
 					else
-					{
 						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
-					}
+					
 					break;
 				case OOC:
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
