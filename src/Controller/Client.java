@@ -286,8 +286,10 @@ public class Client extends JFrame
 					break;
 				}
 				//if(itemCollection.getbool(index) == false){
-				
-				player.pickUpItem(item);
+				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
+				{
+					player.pickUpItem(item);
+				}
 					//itemCollection.setbool(index, true);
 				//}
 				

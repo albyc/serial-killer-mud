@@ -23,6 +23,9 @@ public class RoomCollection
 	private Room entrance;
 	private Item[] items;
 	private ItemCollection itemCollection = new ItemCollection(items);
+	private Room lawn;
+	private Room murderCastle;
+	private Room farmhouse;
 	public RoomCollection()
 	{
 		rooms = new ArrayList<Room>();
@@ -35,6 +38,7 @@ public class RoomCollection
 		itemsInFarmhouse.add(itemCollection.getItem(3));
 		itemsInLawn.add(itemCollection.getItem(4));
 		
+		
 		playersInMurderCastle = new ArrayList<Player>();
 		playersInFarmhouse = new ArrayList<Player>();
 		playersInLawn = new ArrayList<Player>();
@@ -43,9 +47,9 @@ public class RoomCollection
 	
 	private void addDefaultRooms()
 	{
-		Room murderCastle = new SceneRoom("Murder Castle", "601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long.", itemsInMurderCastle);
-		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "Average farmhouse, nothing in particular", itemsInFarmhouse);
-		Room lawn = new SceneRoom("The Lawn", "small area of dead grass", itemsInLawn);
+		murderCastle = new SceneRoom("Murder Castle", "601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long.", itemsInMurderCastle);
+		farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "Average farmhouse, nothing in particular", itemsInFarmhouse);
+		lawn = new SceneRoom("The Lawn", "small area of dead grass", itemsInLawn);
 		entrance = lawn;
 		
 		lawn.setNorthRoom(murderCastle);
@@ -87,6 +91,38 @@ public class RoomCollection
 		case 2:
 			playersInLawn = players;
 		}
+	}
+	
+	public Room isItemInRoom(Room room, Item item)
+	{
+		String name = room.getName().toLowerCase();
+		
+			for(Item i : itemsInLawn)
+			{
+				if(i.getName() == item.getName())
+				{
+					return lawn;
+				}
+			}
+		
+			for(Item i : itemsInMurderCastle)
+			{
+				if(i.getName() == item.getName())
+				{
+					return murderCastle;
+				}
+			}
+		
+			for(Item i : itemsInFarmhouse)
+			{
+				if(i.getName() == item.getName())
+				{
+					return farmhouse;
+				}
+			}
+	
+		
+		return null;
 	}
 	
 	/*public List<Player> getPlayers(int index) 
