@@ -265,10 +265,11 @@ public class Client extends JFrame
 		if(player.getItems() != null){
 			if(player.getItems().size() < 5)
 			{
-				int index = 0;
+				/*int index = 0;
 				switch(argument){
 				case "water":
 					index = 0;
+					System.out.println("water");
 					incrementHealth();
 					break;
 				case "food":
@@ -284,11 +285,15 @@ public class Client extends JFrame
 				case "key":
 					index = 4;
 					break;
-				}
+				}*/
 				//if(itemCollection.getbool(index) == false){
 				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
 					player.pickUpItem(item);
+					if(item.getName().equals("water") || item.getName().equals("food"))
+					{
+						incrementHealth();
+					}
 				}
 					//itemCollection.setbool(index, true);
 				//}
@@ -302,6 +307,7 @@ public class Client extends JFrame
 	{
 		int health = player.getHealth();
 		health = health + 5;
+		System.out.println(health);
 		player.setHealth(health);
 	}
 
