@@ -48,7 +48,7 @@ public class Client extends JFrame
 		//List<MOB> mobsInRoom = new ArrayList<MOB>(); 
 		RoomCollection roomCollection = new RoomCollection();
 		ItemCollection itemCollection = new ItemCollection(items);
-		MOBCollection mobCollection = new MOBCollection(rooms);
+		//MOBCollection mobCollection = new MOBCollection(rooms);
 			
 	public static void main (String []args)
 	{
@@ -159,7 +159,8 @@ public class Client extends JFrame
 				+ "\nCOMMANDS: List all of the available commands\nOOC <message>: Send <message> to all players\n"
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
-				+ "\nDROP <item>: Removes the item from your backpack\nQUIT: quits the game and closes the window\n"
+				+ "\nDROP <item>: Removes the item from your backpack\nLOOK: provides a 360 description of your surroundings"
+				+ "\nLOOK <argument>: provides an in depth description of the specified argument\nQUIT: quits the game and closes the window\n"
 				+ "SHUTDOWN: Used by admin only - shuts down the server\n";
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);
@@ -386,17 +387,17 @@ public class Client extends JFrame
 		case "The Lawn":
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
 					+ "\nItems in Room: Key\n"
-					+ "Adjacent Rooms:\n The Murder Castle - to the north\n";
+					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
 					+ "\nItems in Room: Knife, Night Vision Goggles\n"
-					+ "Adjacent Rooms:\n The Murder Castle - to the south\n ";
+					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-					+ "\nItems in Room: Food, Water\nAdjacent Rooms:\n The Lawn - to the south\n"
-					+ "Wisconsin Farmhouse of Horrors - to the north\n";
+					+ "\nItems in Room: Food, Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
 			break;
 		}
 		commandMessages.add(surroundings);
@@ -404,6 +405,44 @@ public class Client extends JFrame
 	}
 
 	public void surroundingsArg(String argument) {
-		
+		String surroundings = "";
+		switch(argument.toLowerCase())
+		{
+		case "water":
+			surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
+			break;
+		case "food":
+			surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
+			break;
+		case "knife":
+			surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
+			break;
+		case "key":
+			surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
+			break;
+		case "night vision goggles":
+			surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
+			break;
+		case "lawn":
+			surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
+					+ "\nItems in Room:\n  Key\n"
+					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
+			break;
+		case "murder castle":
+			surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
+					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
+			break;
+		case "wisconsin farmhouse of horrors":
+			surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
+					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
+					+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
+			break;
+		//how to do specific players?
+		default:
+			break;
+		}
+		commandMessages.add(surroundings);
+		mainPanel.updateCommands(commandMessages);
 	}
 }
