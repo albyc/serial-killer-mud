@@ -231,7 +231,8 @@ public class Client extends JFrame
 	public void listScore() 
 	{
 		int score = player.getHealth();
-		String sc = "" + score + "";
+		String sc = player.getUsername() + "'s stats: \n";
+		sc += "Health Level: " + score + "%.\n";
 		commandMessages.add(sc);
 		mainPanel.updateCommands(commandMessages);
 		
