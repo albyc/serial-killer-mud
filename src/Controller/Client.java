@@ -445,4 +445,18 @@ public class Client extends JFrame
 		commandMessages.add(surroundings);
 		mainPanel.updateCommands(commandMessages);
 	}
+
+	public void movePlayer(String argument) {
+		switch(argument.toLowerCase())
+		{
+		case "north":
+			player.changeRoom(player.getLocation().getNorthRoom());
+			break;
+		case "south":
+			player.changeRoom(player.getLocation().getSouthRoom());
+			break;
+		default:
+			break;
+		}
+	}
 }

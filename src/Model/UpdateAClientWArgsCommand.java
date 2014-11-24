@@ -26,6 +26,7 @@ public class UpdateAClientWArgsCommand extends Command<Client> {
 			executeOn.surroundingsArg(argument);
 			break;
 		case MOVE:
+			executeOn.movePlayer(argument);
 			break;
 		case DROP:
 			executeOn.dropItem(argument);

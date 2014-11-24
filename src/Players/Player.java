@@ -43,9 +43,9 @@ public class Player implements Serializable
     
     public String getUsername() { return username; }
      
-    public void changeRoom(SceneRoom newRoom){
+    public void changeRoom(Room room){
     	//erase self from room and add self to new room
-        currentLocation = newRoom;
+        currentLocation = room;
     }
 
     // public String getPassword() { return password; }
