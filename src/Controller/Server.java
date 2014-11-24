@@ -198,4 +198,19 @@ public class Server
 			e.printStackTrace();
 		}
 	}
+
+	public void closeServer(String clientName) {
+		try {
+			//DisconnectCommand c = new DisconnectCommand(clientName);
+			
+			socket.close();
+			//System.exit(0);
+			/*ObjectOutputStream out = outputs.get(clientName);
+			out.writeObject(c);*/
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 } // end of class Server

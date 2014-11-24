@@ -212,7 +212,7 @@ public class MainPanel extends JPanel
 					//prints 3 times for some reason?
 					output.writeObject(new ForServerCommand(clientName, c));
 				case INVENTORY:
-					//prints out twice for some reason?
+					//doesn't print anything
 					//get player's items
 					output.writeObject(new ForServerCommand(clientName, c));
 				case COMMANDS:
@@ -233,6 +233,7 @@ public class MainPanel extends JPanel
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SHUTDOWN:
+					output.writeObject(new ForServerCommand(clientName, c));
 					//make one of the player's an admin - only they can shut down if they input their password?
 					break;
 				default:

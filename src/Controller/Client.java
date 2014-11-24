@@ -308,4 +308,20 @@ public class Client extends JFrame
 			e.printStackTrace();
 		} // end of try/catch statement
 	}
+
+	public void closeServer(String clientName, Commands command) 
+	{
+		closeByInput();
+		try {
+			//ShutdownCommand sdc = new ShutdownCommand(username, command);
+			out.writeObject(new ShutdownCommand(username, command));
+			server.close();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
