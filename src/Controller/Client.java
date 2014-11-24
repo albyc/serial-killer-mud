@@ -452,10 +452,14 @@ public class Client extends JFrame
 		switch(argument.toLowerCase())
 		{
 		case "north":
-			player.changeRoom(player.getLocation().getNorthRoom());
+			if(player.getLocation().getNorthRoom() != null){
+				player.changeRoom(player.getLocation().getNorthRoom());
+			}
 			break;
 		case "south":
-			player.changeRoom(player.getLocation().getSouthRoom());
+			if(player.getLocation().getSouthRoom() != null){
+				player.changeRoom(player.getLocation().getSouthRoom());
+			}
 			break;
 		default:
 			break;
