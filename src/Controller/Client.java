@@ -201,8 +201,26 @@ public class Client extends JFrame
 			{
 				if(i.getName().equals(argument.toLowerCase()))
 				{
+					int index = 0;
+					switch(argument){
+					case "water":
+						index = 0;
+						break;
+					case "food":
+						index = 1;
+						break;
+					case "knife":
+						index = 2;
+						break;
+					case "night vision goggles":
+						index = 3;
+						break;
+					case "key":
+						index = 4;
+						break;
+					}
 					player.dropItem(item);
-					item.setIsPickedUp(false);
+					//itemCollection.setbool(index, false);
 					break;
 				}
 			}
@@ -246,14 +264,42 @@ public class Client extends JFrame
 		if(player.getItems() != null){
 			if(player.getItems().size() < 5)
 			{
-				if(item.getIsPickedUp() == false){
-					player.pickUpItem(item);
-					item.setIsPickedUp(true);
+				int index = 0;
+				switch(argument){
+				case "water":
+					index = 0;
+					incrementHealth();
+					break;
+				case "food":
+					index = 1;
+					incrementHealth();
+					break;
+				case "knife":
+					index = 2;
+					break;
+				case "night vision goggles":
+					index = 3;
+					break;
+				case "key":
+					index = 4;
+					break;
 				}
+				//if(itemCollection.getbool(index) == false){
+				
+				player.pickUpItem(item);
+					//itemCollection.setbool(index, true);
+				//}
 				
 				
 			}
 		}
+	}
+	
+	public void incrementHealth()
+	{
+		int health = player.getHealth();
+		health = health + 5;
+		player.setHealth(health);
 	}
 
 	/**
@@ -265,6 +311,7 @@ public class Client extends JFrame
 	public void setPlayer(Player player)
 	{
 		this.player = player;
+		roomCollection.addPlayerToRooms(player);
 	}
 
 	/**
@@ -327,6 +374,36 @@ public class Client extends JFrame
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+
+	public void listSurroundings() 
+	{
+		String surroundings = "";
+		Room room = player.getLocation();
+		String name = room.getName();
+		switch(name){
+		case "The Lawn":
+			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
+					+ "\nItems in Room: Key\n"
+					+ "Adjacent Rooms:\n The Murder Castle - to the north\n";
+			break;
+		case "Wisconsin Farmhouse of Horrors":
+			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
+					+ "\nItems in Room: Knife, Night Vision Goggles\n"
+					+ "Adjacent Rooms:\n The Murder Castle - to the south\n ";
+			break;
+		case "Murder Castle":
+			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
+					+ "\nItems in Room: Food, Water\nAdjacent Rooms:\n The Lawn - to the south\n"
+					+ "Wisconsin Farmhouse of Horrors - to the north\n";
+			break;
+		}
+		commandMessages.add(surroundings);
+		mainPanel.updateCommands(commandMessages);
+	}
+
+	public void surroundingsArg(String argument) {
 		
 	}
 }

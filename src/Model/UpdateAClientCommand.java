@@ -42,6 +42,8 @@ public class UpdateAClientCommand extends Command<Client>
 			break;
 		case SHUTDOWN:
 			executeOn.closeServer(clientName, command);
+		case LOOK:
+			executeOn.listSurroundings();
 		default:
 			break;
 		}
