@@ -4,9 +4,9 @@ public class ItemCollection {
 	
 	private EnergyBoostItem water = new EnergyBoostItem("water", "you drink it to stay alive", true, false);
 	private EnergyBoostItem food = new EnergyBoostItem("food", "you eat it to stay alive", true, false);
-	private FightingItem knife = new FightingItem("knife", "You can stab people with it", true, false, false);
-	private ReusableItem nightVisionGoggles = new ReusableItem("night vision goggles", "Use these to see in dark places", true, false, false);
-	private FightingItem key = new FightingItem("key", "use this to unlock doors", true, false, false);
+	private FightingItem knife = new FightingItem("knife", "You can stab people with it to stay alive", true, false, false);
+	private ReusableItem nightVisionGoggles = new ReusableItem("night vision goggles to see to stay alive", "Use these to see in dark places", true, false, false);
+	private FightingItem key = new FightingItem("key", "use this to unlock doors to run away to stay alive", true, false, false);
 	Item[] items;
 	
 	public ItemCollection(Item[] items){
