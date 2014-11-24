@@ -43,9 +43,9 @@ public class RoomCollection
 	
 	private void addDefaultRooms()
 	{
-		Room murderCastle = new SceneRoom("Murder Castle", "stuff...", itemsInMurderCastle);
-		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "stuff...", itemsInFarmhouse);
-		Room lawn = new SceneRoom("The Lawn", "stuff...", itemsInLawn);
+		Room murderCastle = new SceneRoom("Murder Castle", "601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long.", itemsInMurderCastle);
+		Room farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "Average farmhouse, nothing in particular", itemsInFarmhouse);
+		Room lawn = new SceneRoom("The Lawn", "small area of dead grass", itemsInLawn);
 		entrance = lawn;
 		
 		lawn.setNorthRoom(murderCastle);
