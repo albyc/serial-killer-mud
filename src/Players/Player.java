@@ -21,6 +21,7 @@ public class Player implements Serializable
     private int health;
     private final static int MAXHEALTH = 100;
     private final static int MAX_ITEMS = 5;
+    
      
     public Player(String username, String password)
     {
@@ -131,4 +132,8 @@ public class Player implements Serializable
     {
     	backpack = list;
     }
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
 }//end of class Player

@@ -23,7 +23,7 @@ public class UpdateAClientWArgsCommand extends Command<Client> {
 		switch(command)
 		{
 		case LOOK:
-			
+			executeOn.surroundingsArg(argument);
 			break;
 		case MOVE:
 			break;

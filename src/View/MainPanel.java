@@ -198,7 +198,6 @@ public class MainPanel extends JPanel
 					output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
 					break;
 				case MOVE:
-					//not done yet
 					if(!argument.equals(""))
 					{
 						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
