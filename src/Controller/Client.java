@@ -193,13 +193,15 @@ public class Client extends JFrame
 
 	public void dropItem(String argument) 
 	{
-		Item item = itemCollection.getItemFromName(argument);
+		Item item = itemCollection.getItemFromName(argument.toLowerCase());
 		if(player.getItems() != null){
 			for (Item i : player.getItems())
 			{
-				if(i.getName() == argument)
+				if(i.getName().equals(argument.toLowerCase()))
 				{
 					player.dropItem(item);
+					item.setIsPickedUp(true);
+					break;
 				}
 			}
 		}
@@ -238,16 +240,11 @@ public class Client extends JFrame
 	public void pickUp(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
-		List<Item> playersInventory = player.getItems();
-/*		String name = item.toString();
-		commandMessages.add(argument);
-		mainPanel.updateCommands(commandMessages);*/
 		if(player.getItems() != null){
 			if(player.getItems().size() < 5)
 			{
 				player.pickUpItem(item);
-				playersInventory.add(item);
-				player.setBackpack(playersInventory);
+				
 				
 			}
 		}
@@ -309,5 +306,21 @@ public class Client extends JFrame
 		{
 			e.printStackTrace();
 		} // end of try/catch statement
+	}
+
+	public void closeServer(String clientName, Commands command) 
+	{
+		closeByInput();
+		try {
+			//ShutdownCommand sdc = new ShutdownCommand(username, command);
+			out.writeObject(new ShutdownCommand(username, command));
+			server.close();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

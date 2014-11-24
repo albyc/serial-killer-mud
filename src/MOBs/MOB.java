@@ -1,13 +1,11 @@
 package MOBs;
 
-
 //import java.awt.List;
 import java.util.ArrayList;
 
 import Items.Item;
 import Items.Item;
 import Rooms.Room;
-
 
 /**
  * 
@@ -37,6 +35,8 @@ public abstract class MOB {
 	public abstract void action4();
 	
 	public abstract void action5();
+	
+	public abstract void whoAmI();
 
 	public void speak(int x) {
 		System.out.println(speeches.get(x));

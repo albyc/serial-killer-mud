@@ -7,6 +7,7 @@ import Controller.Server;
 public class UpdateAClientCommand extends Command<Client>
 {
 	private Commands command;
+	private String clientName;
 
 	/**
 	 * 
@@ -39,6 +40,8 @@ public class UpdateAClientCommand extends Command<Client>
 		case QUIT:
 			executeOn.closeByInput();
 			break;
+		case SHUTDOWN:
+			executeOn.closeServer(clientName, command);
 		default:
 			break;
 		}

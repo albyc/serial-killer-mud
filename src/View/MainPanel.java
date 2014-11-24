@@ -209,6 +209,12 @@ public class MainPanel extends JPanel
 					break;
 				case SCORE:
 				case INVENTORY:
+<<<<<<< HEAD
+=======
+					//doesn't print anything
+					//get player's items
+					output.writeObject(new ForServerCommand(clientName, c));
+>>>>>>> fad0e44a406c91ca0d8fc03f932c922003031933
 				case COMMANDS:
 				case WHO:
 				case QUIT:
@@ -227,6 +233,7 @@ public class MainPanel extends JPanel
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SHUTDOWN:
+					output.writeObject(new ForServerCommand(clientName, c));
 					//make one of the player's an admin - only they can shut down if they input their password?
 					break;
 				default:
