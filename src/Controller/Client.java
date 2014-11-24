@@ -209,18 +209,18 @@ public class Client extends JFrame
 	public void listInventory() 
 	{
 		List<Item> list = player.getItems();
-		String allItems = "";
-		if(list == null)
+		boolean empty = true;
+		String allItems = "These are the items that are currently in your backpack:\n";
+		
+		for (Item item: list)
 		{
+			allItems += item.getName() + "\n";
+			empty = false;
+		}
+		
+		if (empty)
 			allItems = "You have no items in your backpack.\n";
-			
-		}
-		else{
-			for (Item item : list){
-				allItems += item.getName();
-			}
-
-		}
+		
 		commandMessages.add(allItems);
 		mainPanel.updateCommands(commandMessages);
 	}

@@ -26,7 +26,7 @@ public class Player implements Serializable
     {
         this.username = username;
         this.password = password;
-        backpack = new ArrayList<Item>(MAX_ITEMS);
+        backpack = new ArrayList<Item>();
         health = 50;
     }
     
