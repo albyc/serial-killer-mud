@@ -196,9 +196,6 @@ public class MainPanel extends JPanel
 				case DROP:
 				case GET:
 					output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
-					//not done yet
-					//add item to player's inventory
-					//set item's boolean value isPickedUp to true
 					break;
 				case MOVE:
 					//not done yet
@@ -209,12 +206,6 @@ public class MainPanel extends JPanel
 					break;
 				case SCORE:
 				case INVENTORY:
-<<<<<<< HEAD
-=======
-					//doesn't print anything
-					//get player's items
-					output.writeObject(new ForServerCommand(clientName, c));
->>>>>>> fad0e44a406c91ca0d8fc03f932c922003031933
 				case COMMANDS:
 				case WHO:
 				case QUIT:
