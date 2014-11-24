@@ -20,10 +20,11 @@ public abstract class MOB {
 	private ArrayList<String> speeches;
 	private int health;
 
-	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay) {
+	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay, Room startLocation) {
 		this.identity = identity;
 		pocket = new ArrayList<Item>();
 		this.speeches = stuffToSay;
+		currentLocation = startLocation;
 	}
 
 	public abstract void action1();

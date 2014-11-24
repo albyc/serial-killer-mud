@@ -39,6 +39,7 @@ public class Client extends JFrame
 	private Player player;
 	private List<Player> players;
 	private Item[] items;
+	private Room[] rooms;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
@@ -47,6 +48,7 @@ public class Client extends JFrame
 		//List<MOB> mobsInRoom = new ArrayList<MOB>(); 
 		RoomCollection roomCollection = new RoomCollection();
 		ItemCollection itemCollection = new ItemCollection(items);
+		MOBCollection mobCollection = new MOBCollection(rooms);
 			
 	public static void main (String []args)
 	{
