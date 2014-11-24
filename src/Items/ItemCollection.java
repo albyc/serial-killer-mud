@@ -1,7 +1,11 @@
 package Items;
 
-public class ItemCollection {
-	
+import java.util.ArrayList;
+import java.util.List;
+
+public class ItemCollection 
+{
+	private List<Item> itumss;
 	private EnergyBoostItem water = new EnergyBoostItem("water", "you drink it to stay alive", true, false);
 	private EnergyBoostItem food = new EnergyBoostItem("food", "you eat it to stay alive", true, false);
 	private FightingItem knife = new FightingItem("knife", "You can stab people with it", true, false, false);
@@ -10,7 +14,7 @@ public class ItemCollection {
 	Item[] items;
 	
 	public ItemCollection(Item[] items){
-		
+		itumss = new ArrayList<Item>();
 		this.items = new Item[5];
 		
 		this.items[0] = water;
@@ -18,6 +22,12 @@ public class ItemCollection {
 		this.items[2] = knife;
 		this.items[3] = nightVisionGoggles;
 		this.items[4] = key;
+		itumss.add(water);
+		itumss.add(food);
+		itumss.add(knife);
+		itumss.add(nightVisionGoggles);
+		itumss.add(key);
+		
 	}
 	
 	public Item getItem(int index){
@@ -41,11 +51,22 @@ public class ItemCollection {
 	}
 	
 	public Item getItemFromName(String name){
-		for(int i = 0; i < items.length; i++){
-			if(items[i].getName().equals(name)){
-				return items[i];
+//		for(int i = 0; i < items.length; i++){
+//			if(items[i].getName().equals(name)){
+//				return items[i];
+//			}
+//		}
+		
+		for (Item ii: itumss)
+		{
+			if (ii.getName().equals(name))
+			{
+				System.out.println("found it");
+				return ii;
 			}
 		}
+		
 		return null;
+		
 	}
 }

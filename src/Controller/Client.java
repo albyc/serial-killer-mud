@@ -216,6 +216,7 @@ public class Client extends JFrame
 		{
 			allItems += item.getName() + "\n";
 			empty = false;
+			System.out.print("d");
 		}
 		
 		if (empty)
@@ -234,7 +235,8 @@ public class Client extends JFrame
 		
 	}
 
-	public void pickUp(String argument) {
+	public void pickUp(String argument) 
+	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
 		List<Item> playersInventory = player.getItems();
 /*		String name = item.toString();
