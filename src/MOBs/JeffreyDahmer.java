@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 import Items.Item;
 
-public class FoodStandGuy extends MOB{
+public class JeffreyDahmer extends MOB {
 
-	public FoodStandGuy(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay) {
+	public JeffreyDahmer(String identity, ArrayList<Item> items,
+			ArrayList<String> stuffToSay) {
 		super(identity, items, stuffToSay);
 		// TODO Auto-generated constructor stub
 	}
