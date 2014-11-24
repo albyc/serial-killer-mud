@@ -200,7 +200,7 @@ public class Client extends JFrame
 				if(i.getName().equals(argument.toLowerCase()))
 				{
 					player.dropItem(item);
-					item.setIsPickedUp(true);
+					item.setIsPickedUp(false);
 					break;
 				}
 			}
@@ -244,7 +244,10 @@ public class Client extends JFrame
 		if(player.getItems() != null){
 			if(player.getItems().size() < 5)
 			{
-				player.pickUpItem(item);
+				if(item.getIsPickedUp() == false){
+					player.pickUpItem(item);
+					item.setIsPickedUp(true);
+				}
 				
 				
 			}
