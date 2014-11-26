@@ -465,11 +465,25 @@ public class Client extends JFrame
 				commandMessages.add(movedTo);
 				mainPanel.updateCommands(commandMessages);
 			}
+			else
+			{
+				String movedTo = "There is no room to the north of your current location. Use the LOOK\ncommand to see "
+						+ "the adjacent rooms.\n";
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
+			}
 			break;
 		case "south":
 			if(player.getLocation().getSouthRoom() != null){
 				player.changeRoom(player.getLocation().getSouthRoom());
 				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
+			}
+			else
+			{
+				String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
+						+ "the adjacent rooms.\n";
 				commandMessages.add(movedTo);
 				mainPanel.updateCommands(commandMessages);
 			}
