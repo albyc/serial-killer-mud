@@ -222,7 +222,10 @@ public class MainPanel extends JPanel
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SHUTDOWN:
+					if(clientName.equalsIgnoreCase("alby") || clientName.equalsIgnoreCase("damaris") || clientName.equalsIgnoreCase("alexa")
+							|| clientName.equalsIgnoreCase("lisa")){
 					output.writeObject(new ForServerCommand(clientName, c));
+					}
 					break;
 				default:
 					break;
