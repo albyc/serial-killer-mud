@@ -7,7 +7,7 @@ import Rooms.Room;
 
 public class MOBCollection
 {
-	private List<MOB> theMOBS;
+	private List<MOB> theMOBs;
 	
 	private Killer drHenryHowardHolmes;
 	private Killer jefferyDahmer;
@@ -17,15 +17,28 @@ public class MOBCollection
 	private NonKiller victim;
 	private NonKiller foodStandGuy;
 	
-	public MOBCollection(Room[] rooms){
-		drHenryHowardHolmes = new Killer("Dr. Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		jefferyDahmer = new Killer("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]); 
-		lawrenceBittaker = new Killer("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		royNorris = new Killer("Roy Norris", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		victim = new NonKiller("Victim", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		foodStandGuy = new NonKiller("Food Stand guy", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
+	public MOBCollection(List<Room> rooms){
+		drHenryHowardHolmes = new Killer("Dr. Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		jefferyDahmer = new Killer("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0)); 
+		lawrenceBittaker = new Killer("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		royNorris = new Killer("Roy Norris", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		
+		victim = new NonKiller("Victim", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		foodStandGuy = new NonKiller("Food Stand guy", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		
+		theMOBs.add(drHenryHowardHolmes);
+		theMOBs.add(jefferyDahmer);
+		theMOBs.add(lawrenceBittaker);
+		theMOBs.add(royNorris);
+		theMOBs.add(victim);
+		theMOBs.add(foodStandGuy);
+		
+		
 	}
-///rtmnbdcjdwbfhje
+	
+	public List<MOB> getAllMOBS(){
+		return theMOBs;
+	}
 	
 	public MOB getMOB(int index) {
 		switch(index) {
@@ -46,18 +59,15 @@ public class MOBCollection
 		}	
 	}
 	
-//	public Mob getItemFromName(String name){
-//		
-//		for (Item ii: itumss)
-//		{
-//			if (ii.getName().equals(name))
-//			{
-//				System.out.println("found it");
-//				return ii;
-//			}
-//		}
-//		
-//		return null;
-//		
-//	}
+	public MOB getItemFromName(String name){
+		for (MOB mob: theMOBs)
+		{
+			if (mob.getIdentity().equals(name))
+			{
+				System.out.println("found it");
+				return mob;
+			}
+		}
+		return null;
+	}
 }

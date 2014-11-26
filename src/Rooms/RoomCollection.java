@@ -4,6 +4,8 @@ import java.util.*;
 
 import Items.Item;
 import Items.ItemCollection;
+import MOBs.MOB;
+import MOBs.MOBCollection;
 import Players.*;
 
 /**
@@ -20,12 +22,18 @@ public class RoomCollection
 	private List<Player> playersInMurderCastle;
 	private List<Player> playersInFarmhouse;
 	private List<Player> playersInLawn;
+	private List<MOB> mobsInMurderCastle;
+	private List<MOB> mobsInFarmhouse;
+	private List<MOB> mobsInLawn;
 	private Room entrance;
 	private Item[] items;
 	private ItemCollection itemCollection = new ItemCollection(items);
 	private Room lawn;
 	private Room murderCastle;
 	private Room farmhouse;
+	
+//	private MOBCollection mobCollection;
+	
 	public RoomCollection()
 	{
 		rooms = new ArrayList<Room>();
@@ -42,6 +50,18 @@ public class RoomCollection
 		playersInMurderCastle = new ArrayList<Player>();
 		playersInFarmhouse = new ArrayList<Player>();
 		playersInLawn = new ArrayList<Player>();
+		
+//		mobCollection = new MOBCollection(rooms);
+//		mobsInMurderCastle = new ArrayList<MOB>();
+//		mobsInFarmhouse = new ArrayList<MOB>();
+//		mobsInLawn = new ArrayList<MOB>();
+//		mobsInLawn.add(mobCollection.getAllMOBS().get(0));
+//		mobsInLawn.add(mobCollection.getAllMOBS().get(1));
+//		mobsInLawn.add(mobCollection.getAllMOBS().get(2));
+//		mobsInLawn.add(mobCollection.getAllMOBS().get(3));
+//		mobsInLawn.add(mobCollection.getAllMOBS().get(4));
+//		mobsInLawn.add(mobCollection.getAllMOBS().get(5));
+		
 		addDefaultRooms();
 	} 
 	
@@ -124,6 +144,11 @@ public class RoomCollection
 		
 		return null;
 	}
+	
+	
+//	public List<Room> getRooms(){
+//		return rooms;
+//	}
 	
 	/*public List<Player> getPlayers(int index) 
 	{ 

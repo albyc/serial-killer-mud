@@ -41,6 +41,7 @@ public class Client extends JFrame
 	private Item[] items;
 	RoomCollection roomCollection = new RoomCollection();
 	ItemCollection itemCollection = new ItemCollection(items);
+//	MOBCollection mobCollection = new MOBCollection(roomCollection.getRooms());
 			
 	public static void main (String []args)
 	{
@@ -399,6 +400,7 @@ public class Client extends JFrame
 		String surroundings = "";
 		Room room = player.getLocation();
 		String name = room.getName();
+//		List<MOB> theMobs = room.getMOBs();
 		switch(name){
 		case "The Lawn":
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
@@ -448,6 +450,9 @@ public class Client extends JFrame
 					+ "\nItems in Room:\n  Key\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
 			break;
+			
+			
+			
 		case "murder castle":
 			surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
 					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
