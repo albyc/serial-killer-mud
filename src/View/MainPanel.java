@@ -223,6 +223,7 @@ public class MainPanel extends JPanel
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
 					break;
 				case SHUTDOWN:
+					//calling system.exit(0) here doesn't shutdown all clients - just the one that implemented shutdown
 					output.writeObject(new ForServerCommand(clientName, c));
 					//make one of the player's an admin - only they can shut down if they input their password?
 					break;
