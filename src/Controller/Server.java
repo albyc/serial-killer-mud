@@ -177,13 +177,15 @@ public class Server
 		//print commands in client's right side text area
 		// make an UpdatedAClientCommand, write specific user
 		Command update = null;
+		List<Player> temp = mud.getPlayers();
+		List<Player> players = new ArrayList<Player>();
+		players.addAll(temp);
 		if(command == Commands.WHO)
-		{
-			update = new WhoCommand(mud.getPlayers());
-		}else
-		{
+			update = new WhoCommand(players);
+		
+		else
 			update = new UpdateAClientCommand(command);
-		}
+		
 		ObjectOutputStream out = outputs.get(clientName);
 		try {
 			out.writeObject(update);

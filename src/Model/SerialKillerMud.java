@@ -23,7 +23,7 @@ public class SerialKillerMud
 	{
 		rooms = new RoomCollection();
 		players = new ArrayList<Player>();
-		//mobs = new MOBCollection(null); 		//note: trouble
+		//mobs = new MOBCollection(null); 		// note: trouble
 	}
 
 	public void addPlayerToGame(Player player)
