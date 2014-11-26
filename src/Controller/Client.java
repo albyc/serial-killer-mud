@@ -400,12 +400,12 @@ public class Client extends JFrame
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-					+ "\nItems in Room: Knife, Night Vision Goggles\n"
+					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-					+ "\nItems in Room: Food, Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "\nItems in Room: \n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
 					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 			break;
 		}
