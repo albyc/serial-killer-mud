@@ -34,9 +34,6 @@ public class UpdateAClientCommand extends Command<Client>
 		case COMMANDS:
 			executeOn.listCommands();
 			break;
-		case WHO:
-			executeOn.listWho();
-			break;
 		case QUIT:
 			executeOn.closeByInput();
 			break;

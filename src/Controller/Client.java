@@ -34,12 +34,9 @@ public class Client extends JFrame
 	private SerialKillerMud mud;
 	private List<String> commandMessages; // the command log
 	
-	private String username; // username of the client
 	private Socket server; // connection to the server
 	private Player player;
-	private List<Player> players;
 	private Item[] items;
-	private Room[] rooms;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
@@ -80,21 +77,23 @@ public class Client extends JFrame
 			// to determine whether the motherheffer trying to access the game
 			// is allowed the privilege. If not, there's no fucking point in 
 			// letting them in...
-			players = (ArrayList<Player>)in.readObject();
+			List<Player> players = (ArrayList<Player>)in.readObject();
+			
+			// From here, the LoginView will take the reins.
+			new LoginView(Client.this, players);	
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 		
-		// From here, the LoginView will take the reins.
-		new LoginView(Client.this, players);	
+		
 	} // end of constructor Client
 	
 	private void setupGUI()
 	{
 		// create mainPanel and add it the the Frame
-		mainPanel = new MainPanel(username, out);
+		mainPanel = new MainPanel(player.getUsername(), out);
 		this.add(mainPanel);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -160,22 +159,23 @@ public class Client extends JFrame
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
 				+ "\nDROP <item>: Removes the item from your backpack\nLOOK: provides a 360 description of your surroundings"
-				+ "\nLOOK <argument>: provides an in depth description of the specified argument\nQUIT: quits the game and closes the window\n"
-				+ "SHUTDOWN: Used by admin only - shuts down the server\n";
+				+ "\nLOOK <argument>: provides an in depth description of the specified argument\nQUIT: quits the game and closes the window\n";
 		commandMessages.add(listOfCommands);
 		mainPanel.updateCommands(commandMessages);
 	}
 
-	public void listWho() 
+	public void listWho(List<Player> players) 
 	{
 		//doesn't work yet. if 2nd client is added, in the 1st client's view, only the 1st client player exists. :(
 		
-		String listOfCommands = "Here are the players: \n";
-		for (int i = 0; i < players.size(); i++ )
+		String listOfPlayers = "Here are the players currently online: \n";
+		for(Player p : players)
 		{
-			listOfCommands += players.get(i).getUsername() + '\n';
+			listOfPlayers += p.getUsername() + '\n';
+
 		}
-		commandMessages.add(listOfCommands);
+	
+		commandMessages.add(listOfPlayers);
 		mainPanel.updateCommands(commandMessages);	
 	}
 	
@@ -183,7 +183,7 @@ public class Client extends JFrame
 	{
 		try 
 		{
-			out.writeObject(new DisconnectCommand(username));
+			out.writeObject(new DisconnectCommand(player.getUsername()));
 			out.close();
 			in.close();
 			System.exit(0);
@@ -221,6 +221,9 @@ public class Client extends JFrame
 						break;
 					}
 					player.dropItem(item);
+					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
+					commandMessages.add(dropped);
+					mainPanel.updateCommands(commandMessages);
 					//itemCollection.setbool(index, false);
 					break;
 				}
@@ -290,6 +293,9 @@ public class Client extends JFrame
 				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
 					player.pickUpItem(item);
+					String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+					commandMessages.add(pickUp);
+					mainPanel.updateCommands(commandMessages);
 					if(item.getName().equals("water") || item.getName().equals("food"))
 					{
 						incrementHealth();
@@ -331,15 +337,15 @@ public class Client extends JFrame
 	{
 		try
 		{
-			username = player.getUsername();
+			
 			commandMessages = new ArrayList<String>();
-			commandMessages.add(welcomeMessage(username));
+			commandMessages.add(welcomeMessage(player.getUsername()));
 			
 			// Write out player associated with this client
 			out.writeObject(player);
 			
-			players.add(player);
-			roomCollection.setRoomsPlayerList(players, 2);
+			/*players.add(player);
+			roomCollection.setRoomsPlayerList(players, 2);*/
 			
 			// Add a listener that sends a disconnect command to when closing
 			this.addWindowListener(new WindowAdapter()
@@ -348,7 +354,7 @@ public class Client extends JFrame
 				{
 					try 
 					{
-						out.writeObject(new DisconnectCommand(username));
+						out.writeObject(new DisconnectCommand(player.getUsername()));
 						out.close();
 						in.close();
 					} 
@@ -375,7 +381,7 @@ public class Client extends JFrame
 		closeByInput();
 		try {
 			//ShutdownCommand sdc = new ShutdownCommand(username, command);
-			out.writeObject(new ShutdownCommand(username, command));
+			out.writeObject(new ShutdownCommand(player.getUsername(), command));
 			server.close();
 			
 			
@@ -471,4 +477,6 @@ public class Client extends JFrame
 			break;
 		}
 	}
+
+	
 }
