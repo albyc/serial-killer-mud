@@ -38,6 +38,10 @@ public abstract class MOB {
 	public abstract void action5();
 	
 	public abstract void whoAmI();
+	
+	public String getIdentity(){
+		return identity;
+	}
 
 	public void speak(int x) {
 		System.out.println(speeches.get(x));
