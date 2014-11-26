@@ -137,7 +137,7 @@ public class RoomCollection
 //	{
 //		roomCollection[index] = room;
 //	}
-	/*private SceneRoom[][][] roomCollection = new SceneRoom[3][4][3];
+	/*private Room[][][] roomCollection = new Room[3][4][3];
 	
 	public RoomCollection(SceneRoom room1, SceneRoom room2, SceneRoom room3, SceneRoom room4, SceneRoom room5, SceneRoom room6,SceneRoom room7,SceneRoom room8,
 			SceneRoom room9, SceneRoom room10,SceneRoom room11,SceneRoom room12,SceneRoom room13,SceneRoom room14,SceneRoom room15,SceneRoom room16,SceneRoom room17,SceneRoom room18,

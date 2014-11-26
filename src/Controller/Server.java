@@ -162,6 +162,16 @@ public class Server
 		{
 			outputs.get(clientName).close(); // close outputs stream
 			outputs.remove(clientName); // remove from map
+			Player playerToRemove = null;
+			for (Player p : mud.getPlayers())
+			{
+				if(p.getUsername().equals(clientName))
+				{
+					playerToRemove = p;
+					break;
+				}
+			}
+			mud.getPlayers().remove(playerToRemove);
 			
 			// add notification message
 			addMessage(clientName + " disconnected");

@@ -138,7 +138,11 @@ public class Client extends JFrame
 	{
 		mainPanel.update(chatMessages, commandMessages);
 	}
-	
+	/**
+	 * welcomMessage prints out a welcoming message as the player's client begins
+	 * @param username - player's username
+	 * @return the string message
+	 */
 	private String welcomeMessage(String username)
 	{
 		String welcomeMessage = "Hello " + username + " and welcome to SAVE YO ASS.\n\n"
@@ -147,6 +151,10 @@ public class Client extends JFrame
 		return welcomeMessage;
 	}
 
+	/**
+	 * lists all of the commands a player can use during game play.
+	 * calls the update function on the command side of the gui.
+	 */
 	public void listCommands() 
 	{
 		String listOfCommands = "Here are the commands: \nMOVE <direction>: Move into the room to the <direction>"
@@ -159,6 +167,10 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * lists all of the players currently online. updates the command side of the gui.
+	 * @param players - list of current players
+	 */
 	public void listWho(List<Player> players) 
 	{
 		//doesn't work yet. if 2nd client is added, in the 1st client's view, only the 1st client player exists. :(
@@ -174,6 +186,9 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);	
 	}
 	
+	/**
+	 * closes the gui and creates a new DisconnectCommand for that player.
+	 */
 	public void closeByInput()
 	{
 		try 
@@ -189,6 +204,10 @@ public class Client extends JFrame
 		}
 	}
 
+	/**
+	 * allows the player to drop the specified item
+	 * @param argument - the string name of the item to be dropped
+	 */
 	public void dropItem(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
@@ -227,6 +246,9 @@ public class Client extends JFrame
 		
 	}
 
+	/**
+	 * lists all of the items in a player's backpack
+	 */
 	public void listInventory() 
 	{
 		List<Item> list = player.getItems();
@@ -247,6 +269,9 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * lists the player's current stats
+	 */
 	public void listScore() 
 	{
 		int score = player.getHealth();
@@ -257,6 +282,10 @@ public class Client extends JFrame
 		
 	}
 
+	/**
+	 * allows the player to pick up the specified item
+	 * @param argument - the string name of the item
+	 */
 	public void pickUp(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
@@ -265,6 +294,7 @@ public class Client extends JFrame
 		{
 			if (player.getItems().size() < 5)
 			{
+<<<<<<< HEAD
 				if (player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
 					player.pickUpItem(item);
@@ -275,10 +305,41 @@ public class Client extends JFrame
 					if(item.getName().equals("water") || item.getName().equals("food"))
 						incrementHealth();
 				}
+=======
+				
+				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
+				{
+					boolean inBackpack = false;
+					for(Item i : player.getItems())
+					{
+						if(i == item)
+						{
+							inBackpack = true;
+							break;
+						}
+					}
+					if(inBackpack == false){
+						player.pickUpItem(item);
+						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+						commandMessages.add(pickUp);
+						mainPanel.updateCommands(commandMessages);
+						if(item.getName().equals("water") || item.getName().equals("food"))
+						{
+							incrementHealth();
+						}
+					}
+				}
+		
+				
+				
+>>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 			}
 		}
 	}
 	
+	/**
+	 * increments the player's health stats by 5%
+	 */
 	public void incrementHealth()
 	{
 		int health = player.getHealth();
@@ -346,6 +407,33 @@ public class Client extends JFrame
 		} // end of try/catch statement
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * closes the server
+	 * @param clientName
+	 * @param command
+	 */
+	public void closeServer(String clientName, Commands command) 
+	{
+		closeByInput();
+		try {
+			//ShutdownCommand sdc = new ShutdownCommand(username, command);
+			out.writeObject(new ShutdownCommand(player.getUsername(), command));
+			server.close();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	/**
+	 * lists the surroundings based on the player's current location
+	 */
+>>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 	public void listSurroundings() 
 	{
 		String surroundings = "";
@@ -355,23 +443,27 @@ public class Client extends JFrame
 		case "The Lawn":
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
 					+ "\nItems in Room: Key\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
+					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-					+ "\nItems in Room: Knife, Night Vision Goggles\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n\n ";
+					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
+					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-					+ "\nItems in Room: Food, Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
-					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
+					+ "\nItems in Room: \n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 			break;
 		}
 		commandMessages.add(surroundings);
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * lists the details of the specified argument
+	 * @param argument - string name of item/room specified
+	 */
 	public void surroundingsArg(String argument) {
 		String surroundings = "";
 		switch(argument.toLowerCase())
@@ -414,19 +506,55 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+<<<<<<< HEAD
 	public void movePlayer(String argument) 
 	{
+=======
+	/**
+	 * moves the player in the specified direction
+	 * @param argument - string the direction
+	 */
+	public void movePlayer(String argument) {
+>>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 		switch(argument.toLowerCase())
 		{
 		case "north":
 			if(player.getLocation().getNorthRoom() != null)
 				player.changeRoom(player.getLocation().getNorthRoom());
+<<<<<<< HEAD
 			
+=======
+				String movedTo = "You have moved north into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
+			}
+			else
+			{
+				String movedTo = "There is no room to the north of your current location. Use the LOOK\ncommand to see "
+						+ "the adjacent rooms.\n";
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
+			}
+>>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 			break;
 		case "south":
 			if(player.getLocation().getSouthRoom() != null)
 				player.changeRoom(player.getLocation().getSouthRoom());
+<<<<<<< HEAD
 			
+=======
+				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
+			}
+			else
+			{
+				String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
+						+ "the adjacent rooms.\n";
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
+			}
+>>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 			break;
 		default:
 			// message is sent to client letting them know that it is not a valid move

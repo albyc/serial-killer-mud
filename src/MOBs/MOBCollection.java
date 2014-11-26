@@ -25,7 +25,7 @@ public class MOBCollection
 		victim = new NonKiller("Victim", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
 		foodStandGuy = new NonKiller("Food Stand guy", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
 	}
-
+///rtmnbdcjdwbfhje
 	
 	public MOB getMOB(int index) {
 		switch(index) {
