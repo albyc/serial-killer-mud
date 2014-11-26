@@ -287,13 +287,24 @@ public class Client extends JFrame
 				//if(itemCollection.getbool(index) == false){
 				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
-					player.pickUpItem(item);
-					String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-					commandMessages.add(pickUp);
-					mainPanel.updateCommands(commandMessages);
-					if(item.getName().equals("water") || item.getName().equals("food"))
+					boolean inBackpack = false;
+					for(Item i : player.getItems())
 					{
-						incrementHealth();
+						if(i == item)
+						{
+							inBackpack = true;
+							break;
+						}
+					}
+					if(inBackpack == false){
+						player.pickUpItem(item);
+						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+						commandMessages.add(pickUp);
+						mainPanel.updateCommands(commandMessages);
+						if(item.getName().equals("water") || item.getName().equals("food"))
+						{
+							incrementHealth();
+						}
 					}
 				}
 					//itemCollection.setbool(index, true);
