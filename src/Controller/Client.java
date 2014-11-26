@@ -73,9 +73,10 @@ public class Client extends JFrame
 			// is allowed the privilege. If not, there's no fucking point in 
 			// letting them in...
 			List<Player> players = (ArrayList<Player>)in.readObject();
+			List<Player> admins = (ArrayList<Player>)in.readObject();
 			
 			// From here, the LoginView will take the reins.
-			new LoginView(Client.this, players);	
+			new LoginView(Client.this, players, admins);	
 		}
 		catch (Exception e)
 		{
@@ -176,9 +177,12 @@ public class Client extends JFrame
 		//doesn't work yet. if 2nd client is added, in the 1st client's view, only the 1st client player exists. :(
 		
 		String listOfPlayers = "Here are the players currently online: \n";
+		int count = 0;
 		for(Player p : players)
 		{
-			listOfPlayers += p.getUsername() + '\n';
+//			count++;
+//			if(count >4)
+				listOfPlayers += p.getUsername() + '\n';
 
 		}
 	

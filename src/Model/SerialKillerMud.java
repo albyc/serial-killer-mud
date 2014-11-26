@@ -16,42 +16,49 @@ import Players.*;
 public class SerialKillerMud
 {
 	private RoomCollection rooms;
-	private transient List<Player> players;
+	private transient List<Player> playersOnline;
 	private MOBCollection mobs;
+	private transient List<Player> administrators;
 	
 	public SerialKillerMud()
 	{
 		rooms = new RoomCollection();
-		players = new ArrayList<Player>();
+		playersOnline = new ArrayList<Player>();
+		administrators = new ArrayList<Player>();
 		//mobs = new MOBCollection(null); 		// note: trouble
 		addAdmins();
 	}
 
 	private void addAdmins()
 	{
-		Player adminZero = new Player("Damaris", "0000");
-		Player adminOne = new Player("Alby", "1111");
-		Player adminThree = new Player("Alexa", "3333" );
-		Player adminNine = new Player("Lisa", "9999");
+		Player adminZero = new Player("damaris", "0000");
+		Player adminOne = new Player("alby", "1111");
+		Player adminThree = new Player("alexa", "3333" );
+		Player adminNine = new Player("lisa", "9999");
 		
-		players.add(adminZero);
-		players.add(adminOne);
-		players.add(adminThree);
-		players.add(adminNine);
+		administrators.add(adminZero);
+		administrators.add(adminOne);
+		administrators.add(adminThree);
+		administrators.add(adminNine);
 	}
 
 	public void addPlayerToGame(Player player)
 	{		
 		// Add the new player to the collection of existing players
-		players.add(player);
+		playersOnline.add(player);
 		
 		// Add the player to the rooms. Initially, every new player
 		// will start out in the same location. 
 		rooms.addPlayerToRooms(player);
 	}
 	
-	public List<Player> getPlayers()
+	public List<Player> getPlayersOnline()
 	{
-		return players;
+		return playersOnline;
+	}
+	
+	public List<Player> getAdministrators()
+	{
+		return administrators;
 	}
 } // end of class SerialKillerMud

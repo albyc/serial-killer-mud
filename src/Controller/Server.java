@@ -74,8 +74,8 @@ public class Server
 					// current players. This is so when someone is logging in, the system is able 
 					// to determine whether the user is already logged in, thereby disallowing 
 					// the same user to be logged in multiple times. 
-					output.writeObject(mud.getPlayers());
-					
+					output.writeObject(mud.getPlayersOnline());
+					output.writeObject(mud.getAdministrators());
 					// Read in the information of the player associated with this client.
 					Player player = (Player)input.readObject();
 					
@@ -163,7 +163,7 @@ public class Server
 			outputs.get(clientName).close(); // close outputs stream
 			outputs.remove(clientName); // remove from map
 			Player playerToRemove = null;
-			for (Player p : mud.getPlayers())
+			for (Player p : mud.getPlayersOnline())
 			{
 				if(p.getUsername().equals(clientName))
 				{
@@ -171,7 +171,7 @@ public class Server
 					break;
 				}
 			}
-			mud.getPlayers().remove(playerToRemove);
+			mud.getPlayersOnline().remove(playerToRemove);
 			
 			// add notification message
 			addMessage(clientName + " disconnected");
@@ -189,7 +189,7 @@ public class Server
 		// make an UpdatedAClientCommand, write specific user
 		Command update = null;
 		
-		List<Player> temp = mud.getPlayers();
+		List<Player> temp = mud.getPlayersOnline();
 		List<Player> players = new ArrayList<Player>();
 		players.addAll(temp);
 		
@@ -244,27 +244,21 @@ public class Server
 				// make an UpdatedClientCommand, write to all connected users
 				UpdateAClientCommand update = new UpdateAClientCommand(command);
 				
-				try
-				{
+				
 					for(ObjectOutputStream out : outputs.values())
 						out.writeObject(update);
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
+				
 				
 				System.exit(0);
 			}
 			catch (Exception e)
 			{
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			
 			break;
 		default:
-			// send message back to client letting it know that it is not authorized to shutdown server
-			break;
+			throw new IllegalArgumentException();
 		}
 	}
 } // end of class Server

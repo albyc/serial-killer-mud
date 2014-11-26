@@ -36,7 +36,7 @@ public class LoginView extends JFrame
 	private JPasswordField passwordField;
 	private JButton loginButton, createButton;
 	
-	public LoginView(Client client, final List<Player> playas) 
+	public LoginView(Client client, final List<Player> playas, final List<Player> admins) 
 	{
 		this.client = client;
 		
@@ -100,7 +100,8 @@ public class LoginView extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				login(playas);
+				login(playas, admins);
+				
 			}
 		});		
 		loginButton.setOpaque(true);
@@ -116,7 +117,7 @@ public class LoginView extends JFrame
 		createButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				addPlayer(playas);
+				addPlayer(playas, admins);
 			}
 		});
 		createButton.setOpaque(true);
@@ -146,15 +147,26 @@ public class LoginView extends JFrame
 	/**
 	 * This method allows a player to login to the MUD. 
 	 */
-	public void login(List<Player> players)
+	public void login(List<Player> players, List<Player> admins)
 	{
 		String username = usernameField.getText();
 		Player person = null;
 		
+		// Checks to see if the users attempting to sign in is the administrator.
+		for (Player admin: admins)
+		{
+			if (username.equals(admin.getUsername()))
+				person = admin;
+		}
+		
+		// Checks to see if the users attempting to sign in is the administrator.
 		for (Player p: players)
 		{
-			if (username.equals(p.getUsername()))
-				person = p;
+			error.setText("Player already logged in. Try again." );
+			error.setLocation(115,260);
+			usernameField.setText("");
+			passwordField.setText("");
+			return;
 		}
 		
 		// If the username does not exist in the current map of players or 
@@ -169,7 +181,6 @@ public class LoginView extends JFrame
 			return;
 		}
 		
-		// do shit to log in
 		client.setPlayer(person);
 		dispose();
 		client.finishSettingUpPlayer();
@@ -179,7 +190,7 @@ public class LoginView extends JFrame
 	/**
 	 * This method adds a new player to the MUD.
 	 */
-	public void addPlayer(List<Player> players)
+	public void addPlayer(List<Player> players, List<Player> admins)
 	{
 		String username = usernameField.getText();
 		String password = new String(passwordField.getPassword());
@@ -194,8 +205,20 @@ public class LoginView extends JFrame
 			return;
 		}
 		
-		// If trying to create a new account with a username that already 
-		// exists, return an error. 
+		// If trying to create a new account with information of an administrator, return an error. 
+		for (Player admin: admins)
+		{
+			if(username.equals(admin.getUsername()))
+			{
+				error.setText("An account exists with that name");
+				error.setLocation(95,260);
+				usernameField.setText("");
+				passwordField.setText("");
+				return;
+			}
+		}
+		
+		// If trying to create a new account with information of a player that already exists, return an error. 
 		for (Player p: players)
 		{
 			if(username.equals(p.getUsername()))
