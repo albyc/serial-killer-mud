@@ -139,7 +139,11 @@ public class Client extends JFrame
 	{
 		mainPanel.update(chatMessages, commandMessages);
 	}
-	
+	/**
+	 * welcomMessage prints out a welcoming message as the player's client begins
+	 * @param username - player's username
+	 * @return the string message
+	 */
 	private String welcomeMessage(String username)
 	{
 		String welcomeMessage = "Hello " + username + " and welcome to SAVE YO ASS.\n\n"
@@ -148,6 +152,10 @@ public class Client extends JFrame
 		return welcomeMessage;
 	}
 
+	/**
+	 * lists all of the commands a player can use during game play.
+	 * calls the update function on the command side of the gui.
+	 */
 	public void listCommands() 
 	{
 		String listOfCommands = "Here are the commands: \nMOVE <direction>: Move into the room to the <direction>"
@@ -160,6 +168,10 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * lists all of the players currently online. updates the command side of the gui.
+	 * @param players - list of current players
+	 */
 	public void listWho(List<Player> players) 
 	{
 		//doesn't work yet. if 2nd client is added, in the 1st client's view, only the 1st client player exists. :(
@@ -175,6 +187,9 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);	
 	}
 	
+	/**
+	 * closes the gui and creates a new DisconnectCommand for that player.
+	 */
 	public void closeByInput()
 	{
 		try 
@@ -190,6 +205,10 @@ public class Client extends JFrame
 		}
 	}
 
+	/**
+	 * allows the player to drop the specified item
+	 * @param argument - the string name of the item to be dropped
+	 */
 	public void dropItem(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
@@ -228,6 +247,9 @@ public class Client extends JFrame
 		
 	}
 
+	/**
+	 * lists all of the items in a player's backpack
+	 */
 	public void listInventory() 
 	{
 		List<Item> list = player.getItems();
@@ -248,6 +270,9 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * lists the player's current stats
+	 */
 	public void listScore() 
 	{
 		int score = player.getHealth();
@@ -258,53 +283,49 @@ public class Client extends JFrame
 		
 	}
 
+	/**
+	 * allows the player to pick up the specified item
+	 * @param argument - the string name of the item
+	 */
 	public void pickUp(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
 		if(player.getItems() != null){
 			if(player.getItems().size() < 5)
 			{
-				/*int index = 0;
-				switch(argument){
-				case "water":
-					index = 0;
-					System.out.println("water");
-					incrementHealth();
-					break;
-				case "food":
-					index = 1;
-					incrementHealth();
-					break;
-				case "knife":
-					index = 2;
-					break;
-				case "night vision goggles":
-					index = 3;
-					break;
-				case "key":
-					index = 4;
-					break;
-				}*/
-				//if(itemCollection.getbool(index) == false){
+				
 				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
-					player.pickUpItem(item);
-					String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-					commandMessages.add(pickUp);
-					mainPanel.updateCommands(commandMessages);
-					if(item.getName().equals("water") || item.getName().equals("food"))
+					boolean inBackpack = false;
+					for(Item i : player.getItems())
 					{
-						incrementHealth();
+						if(i == item)
+						{
+							inBackpack = true;
+							break;
+						}
+					}
+					if(inBackpack == false){
+						player.pickUpItem(item);
+						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+						commandMessages.add(pickUp);
+						mainPanel.updateCommands(commandMessages);
+						if(item.getName().equals("water") || item.getName().equals("food"))
+						{
+							incrementHealth();
+						}
 					}
 				}
-					//itemCollection.setbool(index, true);
-				//}
+		
 				
 				
 			}
 		}
 	}
 	
+	/**
+	 * increments the player's health stats by 5%
+	 */
 	public void incrementHealth()
 	{
 		int health = player.getHealth();
@@ -372,6 +393,11 @@ public class Client extends JFrame
 		} // end of try/catch statement
 	}
 
+	/**
+	 * closes the server
+	 * @param clientName
+	 * @param command
+	 */
 	public void closeServer(String clientName, Commands command) 
 	{
 		closeByInput();
@@ -388,6 +414,9 @@ public class Client extends JFrame
 		
 	}
 
+	/**
+	 * lists the surroundings based on the player's current location
+	 */
 	public void listSurroundings() 
 	{
 		String surroundings = "";
@@ -415,6 +444,10 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * lists the details of the specified argument
+	 * @param argument - string name of item/room specified
+	 */
 	public void surroundingsArg(String argument) {
 		String surroundings = "";
 		switch(argument.toLowerCase())
@@ -460,6 +493,10 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
+	/**
+	 * moves the player in the specified direction
+	 * @param argument - string the direction
+	 */
 	public void movePlayer(String argument) {
 		switch(argument.toLowerCase())
 		{
