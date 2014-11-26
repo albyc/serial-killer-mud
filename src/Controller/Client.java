@@ -401,17 +401,17 @@ public class Client extends JFrame
 		case "The Lawn":
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
 					+ "\nItems in Room: Key\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
+					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
 					+ "\nItems in Room: Knife, Night Vision Goggles\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n\n ";
+					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
 					+ "\nItems in Room: Food, Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
-					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
+					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 			break;
 		}
 		commandMessages.add(surroundings);
@@ -466,11 +466,17 @@ public class Client extends JFrame
 		case "north":
 			if(player.getLocation().getNorthRoom() != null){
 				player.changeRoom(player.getLocation().getNorthRoom());
+				String movedTo = "You have moved north into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
 			}
 			break;
 		case "south":
 			if(player.getLocation().getSouthRoom() != null){
 				player.changeRoom(player.getLocation().getSouthRoom());
+				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainPanel.updateCommands(commandMessages);
 			}
 			break;
 		default:
