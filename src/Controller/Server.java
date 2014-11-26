@@ -34,6 +34,7 @@ public class Server
 	{
 		chatMessages = new ArrayList<String>(); // create the chat log
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
+
 		mud = new SerialKillerMud();
 		
 		try
