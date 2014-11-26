@@ -35,10 +35,10 @@ public class Client extends JFrame
 	
 	private Socket server; // connection to the server
 	private Player player;
-	private Item[] items;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
+	private Item[] items;
 	RoomCollection roomCollection = new RoomCollection();
 	ItemCollection itemCollection = new ItemCollection(items);
 			
@@ -260,46 +260,21 @@ public class Client extends JFrame
 	public void pickUp(String argument) 
 	{
 		Item item = itemCollection.getItemFromName(argument.toLowerCase());
-		if(player.getItems() != null){
-			if(player.getItems().size() < 5)
+		
+		if (player.getItems() != null)
+		{
+			if (player.getItems().size() < 5)
 			{
-				/*int index = 0;
-				switch(argument){
-				case "water":
-					index = 0;
-					System.out.println("water");
-					incrementHealth();
-					break;
-				case "food":
-					index = 1;
-					incrementHealth();
-					break;
-				case "knife":
-					index = 2;
-					break;
-				case "night vision goggles":
-					index = 3;
-					break;
-				case "key":
-					index = 4;
-					break;
-				}*/
-				//if(itemCollection.getbool(index) == false){
-				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
+				if (player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
 					player.pickUpItem(item);
 					String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
 					commandMessages.add(pickUp);
 					mainPanel.updateCommands(commandMessages);
+					
 					if(item.getName().equals("water") || item.getName().equals("food"))
-					{
 						incrementHealth();
-					}
 				}
-					//itemCollection.setbool(index, true);
-				//}
-				
-				
 			}
 		}
 	}
@@ -371,22 +346,6 @@ public class Client extends JFrame
 		} // end of try/catch statement
 	}
 
-	public void closeServer(String clientName, Commands command) 
-	{
-		closeByInput();
-		try {
-			//ShutdownCommand sdc = new ShutdownCommand(username, command);
-			out.writeObject(new ShutdownCommand(player.getUsername(), command));
-			server.close();
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
 	public void listSurroundings() 
 	{
 		String surroundings = "";
@@ -455,20 +414,22 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
-	public void movePlayer(String argument) {
+	public void movePlayer(String argument) 
+	{
 		switch(argument.toLowerCase())
 		{
 		case "north":
-			if(player.getLocation().getNorthRoom() != null){
+			if(player.getLocation().getNorthRoom() != null)
 				player.changeRoom(player.getLocation().getNorthRoom());
-			}
+			
 			break;
 		case "south":
-			if(player.getLocation().getSouthRoom() != null){
+			if(player.getLocation().getSouthRoom() != null)
 				player.changeRoom(player.getLocation().getSouthRoom());
-			}
+			
 			break;
 		default:
+			// message is sent to client letting them know that it is not a valid move
 			break;
 		}
 	}

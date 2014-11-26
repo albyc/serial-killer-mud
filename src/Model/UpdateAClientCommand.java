@@ -35,10 +35,9 @@ public class UpdateAClientCommand extends Command<Client>
 			executeOn.listCommands();
 			break;
 		case QUIT:
+		case SHUTDOWN: 
 			executeOn.closeByInput();
 			break;
-		case SHUTDOWN:
-			executeOn.closeServer(clientName, command);
 		case LOOK:
 			executeOn.listSurroundings();
 		default:

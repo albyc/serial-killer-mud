@@ -24,6 +24,20 @@ public class SerialKillerMud
 		rooms = new RoomCollection();
 		players = new ArrayList<Player>();
 		//mobs = new MOBCollection(null); 		// note: trouble
+		addAdmins();
+	}
+
+	private void addAdmins()
+	{
+		Player adminZero = new Player("Damaris", "0000");
+		Player adminOne = new Player("Alby", "1111");
+		Player adminThree = new Player("Alexa", "3333" );
+		Player adminNine = new Player("Lisa", "9999");
+		
+		players.add(adminZero);
+		players.add(adminOne);
+		players.add(adminThree);
+		players.add(adminNine);
 	}
 
 	public void addPlayerToGame(Player player)
@@ -40,5 +54,4 @@ public class SerialKillerMud
 	{
 		return players;
 	}
-	
 } // end of class SerialKillerMud

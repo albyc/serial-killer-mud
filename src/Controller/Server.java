@@ -172,29 +172,37 @@ public class Server
 		}
 	} // end of method disconnect
 
+	@SuppressWarnings("rawtypes")
 	public void PrintToClient(String clientName, Commands command) 
 	{
 		//print commands in client's right side text area
 		// make an UpdatedAClientCommand, write specific user
 		Command update = null;
+		
 		List<Player> temp = mud.getPlayers();
 		List<Player> players = new ArrayList<Player>();
 		players.addAll(temp);
-		if(command == Commands.WHO)
-			update = new WhoCommand(players);
 		
-		else
-			update = new UpdateAClientCommand(command);
-		
-		ObjectOutputStream out = outputs.get(clientName);
-		try {
+		try 
+		{
+			if (command == Commands.WHO)
+				update = new WhoCommand(players);
+			
+			else if (command == Commands.SHUTDOWN)
+				closeAllClientsAndServer(clientName, command);
+			
+			else
+				update = new UpdateAClientCommand(command);
+			
+			ObjectOutputStream out = outputs.get(clientName);
 			out.writeObject(update);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void PrintToClientWArgs(String clientName, String arguments, Commands command)
 	{
 		UpdateAClientWArgsCommand update = new UpdateAClientWArgsCommand(command, arguments);
@@ -207,19 +215,46 @@ public class Server
 			e.printStackTrace();
 		}
 	}
-
-	public void closeServer(String clientName) {
-		try {
-			//DisconnectCommand c = new DisconnectCommand(clientName);
+	
+	private void closeAllClientsAndServer(String username, Commands command)
+	{
+		username = username.toUpperCase();
+		Administrators admin = Administrators.valueOf(username);
+		
+		switch (admin)
+		{
+		case ALBY: 
+		case ALEXA:
+		case DAMARIS:
+		case LISA:
+			try
+			{
+				// send a message to all client on shutdown tell them to  disconnect and close their GUI 
+				// When that is done close down server
+				// make an UpdatedClientCommand, write to all connected users
+				UpdateAClientCommand update = new UpdateAClientCommand(command);
+				
+				try
+				{
+					for(ObjectOutputStream out : outputs.values())
+						out.writeObject(update);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				
+				System.exit(0);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 			
-			socket.close();
-			//System.exit(0);
-			/*ObjectOutputStream out = outputs.get(clientName);
-			out.writeObject(c);*/
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			break;
+		default:
+			// send message back to client letting it know that it is not authorized to shutdown server
+			break;
 		}
 	}
 } // end of class Server
