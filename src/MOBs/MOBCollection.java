@@ -17,14 +17,23 @@ public class MOBCollection
 	private NonKiller victim;
 	private NonKiller foodStandGuy;
 	
-	public MOBCollection(Room[] rooms){
-		drHenryHowardHolmes = new Killer("Dr. Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		jefferyDahmer = new Killer("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]); 
-		lawrenceBittaker = new Killer("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		royNorris = new Killer("Roy Norris", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
+	public MOBCollection(List<Room> rooms){
+		drHenryHowardHolmes = new Killer("Dr. Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		jefferyDahmer = new Killer("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0)); 
+		lawrenceBittaker = new Killer("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		royNorris = new Killer("Roy Norris", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
 		
-		victim = new NonKiller("Victim", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
-		foodStandGuy = new NonKiller("Food Stand guy", new ArrayList<Item>(), new ArrayList<String>(), rooms[0]);
+		victim = new NonKiller("Victim", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		foodStandGuy = new NonKiller("Food Stand guy", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
+		
+		theMOBs.add(drHenryHowardHolmes);
+		theMOBs.add(jefferyDahmer);
+		theMOBs.add(lawrenceBittaker);
+		theMOBs.add(royNorris);
+		theMOBs.add(victim);
+		theMOBs.add(foodStandGuy);
+		
+		
 	}
 	
 	public List<MOB> getAllMOBS(){
