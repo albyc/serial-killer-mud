@@ -22,9 +22,9 @@ public class RoomCollection
 	private List<Player> playersInMurderCastle;
 	private List<Player> playersInFarmhouse;
 	private List<Player> playersInLawn;
-//	private List<MOB> mobsInMurderCastle;
-//	private List<MOB> mobsInFarmhouse;
-//	private List<MOB> mobsInLawn;
+	private List<MOB> mobsInMurderCastle;
+	private List<MOB> mobsInFarmhouse;
+	private List<MOB> mobsInLawn;
 	private Room entrance;
 	private Item[] items;
 	private ItemCollection itemCollection = new ItemCollection(items);
