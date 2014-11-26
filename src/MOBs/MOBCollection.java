@@ -1,11 +1,9 @@
 package MOBs;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import Items.Item;
 import Rooms.Room;
-
-import com.sun.tools.javac.util.List;
 
 public class MOBCollection
 {
