@@ -28,7 +28,6 @@ import Players.Player;
 public class LoginView extends JFrame 
 {	
 	private static final long serialVersionUID = 4033594531497903499L;
-	private List<Player> players;
 	private Client client; // Client to be associated with this new player
 	
 	private BufferedImage image;
@@ -37,10 +36,9 @@ public class LoginView extends JFrame
 	private JPasswordField passwordField;
 	private JButton loginButton, createButton;
 	
-	public LoginView(Client client, List<Player> playas) 
+	public LoginView(Client client, final List<Player> playas) 
 	{
 		this.client = client;
-		this.players = playas;
 		
 		this.setTitle("Login");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,7 +100,7 @@ public class LoginView extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				login();
+				login(playas);
 			}
 		});		
 		loginButton.setOpaque(true);
@@ -118,7 +116,7 @@ public class LoginView extends JFrame
 		createButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
-				addPlayer();
+				addPlayer(playas);
 			}
 		});
 		createButton.setOpaque(true);
@@ -148,7 +146,7 @@ public class LoginView extends JFrame
 	/**
 	 * This method allows a player to login to the MUD. 
 	 */
-	public void login()
+	public void login(List<Player> players)
 	{
 		String username = usernameField.getText();
 		Player person = null;
@@ -171,14 +169,17 @@ public class LoginView extends JFrame
 			return;
 		}
 		
+		// do shit to log in
+		client.setPlayer(person);
 		dispose();
 		client.finishSettingUpPlayer();
+		//client.finishSettingUpPlayer();
 	} // end of method login
 	
 	/**
 	 * This method adds a new player to the MUD.
 	 */
-	public void addPlayer()
+	public void addPlayer(List<Player> players)
 	{
 		String username = usernameField.getText();
 		String password = new String(passwordField.getPassword());
@@ -209,18 +210,11 @@ public class LoginView extends JFrame
 		
 		Player newPlayer = new Player(username, password);
 		client.setPlayer(newPlayer);
-		players.add(newPlayer);
-		error.setText("");
-		login();
+//		players.add(newPlayer);
+//		error.setText("");
+		dispose();
+		client.finishSettingUpPlayer();
 	} // end of method addPlayer
-	
-	/**
-	 * This method sets up the login view. 
-	 */
-	private void setupLoginView()
-	{
-		
-	} // end of private method setupLoginView
 	
 	private static Font getFont(String filename)
 	{
