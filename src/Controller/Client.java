@@ -31,7 +31,6 @@ public class Client extends JFrame
 	private static final long serialVersionUID = 7356738763172150406L;
 	
 	private MainPanel mainPanel;
-	private SerialKillerMud mud;
 	private List<String> commandMessages; // the command log
 	
 	private Socket server; // connection to the server
@@ -40,12 +39,8 @@ public class Client extends JFrame
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
-	//needs a lot of fixing - just testing to see if room abstract class/ subclass objects work
-		//2 rooms - mansion (start on front porch), there's a front yard where you can die
-		//List<MOB> mobsInRoom = new ArrayList<MOB>(); 
-		RoomCollection roomCollection = new RoomCollection();
-		ItemCollection itemCollection = new ItemCollection(items);
-		//MOBCollection mobCollection = new MOBCollection(rooms);
+	RoomCollection roomCollection = new RoomCollection();
+	ItemCollection itemCollection = new ItemCollection(items);
 			
 	public static void main (String []args)
 	{
