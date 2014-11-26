@@ -293,20 +293,7 @@ public class Client extends JFrame
 		if (player.getItems() != null)
 		{
 			if (player.getItems().size() < 5)
-			{
-<<<<<<< HEAD
-				if (player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
-				{
-					player.pickUpItem(item);
-					String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-					commandMessages.add(pickUp);
-					mainPanel.updateCommands(commandMessages);
-					
-					if(item.getName().equals("water") || item.getName().equals("food"))
-						incrementHealth();
-				}
-=======
-				
+			{				
 				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
 				{
 					boolean inBackpack = false;
@@ -329,10 +316,6 @@ public class Client extends JFrame
 						}
 					}
 				}
-		
-				
-				
->>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 			}
 		}
 	}
@@ -407,33 +390,6 @@ public class Client extends JFrame
 		} // end of try/catch statement
 	}
 
-<<<<<<< HEAD
-=======
-	/**
-	 * closes the server
-	 * @param clientName
-	 * @param command
-	 */
-	public void closeServer(String clientName, Commands command) 
-	{
-		closeByInput();
-		try {
-			//ShutdownCommand sdc = new ShutdownCommand(username, command);
-			out.writeObject(new ShutdownCommand(player.getUsername(), command));
-			server.close();
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
-	/**
-	 * lists the surroundings based on the player's current location
-	 */
->>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 	public void listSurroundings() 
 	{
 		String surroundings = "";
@@ -506,24 +462,19 @@ public class Client extends JFrame
 		mainPanel.updateCommands(commandMessages);
 	}
 
-<<<<<<< HEAD
-	public void movePlayer(String argument) 
-	{
-=======
+
 	/**
 	 * moves the player in the specified direction
 	 * @param argument - string the direction
 	 */
 	public void movePlayer(String argument) {
->>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 		switch(argument.toLowerCase())
 		{
 		case "north":
 			if(player.getLocation().getNorthRoom() != null)
+			{
 				player.changeRoom(player.getLocation().getNorthRoom());
-<<<<<<< HEAD
-			
-=======
+
 				String movedTo = "You have moved north into " + player.getLocation().getName() + "\n"; 
 				commandMessages.add(movedTo);
 				mainPanel.updateCommands(commandMessages);
@@ -535,14 +486,12 @@ public class Client extends JFrame
 				commandMessages.add(movedTo);
 				mainPanel.updateCommands(commandMessages);
 			}
->>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 			break;
 		case "south":
 			if(player.getLocation().getSouthRoom() != null)
+			{
 				player.changeRoom(player.getLocation().getSouthRoom());
-<<<<<<< HEAD
-			
-=======
+
 				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
 				commandMessages.add(movedTo);
 				mainPanel.updateCommands(commandMessages);
@@ -554,7 +503,6 @@ public class Client extends JFrame
 				commandMessages.add(movedTo);
 				mainPanel.updateCommands(commandMessages);
 			}
->>>>>>> 5fce6aa50769cad8d2cb1d61f7f3ff3010fcce67
 			break;
 		default:
 			// message is sent to client letting them know that it is not a valid move
