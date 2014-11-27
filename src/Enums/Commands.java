@@ -1,4 +1,4 @@
-package View;
+package Enums;
 
 public enum Commands 
 {

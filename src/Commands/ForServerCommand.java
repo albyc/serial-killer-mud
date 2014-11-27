@@ -1,7 +1,8 @@
-package Model;
+package Commands;
 
 import View.*;
 import Controller.*;
+import Enums.Commands;
 
 /**
  * 

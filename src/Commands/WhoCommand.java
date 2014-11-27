@@ -1,4 +1,4 @@
-package Model;
+package Commands;
 
 import java.util.List;
 

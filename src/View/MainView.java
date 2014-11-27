@@ -11,6 +11,10 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.*;
 
+import Commands.AddChatMessageCommand;
+import Commands.ForServerCommand;
+import Commands.ForServerWArgsCommand;
+import Enums.Commands;
 import Model.*;
 
 import java.awt.BorderLayout;
@@ -27,9 +31,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import Model.AddChatMessageCommand;
-
-public class MainPanel extends JPanel
+public class MainView extends JPanel
 {
 	private static final long serialVersionUID = 818711182821925316L;
 	private JTextArea chatArea, commandArea; 
@@ -39,7 +41,7 @@ public class MainPanel extends JPanel
 	private ObjectOutputStream output; // output stream to server
 	private String clientName;
 	
-	public MainPanel(String clientName, ObjectOutputStream output)
+	public MainView(String clientName, ObjectOutputStream output)
 	{
 		this.output = output;
 		this.clientName = clientName;

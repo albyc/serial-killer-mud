@@ -1,8 +1,8 @@
-package Model;
+package Commands;
 
-import View.Commands;
 import Controller.Client;
 import Controller.Server;
+import Enums.Commands;
 
 public class UpdateAClientCommand extends Command<Client>
 {

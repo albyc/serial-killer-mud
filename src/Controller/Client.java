@@ -8,6 +8,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import Commands.Command;
+import Commands.DisconnectCommand;
 import Items.EnergyBoostItem;
 import Items.FightingItem;
 import Items.Item;
@@ -30,7 +32,7 @@ public class Client extends JFrame
 {	
 	private static final long serialVersionUID = 7356738763172150406L;
 	
-	private MainPanel mainPanel;
+	private MainView mainView;
 	private List<String> commandMessages; // the command log
 	
 	private Socket server; // connection to the server
@@ -38,10 +40,12 @@ public class Client extends JFrame
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
 	
+	// These instance variables shouldn't be in Client, they should
+	// be passed from Server to client, and to the Server from the 
+	// SerialKillerMud
 	private Item[] items;
 	RoomCollection roomCollection = new RoomCollection();
 	ItemCollection itemCollection = new ItemCollection(items);
-//	MOBCollection mobCollection = new MOBCollection(roomCollection.getRooms());
 			
 	public static void main (String []args)
 	{
@@ -86,18 +90,6 @@ public class Client extends JFrame
 		
 		
 	} // end of constructor Client
-	
-	private void setupGUI()
-	{
-		// create mainPanel and add it the the Frame
-		mainPanel = new MainPanel(player.getUsername(), out);
-		this.add(mainPanel);
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	}
 
 	/**
 	 * This class reads and executes commands sent from the server
@@ -138,7 +130,7 @@ public class Client extends JFrame
 	 */
 	public void update(List<String> chatMessages) 
 	{
-		mainPanel.update(chatMessages, commandMessages);
+		mainView.update(chatMessages, commandMessages);
 	}
 	/**
 	 * welcomMessage prints out a welcoming message as the player's client begins
@@ -166,7 +158,7 @@ public class Client extends JFrame
 				+ "\nDROP <item>: Removes the item from your backpack\nLOOK: provides a 360 description of your surroundings"
 				+ "\nLOOK <argument>: provides an in depth description of the specified argument\nQUIT: quits the game and closes the window\n";
 		commandMessages.add(listOfCommands);
-		mainPanel.updateCommands(commandMessages);
+		mainView.updateCommands(commandMessages);
 	}
 
 	/**
@@ -188,7 +180,7 @@ public class Client extends JFrame
 		}
 	
 		commandMessages.add(listOfPlayers);
-		mainPanel.updateCommands(commandMessages);	
+		mainView.updateCommands(commandMessages);	
 	}
 	
 	/**
@@ -242,7 +234,7 @@ public class Client extends JFrame
 					player.dropItem(item);
 					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 					commandMessages.add(dropped);
-					mainPanel.updateCommands(commandMessages);
+					mainView.updateCommands(commandMessages);
 					//itemCollection.setbool(index, false);
 					break;
 				}
@@ -271,7 +263,7 @@ public class Client extends JFrame
 			allItems = "You have no items in your backpack.\n";
 		
 		commandMessages.add(allItems);
-		mainPanel.updateCommands(commandMessages);
+		mainView.updateCommands(commandMessages);
 	}
 
 	/**
@@ -283,7 +275,7 @@ public class Client extends JFrame
 		String sc = player.getUsername() + "'s stats: \n";
 		sc += "Health Level: " + score + "%.\n";
 		commandMessages.add(sc);
-		mainPanel.updateCommands(commandMessages);
+		mainView.updateCommands(commandMessages);
 		
 	}
 
@@ -314,7 +306,7 @@ public class Client extends JFrame
 						player.pickUpItem(item);
 						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
 						commandMessages.add(pickUp);
-						mainPanel.updateCommands(commandMessages);
+						mainView.updateCommands(commandMessages);
 						if(item.getName().equals("water") || item.getName().equals("food"))
 						{
 							incrementHealth();
@@ -334,6 +326,130 @@ public class Client extends JFrame
 		health = health + 5;
 		System.out.println(health);
 		player.setHealth(health);
+	}
+
+	public void listSurroundings() 
+	{
+		String surroundings = "";
+		Room room = player.getLocation();
+		String name = room.getName();
+//		List<MOB> theMobs = room.getMOBs();
+		switch(name){
+		case "The Lawn":
+			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
+					+ "\nItems in Room: Key\n"
+					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
+			break;
+		case "Wisconsin Farmhouse of Horrors":
+			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
+					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
+					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
+			break;
+		case "Murder Castle":
+			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
+					+ "\nItems in Room: \n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
+			break;
+		}
+		commandMessages.add(surroundings);
+		mainView.updateCommands(commandMessages);
+	}
+
+	/**
+	 * lists the details of the specified argument
+	 * @param argument - string name of item/room specified
+	 */
+	public void surroundingsArg(String argument) {
+		String surroundings = "";
+		switch(argument.toLowerCase())
+		{
+		case "water":
+			surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
+			break;
+		case "food":
+			surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
+			break;
+		case "knife":
+			surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
+			break;
+		case "key":
+			surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
+			break;
+		case "night vision goggles":
+			surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
+			break;
+		case "lawn":
+			surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
+					+ "\nItems in Room:\n  Key\n"
+					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
+			break;
+			
+			
+			
+		case "murder castle":
+			surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
+					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
+			break;
+		case "wisconsin farmhouse of horrors":
+			surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
+					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
+					+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
+			break;
+		//how to do specific players?
+		default:
+			break;
+		}
+		commandMessages.add(surroundings);
+		mainView.updateCommands(commandMessages);
+	}
+
+
+	/**
+	 * moves the player in the specified direction
+	 * @param argument - string the direction
+	 */
+	public void movePlayer(String argument) {
+		switch(argument.toLowerCase())
+		{
+		case "north":
+			if(player.getLocation().getNorthRoom() != null)
+			{
+				player.changeRoom(player.getLocation().getNorthRoom());
+
+				String movedTo = "You have moved north into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainView.updateCommands(commandMessages);
+			}
+			else
+			{
+				String movedTo = "There is no room to the north of your current location. Use the LOOK\ncommand to see "
+						+ "the adjacent rooms.\n";
+				commandMessages.add(movedTo);
+				mainView.updateCommands(commandMessages);
+			}
+			break;
+		case "south":
+			if(player.getLocation().getSouthRoom() != null)
+			{
+				player.changeRoom(player.getLocation().getSouthRoom());
+
+				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
+				commandMessages.add(movedTo);
+				mainView.updateCommands(commandMessages);
+			}
+			else
+			{
+				String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
+						+ "the adjacent rooms.\n";
+				commandMessages.add(movedTo);
+				mainView.updateCommands(commandMessages);
+			}
+			break;
+		default:
+			// message is sent to client letting them know that it is not a valid move
+			break;
+		}
 	}
 
 	/**
@@ -393,131 +509,17 @@ public class Client extends JFrame
 		{
 			e.printStackTrace();
 		} // end of try/catch statement
-	}
-
-	public void listSurroundings() 
-	{
-		String surroundings = "";
-		Room room = player.getLocation();
-		String name = room.getName();
-//		List<MOB> theMobs = room.getMOBs();
-		switch(name){
-		case "The Lawn":
-			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
-					+ "\nItems in Room: Key\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
-			break;
-		case "Wisconsin Farmhouse of Horrors":
-			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
-			break;
-		case "Murder Castle":
-			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-					+ "\nItems in Room: \n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
-					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
-			break;
-		}
-		commandMessages.add(surroundings);
-		mainPanel.updateCommands(commandMessages);
-	}
-
-	/**
-	 * lists the details of the specified argument
-	 * @param argument - string name of item/room specified
-	 */
-	public void surroundingsArg(String argument) {
-		String surroundings = "";
-		switch(argument.toLowerCase())
-		{
-		case "water":
-			surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
-			break;
-		case "food":
-			surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
-			break;
-		case "knife":
-			surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
-			break;
-		case "key":
-			surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
-			break;
-		case "night vision goggles":
-			surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
-			break;
-		case "lawn":
-			surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
-					+ "\nItems in Room:\n  Key\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
-			break;
-			
-			
-			
-		case "murder castle":
-			surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
-					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
-					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
-			break;
-		case "wisconsin farmhouse of horrors":
-			surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
-					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
-					+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
-			break;
-		//how to do specific players?
-		default:
-			break;
-		}
-		commandMessages.add(surroundings);
-		mainPanel.updateCommands(commandMessages);
-	}
-
-
-	/**
-	 * moves the player in the specified direction
-	 * @param argument - string the direction
-	 */
-	public void movePlayer(String argument) {
-		switch(argument.toLowerCase())
-		{
-		case "north":
-			if(player.getLocation().getNorthRoom() != null)
-			{
-				player.changeRoom(player.getLocation().getNorthRoom());
-
-				String movedTo = "You have moved north into " + player.getLocation().getName() + "\n"; 
-				commandMessages.add(movedTo);
-				mainPanel.updateCommands(commandMessages);
-			}
-			else
-			{
-				String movedTo = "There is no room to the north of your current location. Use the LOOK\ncommand to see "
-						+ "the adjacent rooms.\n";
-				commandMessages.add(movedTo);
-				mainPanel.updateCommands(commandMessages);
-			}
-			break;
-		case "south":
-			if(player.getLocation().getSouthRoom() != null)
-			{
-				player.changeRoom(player.getLocation().getSouthRoom());
-
-				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
-				commandMessages.add(movedTo);
-				mainPanel.updateCommands(commandMessages);
-			}
-			else
-			{
-				String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
-						+ "the adjacent rooms.\n";
-				commandMessages.add(movedTo);
-				mainPanel.updateCommands(commandMessages);
-			}
-			break;
-		default:
-			// message is sent to client letting them know that it is not a valid move
-			break;
-		}
-	}
-
+	} // end of method finishSettingUpPlayer
 	
+	private void setupGUI()
+	{
+		// create an instance of the mainView and add it the this frame
+		mainView = new MainView(player.getUsername(), out);
+		this.add(mainView);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.pack();
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}  // end of method setupGUI
 }
