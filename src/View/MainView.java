@@ -210,6 +210,7 @@ public class MainView extends JPanel
 				case COMMANDS:
 				case WHO:
 				case QUIT:
+				case MAP:
 					output.writeObject(new ForServerCommand(clientName, c));
 					break;
 				case LOOK:

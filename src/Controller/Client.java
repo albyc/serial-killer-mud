@@ -17,6 +17,7 @@ import Items.ItemCollection;
 import Items.ReusableItem;
 import MOBs.*;
 import View.*;
+import View.Map;
 import Rooms.*;
 import Model.*;
 import Players.*;
@@ -326,6 +327,11 @@ public class Client extends JFrame
 		health = health + 5;
 		System.out.println(health);
 		player.setHealth(health);
+	}
+	
+	public void showMap()
+	{
+		Map map = new Map();
 	}
 
 	public void listSurroundings() 

@@ -405,11 +405,11 @@ public class Map extends JFrame {
 		this.setVisible(true);
 	}
 	
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		new Map();
 	}// end main
-	
+*/	
 	private static Font getFont(String filename)
 	{
 		Font font = null;
