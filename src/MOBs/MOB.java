@@ -86,5 +86,10 @@ public abstract class MOB {
 		// TODO Auto-generated method stub
 		System.out.println("I am" + identity);
 	}
+	
+	public void death(){
+		//drop all holding items
+		//leave note telling last words/curses/additional information still useful
+	}
 
 }
