@@ -322,7 +322,7 @@ public class Client extends JFrame
 	/**
 	 * increments the player's health stats by 5%
 	 */
-	public void incrementHealth()
+	public void incrementHealth()	//this should be in MOB and Player class. not here
 	{
 		int health = player.getHealth();
 		health = health + 5;
@@ -332,24 +332,32 @@ public class Client extends JFrame
 
 	public void listSurroundings() 
 	{
+		//need to change how items are listed in case item picked up in one room but dropped in other room
+		//could use as similar idea for adjacent rooms
 		String surroundings = "";
 		Room room = player.getLocation();
 		String name = room.getName();
-//		List<MOB> theMobs = room.getMOBs();
 		switch(name){
 		case "The Lawn":
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
-					+ "\nItems in Room: Key\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
+					+ "\nItems in Room: Key"
+					+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
 					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-					+ "\nItems in Room: \n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+					+ "\nItems in Room: \n  Food\n  Water"
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
+					+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
 					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 			break;
 		}

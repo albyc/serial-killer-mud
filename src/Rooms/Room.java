@@ -66,4 +66,15 @@ public abstract class Room implements Serializable
 	public void setWestRoom(Room aRoom) { westRoom = aRoom; }
 	
 	public Room getWestRoom() { return westRoom; }
+	
+	public String getNamesOfPlayersInRoom(){
+		String names = "";
+		
+		return names;
+	}
+	
+	public String getNamesOfMOBsInRoom(){
+		String names = "";
+		return names;
+	}
 }
