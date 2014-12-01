@@ -46,6 +46,8 @@ public class Client extends JFrame
 	private Item[] items;
 	RoomCollection roomCollection = new RoomCollection();
 	ItemCollection itemCollection = new ItemCollection(items);
+//	MOBCollection mobCollection = new MOBCollection(roomCollection.getRooms());
+	
 			
 	public static void main (String []args)
 	{
@@ -156,7 +158,7 @@ public class Client extends JFrame
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
 				+ "\nDROP <item>: Removes the item from your backpack\nLOOK: provides a 360 description of your surroundings"
-				+ "\nLOOK <argument>: provides an in depth description of the specified argument\nQUIT: quits the game and closes the window\n";
+				+ "\nLOOK <argument>: provides in depth description of the specified argument\nQUIT: quits the game and closes the window\n";
 		commandMessages.add(listOfCommands);
 		mainView.updateCommands(commandMessages);
 	}

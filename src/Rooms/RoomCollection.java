@@ -91,7 +91,9 @@ public class RoomCollection
 		player.setLocation(entrance);
 	}
 	
-	
+	public List<Room> getRooms(){
+		return rooms;
+	}
 
 	public Room getRoomAt(int index)
 	{
@@ -144,11 +146,6 @@ public class RoomCollection
 		
 		return null;
 	}
-	
-	
-//	public List<Room> getRooms(){
-//		return rooms;
-//	}
 	
 	/*public List<Player> getPlayers(int index) 
 	{ 

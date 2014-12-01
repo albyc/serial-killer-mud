@@ -17,7 +17,7 @@ public class SerialKillerMud
 {
 	private RoomCollection rooms;
 	private transient List<Player> playersOnline;
-	private MOBCollection mobs;
+//	private MOBCollection mobs;
 	private transient List<Player> administrators;
 	
 	public SerialKillerMud()
