@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,8 +22,8 @@ import javax.swing.JTextArea;
 // its not pretty code but its in progress. It's flipping cool. Maybe we could add it to our main view??
 // The ultimate decision is in your hands. 
 
-// Hover over Spain and France 
-public class Map extends JFrame {
+public class Map extends JFrame 
+{
 	private BufferedImage image;
 	private JButton  room1,  room2,  room3,  room4,  room5,  room6,  room7,  room8,  room9 , room10;
 	private JButton room11, room12, room13, room14, room15, room16, room17, room18, room19 , room20;
@@ -34,15 +36,15 @@ public class Map extends JFrame {
 	                               "map. For basic room information\n" +
 	                               "please hover over the area you would\n" +
 	                               "like to read about.";
-			     
-	public Map(){
+	     
+	public Map()
+	{
 		this.setTitle("Save Yo Ass Map");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		try 
 		{
 			image = ImageIO.read(new File("images/MAP.jpg"));
-			// Set your Image Here.
 			this.setContentPane(new JLabel(new ImageIcon(image)));
 		} 
 		catch (IOException e) 
@@ -50,10 +52,8 @@ public class Map extends JFrame {
 			e.printStackTrace();
 		}
 		
-		
 		// has to be here before try catch block
 		this.setSize(image.getWidth(),image.getHeight());
-		//this.setSize(500,300);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);

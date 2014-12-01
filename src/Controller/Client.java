@@ -152,7 +152,7 @@ public class Client extends JFrame
 	 */
 	public void listCommands() 
 	{
-		String listOfCommands = "Here are the commands: \nMOVE <direction>: Move into the room to the <direction>"
+		String listOfCommands = "Here are the commands: \nMAP: An interactive map will appear.\nMOVE <direction>: Move into the room to the <direction>"
 				+ "\nCOMMANDS: List all of the available commands\nOOC <message>: Send <message> to all players\n"
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
@@ -331,7 +331,7 @@ public class Client extends JFrame
 	
 	public void showMap()
 	{
-		Map map = new Map();
+		new Map();
 	}
 
 	public void listSurroundings() 
