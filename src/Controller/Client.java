@@ -522,4 +522,7 @@ public class Client extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}  // end of method setupGUI
+
+	public void tellMessage(String argument1, String argument2) {
+	}
 }

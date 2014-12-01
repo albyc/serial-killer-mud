@@ -7,6 +7,7 @@ import java.util.*;
 import Commands.Command;
 import Commands.DisconnectCommand;
 import Commands.UpdateAClientCommand;
+import Commands.UpdateAClientW2ArgsCommand;
 import Commands.UpdateAClientWArgsCommand;
 import Commands.UpdateClientsCommand;
 import Commands.WhoCommand;
@@ -267,5 +268,18 @@ public class Server
 		default:
 			throw new IllegalArgumentException();
 		}
+	}
+
+	public void PrintToClientW2Args(String clientName, String argument1,
+			String argument2, Commands command) {
+		UpdateAClientW2ArgsCommand update = new UpdateAClientW2ArgsCommand(command, argument1, argument2);
+		
+		ObjectOutputStream out = outputs.get(clientName);
+		try {
+			out.writeObject(update);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 } // end of class Server
