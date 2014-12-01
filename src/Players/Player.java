@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import Items.*;
+import MOBs.MOB;
 import Rooms.*;
 
 /**
@@ -91,17 +92,19 @@ public class Player implements Serializable
     /**
      * 
      */
-    public void interactWithOtherPlayer()
+    public void interactWithOtherPlayer(Player thePlayer)
     {
-         
+         //talk to other player determine if going to fight or what
+    	//fight()
     }
     
     /**
      * 
      */
-    public void InteractWithMOB()
+    public void InteractWithMOB(MOB theMOB)
     {
-         
+         //mob talks and states what items it holds, good or bad, etc
+    	//fight()
     }
     
     /**

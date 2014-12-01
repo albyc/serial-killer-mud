@@ -25,7 +25,7 @@ public class SerialKillerMud
 		rooms = new RoomCollection();
 		playersOnline = new ArrayList<Player>();
 		administrators = new ArrayList<Player>();
-		//mobs = new MOBCollection(null); 		// note: trouble
+//		mobs = new MOBCollection(null); 		// note: trouble
 		addAdmins();
 	}
 

@@ -6,9 +6,15 @@ import Items.Item;
 import Rooms.Room;
 
 public class NonKiller extends MOB{
+	private final static boolean isKiller = false;
 
 	public NonKiller(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay, Room startLocation) {
 		super(identity, items, stuffToSay, startLocation);
+	}
+	
+	@Override
+	public boolean isKiller() {
+		return isKiller;
 	}
 
 	@Override
@@ -41,10 +47,5 @@ public class NonKiller extends MOB{
 		
 	}
 
-	@Override
-	public void whoAmI() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

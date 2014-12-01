@@ -2,9 +2,12 @@ package MOBs;
 
 //import java.awt.List;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Random;
 
 import Items.Item;
 import Items.Item;
+import Players.Player;
 import Rooms.Room;
 
 /**
@@ -19,8 +22,10 @@ public abstract class MOB {
 	private Room currentLocation;
 	private ArrayList<String> speeches;
 	private int health;
+	private Random randomGenerator;
 
 	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay, Room startLocation) {
+		randomGenerator = new Random();
 		this.identity = identity;
 		pocket = new ArrayList<Item>();
 		this.speeches = stuffToSay;
@@ -37,7 +42,7 @@ public abstract class MOB {
 	
 	public abstract void action5();
 	
-	public abstract void whoAmI();
+	public abstract boolean isKiller();
 	
 	public String getIdentity(){
 		return identity;
@@ -68,12 +73,18 @@ public abstract class MOB {
 		// give item to player
 	}
 
-	public void attack() {
-
+	public void attack(Player thePlayer) {
+		int points = randomGenerator.nextInt(10);
+		thePlayer.incrementHealth(points);
 	}
 
 	public void run() {
-
+		//exit to next nearest room
+	}
+	
+	public void whoAmI() {
+		// TODO Auto-generated method stub
+		System.out.println("I am" + identity);
 	}
 
 }
