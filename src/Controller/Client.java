@@ -218,21 +218,21 @@ public class Client extends JFrame
 				{
 					int index = 0;
 					switch(argument){
-					case "water":
-						index = 0;
-						break;
-					case "food":
-						index = 1;
-						break;
-					case "knife":
-						index = 2;
-						break;
-					case "night vision goggles":
-						index = 3;
-						break;
-					case "key":
-						index = 4;
-						break;
+						case "water":
+							index = 0;
+							break;
+						case "food":
+							index = 1;
+							break;
+						case "knife":
+							index = 2;
+							break;
+						case "night vision goggles":
+							index = 3;
+							break;
+						case "key":
+							index = 4;
+							break;
 					}
 					player.dropItem(item);
 					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
@@ -335,6 +335,10 @@ public class Client extends JFrame
 	{
 		new Map();
 	}
+	
+//	public void showMOBdescriptions(){
+//		new MOBdescription();
+//	}
 
 	public void listSurroundings() 
 	{
@@ -379,42 +383,50 @@ public class Client extends JFrame
 		String surroundings = "";
 		switch(argument.toLowerCase())
 		{
-		case "water":
-			surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
-			break;
-		case "food":
-			surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
-			break;
-		case "knife":
-			surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
-			break;
-		case "key":
-			surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
-			break;
-		case "night vision goggles":
-			surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
-			break;
-		case "lawn":
-			surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
-					+ "\nItems in Room:\n  Key\n"
-					+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
-			break;
-			
-			
-			
-		case "murder castle":
-			surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
-					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
-					+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
-			break;
-		case "wisconsin farmhouse of horrors":
-			surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
-					+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
-					+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
-			break;
-		//how to do specific players?
-		default:
-			break;
+			case "water":
+				surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
+				break;
+			case "food":
+				surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
+				break;
+			case "knife":
+				surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
+				break;
+			case "key":
+				surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
+				break;
+			case "night vision goggles":
+				surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
+				break;
+			case "lawn":
+				surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
+						+ "\nItems in Room:\n  Key\n"
+						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
+				break;
+				
+				
+				
+			case "murder castle":
+				surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
+						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+						+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
+				break;
+			case "wisconsin farmhouse of horrors":
+				surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
+						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
+						+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
+				break;
+			case "jeffery dahmer":
+				new MOBdescription("jefferyDahmer");
+				break;
+			case "lawrence bittaker":
+				new MOBdescription("lawrenceBittaker");
+				break;
+			case "roy norris":
+				new MOBdescription("royNorris");
+				break;
+			default:
+				break;
 		}
 		commandMessages.add(surroundings);
 		mainView.updateCommands(commandMessages);
