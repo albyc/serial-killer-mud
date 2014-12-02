@@ -31,11 +31,16 @@ public class Map extends JFrame
 	private JButton spainButton, croissantButton, dubaiButton;
 	private JTextArea infoArea;
 	
+	
 	private String defaultString = "Welcome: \n\n" + 
 	                               "This is the Save yo Ass interactive\n" +
 	                               "map. For basic room information\n" +
 	                               "please hover over the area you would\n" +
 	                               "like to read about.";
+	// using for testin purposes will delete once all rooms are done.
+/*	public static void main(String []args){
+		new Map();
+	}*/
 	     
 	public Map()
 	{
@@ -61,13 +66,14 @@ public class Map extends JFrame
 		infoArea = new JTextArea(defaultString);
 		infoArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		infoArea.setEditable(false);
-		infoArea.setSize(270,325);
-		infoArea.setLocation(575, 140);
+		infoArea.setSize(277,420);
+		infoArea.setLocation(572, 195);
 		infoArea.setBackground(Color.BLACK);
 		infoArea.setForeground(Color.WHITE);
-		JScrollPane sp = new JScrollPane(infoArea);
+		//JScrollPane sp = new JScrollPane(infoArea);
 		
 		// regular buttons
+			
 		room1 = new JButton("Lawn");
 		room1.setOpaque(true);
 		room1.setBorderPainted(false);
@@ -133,7 +139,7 @@ public class Map extends JFrame
 		room7.setBorderPainted(false);
 		room7.setBackground(new Color(168, 7, 7));
 		room7.setForeground(Color.WHITE);
-		room7.setLocation(569, 482);
+		room7.setLocation(569, 124);
 		room7.setSize(67, 62);
 		room7.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
 		room7.addMouseListener(new MouseMoved("room7"));
@@ -444,7 +450,24 @@ public class Map extends JFrame
 			case "room1":
 				room1.setBackground(Color.BLACK);
 				room1.setEnabled(false);
-		        infoArea.setText("Lawn description");
+		        infoArea.setText("Location: \n The Lawn\n\n"
+		        				+"Description: \n"
+		        				+ "There is no escaping now! The lawn\n"
+		        				+ "is homebase for all players. You are\n"
+		        				+ "surrounded by thousands upon\n"
+		        				+ "thousands of acres of dead grass and\n"
+		        				+ "trees. Daylight does not exist in this\n"
+		        				+ "area and anything  can happen. There\n"
+		        				+ "is only one way out. Find the key and\n"
+		        				+ "enter the Murder Castle. You can stay\n"
+		        				+ "but your chances of survival are slim\n"
+		        				+ "to none. Do yourself a favor if you’re\n"
+		        				+ "on the lawn, leave at once and save yo\n"
+		        				+ "ass.\n\n"
+		        				+ "Adjacent Rooms: \n"
+		        				+ "North – Murder Castle\n\n"
+		        				+ "Initial Items:\n"
+		        				+ "key to murder castle");
 				break;
 			case "room2":
 				room2.setBackground(Color.BLACK);
