@@ -17,6 +17,7 @@ import Items.ItemCollection;
 import Items.ReusableItem;
 import MOBs.*;
 import View.*;
+import View.Map;
 import Rooms.*;
 import Model.*;
 import Players.*;
@@ -153,7 +154,7 @@ public class Client extends JFrame
 	 */
 	public void listCommands() 
 	{
-		String listOfCommands = "Here are the commands: \nMOVE <direction>: Move into the room to the <direction>"
+		String listOfCommands = "Here are the commands: \nMAP: An interactive map will appear.\nMOVE <direction>: Move into the room to the <direction>"
 				+ "\nCOMMANDS: List all of the available commands\nOOC <message>: Send <message> to all players\n"
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
@@ -328,6 +329,11 @@ public class Client extends JFrame
 		health = health + 5;
 		System.out.println(health);
 		player.setHealth(health);
+	}
+	
+	public void showMap()
+	{
+		new Map();
 	}
 
 	public void listSurroundings() 

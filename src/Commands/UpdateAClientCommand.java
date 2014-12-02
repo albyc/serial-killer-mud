@@ -40,6 +40,10 @@ public class UpdateAClientCommand extends Command<Client>
 			break;
 		case LOOK:
 			executeOn.listSurroundings();
+			break;
+		case MAP:
+			executeOn.showMap();
+			break;
 		default:
 			break;
 		}
