@@ -312,7 +312,8 @@ public class Client extends JFrame
 						mainView.updateCommands(commandMessages);
 						if(item.getName().equals("water") || item.getName().equals("food"))
 						{
-							incrementHealth();
+							player.incrementHealth(5);//??? arg depend on how much boost
+//							incrementHealth();
 						}
 					}
 				}
@@ -320,25 +321,18 @@ public class Client extends JFrame
 		}
 	}
 	
-	/**
-	 * increments the player's health stats by 5%
-	 */
-	public void incrementHealth()	//this should be in MOB and Player class. not here
-	{
-		int health = player.getHealth();
-		health = health + 5;
-		System.out.println(health);
-		player.setHealth(health);
-	}
+//	public void incrementHealth()	//this should be in MOB and Player class. not here
+//	{
+//		int health = player.getHealth();
+//		health = health + 5;
+//		System.out.println(health);
+//		player.setHealth(health);
+//	}
 	
 	public void showMap()
 	{
 		new Map();
 	}
-	
-//	public void showMOBdescriptions(){
-//		new MOBdescription();
-//	}
 
 	public void listSurroundings() 
 	{
@@ -393,14 +387,14 @@ public class Client extends JFrame
 				surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
 				break;
 			case "key":
-				surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
+				surroundings += "KEY:\nThe key locan be used to unlock doors.\n\n";
 				break;
 			case "night vision goggles":
 				surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
 				break;
 			case "lawn":
 				surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
-						+ "\nItems in Room:\n  Key\n"
+						+ "\nItems in Room:\n" // + Key\n"
 						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
 				break;
 				
@@ -417,14 +411,40 @@ public class Client extends JFrame
 						+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
 				break;
 			case "jeffery dahmer":
-				new MOBdescription("jefferyDahmer");
+			case "dahmer":
+				surroundings += "it works dumbass";
+				new MOBdescription(argument.toLowerCase());
 				break;
 			case "lawrence bittaker":
-				new MOBdescription("lawrenceBittaker");
-				break;
 			case "roy norris":
-				new MOBdescription("royNorris");
+			case "bittaker":
+			case "norris":
+			case "toolbox killers":
+				new MOBdescription(argument.toLowerCase());
 				break;
+			case "richard ramirez":
+			case "ramirez":
+			case "night stalker":
+				new MOBdescription(argument.toLowerCase());
+				break;
+			case "andre chikatilo":
+			case "chikatilo":
+			case "red ripper":
+				new MOBdescription(argument.toLowerCase());
+				break;
+//			case "richard trenton chase":
+//			case "chase":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "henry lee lucus":
+//			case "lucus":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "ed gein":
+//			case "gein":
+//			case "psycho":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
 			default:
 				break;
 		}

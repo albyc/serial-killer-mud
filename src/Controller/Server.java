@@ -241,32 +241,32 @@ public class Server
 		
 		switch (admin)
 		{
-		case ALBY: 
-		case ALEXA:
-		case DAMARIS:
-		case LISA:
-			try
-			{
-				// send a message to all client on shutdown tell them to  disconnect and close their GUI 
-				// When that is done close down server
-				// make an UpdatedClientCommand, write to all connected users
-				UpdateAClientCommand update = new UpdateAClientCommand(command);
+			case ALBY: 
+			case ALEXA:
+			case DAMARIS:
+			case LISA:
+				try
+				{
+					// send a message to all client on shutdown tell them to  disconnect and close their GUI 
+					// When that is done close down server
+					// make an UpdatedClientCommand, write to all connected users
+					UpdateAClientCommand update = new UpdateAClientCommand(command);
+					
+					
+						for(ObjectOutputStream out : outputs.values())
+							out.writeObject(update);
+					
+					
+					System.exit(0);
+				}
+				catch (Exception e)
+				{
+					//e.printStackTrace();
+				}
 				
-				
-					for(ObjectOutputStream out : outputs.values())
-						out.writeObject(update);
-				
-				
-				System.exit(0);
-			}
-			catch (Exception e)
-			{
-				//e.printStackTrace();
-			}
-			
-			break;
-		default:
-			throw new IllegalArgumentException();
+				break;
+			default:
+				throw new IllegalArgumentException();
 		}
 	}
 
