@@ -17,7 +17,7 @@ public abstract class Room implements Serializable
 	protected String name;
 	protected String description;
 	protected List<Player> players;
-	protected List<Player> mobs;
+	protected List<MOB> mobs;
 	private Room northRoom, southRoom, eastRoom, westRoom;
 	//protected RoomCollection roomCollection;
 	
@@ -26,7 +26,7 @@ public abstract class Room implements Serializable
 		this.name = name;
 		this.description = description;
 		this.players = new ArrayList<Player>();
-		this.mobs = new ArrayList<Player>();
+		this.mobs = new ArrayList<MOB>();
 		
 		// initially, a Room does not have any adjacent Rooms
 		northRoom = null;
@@ -41,13 +41,13 @@ public abstract class Room implements Serializable
 	
 	public List<Player> getPlayers() { return players; }
 	
-	public List<Player> getMOBs() { return mobs; }
+	public List<MOB> getMOBs() { return mobs; }
 	
 	public void addPlayer(Player aPlayer) { players.add(aPlayer); }
 	
 	public void removePlayer(Player player) { players.remove(player); }	
 	
-	public void addMOB(MOB anMOB) { mobs.addAll((Collection<? extends Player>) anMOB); }
+	public void addMOB(MOB anMOB) { mobs.addAll((Collection<? extends MOB>) anMOB); }
 	
 	public void removeMOB(MOB anMOB) { mobs.remove(anMOB); }
 	
@@ -69,12 +69,21 @@ public abstract class Room implements Serializable
 	
 	public String getNamesOfPlayersInRoom(){
 		String names = "";
-		
+		for(Player p : players){
+			names += "\t";
+			names += p.getUsername();
+			names += "\n";
+		}
 		return names;
 	}
 	
 	public String getNamesOfMOBsInRoom(){
 		String names = "";
+		for(MOB m : mobs){
+			names += "\t";
+			names += m.getIdentity();
+			names += "\n";
+		}
 		return names;
 	}
 }
