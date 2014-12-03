@@ -13,85 +13,131 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
-public class MOBdescription extends JFrame{
-	
+//import View.Map.MouseMoved;
+
+public class MOBdescription extends JFrame {
+
 	private BufferedImage backgroundImage;
-	private BufferedImage dahmerImage;
+	private JButton dahmerImage1, dahmerImage2, dahmerImage3, dahmerImage4;
+	private JButton ramirezImage1, ramirezImage2, ramirezImage3, ramirezImage4;
 	private JTextArea infoArea;
-	
-	public MOBdescription(String mobName){
-		
+
+	public MOBdescription(String mobName) {
+
 		this.setTitle("Save Yo Ass MOB Description");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		try 
-		{
+
+		try {
 			backgroundImage = ImageIO.read(new File("images/scary-wall.jpg"));
 			this.setContentPane(new JLabel(new ImageIcon(backgroundImage)));
-		} 
-		catch (IOException e) 
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		this.setSize(backgroundImage.getWidth(),backgroundImage.getHeight());
+
+		this.setSize(backgroundImage.getWidth(), backgroundImage.getHeight()-250);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
-		
-		if(mobName.equals("jeffery dahmer") || mobName.equals("dahmer")){
-			infoArea = new JTextArea("\n    jeffery dahmer info");
-		}
-		else if(mobName.equals("lawrence bittaker") || mobName.equals("roy norris") || mobName.equals("bittaker") || mobName.equals("norris") || mobName.equals("toolbox killers")){
+		if (mobName.equals("jeffery dahmer") || mobName.equals("dahmer")) {
+			infoArea = new JTextArea(
+					"\n jeffery dahmer info\n\n Notorious sex offender and serial killer.\n Sentenced to 15 consecutive life terms.\n born in Milwaukee on May 21, 1960.\n killed his first victim with a blow to the head in 1978.\n killed 17 men total, molesting some of them, between 1978 to 1991.");
+			//add images, later make so text showed when hovering over the images
+			ImageIcon iconOne = new ImageIcon("images/dahmer2.jpeg");
+			dahmerImage1 = new JButton(iconOne);
+			dahmerImage1.setContentAreaFilled(false);
+			dahmerImage1.setBorderPainted(false);
+			dahmerImage1.setLocation(50, 250);
+			dahmerImage1.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			dahmerImage2 = new JButton(iconOne);
+			dahmerImage2.setContentAreaFilled(false);
+			dahmerImage2.setBorderPainted(false);
+			dahmerImage2.setLocation(250, 250);
+			dahmerImage2.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			dahmerImage3 = new JButton(iconOne);
+			dahmerImage3.setContentAreaFilled(false);
+			dahmerImage3.setBorderPainted(false);
+			dahmerImage3.setLocation(450, 250);
+			dahmerImage3.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			dahmerImage4 = new JButton(iconOne);
+			dahmerImage4.setContentAreaFilled(false);
+			dahmerImage4.setBorderPainted(false);
+			dahmerImage4.setLocation(650, 250);
+			dahmerImage4.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			this.add(dahmerImage1);
+			this.add(dahmerImage2);
+			this.add(dahmerImage3);
+			this.add(dahmerImage4);
+			
+		} else if (mobName.equals("lawrence bittaker")
+				|| mobName.equals("roy norris") || mobName.equals("bittaker")
+				|| mobName.equals("norris")
+				|| mobName.equals("toolbox killers")) {
 			infoArea = new JTextArea("\n\tthe toolbox killers info");
-			//add images
+			// add images
+		} else if (mobName.equals("richard ramirez")
+				|| mobName.equals("ramirez")) {
+			infoArea = new JTextArea("\n richard ramirez info\n\n AKA the Night Stalker\n Richard Ramirez has broke into Californian homes, raping and torturing more than 25 victims.\n he has killed at least 13, over a two-year rampage.");
+			
+			// add images
+			
+		} else if (mobName.equals("andre chikatilo")
+				|| mobName.equals("chikatilo") || mobName.equals("red ripper")) {
+			infoArea = new JTextArea("\n andre chikatilo info\n\n a former school teacher.\n murdered more than 50 young people in the Soviet Union.");
+			// add images
+		} else if (mobName.equals("richard trenton chase")
+				|| mobName.equals("richard chase") || mobName.equals("chase")) {
+			infoArea = new JTextArea("\n richard trenton chase \"The Vampire of Sacramento\" info\n\n killed six people in a span of a month in Sacramento, California.\n he drank his victims' blood and cannibalized their remains.");
+			// add images
+		} else if (mobName.equals("henry lee lucus")
+				|| mobName.equals("henry lucus") || mobName.equals("lucus")) {
+			infoArea = new JTextArea("\n henry lee lucus info\n\n born on August 23, 1936, in Blacksburg, Virginia.\n Born to alcoholic parents, including a mother who prostituted herself.\n In 1960, he was sentenced for the murder of his mother.\n Paroled in 1970, Lucas went back to jail for the attempted kidnapping of a 15-year-old girl.\n Released again in 1975, he killed two more women, and was arrested in 1983.\n He confessed to murdering hundreds of people, though no proof existed beyond three known victims.");
+			// add images
+		} else if (mobName.equals("ed gein") || mobName.equals("gein")
+				|| mobName.equals("psycho")) {
+			infoArea = new JTextArea("\n ed gein info");
+			// add images
 		}
-		else if(mobName.equals("richard ramirez") || mobName.equals("ramirez")){
-			infoArea = new JTextArea("\n\trichard ramirez info");
-			//add images
+		else if(mobName.equals("hannibal lecter") || mobName.equals("hannibal") || mobName.equals("lecter")){
+			infoArea = new JTextArea("\n Hannibal Lecter info");
+			// add images
 		}
-		else if(mobName.equals("andre chikatilo") || mobName.equals("chikatilo") || mobName.equals("red ripper")){
-			infoArea = new JTextArea("\n\tandre chikatilo info");
-			//add images
+		else if(mobName.equals("henry howard holmes") || mobName.equals("holmes") || mobName.equals("hhh")){
+			infoArea = new JTextArea("\n henry howard holmes info");
+			// add images
 		}
-		else if(mobName.equals("richard trenton chase") || mobName.equals("richard chase") || mobName.equals("chase")){
-			infoArea = new JTextArea("\n\trichard trenton chase info");
-			//add images
-		}
-		else if(mobName.equals("henry lee lucus") || mobName.equals("henry lucus") ||mobName.equals("lucus")){
-			infoArea = new JTextArea("\n\thenry lee lucus info");
-			//add images
-		}
-		else if(mobName.equals("ed gein") || mobName.equals("gein") || mobName.equals("psycho")){
-			infoArea = new JTextArea("\n\ted gein info");
-			//add images
-		}
-		
+		else
+			infoArea = new JTextArea("why you here dumbass");
+
 		infoArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		infoArea.setEditable(false);
-		infoArea.setSize(277,420);
-		infoArea.setLocation(572, 195);
+		infoArea.setSize(800, 200);
+		infoArea.setLocation(50, 50);
 		infoArea.setBackground(Color.BLACK);
 		infoArea.setForeground(Color.WHITE);
-		
+
 		this.add(infoArea);
 		this.setVisible(true);
 	}
-	
-	private static Font getFont(String filename)
-	{
+
+	private static Font getFont(String filename) {
 		Font font = null;
-		
-		try 
-        {
+
+		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(filename));
-		} 
-        catch (Exception e) 
-        {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return font;
 	} // end of private method getFont
 

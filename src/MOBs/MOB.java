@@ -80,6 +80,8 @@ public abstract class MOB {
 
 	public void run() {
 		//exit to next nearest room
+//		if(currentLocation.getNorthRoom() != null)
+//			change
 	}
 	
 	public void whoAmI() {
@@ -90,6 +92,11 @@ public abstract class MOB {
 	public void death(){
 		//drop all holding items
 		//leave note telling last words/curses/additional information still useful
+	}
+	
+	public void interactWithPlayer(Player player){
+		//speak to player
+		//choose whether to fight to sit back
 	}
 
 }

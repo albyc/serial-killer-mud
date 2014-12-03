@@ -447,6 +447,14 @@ public class Client extends JFrame
 			case "psycho":
 				new MOBdescription(argument.toLowerCase());
 				break;
+			case "hannibal lecter":
+			case "hannibal":
+			case "lecter":
+				new MOBdescription(argument.toLowerCase());
+			case "henry howard holmes":
+			case "holmes":
+			case "hhh":
+				new MOBdescription(argument.toLowerCase());
 			default:
 				break;
 		}
