@@ -442,19 +442,21 @@ public class Client extends JFrame
 			case "red ripper":
 				new MOBdescription(argument.toLowerCase());
 				break;
-//			case "richard trenton chase":
-//			case "chase":
-//				new MOBdescription(argument.toLowerCase());
-//				break;
-//			case "henry lee lucus":
-//			case "lucus":
-//				new MOBdescription(argument.toLowerCase());
-//				break;
-//			case "ed gein":
-//			case "gein":
-//			case "psycho":
-//				new MOBdescription(argument.toLowerCase());
-//				break;
+			case "richard trenton chase":
+			case "richard chase":
+			case "chase":
+				new MOBdescription(argument.toLowerCase());
+				break;
+			case "henry lee lucus":
+			case "henry lucus":
+			case "lucus":
+				new MOBdescription(argument.toLowerCase());
+				break;
+			case "ed gein":
+			case "gein":
+			case "psycho":
+				new MOBdescription(argument.toLowerCase());
+				break;
 			default:
 				break;
 		}
