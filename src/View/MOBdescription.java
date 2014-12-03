@@ -43,7 +43,7 @@ public class MOBdescription extends JFrame {
 		if (mobName.equals("jeffery dahmer") || mobName.equals("dahmer")) {
 			infoArea = new JTextArea(
 					"\n jeffery dahmer info\n\n Notorious sex offender and serial killer.\n Sentenced to 15 consecutive life terms.\n born in Milwaukee on May 21, 1960.\n killed his first victim with a blow to the head in 1978.\n killed 17 men total, molesting some of them, between 1978 to 1991.");
-			//add images, later make so text showed when hovering over the images
+			//add images, later make so text showes when hovering over the images
 			ImageIcon iconOne = new ImageIcon("images/dahmer2.jpeg");
 			dahmerImage1 = new JButton(iconOne);
 			dahmerImage1.setContentAreaFilled(false);
@@ -87,9 +87,42 @@ public class MOBdescription extends JFrame {
 		} else if (mobName.equals("richard ramirez")
 				|| mobName.equals("ramirez")) {
 			infoArea = new JTextArea("\n richard ramirez info\n\n AKA the Night Stalker\n Richard Ramirez has broke into Californian homes, raping and torturing more than 25 victims.\n he has killed at least 13, over a two-year rampage.");
+			//add images, later make so text showed when hovering over the images
+			ImageIcon iconOne = new ImageIcon("images/ramirez4.jpeg");
+			ImageIcon iconTwo = new ImageIcon("images/ramirez2.jpeg");
+			ramirezImage1 = new JButton(iconOne);
+			ramirezImage1.setContentAreaFilled(false);
+			ramirezImage1.setBorderPainted(false);
+			ramirezImage1.setLocation(50, 250);
+			ramirezImage1.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
 			
-			// add images
+			ramirezImage2 = new JButton(iconOne);
+			ramirezImage2.setContentAreaFilled(false);
+			ramirezImage2.setBorderPainted(false);
+			ramirezImage2.setLocation(250, 250);
+			ramirezImage2.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
 			
+			ramirezImage3 = new JButton(iconTwo);
+			ramirezImage3.setContentAreaFilled(false);
+			ramirezImage3.setBorderPainted(false);
+			ramirezImage3.setSize(ramirezImage3.getWidth(), ramirezImage3.getHeight()-100);
+			ramirezImage3.setLocation(442, 250);
+			ramirezImage3.setSize(iconOne.getIconWidth(),iconTwo.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			ramirezImage4 = new JButton(iconOne);
+			ramirezImage4.setContentAreaFilled(false);
+			ramirezImage4.setBorderPainted(false);
+			ramirezImage4.setLocation(635, 250);
+			ramirezImage4.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			this.add(ramirezImage1);
+			this.add(ramirezImage2);
+			this.add(ramirezImage3);
+			this.add(ramirezImage4);
 		} else if (mobName.equals("andre chikatilo")
 				|| mobName.equals("chikatilo") || mobName.equals("red ripper")) {
 			infoArea = new JTextArea("\n andre chikatilo info\n\n a former school teacher.\n murdered more than 50 young people in the Soviet Union.");
