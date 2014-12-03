@@ -210,30 +210,31 @@ public class Client extends JFrame
 	 */
 	public void dropItem(String argument) 
 	{
-		Item item = itemCollection.getItemFromName(argument.toLowerCase());
+		Item item;
+		if(argument.equalsIgnoreCase("nvg"))
+		{
+			item = itemCollection.getItemFromName("night vision goggles");
+			System.out.println("nvg thing");
+		}
+		else
+			item = itemCollection.getItemFromName(argument.toLowerCase());
 		if(player.getItems() != null){
 			for (Item i : player.getItems())
 			{
-				if(i.getName().equals(argument.toLowerCase()))
+				if(i.getName().equals(argument.toLowerCase()) || (i.getName().equals("night vision goggles") && argument.toLowerCase().equals("nvg")))
 				{
-					int index = 0;
-					switch(argument){
+					/*switch(argument){
 						case "water":
-							index = 0;
-							break;
+						break;
 						case "food":
-							index = 1;
-							break;
+						break;
 						case "knife":
-							index = 2;
-							break;
-						case "night vision goggles":
-							index = 3;
-							break;
+						break;
+						case "nvg":
+						break;
 						case "key":
-							index = 4;
-							break;
-					}
+						break;
+					}*/
 					player.dropItem(item);
 					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 					commandMessages.add(dropped);
@@ -288,7 +289,16 @@ public class Client extends JFrame
 	 */
 	public void pickUp(String argument) 
 	{
-		Item item = itemCollection.getItemFromName(argument.toLowerCase());
+		Item item;
+		
+		if(argument.equalsIgnoreCase("nvg"))
+		{
+			item = itemCollection.getItemFromName("night vision goggles");
+		}
+		else
+		
+			item = itemCollection.getItemFromName(argument.toLowerCase());
+		
 		
 		if (player.getItems() != null)
 		{
@@ -359,7 +369,7 @@ public class Client extends JFrame
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
-					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
+					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles (NVG)\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
@@ -396,7 +406,7 @@ public class Client extends JFrame
 				surroundings += "KEY:\nThe key can be used to unlock doors.\n\n";
 				break;
 			case "night vision goggles":
-				surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
+				surroundings += "NIGHT VISION GOGGLES (NVG):\nThe night vision goggles allow you to see in dark places.\n\n";
 				break;
 			case "lawn":
 				surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
@@ -551,6 +561,8 @@ public class Client extends JFrame
 		this.setVisible(true);
 	}  // end of method setupGUI
 
-	public void tellMessage(String argument1, String argument2) {
+	public void tellMessage(String argument1, String argument2) 
+	{
+		
 	}
 }

@@ -13,6 +13,7 @@ import java.awt.event.*;
 
 import Commands.AddChatMessageCommand;
 import Commands.ForServerCommand;
+import Commands.ForServerW2ArgsCommand;
 import Commands.ForServerWArgsCommand;
 import Enums.Commands;
 import Model.*;
@@ -176,12 +177,42 @@ public class MainView extends JPanel
 
 			String command = new String();
 			String argument = new String();
+			String argument1 = new String();
+			String argument2 = new String();
+			int spaceCount = 0;
 			
-			if (s.indexOf(" ") > 0)
+			for(int i = 0; i < s.length(); i++)
+			{
+				if(s.charAt(i) == ' ')
+				{
+					spaceCount++;
+				}
+			}
+			
+			
+			
+			if (spaceCount == 1)
 			{
 				String[] splitS = s.split(" ", 2);
 				command = splitS[0];
 				argument = splitS[1];
+			}
+			
+			else if (spaceCount > 1)
+			{
+				String[] splitS = s.split(" ", 3);
+				command = splitS[0];
+				argument1 = splitS[1];
+				argument2 = splitS[2];
+				/*String sCopy = s;
+				int index = s.indexOf(" ");
+				command = s.substring(0, index);
+				sCopy = sCopy.substring(index + 1);
+				index = sCopy.indexOf(" ");
+				argument1 = sCopy.substring(0, index);
+				sCopy = sCopy.substring(index + 1);
+				argument2 = sCopy;*/
+				
 			}
 			
 			else
@@ -230,6 +261,8 @@ public class MainView extends JPanel
 					output.writeObject(new ForServerCommand(clientName, c));
 					}
 					break;
+				case TELL:
+					output.writeObject(new ForServerW2ArgsCommand(clientName, argument1, argument2, c));
 				default:
 					break;
 				}
