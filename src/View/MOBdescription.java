@@ -44,39 +44,29 @@ public class MOBdescription extends JFrame{
 			infoArea = new JTextArea("\n    jeffery dahmer info");
 		}
 		else if(mobName.equals("lawrence bittaker") || mobName.equals("roy norris") || mobName.equals("bittaker") || mobName.equals("norris") || mobName.equals("toolbox killers")){
-			infoArea = new JTextArea("\n    the toolbox killers info");
+			infoArea = new JTextArea("\n\tthe toolbox killers info");
 			//add images
 		}
 		else if(mobName.equals("richard ramirez") || mobName.equals("ramirez")){
-			infoArea = new JTextArea("\n    richard ramirez info");
+			infoArea = new JTextArea("\n\trichard ramirez info");
 			//add images
 		}
 		else if(mobName.equals("andre chikatilo") || mobName.equals("chikatilo") || mobName.equals("red ripper")){
 			infoArea = new JTextArea("\n\tandre chikatilo info");
 			//add images
 		}
-////		else if(mobName.equals("richard trenton chase")){
-////			
-////		}
-//		
-//		/*
-//		 * 
-//			case "richard trenton chase":
-//			case "chase":
-//				new MOBdescription(argument.toLowerCase());
-//				break;
-//			case "henry lee lucus":
-//			case "lucus":
-//				new MOBdescription(argument.toLowerCase());
-//				break;
-//			case "ed gein":
-//			case "gein":
-//			case "psycho":
-//				new MOBdescription(argument.toLowerCase());
-//				break;
-//			default:
-//				break;
-//		 */
+		else if(mobName.equals("richard trenton chase") || mobName.equals("richard chase") || mobName.equals("chase")){
+			infoArea = new JTextArea("\n\trichard trenton chase info");
+			//add images
+		}
+		else if(mobName.equals("henry lee lucus") || mobName.equals("henry lucus") ||mobName.equals("lucus")){
+			infoArea = new JTextArea("\n\thenry lee lucus info");
+			//add images
+		}
+		else if(mobName.equals("ed gein") || mobName.equals("gein") || mobName.equals("psycho")){
+			infoArea = new JTextArea("\n\ted gein info");
+			//add images
+		}
 		
 		infoArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		infoArea.setEditable(false);
