@@ -15,31 +15,69 @@ import javax.swing.JTextArea;
 
 public class MOBdescription extends JFrame{
 	
-	private BufferedImage image;
+	private BufferedImage backgroundImage;
+	private BufferedImage dahmerImage;
 	private JTextArea infoArea;
 	
 	public MOBdescription(String mobName){
 		
-		this.setTitle("Save Yo Ass Map");
+		this.setTitle("Save Yo Ass MOB Description");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		try 
 		{
-			image = ImageIO.read(new File("images/MAP.jpg"));
-			this.setContentPane(new JLabel(new ImageIcon(image)));
+			backgroundImage = ImageIO.read(new File("images/scary-wall.jpg"));
+			this.setContentPane(new JLabel(new ImageIcon(backgroundImage)));
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
 		
-		// has to be here before try catch block
-		this.setSize(image.getWidth(),image.getHeight());
+		this.setSize(backgroundImage.getWidth(),backgroundImage.getHeight());
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
+
 		
-//		infoArea = new JTextArea("");
+		if(mobName.equals("jeffery dahmer") || mobName.equals("dahmer")){
+			infoArea = new JTextArea("\n    jeffery dahmer info");
+		}
+		else if(mobName.equals("lawrence bittaker") || mobName.equals("roy norris") || mobName.equals("bittaker") || mobName.equals("norris") || mobName.equals("toolbox killers")){
+			infoArea = new JTextArea("\n    the toolbox killers info");
+			//add images
+		}
+		else if(mobName.equals("richard ramirez") || mobName.equals("ramirez")){
+			infoArea = new JTextArea("\n    richard ramirez info");
+			//add images
+		}
+		else if(mobName.equals("andre chikatilo") || mobName.equals("chikatilo") || mobName.equals("red ripper")){
+			infoArea = new JTextArea("\n\tandre chikatilo info");
+			//add images
+		}
+////		else if(mobName.equals("richard trenton chase")){
+////			
+////		}
+//		
+//		/*
+//		 * 
+//			case "richard trenton chase":
+//			case "chase":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "henry lee lucus":
+//			case "lucus":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "ed gein":
+//			case "gein":
+//			case "psycho":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			default:
+//				break;
+//		 */
+		
 		infoArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		infoArea.setEditable(false);
 		infoArea.setSize(277,420);
