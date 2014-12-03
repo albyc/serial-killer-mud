@@ -583,6 +583,6 @@ public class Client extends JFrame
 
 	public void tellMessage(String argument1, String argument2) 
 	{
-		
+		System.out.println("trying to tell " + argument1 + "message: " + argument2);
 	}
 }
