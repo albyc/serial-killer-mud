@@ -149,7 +149,7 @@ public class MOBdescription extends JFrame {
 			// add images
 		}
 		else
-			infoArea = new JTextArea("why you here dumbass");
+			infoArea = new JTextArea("why you here idiot");
 
 		infoArea.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		infoArea.setEditable(false);

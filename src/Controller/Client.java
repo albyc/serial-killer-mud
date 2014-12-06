@@ -47,8 +47,6 @@ public class Client extends JFrame
 	private Item[] items;
 	RoomCollection roomCollection = new RoomCollection();
 	ItemCollection itemCollection = new ItemCollection(items);
-//	MOBCollection mobCollection = new MOBCollection(roomCollection.getRooms());
-	
 			
 	public static void main (String []args)
 	{
@@ -159,7 +157,7 @@ public class Client extends JFrame
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
 				+ "\nDROP <item>: Removes the item from your backpack\nLOOK: provides a 360 description of your surroundings"
-				+ "\nLOOK <argument>: provides in depth description of the specified argument\nQUIT: quits the game and closes the window\n";
+				+ "\nLOOK <argument>: provides in depth description of specified argument\nQUIT: quits the game and closes the window\n";
 		commandMessages.add(listOfCommands);
 		mainView.updateCommands(commandMessages);
 	}
@@ -288,37 +286,37 @@ public class Client extends JFrame
 	 */
 	public void pickUp(String argument) 
 	{
-		Item item = itemCollection.getItemFromName(argument.toLowerCase());
-		
-		if (player.getItems() != null)
-		{
-			if (player.getItems().size() < 5)
-			{				
-				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
-				{
-					boolean inBackpack = false;
-					for(Item i : player.getItems())
-					{
-						if(i == item)
-						{
-							inBackpack = true;
-							break;
-						}
-					}
-					if(inBackpack == false){
-						player.pickUpItem(item);
-						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-						commandMessages.add(pickUp);
-						mainView.updateCommands(commandMessages);
-						if(item.getName().equals("water") || item.getName().equals("food"))
-						{
-							player.incrementHealth(5);//??? arg depend on how much boost
-//							incrementHealth();
-						}
-					}
-				}
-			}
-		}
+//		Item item = itemCollection.getItemFromName(argument.toLowerCase());
+//		
+//		if (player.getItems() != null)
+//		{
+//			if (player.getItems().size() < 5)
+//			{				
+//				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
+//				{
+//					boolean inBackpack = false;
+//					for(Item i : player.getItems())
+//					{
+//						if(i == item)
+//						{
+//							inBackpack = true;
+//							break;
+//						}
+//					}
+//					if(inBackpack == false){
+//						player.pickUpItem(item);
+//						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+//						commandMessages.add(pickUp);
+//						mainView.updateCommands(commandMessages);
+//						if(item.getName().equals("water") || item.getName().equals("food"))
+//						{
+//							player.incrementHealth(5);//??? arg depend on how much boost
+////							incrementHealth();
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 	
 //	public void incrementHealth()	//this should be in MOB and Player class. not here
@@ -340,7 +338,7 @@ public class Client extends JFrame
 		//could use as similar idea for adjacent rooms
 		String surroundings = "";
 		Room room = player.getLocation();
-		String name = room.getName();
+		String name = room.getRoomName();
 		switch(name){
 		case "The Lawn":
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
@@ -351,16 +349,16 @@ public class Client extends JFrame
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
-					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(1).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(1).getNamesOfMOBsInRoom()
 					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
 					+ "\nItems in Room: \n  Food\n  Water"
-					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
-					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(2).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(2).getNamesOfMOBsInRoom()
 					+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
 					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 			break;
@@ -475,7 +473,7 @@ public class Client extends JFrame
 			{
 				player.changeRoom(player.getLocation().getNorthRoom());
 
-				String movedTo = "You have moved north into " + player.getLocation().getName() + "\n"; 
+				String movedTo = "You have moved north into " + player.getLocation().getRoomName() + "\n"; 
 				commandMessages.add(movedTo);
 				mainView.updateCommands(commandMessages);
 			}
@@ -492,7 +490,7 @@ public class Client extends JFrame
 			{
 				player.changeRoom(player.getLocation().getSouthRoom());
 
-				String movedTo = "You have moved south into " + player.getLocation().getName() + "\n"; 
+				String movedTo = "You have moved south into " + player.getLocation().getRoomName() + "\n"; 
 				commandMessages.add(movedTo);
 				mainView.updateCommands(commandMessages);
 			}

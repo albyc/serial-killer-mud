@@ -3,6 +3,7 @@ package Rooms;
 import java.io.Serializable;
 import java.util.*;
 
+import Items.Item;
 import MOBs.*;
 import Players.*;
 
@@ -18,8 +19,8 @@ public abstract class Room implements Serializable
 	protected String description;
 	protected List<Player> players;
 	protected List<MOB> mobs;
+	protected List<Item> items;
 	private Room northRoom, southRoom, eastRoom, westRoom;
-	//protected RoomCollection roomCollection;
 	
 	public Room(String name, String description)
 	{
@@ -35,21 +36,31 @@ public abstract class Room implements Serializable
 		westRoom = null;
 	}
 	
-	public String getName() { return name; }
+	public String getRoomName() { return name; }
 	
-	public String getDescription() { return description; }
+	public String getRoomDescription() { return description; }
 	
 	public List<Player> getPlayers() { return players; }
 	
 	public List<MOB> getMOBs() { return mobs; }
 	
+	public List<Item> getItems() { return items; }
+	
+	
+	
 	public void addPlayer(Player aPlayer) { players.add(aPlayer); }
 	
 	public void removePlayer(Player player) { players.remove(player); }	
 	
-	public void addMOB(MOB anMOB) { mobs.addAll((Collection<? extends MOB>) anMOB); }
+	public void addMOB(MOB anMOB) { mobs.add(anMOB); }
 	
 	public void removeMOB(MOB anMOB) { mobs.remove(anMOB); }
+	
+	public void addItem(Item anItem) { items.add(anItem); }
+	
+	public void removeItem(Item anItem) { items.remove(anItem); }
+	
+	
 	
 	public void setNorthRoom(Room aRoom) { northRoom = aRoom; }
 	
@@ -67,6 +78,8 @@ public abstract class Room implements Serializable
 	
 	public Room getWestRoom() { return westRoom; }
 	
+	
+	
 	public String getNamesOfPlayersInRoom(){
 		String names = "";
 		for(Player p : players){
@@ -82,6 +95,16 @@ public abstract class Room implements Serializable
 		for(MOB m : mobs){
 			names += "\t";
 			names += m.getIdentity();
+			names += "\n";
+		}
+		return names;
+	}
+	
+	public String getStringOfItems(){
+		String names = "";
+		for(Item i : items){
+			names += "\t";
+			names += i.getName();
 			names += "\n";
 		}
 		return names;

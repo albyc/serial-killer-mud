@@ -15,17 +15,15 @@ import Players.*;
  */
 public class SerialKillerMud
 {
-	private RoomCollection rooms;
+	private RoomCollection roomCollection;
 	private transient List<Player> playersOnline;
-//	private MOBCollection mobs;
 	private transient List<Player> administrators;
 	
 	public SerialKillerMud()
 	{
-		rooms = new RoomCollection();
+		roomCollection = new RoomCollection();
 		playersOnline = new ArrayList<Player>();
 		administrators = new ArrayList<Player>();
-//		mobs = new MOBCollection(null); 		// note: trouble
 		addAdmins();
 	}
 
@@ -49,7 +47,7 @@ public class SerialKillerMud
 		
 		// Add the player to the rooms. Initially, every new player
 		// will start out in the same location. 
-		rooms.addPlayerToRooms(player);
+		roomCollection.addPlayerToRooms(player);
 	}
 	
 	public List<Player> getPlayersOnline()
@@ -61,4 +59,9 @@ public class SerialKillerMud
 	{
 		return administrators;
 	}
+	
+	public RoomCollection getRoomCollection(){
+		return roomCollection;
+	}
+	
 } // end of class SerialKillerMud
