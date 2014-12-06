@@ -374,7 +374,7 @@ public class Client extends JFrame
 	}
 
 	public void listSurroundings() 
-	{
+	{/*
 		//need to change how items are listed in case item picked up in one room but dropped in other room
 		//could use as similar idea for adjacent rooms
 		String surroundings = "";
@@ -411,7 +411,7 @@ public class Client extends JFrame
 			break;
 		}
 		commandMessages.add(surroundings);
-		mainView.updateCommands(commandMessages);
+		mainView.updateCommands(commandMessages); */
 	}
 
 	/**
