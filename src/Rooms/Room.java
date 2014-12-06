@@ -99,8 +99,8 @@ public abstract class Room implements Serializable
 		}
 		return names;
 	}
-	
-	public String getStringOfItems(){
+
+	public String getNamesOfItemsInRoom(){
 		String names = "";
 		for(Item i : items){
 			names += "\t";

@@ -20,6 +20,7 @@ public class MOBdescription extends JFrame {
 	private BufferedImage backgroundImage;
 	private JButton dahmerImage1, dahmerImage2, dahmerImage3, dahmerImage4;
 	private JButton ramirezImage1, ramirezImage2, ramirezImage3, ramirezImage4;
+	private JButton andreChikatilo1, andreChikatilo2, andreChikatilo3, andreChikatilo4;
 	private JTextArea infoArea;
 
 	public MOBdescription(String mobName) {
@@ -126,7 +127,40 @@ public class MOBdescription extends JFrame {
 		} else if (mobName.equals("andre chikatilo")
 				|| mobName.equals("chikatilo") || mobName.equals("red ripper")) {
 			infoArea = new JTextArea("\n andre chikatilo info\n\n a former school teacher.\n murdered more than 50 young people in the Soviet Union.");
-			// add images
+			//add images, later make so text showes when hovering over the images
+			ImageIcon iconOne = new ImageIcon("images/chikatilo.jpeg");
+			andreChikatilo1 = new JButton(iconOne);
+			andreChikatilo1.setContentAreaFilled(false);
+			andreChikatilo1.setBorderPainted(false);
+			andreChikatilo1.setLocation(50, 250);
+			andreChikatilo1.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			andreChikatilo2 = new JButton(iconOne);
+			andreChikatilo2.setContentAreaFilled(false);
+			andreChikatilo2.setBorderPainted(false);
+			andreChikatilo2.setLocation(250, 250);
+			andreChikatilo2.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			andreChikatilo3 = new JButton(iconOne);
+			andreChikatilo3.setContentAreaFilled(false);
+			andreChikatilo3.setBorderPainted(false);
+			andreChikatilo3.setLocation(450, 250);
+			andreChikatilo3.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			andreChikatilo4 = new JButton(iconOne);
+			andreChikatilo4.setContentAreaFilled(false);
+			andreChikatilo4.setBorderPainted(false);
+			andreChikatilo4.setLocation(650, 250);
+			andreChikatilo4.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			//dahmerImage.addMouseListener(new MouseMoved("espana"));
+			
+			this.add(andreChikatilo1);
+			this.add(andreChikatilo2);
+			this.add(andreChikatilo3);
+			this.add(andreChikatilo4);
 		} else if (mobName.equals("richard trenton chase")
 				|| mobName.equals("richard chase") || mobName.equals("chase")) {
 			infoArea = new JTextArea("\n richard trenton chase \"The Vampire of Sacramento\" info\n\n killed six people in a span of a month in Sacramento, California.\n he drank his victims' blood and cannibalized their remains.");

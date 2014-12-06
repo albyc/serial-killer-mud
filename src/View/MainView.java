@@ -13,7 +13,9 @@ import java.awt.event.*;
 
 import Commands.AddChatMessageCommand;
 import Commands.ForServerCommand;
+import Commands.ForServerW2ArgsCommand;
 import Commands.ForServerWArgsCommand;
+import Commands.TellMessageCommand;
 import Enums.Commands;
 import Model.*;
 
@@ -172,24 +174,145 @@ public class MainView extends JPanel
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
-			String s = textField.getText().toUpperCase();
+			/*String s = textField.getText().toUpperCase();
 
 			String command = new String();
 			String argument = new String();
+			String argument1 = new String();
+			String argument2 = new String();
+			int spaceCount = 0;
 			
-			if (s.indexOf(" ") > 0)
+			String[] split = s.split(" ", 2);
+			command = split[0];
+			
+			for(int i = 0; i < s.length(); i++)
+			{
+				if(s.charAt(i) == ' ')
+				{
+					spaceCount++;
+				}
+			}
+			
+			
+			
+			if (spaceCount == 1)
 			{
 				String[] splitS = s.split(" ", 2);
 				command = splitS[0];
 				argument = splitS[1];
 			}
 			
+			else if (spaceCount > 1 && !command.equalsIgnoreCase("OOC"))
+			{
+				String[] splitS = s.split(" ", 3);
+				command = splitS[0];
+				argument1 = splitS[1];
+				argument2 = splitS[2];
+				String sCopy = s;
+				int index = s.indexOf(" ");
+				command = s.substring(0, index);
+				sCopy = sCopy.substring(index + 1);
+				index = sCopy.indexOf(" ");
+				argument1 = sCopy.substring(0, index);
+				sCopy = sCopy.substring(index + 1);
+				argument2 = sCopy;
+				
+			}
+			else if(command.equalsIgnoreCase("OOC"))
+			{
+				argument1 = split[1];
+			}
+			
 			else
 			{
 				command = s;
+			}*/
+			
+			String s = textField.getText().toUpperCase();
+			
+			int spaceCount = 0;
+			
+			for(int i = 0; i < s.length(); i++)
+			{
+				if(s.charAt(i) == ' ')
+				{
+					spaceCount++;
+				}
+			}
+
+			String command = new String();
+			String argument = new String();
+			String argument2 = new String();
+			
+			String[] firstSplit = s.split(" ", 2);
+			command = firstSplit[0];
+			
+			
+			switch(command)
+			{
+			case "TELL":
+				String[] tellSplit = s.split(" ", 3);
+				argument = tellSplit[1];
+				argument2 = tellSplit[2];
+				break;
+			case "GET":
+				break;
+			case "GIVE":
+				break;
+			case "OOC":
+				break;
+			case "LOOK":
+				if(spaceCount == 0)
+					command = s;
+				else
+				{
+					String[] lookSplit = s.split(" ", 2);
+					argument = lookSplit[1];
+				}
+				break;
+			case "INVENTORY":
+				command = s;
+				break;
+			case "SCORE":
+				command = s;
+				break;
+			case "WHO":
+				command = s;
+				break;
+			case "SAY":
+				break;
+			case "COMMANDS":
+				command = s;
+				break;
+			case "USE":
+				break;
+			case "QUIT":
+				command = s;
+				break;
+			case "DROP":
+				break;
+			case "SHUTDOWN":
+				command = s;
+				break;
+			case "MOVE":
+				break;
+			
 			}
 			
+			/*if (s.indexOf(" ") > 0)
+			{
+				String[] splitS = s.split(" ", 2);
+				//command = splitS[0];
+				argument = splitS[1];
+			}
+			
+			else
+			{
+				command = s;
+			}*/
+			
 			Commands c = Commands.valueOf(command);
+			
 			
 			try
 			{
@@ -230,6 +353,8 @@ public class MainView extends JPanel
 					output.writeObject(new ForServerCommand(clientName, c));
 					}
 					break;
+				case TELL:
+					output.writeObject(new TellMessageCommand(clientName, argument, argument2, c));
 				default:
 					break;
 				}

@@ -208,30 +208,31 @@ public class Client extends JFrame
 	 */
 	public void dropItem(String argument) 
 	{
-		Item item = itemCollection.getItemFromName(argument.toLowerCase());
+		Item item;
+		if(argument.equalsIgnoreCase("nvg"))
+		{
+			item = itemCollection.getItemFromName("night vision goggles");
+			System.out.println("nvg thing");
+		}
+		else
+			item = itemCollection.getItemFromName(argument.toLowerCase());
 		if(player.getItems() != null){
 			for (Item i : player.getItems())
 			{
-				if(i.getName().equals(argument.toLowerCase()))
+				if(i.getName().equals(argument.toLowerCase()) || (i.getName().equals("night vision goggles") && argument.toLowerCase().equals("nvg")))
 				{
-					int index = 0;
-					switch(argument){
+					/*switch(argument){
 						case "water":
-							index = 0;
-							break;
+						break;
 						case "food":
-							index = 1;
-							break;
+						break;
 						case "knife":
-							index = 2;
-							break;
-						case "night vision goggles":
-							index = 3;
-							break;
+						break;
+						case "nvg":
+						break;
 						case "key":
-							index = 4;
-							break;
-					}
+						break;
+					}*/
 					player.dropItem(item);
 					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 					commandMessages.add(dropped);
@@ -317,6 +318,46 @@ public class Client extends JFrame
 //				}
 //			}
 //		}
+//		Item item;
+//		
+//		if(argument.equalsIgnoreCase("nvg"))
+//		{
+//			item = itemCollection.getItemFromName("night vision goggles");
+//		}
+//		else
+//		
+//			item = itemCollection.getItemFromName(argument.toLowerCase());
+//		
+//		
+//		if (player.getItems() != null)
+//		{
+//			if (player.getItems().size() < 5)
+//			{				
+//				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
+//				{
+//					boolean inBackpack = false;
+//					for(Item i : player.getItems())
+//					{
+//						if(i == item)
+//						{
+//							inBackpack = true;
+//							break;
+//						}
+//					}
+//					if(inBackpack == false){
+//						player.pickUpItem(item);
+//						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+//						commandMessages.add(pickUp);
+//						mainView.updateCommands(commandMessages);
+//						if(item.getName().equals("water") || item.getName().equals("food"))
+//						{
+//							player.incrementHealth(5);//??? arg depend on how much boost
+////							incrementHealth();
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 	
 //	public void incrementHealth()	//this should be in MOB and Player class. not here
@@ -344,7 +385,7 @@ public class Client extends JFrame
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
-					+ "\nItems in Room: Key"
+					+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom() //Key"
 					+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
 			break;
 		case "Wisconsin Farmhouse of Horrors":
@@ -352,6 +393,9 @@ public class Client extends JFrame
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(1).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(1).getNamesOfMOBsInRoom()
 					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles\n"
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
+					+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom()//\n  Knife\n  Night Vision Goggles\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
@@ -359,6 +403,9 @@ public class Client extends JFrame
 					+ "\nItems in Room: \n  Food\n  Water"
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(2).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(2).getNamesOfMOBsInRoom()
+					+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom()//\n  Food\n  Water"
+					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
+					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
 					+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
 					+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 			break;
@@ -388,16 +435,13 @@ public class Client extends JFrame
 				surroundings += "KEY:\nThe key locan be used to unlock doors.\n\n";
 				break;
 			case "night vision goggles":
-				surroundings += "NIGHT VISION GOGGLES:\nThe night vision goggles allow you to see in dark places.\n\n";
+				surroundings += "NIGHT VISION GOGGLES (NVG):\nThe night vision goggles allow you to see in dark places.\n\n";
 				break;
 			case "lawn":
 				surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
 						+ "\nItems in Room:\n" // + Key\n"
 						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
 				break;
-				
-				
-				
 			case "murder castle":
 				surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
 						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
@@ -579,6 +623,8 @@ public class Client extends JFrame
 		this.setVisible(true);
 	}  // end of method setupGUI
 
-	public void tellMessage(String argument1, String argument2) {
+	public void tellMessage(String argument1, String argument2) 
+	{
+		System.out.println("trying to tell " + argument1 + "message: " + argument2);
 	}
 }
