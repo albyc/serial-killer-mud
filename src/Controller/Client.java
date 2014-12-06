@@ -356,19 +356,19 @@ public class Client extends JFrame
 			surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
-					+ "\nItems in Room: Key"
+					+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom() //Key"
 					+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
 			break;
 		case "Wisconsin Farmhouse of Horrors":
 			surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
-					+ "\nItems in Room: \n  Knife\n  Night Vision Goggles (NVG)\n"
+					+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom()//\n  Knife\n  Night Vision Goggles\n"
 					+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 			break;
 		case "Murder Castle":
 			surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-					+ "\nItems in Room: \n  Food\n  Water"
+					+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom()//\n  Food\n  Water"
 					+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
 					+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
 					+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
@@ -407,9 +407,6 @@ public class Client extends JFrame
 						+ "\nItems in Room:\n" // + Key\n"
 						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
 				break;
-				
-				
-				
 			case "murder castle":
 				surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
 						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"

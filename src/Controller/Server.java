@@ -282,4 +282,35 @@ public class Server
 			e.printStackTrace();
 		}		
 	}
+
+	public void addTellMessage(String messageSender, String messageReceiver, String message) 
+	{
+		if(outputs.containsKey(messageReceiver))
+		{
+			System.out.println("messageReceiver is here");
+		}
+		
+		String completeMessage = messageSender + " to " + messageReceiver + ": " + message;
+		
+		chatMessages.add(completeMessage);
+		UpdateClient(messageReceiver);
+	}
+
+	private void UpdateClient(String messageReceiver) 
+	{
+		UpdateClientsCommand update = new UpdateClientsCommand(chatMessages);
+		
+		try
+		{
+			for(ObjectOutputStream out : outputs.values())
+			{
+				out.writeObject(update);
+				System.out.print(out.toString());
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 } // end of class Server
