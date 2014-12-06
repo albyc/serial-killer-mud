@@ -256,10 +256,21 @@ public class MainView extends JPanel
 				argument2 = tellSplit[2];
 				break;
 			case "GET":
+				
+				//need 2 args version
+				
+				String[] getSplit = s.split(" ", 2);
+				argument = getSplit[1];
 				break;
 			case "GIVE":
+				String[] giveSplit = s.split(" ", 3);
+				argument = giveSplit[1];
+				argument2 = giveSplit[2];
+				
 				break;
 			case "OOC":
+				String[] oocSplit = s.split(" ", 2);
+				argument = oocSplit[1];
 				break;
 			case "LOOK":
 				if(spaceCount == 0)
@@ -287,14 +298,18 @@ public class MainView extends JPanel
 			case "USE":
 				break;
 			case "QUIT":
-				command = s;
+				//command = s;
 				break;
 			case "DROP":
+				String[] dropSplit = s.split(" ", 2);
+				argument = dropSplit[1];
 				break;
 			case "SHUTDOWN":
-				command = s;
+				//command = s;
 				break;
 			case "MOVE":
+				String[] moveSplit = s.split(" ", 2);
+				argument = moveSplit[1];
 				break;
 			
 			}
