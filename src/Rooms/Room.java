@@ -3,6 +3,7 @@ package Rooms;
 import java.io.Serializable;
 import java.util.*;
 
+import Items.Item;
 import MOBs.*;
 import Players.*;
 
@@ -18,6 +19,7 @@ public abstract class Room implements Serializable
 	protected String description;
 	protected List<Player> players;
 	protected List<MOB> mobs;
+	protected List<Item> items;
 	private Room northRoom, southRoom, eastRoom, westRoom;
 	//protected RoomCollection roomCollection;
 	
@@ -67,6 +69,12 @@ public abstract class Room implements Serializable
 	
 	public Room getWestRoom() { return westRoom; }
 	
+	public void addItemToRoom(Item item){ items.add(item); }
+	
+	public void removeItemFromRoom(Item item){ items.remove(item); }
+	
+	public List<Item> getItems() { return items; }
+	
 	public String getNamesOfPlayersInRoom(){
 		String names = "";
 		for(Player p : players){
@@ -82,6 +90,16 @@ public abstract class Room implements Serializable
 		for(MOB m : mobs){
 			names += "\t";
 			names += m.getIdentity();
+			names += "\n";
+		}
+		return names;
+	}
+	
+	public String getNamesOfItemsInRoom(){
+		String names = "";
+		for(Item i : items){
+			names += "\t";
+			names += i.getName();
 			names += "\n";
 		}
 		return names;
