@@ -48,8 +48,6 @@ public class Player implements Serializable
     	//erase self from room and add self to new room
         currentLocation = room;
     }
-
-    // public String getPassword() { return password; }
     
     public Room getLocation() { return currentLocation; }
     
@@ -75,10 +73,13 @@ public class Player implements Serializable
      * 
      * @param newItem
      */
-    public void pickUpItem(Item newItem)
+    public boolean pickUpItem(Item newItem)
     {
-    	if(backpack.size() > MAX_ITEMS)
+    	if(backpack.size() > MAX_ITEMS){
     		backpack.add(newItem);
+    		return true;
+    	}
+    	return false;
     }
     
     /**
@@ -132,12 +133,12 @@ public class Player implements Serializable
          
     }
     
-    public void setBackpack(List<Item> list)
-    {
-    	backpack = list;
-    }
+//    public void setBackpack(List<Item> list)
+//    {
+//    	backpack = list;
+//    }
 
-	public void setHealth(int health) {
-		this.health = health;
-	}
+//	public void setHealth(int health) {
+//		this.health = health;
+//	}
 }//end of class Player

@@ -22,4 +22,10 @@ public class FightingItem extends Item
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean isEnergyBoost() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

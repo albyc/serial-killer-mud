@@ -277,79 +277,64 @@ public class Client extends JFrame
 	 * allows the player to pick up the specified item
 	 * @param argument - the string name of the item
 	 */
-	public void pickUp(String argument) 
+	public void pickUp(String argument) //not working dammit
 	{
-//		Item item = itemCollection.getItemFromName(argument.toLowerCase());
-//		
-//		if (player.getItems() != null)
-//		{
-//			if (player.getItems().size() < 5)
-//			{				
-//				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
-//				{
-//					boolean inBackpack = false;
-//					for(Item i : player.getItems())
-//					{
-//						if(i == item)
-//						{
-//							inBackpack = true;
-//							break;
-//						}
-//					}
-//					if(inBackpack == false){
-//						player.pickUpItem(item);
-//						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-//						commandMessages.add(pickUp);
-//						mainView.updateCommands(commandMessages);
-//						if(item.getName().equals("water") || item.getName().equals("food"))
-//						{
-//							player.incrementHealth(5);//??? arg depend on how much boost
-////							incrementHealth();
-//						}
-//					}
-//				}
-//			}
-//		}
-//		Item item;
-//		
-//		if(argument.equalsIgnoreCase("nvg"))
-//		{
-//			item = itemCollection.getItemFromName("night vision goggles");
-//		}
-//		else
-//		
-//			item = itemCollection.getItemFromName(argument.toLowerCase());
-//		
-//		
-//		if (player.getItems() != null)
-//		{
-//			if (player.getItems().size() < 5)
-//			{				
-//				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
-//				{
-//					boolean inBackpack = false;
-//					for(Item i : player.getItems())
-//					{
-//						if(i == item)
-//						{
-//							inBackpack = true;
-//							break;
-//						}
-//					}
-//					if(inBackpack == false){
-//						player.pickUpItem(item);
-//						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-//						commandMessages.add(pickUp);
-//						mainView.updateCommands(commandMessages);
-//						if(item.getName().equals("water") || item.getName().equals("food"))
-//						{
-//							player.incrementHealth(5);//??? arg depend on how much boost
-////							incrementHealth();
-//						}
-//					}
-//				}
-//			}
-//		}
+		Item item;
+		if(argument.equalsIgnoreCase("nvg"))
+			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
+		else
+			item = roomCollection.getItemCollection().getItemFromName(argument.toLowerCase());
+		
+		if(player.getLocation().hasItem(item)){
+			if(player.pickUpItem(item)){
+			player.getLocation().removeItem(item);
+			String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+			commandMessages.add(pickUp);
+			mainView.updateCommands(commandMessages);
+			}
+			else{
+				String pickUp = "Backpack is full.\n";
+				commandMessages.add(pickUp);
+				mainView.updateCommands(commandMessages);
+			}
+		}
+		
+/*	
+		if (player.getItems() != null)
+		{
+			if (player.getItems().size() < 5)
+			{				
+				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
+				{
+					boolean inBackpack = false;
+					for(Item i : player.getItems())
+					{
+						if(i == item)
+						{
+							inBackpack = true;
+							break;
+						}
+					}
+					if(inBackpack == false){
+						player.pickUpItem(item);
+						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+						commandMessages.add(pickUp);
+						mainView.updateCommands(commandMessages);
+						if(item.getName().equals("water") || item.getName().equals("food"))
+						{
+							player.incrementHealth(5);//??? arg depend on how much boost
+//							incrementHealth();
+						}
+					}
+				}
+			}
+		}
+
+		if(argument.equalsIgnoreCase("nvg"))
+			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
+		else
+			item = itemCollection.getItemFromName(argument.toLowerCase());
+*/
 	}
 
 	
@@ -366,23 +351,23 @@ public class Client extends JFrame
 		switch(name){
 			case "The Lawn":
 				surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
-//						+ "\nPlayers in Room: " + roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
-//						+ "\nMOB's in Room: " + roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
-//						+ "\nItems in Room: " + roomCollection.getRoomAt(0).getNamesOfItemsInRoom()
+						+ "\nPlayers in Room: " //+ roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
+						+ "\nMOB's in Room: " //+ roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
+						+ "\nItems in Room: " //+ roomCollection.getRoomAt(0).getNamesOfItemsInRoom()
 						+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
 				break;
 			case "Wisconsin Farmhouse of Horrors":
 				surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-//						+ "\nPlayers in Room: " + roomCollection.getRoomAt(1).getNamesOfPlayersInRoom()
-//						+ "\nMOBs in Room: " + roomCollection.getRoomAt(1).getNamesOfMOBsInRoom()
-//						+ "\nItems in Room: " + roomCollection.getRoomAt(1).getNamesOfItemsInRoom()
+						+ "\nPlayers in Room: //" + roomCollection.getRoomAt(1).getNamesOfPlayersInRoom()
+						+ "\nMOBs in Room: " //+ roomCollection.getRoomAt(1).getNamesOfMOBsInRoom()
+						+ "\nItems in Room: " //+ roomCollection.getRoomAt(1).getNamesOfItemsInRoom()
 						+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
 				break;
 			case "Murder Castle":
 				surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-//						+ "\nPlayers in Room: " + roomCollection.getRoomAt(2).getNamesOfPlayersInRoom()
-//						+ "\nMOB's in Room: " + roomCollection.getRoomAt(2).getNamesOfMOBsInRoom()
-//						+ "\nItems in Room: " + roomCollection.getRoomAt(2).getNamesOfItemsInRoom()
+						+ "\nPlayers in Room: "// + roomCollection.getRoomAt(2).getNamesOfPlayersInRoom()
+						+ "\nMOB's in Room: " //+ roomCollection.getRoomAt(2).getNamesOfMOBsInRoom()
+						+ "\nItems in Room: " //+ roomCollection.getRoomAt(2).getNamesOfItemsInRoom()
 						+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
 						+ "  Wisconsin Farmhouse of Horrors - to the north\n";
 				break;

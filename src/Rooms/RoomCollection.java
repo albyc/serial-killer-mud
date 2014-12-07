@@ -267,9 +267,6 @@ public class RoomCollection
 	}
 	
 	
-	
-	
-
 	public Room getRoomAt(int index)
 	{
 		return rooms.get(index);

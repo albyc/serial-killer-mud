@@ -79,6 +79,12 @@ public abstract class Room implements Serializable
 	public Room getWestRoom() { return westRoom; }
 	
 	
+	public boolean hasItem(Item i){
+		if(items.contains(i))
+			return true;
+		return false;
+	}
+	
 	
 	public String getNamesOfPlayersInRoom(){
 		String names = "";

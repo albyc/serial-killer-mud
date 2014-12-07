@@ -17,4 +17,9 @@ public class EnergyBoostItem extends Item
 	{
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public boolean isEnergyBoost() {
+		return true;
+	}
 }

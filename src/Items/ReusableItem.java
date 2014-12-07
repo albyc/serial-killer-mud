@@ -27,4 +27,10 @@ public class ReusableItem extends Item
 	{
 		this.isUsedUp = isUsedUp;
 	}
+
+	@Override
+	public boolean isEnergyBoost() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

@@ -49,19 +49,21 @@ public abstract class Item implements Serializable
 	/**
 	 * Hides item from players.
 	 */
-	public void hide()
-	{
-		isVisible = false;
-	}
+//	public void hide()
+//	{
+//		isVisible = false;
+//	}
+	
+	public abstract boolean isEnergyBoost();
 	
 	/**
 	 * Allows players to see the item. 
 	 */
-	public void reveal()
-	{
-		isVisible = true;
-	}
-	
+//	public void reveal()
+//	{
+//		isVisible = true;
+//	}
+//	
 	public abstract void use();
 	
 /*	public Room getLocation()
@@ -74,31 +76,31 @@ public abstract class Item implements Serializable
 		currentLocation = room;
 	}*/
 	
-	public boolean getIsVisible()
-	{
-		return isVisible;
-	}
-	public boolean getIsPickedUp()
-	{
-		return isPickedUp;
-	}
-	
-	public void setIsPickedUp(boolean isPickedUp)
-	{
-		this.isPickedUp = isPickedUp;
-	}
+//	public boolean getIsVisible()
+//	{
+//		return isVisible;
+//	}
+//	public boolean getIsPickedUp()
+//	{
+//		return isPickedUp;
+//	}
+//	
+//	public void setIsPickedUp(boolean isPickedUp)
+//	{
+//		this.isPickedUp = isPickedUp;
+//	}
 	
 	public String getName(){
 		return name;
 	}
 	
-	public String toString()
-	{
-		String toReturn = "";
-		toReturn += name;
-		return toReturn;
-				
-	}
+//	public String toString()
+//	{
+//		String toReturn = "";
+//		toReturn += name;
+//		return toReturn;
+//				
+//	}
 	
 	
 		
