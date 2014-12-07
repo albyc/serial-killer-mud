@@ -38,37 +38,38 @@ public class RoomCollection
 	
 	private void addDefaultRooms()
 	{
+		//dont have to make all these lists, add items to rooms by saying room.addItem(anItem);
 		// Initializing lists for items in all 30 rooms
-		List<Item> itemsInLawn = new ArrayList<Item>();
-		List<Item> itemsInMurderCastle = new ArrayList<Item>();
-		List<Item> itemsInFarmhouse = new ArrayList<Item>();
-		List<Item> itemsInBasement = new ArrayList<Item>();
-		List<Item> itemsInSecret = new ArrayList<Item>();
-		List<Item> itemsInWoods = new ArrayList<Item>();
-		List<Item> itemsInFactory = new ArrayList<Item>();
-		List<Item> itemsInHospital = new ArrayList<Item>();
-		List<Item> itemsInPool = new ArrayList<Item>();
-		List<Item> itemsInKitchen = new ArrayList<Item>();
-		List<Item> itemsInAttic = new ArrayList<Item>();
-		List<Item> itemsInJail = new ArrayList<Item>();
-		List<Item> itemsInPoliceStation= new ArrayList<Item>();
-		List<Item> itemsInGasStation = new ArrayList<Item>();
-		List<Item> itemsInBedroom= new ArrayList<Item>();
-		List<Item> itemsInCemetery = new ArrayList<Item>();
-		List<Item> itemsInBank = new ArrayList<Item>();
-		List<Item> itemsInCasino = new ArrayList<Item>();
-		List<Item> itemsInAdventureLand= new ArrayList<Item>();
-		List<Item> itemsInDarkAlley = new ArrayList<Item>();
-		List<Item> itemsInSpain= new ArrayList<Item>();
-		List<Item> itemsInParis = new ArrayList<Item>();
-		List<Item> itemsInDubai = new ArrayList<Item>();
-		List<Item> itemsInAirport = new ArrayList<Item>();
-		List<Item> itemsInTheStreets = new ArrayList<Item>();
-		List<Item> itemsInSubway = new ArrayList<Item>();
-		List<Item> itemsInDinner = new ArrayList<Item>();
-		List<Item> itemsInDoomsville = new ArrayList<Item>();
-		List<Item> itemsInMotel = new ArrayList<Item>();
-		List<Item> itemsInDesert = new ArrayList<Item>();
+//		List<Item> itemsInLawn = new ArrayList<Item>();
+//		List<Item> itemsInMurderCastle = new ArrayList<Item>();
+//		List<Item> itemsInFarmhouse = new ArrayList<Item>();
+//		List<Item> itemsInBasement = new ArrayList<Item>();
+//		List<Item> itemsInSecret = new ArrayList<Item>();
+//		List<Item> itemsInWoods = new ArrayList<Item>();
+//		List<Item> itemsInFactory = new ArrayList<Item>();
+//		List<Item> itemsInHospital = new ArrayList<Item>();
+//		List<Item> itemsInPool = new ArrayList<Item>();
+//		List<Item> itemsInKitchen = new ArrayList<Item>();
+//		List<Item> itemsInAttic = new ArrayList<Item>();
+//		List<Item> itemsInJail = new ArrayList<Item>();
+//		List<Item> itemsInPoliceStation= new ArrayList<Item>();
+//		List<Item> itemsInGasStation = new ArrayList<Item>();
+//		List<Item> itemsInBedroom= new ArrayList<Item>();
+//		List<Item> itemsInCemetery = new ArrayList<Item>();
+//		List<Item> itemsInBank = new ArrayList<Item>();
+//		List<Item> itemsInCasino = new ArrayList<Item>();
+//		List<Item> itemsInAdventureLand= new ArrayList<Item>();
+//		List<Item> itemsInDarkAlley = new ArrayList<Item>();
+//		List<Item> itemsInSpain= new ArrayList<Item>();
+//		List<Item> itemsInParis = new ArrayList<Item>();
+//		List<Item> itemsInDubai = new ArrayList<Item>();
+//		List<Item> itemsInAirport = new ArrayList<Item>();
+//		List<Item> itemsInTheStreets = new ArrayList<Item>();
+//		List<Item> itemsInSubway = new ArrayList<Item>();
+//		List<Item> itemsInDinner = new ArrayList<Item>();
+//		List<Item> itemsInDoomsville = new ArrayList<Item>();
+//		List<Item> itemsInMotel = new ArrayList<Item>();
+//		List<Item> itemsInDesert = new ArrayList<Item>();
 		
 
 		
@@ -109,7 +110,7 @@ public class RoomCollection
 		//placing adjacent rooms/constructing room layout for game and placing items in rooms
 		//1
 		lawn.setNorthRoom(murderCastle);
-		itemsInLawn.add(itemCollection.getItem(4));
+//		itemsInLawn.add(itemCollection.getItem(4));
 		//2
 		secret.setNorthRoom(factory);
 		//3
@@ -124,12 +125,12 @@ public class RoomCollection
 		murderCastle.setEastRoom(farmhouse);
 		murderCastle.setSouthRoom(lawn);
 		murderCastle.setWestRoom(basement);
-		itemsInMurderCastle.add(itemCollection.getItem(0));
-		itemsInMurderCastle.add(itemCollection.getItem(1));
+//		itemsInMurderCastle.add(itemCollection.getItem(0));
+//		itemsInMurderCastle.add(itemCollection.getItem(1));
 		//6
 		farmhouse.setSouthRoom(murderCastle);
-		itemsInFarmhouse.add(itemCollection.getItem(2));
-		itemsInFarmhouse.add(itemCollection.getItem(3));
+//		itemsInFarmhouse.add(itemCollection.getItem(2));
+//		itemsInFarmhouse.add(itemCollection.getItem(3));
 		//7
 		factory.setSouthRoom(secret);
 		factory.setEastRoom(motel);
@@ -270,6 +271,14 @@ public class RoomCollection
 	public Room getRoomAt(int index)
 	{
 		return rooms.get(index);
+	}
+	
+	public Room getRoomByName(String name){
+		for(Room room : rooms){
+			if(room.getRoomName().equals(name))
+				return room;
+		}
+		return null;
 	}
 	
 	public void addNewPlayerToRooms(Player player)
