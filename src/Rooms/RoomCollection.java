@@ -76,11 +76,6 @@ public class RoomCollection
 	
 	
 	
-	
-	
-	public List<Room> getRooms(){
-		return rooms;
-	}
 
 	public Room getRoomAt(int index)
 	{
