@@ -9,6 +9,7 @@ import Commands.DisconnectCommand;
 import Commands.UpdateAClientCommand;
 import Commands.UpdateAClientW2ArgsCommand;
 import Commands.UpdateAClientWArgsCommand;
+import Commands.UpdateClientCommand;
 import Commands.UpdateClientsCommand;
 import Commands.WhoCommand;
 import Enums.Administrators;
@@ -293,20 +294,30 @@ public class Server
 		String completeMessage = messageSender + " to " + messageReceiver + ": " + message;
 		
 		chatMessages.add(completeMessage);
-		UpdateClient(messageReceiver);
+		UpdateClient(messageReceiver, messageSender);
 	}
 
-	private void UpdateClient(String messageReceiver) 
+	private void UpdateClient(String messageReceiver, String messageSender) 
 	{
-		UpdateClientsCommand update = new UpdateClientsCommand(chatMessages);
+		UpdateClientCommand update = new UpdateClientCommand(chatMessages, messageReceiver, messageSender);
 		
 		try
 		{
-			for(ObjectOutputStream out : outputs.values())
+			for(String clientName: outputs.keySet()){
+				System.out.println(clientName);
+				if (clientName.equalsIgnoreCase(messageReceiver) || clientName.equalsIgnoreCase(messageSender)){
+					outputs.get(clientName).writeObject(update);
+					
+					/*for(ObjectOutputStream out: outputs.values()){
+						if (outputs.get(clientName))
+					}*/
+				}
+			}
+			/*for(ObjectOutputStream out : outputs.values())
 			{
 				out.writeObject(update);
 				System.out.print(out.toString());
-			}
+			}*/
 		}
 		catch(Exception e)
 		{

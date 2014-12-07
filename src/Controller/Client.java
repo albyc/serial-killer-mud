@@ -604,4 +604,11 @@ public class Client extends JFrame
 	{
 		System.out.println("trying to tell " + argument1 + "message: " + argument2);
 	}
+
+	public void updateOne(List<String> messages, String receiver, String sender) {
+		if(player.getUsername().equalsIgnoreCase(receiver))
+		{
+			mainView.updateOne(messages, receiver, sender);
+		}
+	}
 }
