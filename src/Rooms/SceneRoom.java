@@ -14,8 +14,8 @@ import Players.Player;
 public class SceneRoom extends Room 
 {
 	private static final long serialVersionUID = 2209867918182281481L;
-	private List<Item> items; // list of items in the room
-	private List<SceneRoom> references; // list of references?
+//	private List<Item> items; // list of items in the room
+//	private List<SceneRoom> references; // list of references?
 	
 	
 	/**
@@ -28,37 +28,12 @@ public class SceneRoom extends Room
 	 * @param mobs
 	 * @param refs
 	 */
-	public SceneRoom(String name, String description, List<Item> items)
+	public SceneRoom(String name, String description)
 	{
 		super(name, description);
 		
-		this.items = items;
+//		this.items = items;
 	} // end of constructor Room
-	
-	/**
-	 * 
-	 * @param room
-	 */
-	//do we really want this? or should we keep our room collection constant?
-	public void setNextRoom(SceneRoom room, String direction)
-	{
-		//roomCollection.getRoomRow(room);
-		//roomCollection.getRoomCol(room);
-		//roomCollection.getRoomHeight(room);
-		
-		if(direction.equals("up"))
-		{
-			
-		}
-	}
-	
-	/**
-	 * 
-	 * @param player
-	 */
-	
-		
-	
 	
 	
 }

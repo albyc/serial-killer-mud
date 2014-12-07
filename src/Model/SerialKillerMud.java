@@ -47,7 +47,7 @@ public class SerialKillerMud
 		
 		// Add the player to the rooms. Initially, every new player
 		// will start out in the same location. 
-		roomCollection.addPlayerToRooms(player);
+		roomCollection.addNewPlayerToRooms(player);
 	}
 	
 	public List<Player> getPlayersOnline()
