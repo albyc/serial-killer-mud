@@ -16,13 +16,10 @@ import Players.*;
 public class RoomCollection 
 {
 	private List<Room> rooms;
-	
 
-	
 	private MOBCollection mobCollection;
 	private ItemCollection itemCollection;
-	
-	
+		
 	private Room entrance;
 	private Room lawn;
 	private Room murderCastle;
@@ -71,6 +68,10 @@ public class RoomCollection
 	
 	public void setMOBsInRooms(){
 		
+	}
+	
+	public ItemCollection getItemCollection(){
+		return itemCollection;
 	}
 	
 	

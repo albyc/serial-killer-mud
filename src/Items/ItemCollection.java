@@ -31,19 +31,18 @@ public class ItemCollection
 	
 	public Item getItem(int index){
 		switch(index){
-		case 0:
-			return water;
-		case 1:
-			return food;
-		case 2:
-			return knife;
-		case 3:
-			return nightVisionGoggles;
-		case 4:
-			return key;
-		default:
-			return null;
-		
+			case 0:
+				return water;
+			case 1:
+				return food;
+			case 2:
+				return knife;
+			case 3:
+				return nightVisionGoggles;
+			case 4:
+				return key;
+			default:
+				return null;
 		}
 	}
 	
@@ -59,32 +58,11 @@ public class ItemCollection
 //		pickedUp[index] = set;
 //	}
 	
-//	public void removeItem(Item item)
-//	{
-//		for (int i = 0; i < items.length; i++){
-//			if( items[i] == item)
-//			{
-//				items[i] = null;
-//			}
-//		}
-//	}
-//	
-//	public void addItem(Item item)
-//	{
-//		for (int i = 0; i < items.length; i++)
-//		{
-//			if (items[i] == null)
-//			{ 
-//				items[i] = item;
-//			}
-//		}
-//	}
-	
-//	public Item getItemFromName(String name){
-//		for(int i = 0; i < items.length; i++){
-//			if(items[i].getName().equals(name)){
-//				return items[i];
-//			}
-//		}}
-
+	public Item getItemFromName(String name){
+		for(Item i : items){
+			if(i.getName().equals(name))
+				return i;
+		}
+		return null;
+	}
 }
