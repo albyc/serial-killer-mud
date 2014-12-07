@@ -24,7 +24,6 @@ public class RoomCollection
 	
 	
 	private Room entrance;
-	private Item[] items;
 	private Room lawn;
 	private Room murderCastle;
 	private Room farmhouse;
@@ -32,14 +31,12 @@ public class RoomCollection
 	public RoomCollection()
 	{
 		rooms = new ArrayList<Room>();
-		itemCollection = new ItemCollection(items);
+		itemCollection = new ItemCollection();
 		mobCollection = new MOBCollection();
 		
-		
-		
-
-		
 		addDefaultRooms();
+		setItemsInRooms();
+		setMOBsInRooms();
 	} 
 	
 	private void addDefaultRooms()
@@ -53,9 +50,9 @@ public class RoomCollection
 		itemsInFarmhouse.add(itemCollection.getItem(3));
 		itemsInLawn.add(itemCollection.getItem(4));
 		
-		murderCastle = new SceneRoom("Murder Castle", "601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long.", itemsInMurderCastle);
-		farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "Average farmhouse, nothing in particular", itemsInFarmhouse);
-		lawn = new SceneRoom("The Lawn", "small area of dead grass", itemsInLawn);
+		murderCastle = new SceneRoom("Murder Castle", "601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long.");
+		farmhouse = new SceneRoom("Wisconsin Farmhouse of Horrors", "Average farmhouse, nothing in particular");
+		lawn = new SceneRoom("The Lawn", "small area of dead grass");
 		entrance = lawn;
 		
 		lawn.setNorthRoom(murderCastle);
@@ -68,6 +65,19 @@ public class RoomCollection
 		rooms.add(lawn);
 	}
 	
+	public void setItemsInRooms(){
+		
+	}
+	
+	public void setMOBsInRooms(){
+		
+	}
+	
+	
+	
+	
+	
+	
 	public List<Room> getRooms(){
 		return rooms;
 	}
@@ -77,7 +87,7 @@ public class RoomCollection
 		return rooms.get(index);
 	}
 	
-	public void addPlayerToRooms(Player player)
+	public void addNewPlayerToRooms(Player player)
 	{
 		entrance.addPlayer(player);
 		

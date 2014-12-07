@@ -44,9 +44,8 @@ public class Client extends JFrame
 	// These instance variables shouldn't be in Client, they should
 	// be passed from Server to client, and to the Server from the 
 	// SerialKillerMud
-	private Item[] items;
 	RoomCollection roomCollection = new RoomCollection();
-	ItemCollection itemCollection = new ItemCollection(items);
+	ItemCollection itemCollection = new ItemCollection();
 			
 	public static void main (String []args)
 	{
@@ -168,17 +167,10 @@ public class Client extends JFrame
 	 */
 	public void listWho(List<Player> players) 
 	{
-		//doesn't work yet. if 2nd client is added, in the 1st client's view, only the 1st client player exists. :(
-		
 		String listOfPlayers = "Here are the players currently online: \n";
 		int count = 0;
 		for(Player p : players)
-		{
-//			count++;
-//			if(count >4)
-				listOfPlayers += p.getUsername() + '\n';
-
-		}
+			listOfPlayers += p.getUsername() + '\n';
 	
 		commandMessages.add(listOfPlayers);
 		mainView.updateCommands(commandMessages);	
@@ -207,7 +199,7 @@ public class Client extends JFrame
 	 * @param argument - the string name of the item to be dropped
 	 */
 	public void dropItem(String argument) 
-	{
+	{/*
 		Item item;
 		if(argument.equalsIgnoreCase("nvg"))
 		{
@@ -232,7 +224,7 @@ public class Client extends JFrame
 						break;
 						case "key":
 						break;
-					}*/
+					}
 					player.dropItem(item);
 					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 					commandMessages.add(dropped);
@@ -241,7 +233,7 @@ public class Client extends JFrame
 					break;
 				}
 			}
-		}
+		}*/
 		
 	}
 
@@ -561,7 +553,7 @@ public class Client extends JFrame
 	public void setPlayer(Player player)
 	{
 		this.player = player;
-		roomCollection.addPlayerToRooms(player);
+		roomCollection.addNewPlayerToRooms(player);
 	}
 
 	/**
