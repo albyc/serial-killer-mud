@@ -408,6 +408,7 @@ public class MainView extends JPanel
 		repaint();
 	} // end of method update
 	
+	
 	public void updateCommands(List<String> commandMessages)
 	{
 		String command = "";
@@ -419,4 +420,16 @@ public class MainView extends JPanel
 		
 		repaint();
 	} // end of method updateCommands
+
+	
+
+	public void updateOne(List<String> messages, String receiver, String sender) {
+		String allMessages = "";
+		for (String message : messages){
+			allMessages += message + "\n";
+		}
+		chatArea.setText(allMessages);
+		repaint();
+			
+	}
 } // end of class MainPanel
