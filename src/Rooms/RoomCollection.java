@@ -100,7 +100,7 @@ public class RoomCollection
 		dubai = new SceneRoom("Dubai", "Under Construction");
 		paris = new SceneRoom("Paris", "Under Construction");
 		airport = new SceneRoom("International Airport", "Under Construction");
-		theStreets = new SceneRoom("the Streets of Detroit", "Under Construction");
+		theStreets = new SceneRoom("The Streets of Detroit", "Under Construction");
 		subway = new SceneRoom("Chamber Station", "Subway station");
 		dinner = new SceneRoom("Late Night Dinner", "Under Construction");
 		doomsville = new SceneRoom("Dooms Ville", "Under Construction");
