@@ -16,13 +16,10 @@ import Players.*;
 public class RoomCollection 
 {
 	private List<Room> rooms;
-	
 
-	
 	private MOBCollection mobCollection;
 	private ItemCollection itemCollection;
-	
-	
+		
 	private Room entrance;
 	private Room lawn, murderCastle, farmhouse, basement, secret, woods, factory, hospital, pool, kitchen;
 	private Room attic, jail, policeStation, gasStation, bedroom, cemetery, bank, casino, adventureLand, darkAlley; 
@@ -265,14 +262,13 @@ public class RoomCollection
 		
 	}
 	
-	
-	
-	
-	
-	
-	public List<Room> getRooms(){
-		return rooms;
+	public ItemCollection getItemCollection(){
+		return itemCollection;
 	}
+	
+	
+	
+	
 
 	public Room getRoomAt(int index)
 	{
