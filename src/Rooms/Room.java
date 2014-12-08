@@ -116,4 +116,8 @@ public abstract class Room implements Serializable
 		}
 		return names;
 	}
+	
+	public String getNamesOfAdjacentRooms(){
+		return "";
+	}
 }
