@@ -44,6 +44,7 @@ public class UpdateAClientCommand extends Command<Client>
 		case MAP:
 			executeOn.showMap();
 			break;
+	
 		default:
 			break;
 		}

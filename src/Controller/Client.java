@@ -351,10 +351,10 @@ public class Client extends JFrame
 	}
 
 	
-	public void showMap()
+	/*public void showMap()
 	{
 		new Map();
-	}
+	}*/
 
 	public void listSurroundings() 
 	{
@@ -598,15 +598,17 @@ public class Client extends JFrame
 		this.setVisible(true);
 	}  // end of method setupGUI
 
-	public void tellMessage(String argument1, String argument2) 
-	{
-		System.out.println("trying to tell " + argument1 + "message: " + argument2);
-	}
 
 	public void updateOne(List<String> messages, String receiver, String sender) {
-		if(player.getUsername().equalsIgnoreCase(receiver))
+		if(player.getUsername().equalsIgnoreCase(receiver) || player.getUsername().equalsIgnoreCase(sender))
 		{
 			mainView.updateOne(messages, receiver, sender);
 		}
 	}
+
+	public void showMap() {
+		new Map();
+	}
+
+	
 }
