@@ -200,20 +200,23 @@ public class Client extends JFrame
 	 */
 	public void dropItem(String argument) 
 	{
+		//retrieve item from collection
 		Item item;
 		if(argument.equalsIgnoreCase("nvg"))
 			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
 		else
 			item = roomCollection.getItemCollection().getItemFromName(argument.toLowerCase());
 		
+		//drop item if possible
 		String dropped = "";
-		if(player.dropItem(item)){
+		if(player.dropItem(item)){ //drops item if possible and either returns true or false on successfulness
 			player.getLocation().addItem(item);
 			dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 		}
 		else
 			dropped = "You did not have <" + item.getName() + "> to drop." + "\n";
 		
+		//update gui
 		commandMessages.add(dropped);
 		mainView.updateCommands(commandMessages);
 		
