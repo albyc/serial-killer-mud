@@ -71,36 +71,7 @@ public class RoomCollection
 		List<Item> itemsInDoomsville = new ArrayList<Item>();
 		List<Item> itemsInMotel = new ArrayList<Item>();
 		List<Item> itemsInDesert = new ArrayList<Item>();
-		List<Item> itemsInLawn = new ArrayList<Item>();
-		List<Item> itemsInMurderCastle = new ArrayList<Item>();
-		List<Item> itemsInFarmhouse = new ArrayList<Item>();
-		List<Item> itemsInBasement = new ArrayList<Item>();
-		List<Item> itemsInSecret = new ArrayList<Item>();
-		List<Item> itemsInWoods = new ArrayList<Item>();
-		List<Item> itemsInFactory = new ArrayList<Item>();
-		List<Item> itemsInHospital = new ArrayList<Item>();
-		List<Item> itemsInPool = new ArrayList<Item>();
-		List<Item> itemsInKitchen = new ArrayList<Item>();
-		List<Item> itemsInAttic = new ArrayList<Item>();
-		//List<Item> itemsInJail = new ArrayList<Item>(); 
-		List<Item> itemsInPoliceStation= new ArrayList<Item>();
-		List<Item> itemsInGasStation = new ArrayList<Item>();
-		List<Item> itemsInBedroom= new ArrayList<Item>();
-		List<Item> itemsInCemetery = new ArrayList<Item>();
-		List<Item> itemsInBank = new ArrayList<Item>();
-		List<Item> itemsInCasino = new ArrayList<Item>();
-		List<Item> itemsInAdventureLand= new ArrayList<Item>();
-		List<Item> itemsInDarkAlley = new ArrayList<Item>();
-		List<Item> itemsInSpain= new ArrayList<Item>();
-		List<Item> itemsInParis = new ArrayList<Item>();
-		List<Item> itemsInDubai = new ArrayList<Item>();
-		//List<Item> itemsInAirport = new ArrayList<Item>();
-		List<Item> itemsInTheStreets = new ArrayList<Item>();
-		List<Item> itemsInSubway = new ArrayList<Item>();
-		List<Item> itemsInDinner = new ArrayList<Item>();
-		//List<Item> itemsInDoomsville = new ArrayList<Item>();
-		List<Item> itemsInMotel = new ArrayList<Item>();
-		//List<Item> itemsInDesert = new ArrayList<Item>();*/
+		 */
 		
 
 		
@@ -141,78 +112,72 @@ public class RoomCollection
 		//placing adjacent rooms/constructing room layout for game and placing items in rooms
 		//1
 		lawn.setNorthRoom(murderCastle);
-//		itemsInLawn.add(itemCollection.getItem(14)); // key always needs to be in the lawn to get into murder castle
-//		itemsInLawn.add(itemCollection.getItem(9)); // shovel
+		lawn.addItem(itemCollection.getItem(14)); // key always needs to be in the lawn to get into murder castle
+		lawn.addItem(itemCollection.getItem(9)); // shovel
 		//2 secret room is meant to be a bonus room
 		secret.setNorthRoom(factory);
-//		itemsInSecret.add(itemCollection.getItem(16)); // disguise can only be found in this room
-//		itemsInSecret.add(itemCollection.getItem(3)); // aidKit
-//		itemsInSecret.add(itemCollection.getItem(4)); // general energy boost
-//		itemsInSecret.add(itemCollection.getItem(7)); // gun
-//		itemsInSecret.add(itemCollection.getItem(15)); // money 
+		secret.addItem(itemCollection.getItem(16)); // disguise can only be found in this room
+		secret.addItem(itemCollection.getItem(3)); // aidKit
+		secret.addItem(itemCollection.getItem(4)); // general energy boost
+		secret.addItem(itemCollection.getItem(7)); // gun
+		secret.addItem(itemCollection.getItem(15)); // money 
 		//3
 		woods.setNorthRoom(hospital);
 		woods.setEastRoom(basement);
-//		itemsInWoods.add(itemCollection.getItem(5)); // a plethora of sticks in da woods
-//		itemsInWoods.add(itemCollection.getItem(12)); // flashlight because it's dark 
+		woods.addItem(itemCollection.getItem(5)); // a plethora of sticks in da woods
+		woods.addItem(itemCollection.getItem(12)); // flashlight because it's dark 
 		//4
 		basement.setNorthRoom(pool);
 		basement.setEastRoom(murderCastle);
 		basement.setWestRoom(woods);
-//		itemsInBasement.add(itemCollection.getItem(13)); // night vision goggles
-//		itemsInBasement.add(itemCollection.getItem(15)); // money
+		basement.addItem(itemCollection.getItem(13)); // night vision goggles
+		basement.addItem(itemCollection.getItem(15)); // money
 		//5
 		murderCastle.setNorthRoom(kitchen);
 		murderCastle.setEastRoom(farmhouse);
 		murderCastle.setSouthRoom(lawn);
 		murderCastle.setWestRoom(basement);
-//		itemsInMurderCastle.add(itemCollection.getItem(0));
-//		itemsInMurderCastle.add(itemCollection.getItem(1));
+		murderCastle.addItem(itemCollection.getItem(0)); // food
+		murderCastle.addItem(itemCollection.getItem(1)); // water
+		murderCastle.addItem(itemCollection.getItem(6)); // knife
 		//6
 		farmhouse.setSouthRoom(murderCastle);
-//		itemsInFarmhouse.add(itemCollection.getItem(2));
-//		itemsInFarmhouse.add(itemCollection.getItem(3));
-//		itemsInMurderCastle.add(itemCollection.getItem(0)); // food
-//		itemsInMurderCastle.add(itemCollection.getItem(1)); // water
-//		itemsInMurderCastle.add(itemCollection.getItem(6)); // knife
-		//6
-		farmhouse.setSouthRoom(murderCastle);
-//		itemsInFarmhouse.add(itemCollection.getItem(10)); // rope
-//		itemsInFarmhouse.add(itemCollection.getItem(9)); // shovel
+		farmhouse.addItem(itemCollection.getItem(10)); // rope
+		farmhouse.addItem(itemCollection.getItem(9)); // shovel
 		//7
 		factory.setSouthRoom(secret);
 		factory.setEastRoom(motel);
-//		itemsInFactory.add(itemCollection.getItem(15)); // money
+		factory.addItem(itemCollection.getItem(15)); // money
 		//8
 		motel.setNorthRoom(jail);
 		motel.setEastRoom(hospital);
 		motel.setSouthRoom(factory);
-//		itemsInMotel.add(itemCollection.getItem(4)); // general energy boost
+		motel.addItem(itemCollection.getItem(4)); // general energy boost
 		//9
 		hospital.setNorthRoom(policeStation);
 		hospital.setEastRoom(pool);
 		hospital.setSouthRoom(woods);
 		hospital.setWestRoom(motel);
-//		itemsInHospital.add(itemCollection.getItem(3)); // aidKit
-//		itemsInHospital.add(itemCollection.getItem(4)); // general energy boost
+		hospital.addItem(itemCollection.getItem(3)); // aidKit
+		hospital.addItem(itemCollection.getItem(4)); // general energy boost
 		//10
 	    pool.setNorthRoom(gasStation);
 	    pool.setEastRoom(kitchen);
 	    pool.setSouthRoom(basement);
 	    pool.setWestRoom(hospital);
-//	    itemsInPool.add(itemCollection.getItem(8)); // sword
+	    pool.addItem(itemCollection.getItem(8)); // sword
 	    //11
 	    kitchen.setNorthRoom(bedroom);
 	    kitchen.setEastRoom(attic);
 	    kitchen.setSouthRoom(murderCastle);
 	    kitchen.setWestRoom(pool);
-//	    itemsInKitchen.add(itemCollection.getItem(0)); // food
-//		itemsInKitchen.add(itemCollection.getItem(1)); // water
+	    kitchen.addItem(itemCollection.getItem(0)); // food
+		kitchen.addItem(itemCollection.getItem(1)); // water
 	    //12
 	    attic.setNorthRoom(cemetery);
 	    attic.setSouthRoom(farmhouse);
 	    attic.setWestRoom(kitchen);
-//	    itemsInAttic.add(itemCollection.getItem(11)); // handcuffs
+	    attic.addItem(itemCollection.getItem(11)); // handcuffs
 	    //13
 	    jail.setEastRoom(policeStation);
 	    jail.setSouthRoom(motel);
@@ -221,34 +186,34 @@ public class RoomCollection
 	    policeStation.setEastRoom(gasStation);
 	    policeStation.setSouthRoom(hospital);
 	    policeStation.setWestRoom(jail);
-//	    itemsInPoliceStation.add(itemCollection.getItem(4)); // general energy boost
+	    policeStation.addItem(itemCollection.getItem(4)); // general energy boost
 	    //15
 	    gasStation.setNorthRoom(bank);
 	    gasStation.setEastRoom(bedroom);
 	    gasStation.setSouthRoom(pool);
 	    gasStation.setWestRoom(policeStation);
-//	    itemsInGasStation.add(itemCollection.getItem(2)); // bandaid 
+	    gasStation.addItem(itemCollection.getItem(2)); // bandaid 
 	    //16
 	    bedroom.setNorthRoom(casino);
 	    bedroom.setEastRoom(cemetery);
 	    bedroom.setSouthRoom(attic);
 	    bedroom.setWestRoom(gasStation);
-//	    itemsInBedroom.add(itemCollection.getItem(4)); // general energy boost
+	    bedroom.addItem(itemCollection.getItem(4)); // general energy boost
 	    //17
 	    cemetery.setNorthRoom(adventureLand);
 	    cemetery.setSouthRoom(attic);
 	    cemetery.setWestRoom(bedroom);
-//	    itemsInCemetery.add(itemCollection.getItem(9)); // shovel
+	    cemetery.addItem(itemCollection.getItem(9)); // shovel
 	    //18
 	    bank.setEastRoom(casino);
 	    bank.setSouthRoom(gasStation);
-//	    itemsInBank.add(itemCollection.getItem(15)); // money $$$$
+	    bank.addItem(itemCollection.getItem(15)); // money $$$$
 	    //19
 	    casino.setNorthRoom(darkAlley);
 	    casino.setEastRoom(adventureLand);
 	    casino.setSouthRoom(bedroom);
 	    casino.setWestRoom(bank);
-//	    itemsInCasino.add(itemCollection.getItem(15)); // money $$$$
+	    casino.addItem(itemCollection.getItem(15)); // money $$$$
 	    //20
 	    adventureLand.setSouthRoom(cemetery);
 	    adventureLand.setWestRoom(casino);
@@ -261,7 +226,7 @@ public class RoomCollection
 	    paris.setEastRoom(airport);
 	    //24
 	    dubai.setSouthRoom(airport);
-//	    itemsInDubai.add(itemCollection.getItem(15)); // money $$$$
+	    dubai.addItem(itemCollection.getItem(15)); // money $$$$
 	    //25
 	    airport.setNorthRoom(dubai);
 	    airport.setEastRoom(theStreets);
@@ -272,20 +237,20 @@ public class RoomCollection
 	    theStreets.setEastRoom(subway);
 	    theStreets.setSouthRoom(darkAlley);
 	    theStreets.setWestRoom(airport);
-//	    itemsInTheStreets.add(itemCollection.getItem(6)); // knife
-//	    itemsInTheStreets.add(itemCollection.getItem(7)); // gun
-//	    itemsInTheStreets.add(itemCollection.getItem(8)); // sword
+	    theStreets.addItem(itemCollection.getItem(6)); // knife
+	    theStreets.addItem(itemCollection.getItem(7)); // gun
+	    theStreets.addItem(itemCollection.getItem(8)); // sword
 	    //27
 	    subway.setNorthRoom(doomsville);
 	    subway.setEastRoom(dinner);
 	    subway.setWestRoom(theStreets);
-//	    itemsInSubway.add(itemCollection.getItem(13)); // night vision goggles
+	    subway.addItem(itemCollection.getItem(13)); // night vision goggles
 	    //28
 	    dinner.setNorthRoom(desert);
 	    dinner.setWestRoom(subway);
-//	    itemsInDinner.add(itemCollection.getItem(0)); // food
-//		itemsInDinner.add(itemCollection.getItem(1)); // water
-//		itemsInDinner.add(itemCollection.getItem(4)); // general energy boost
+	    dinner.addItem(itemCollection.getItem(0)); // food
+		dinner.addItem(itemCollection.getItem(1)); // water
+		dinner.addItem(itemCollection.getItem(4)); // general energy boost
 	    //29
 	    doomsville.setEastRoom(desert);
 	    doomsville.setSouthRoom(subway);

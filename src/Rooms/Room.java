@@ -28,6 +28,7 @@ public abstract class Room implements Serializable
 		this.description = description;
 		this.players = new ArrayList<Player>();
 		this.mobs = new ArrayList<MOB>();
+		this.items = new ArrayList<Item>();
 		
 		// initially, a Room does not have any adjacent Rooms
 		northRoom = null;
