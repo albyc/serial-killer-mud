@@ -24,9 +24,9 @@ public class UpdateAClientW2ArgsCommand extends Command<Client> {
 	public void execute(Client executeOn) {
 		switch(command)
 		{
-		case TELL:
+		/*case TELL:
 			executeOn.tellMessage(argument1, argument2);
-			break;
+			break;*/
 		case GET:
 			break;
 		case GIVE:

@@ -18,6 +18,8 @@ import MOBs.*;
 import Model.*;
 import Players.*;
 import Rooms.*;
+import View.Map;
+import javax.swing.Timer;
 
 /**
  * The class is the server side of the Serial Killer MUD. The server communicates with clients,
@@ -33,11 +35,15 @@ public class Server
 	
 	private List<String> chatMessages; // the chat log
 	private SerialKillerMud mud;
+	private Timer t = new Timer(500, null);
 	
 	public static void main(String [] args)
 	{
 		new Server();
 	}
+	
+	public void startTimer(){ t.start(); }
+	public void stopTimer(){ t.stop(); }
 	
 	public Server()
 	{
@@ -45,6 +51,7 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 
 		mud = new SerialKillerMud();
+		startTimer();
 		
 		try
 		{
@@ -202,6 +209,9 @@ public class Server
 		List<Player> players = new ArrayList<Player>();
 		players.addAll(temp);
 		
+		
+		
+		
 		try 
 		{
 			if (command == Commands.WHO)
@@ -209,6 +219,9 @@ public class Server
 			
 			else if (command == Commands.SHUTDOWN)
 				closeAllClientsAndServer(clientName, command);
+			
+			else if (command == Commands.TELL)
+				update = new UpdateAClientCommand(command);
 			
 			else
 				update = new UpdateAClientCommand(command);
@@ -286,20 +299,21 @@ public class Server
 
 	public void addTellMessage(String messageSender, String messageReceiver, String message) 
 	{
-		if(outputs.containsKey(messageReceiver))
-		{
-			System.out.println("messageReceiver is here");
-		}
 		
 		String completeMessage = messageSender + " to " + messageReceiver + ": " + message;
-		
-		chatMessages.add(completeMessage);
-		UpdateClient(messageReceiver, messageSender);
+		List<String> newMessages = new ArrayList<String>();
+		for( String m : chatMessages){
+			newMessages.add(m);
+		}
+		newMessages.add(completeMessage);
+			
+		//chatMessages.add(completeMessage);
+		UpdateClient(messageReceiver, messageSender, newMessages); 
 	}
 
-	private void UpdateClient(String messageReceiver, String messageSender) 
+	private void UpdateClient(String messageReceiver, String messageSender, List<String> messages) 
 	{
-		UpdateClientCommand update = new UpdateClientCommand(chatMessages, messageReceiver, messageSender);
+		UpdateClientCommand update = new UpdateClientCommand(messages, messageReceiver, messageSender);
 		
 		try
 		{
@@ -308,20 +322,16 @@ public class Server
 				if (clientName.equalsIgnoreCase(messageReceiver) || clientName.equalsIgnoreCase(messageSender)){
 					outputs.get(clientName).writeObject(update);
 					
-					/*for(ObjectOutputStream out: outputs.values()){
-						if (outputs.get(clientName))
-					}*/
+					
 				}
 			}
-			/*for(ObjectOutputStream out : outputs.values())
-			{
-				out.writeObject(update);
-				System.out.print(out.toString());
-			}*/
+		
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
+
+
 } // end of class Server

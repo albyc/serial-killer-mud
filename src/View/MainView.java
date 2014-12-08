@@ -429,6 +429,7 @@ public class MainView extends JPanel
 			allMessages += message + "\n";
 		}
 		chatArea.setText(allMessages);
+		chatArea.setCaretPosition(allMessages.length());
 		repaint();
 			
 	}
