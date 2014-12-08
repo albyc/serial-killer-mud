@@ -199,15 +199,25 @@ public class Client extends JFrame
 	 * @param argument - the string name of the item to be dropped
 	 */
 	public void dropItem(String argument) 
-	{/*
+	{
 		Item item;
 		if(argument.equalsIgnoreCase("nvg"))
-		{
-			item = itemCollection.getItemFromName("night vision goggles");
-			System.out.println("nvg thing");
+			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
+		else
+			item = roomCollection.getItemCollection().getItemFromName(argument.toLowerCase());
+		
+		String dropped = "";
+		if(player.dropItem(item)){
+			player.getLocation().addItem(item);
+			dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 		}
 		else
-			item = itemCollection.getItemFromName(argument.toLowerCase());
+			dropped = "You did not have <" + item.getName() + "> to drop." + "\n";
+		
+		commandMessages.add(dropped);
+		mainView.updateCommands(commandMessages);
+		
+		/*
 		if(player.getItems() != null){
 			for (Item i : player.getItems())
 			{

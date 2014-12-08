@@ -86,9 +86,13 @@ public class Player implements Serializable
      * 
      * @param itemToGetRidOf
      */
-    public void dropItem(Item itemToGetRidOf)
+    public boolean dropItem(Item itemToGetRidOf)
     {
-        backpack.remove(itemToGetRidOf);
+    	if(backpack.contains(itemToGetRidOf)){
+    		backpack.remove(itemToGetRidOf);
+    		return true;
+    	}
+    	return false;
     }
     
     /**
