@@ -492,43 +492,43 @@ public class Client extends JFrame
 	public void movePlayer(String argument) {
 		switch(argument.toLowerCase())
 		{
-		case "north":
-			if(player.getLocation().getNorthRoom() != null)
-			{
-				player.changeRoom(player.getLocation().getNorthRoom());
-
-				String movedTo = "You have moved north into " + player.getLocation().getRoomName() + "\n"; 
-				commandMessages.add(movedTo);
-				mainView.updateCommands(commandMessages);
-			}
-			else
-			{
-				String movedTo = "There is no room to the north of your current location. Use the LOOK\ncommand to see "
-						+ "the adjacent rooms.\n";
-				commandMessages.add(movedTo);
-				mainView.updateCommands(commandMessages);
-			}
-			break;
-		case "south":
-			if(player.getLocation().getSouthRoom() != null)
-			{
-				player.changeRoom(player.getLocation().getSouthRoom());
-
-				String movedTo = "You have moved south into " + player.getLocation().getRoomName() + "\n"; 
-				commandMessages.add(movedTo);
-				mainView.updateCommands(commandMessages);
-			}
-			else
-			{
-				String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
-						+ "the adjacent rooms.\n";
-				commandMessages.add(movedTo);
-				mainView.updateCommands(commandMessages);
-			}
-			break;
-		default:
-			// message is sent to client letting them know that it is not a valid move
-			break;
+			case "north":
+				if(player.getLocation().getNorthRoom() != null)
+				{
+					player.changeRoom(player.getLocation().getNorthRoom());
+	
+					String movedTo = "You have moved north into " + player.getLocation().getRoomName() + "\n"; 
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				else
+				{
+					String movedTo = "There is no room to the north of your current location. Use the LOOK\ncommand to see "
+							+ "the adjacent rooms.\n";
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				break;
+			case "south":
+				if(player.getLocation().getSouthRoom() != null)
+				{
+					player.changeRoom(player.getLocation().getSouthRoom());
+	
+					String movedTo = "You have moved south into " + player.getLocation().getRoomName() + "\n"; 
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				else
+				{
+					String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
+							+ "the adjacent rooms.\n";
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				break;
+			default:
+				// message is sent to client letting them know that it is not a valid move
+				break;
 		}
 	}
 

@@ -23,6 +23,8 @@ public abstract class MOB {
 	private ArrayList<String> speeches;
 	private int health;
 	private Random randomGenerator;
+	private final static int MAXHEALTH = 100;
+    private final static int MAX_ITEMS = 5;
 
 	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay, Room startLocation) {
 		randomGenerator = new Random();
@@ -30,6 +32,7 @@ public abstract class MOB {
 		pocket = new ArrayList<Item>();
 		this.speeches = stuffToSay;
 		currentLocation = startLocation;
+		health = 100;
 	}
 
 	public abstract void action1();
@@ -65,17 +68,16 @@ public abstract class MOB {
 		// erase self from room and add self to new room
 	}
 
-	public Room getCurrentLocation() {
-		return currentLocation;
-	}
+	public Room getCurrentLocation() { return currentLocation; }
 
-	public void giveItemToPlayer() {
+	public void giveItemToPlayer(Item item) {
 		// give item to player
 	}
 
 	public void attack(Player thePlayer) {
 		int points = randomGenerator.nextInt(10);
 		thePlayer.incrementHealth(points);
+		
 	}
 
 	public void run() {
@@ -84,14 +86,25 @@ public abstract class MOB {
 //			change
 	}
 	
+	public void incrementHealth(int amount){
+		health += amount;
+		if(health <= 0)
+			death();
+	}
+	
 	public void whoAmI() {
-		// TODO Auto-generated method stub
 		System.out.println("I am" + identity);
 	}
 	
 	public void death(){
 		//drop all holding items
+		for(Item item : pocket)
+			currentLocation.addItem(item);
+		pocket = null;
+		
+		
 		//leave note telling last words/curses/additional information still useful
+		
 	}
 	
 	public void interactWithPlayer(Player player){

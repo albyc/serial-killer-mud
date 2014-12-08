@@ -23,6 +23,8 @@ public class Player implements Serializable
     private final static int MAXHEALTH = 100;
     private final static int MAX_ITEMS = 5;
     
+    Random randomGenerator = new Random();
+    
      
     public Player(String username, String password)
     {
@@ -56,13 +58,11 @@ public class Player implements Serializable
     public int getHealth() { return health; }
     
     public void incrementHealth(int amount){
-    	int newHealth = health + amount;
-    	if(newHealth > MAXHEALTH)
+    	health += amount;
+    	if(health > MAXHEALTH)
     		health = 100;
-    	else if(newHealth <= 0)
+    	else if(health <= 0)
     		death();
-    	else
-    		health = newHealth;
     }
     
     public void death(){
@@ -113,12 +113,13 @@ public class Player implements Serializable
     	//fight()
     }
     
-    /**
-     * 
-     */
-    public void fight()
-    {
-         
+    public void fight(MOB opponent){
+    	int roll = randomGenerator.nextInt(20);
+        int damage;
+        if(roll > 5){
+       	 damage = roll*-1;
+       	 opponent.incrementHealth(damage);
+        }
     }
     
     /**
@@ -136,13 +137,4 @@ public class Player implements Serializable
     {
          
     }
-    
-//    public void setBackpack(List<Item> list)
-//    {
-//    	backpack = list;
-//    }
-
-//	public void setHealth(int health) {
-//		this.health = health;
-//	}
 }//end of class Player

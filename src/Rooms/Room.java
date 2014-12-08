@@ -79,12 +79,42 @@ public abstract class Room implements Serializable
 	
 	public Room getWestRoom() { return westRoom; }
 	
+	public boolean hasNorth(){
+		if(northRoom != null)
+			return true;
+		return true;
+	}
+	
+	public boolean hasSouth(){
+		if(southRoom != null)
+			return true;
+		return true;
+	}
+	
+	public boolean hasWest(){
+		if(westRoom != null)
+			return true;
+		return true;
+	}
+	
+	public boolean hasEast(){
+		if(eastRoom != null)
+			return true;
+		return true;
+	}
 	
 	public boolean hasItem(Item i){
 		if(items.contains(i))
 			return true;
 		return false;
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public String getNamesOfPlayersInRoom(){
