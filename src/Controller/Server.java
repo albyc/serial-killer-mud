@@ -19,6 +19,7 @@ import Model.*;
 import Players.*;
 import Rooms.*;
 import View.Map;
+import javax.swing.Timer;
 
 /**
  * The class is the server side of the Serial Killer MUD. The server communicates with clients,
@@ -34,11 +35,15 @@ public class Server
 	
 	private List<String> chatMessages; // the chat log
 	private SerialKillerMud mud;
+	private Timer t = new Timer(500, null);
 	
 	public static void main(String [] args)
 	{
 		new Server();
 	}
+	
+	public void startTimer(){ t.start(); }
+	public void stopTimer(){ t.stop(); }
 	
 	public Server()
 	{
@@ -46,6 +51,7 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 
 		mud = new SerialKillerMud();
+		startTimer();
 		
 		try
 		{

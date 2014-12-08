@@ -530,6 +530,8 @@ public class Client extends JFrame
 			// message is sent to client letting them know that it is not a valid move
 			break;
 		}
+		listSurroundings();
+
 	}
 
 	/**
