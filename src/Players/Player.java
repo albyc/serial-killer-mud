@@ -75,7 +75,7 @@ public class Player implements Serializable
      */
     public boolean pickUpItem(Item newItem)
     {
-    	if(backpack.size() > MAX_ITEMS){
+    	if(backpack.size() < MAX_ITEMS){
     		backpack.add(newItem);
     		return true;
     	}
