@@ -28,7 +28,7 @@ public class Death extends JFrame{
 		this.setTitle("Yo Ass Is Dead");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		try
+		/*try
 		{
 			image = new ImageIO.read(new File("images/scary-wall.jpg"));
 			this.setContentPane(new JLabel(new ImageIcon(image)));
@@ -36,16 +36,16 @@ public class Death extends JFrame{
 		{
 			e.printStackTrace();
 		}
-		
+		*/
 		this.setSize(300, 200);
 		this.setLayout(null);
-		this.setForeground(Color.BLACK);
+		getContentPane().setBackground(Color.BLACK);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		text = new JTextArea(message);
 		text.setEditable(false);
 		text.setSize(200, 200);
-		text.setLocation(25, 25);
+		text.setLocation(45, 60);
 		text.setBackground(Color.BLACK);
 		text.setForeground(Color.WHITE);
 		
