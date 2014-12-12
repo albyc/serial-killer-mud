@@ -13,8 +13,6 @@ import java.awt.event.*;
 
 import Commands.AddChatMessageCommand;
 import Commands.ForServerCommand;
-import Commands.ForServerW2ArgsCommand;
-import Commands.ForServerWArgsCommand;
 import Commands.TellMessageCommand;
 import Enums.Commands;
 import Model.*;
@@ -173,207 +171,30 @@ public class MainView extends JPanel
 	private class EnterListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent arg0)
-		{
-			/*String s = textField.getText().toUpperCase();
-
-			String command = new String();
-			String argument = new String();
-			String argument1 = new String();
-			String argument2 = new String();
-			int spaceCount = 0;
-			
-			String[] split = s.split(" ", 2);
-			command = split[0];
-			
-			for(int i = 0; i < s.length(); i++)
-			{
-				if(s.charAt(i) == ' ')
-				{
-					spaceCount++;
-				}
-			}
-			
-			
-			
-			if (spaceCount == 1)
-			{
-				String[] splitS = s.split(" ", 2);
-				command = splitS[0];
-				argument = splitS[1];
-			}
-			
-			else if (spaceCount > 1 && !command.equalsIgnoreCase("OOC"))
-			{
-				String[] splitS = s.split(" ", 3);
-				command = splitS[0];
-				argument1 = splitS[1];
-				argument2 = splitS[2];
-				String sCopy = s;
-				int index = s.indexOf(" ");
-				command = s.substring(0, index);
-				sCopy = sCopy.substring(index + 1);
-				index = sCopy.indexOf(" ");
-				argument1 = sCopy.substring(0, index);
-				sCopy = sCopy.substring(index + 1);
-				argument2 = sCopy;
-				
-			}
-			else if(command.equalsIgnoreCase("OOC"))
-			{
-				argument1 = split[1];
-			}
-			
-			else
-			{
-				command = s;
-			}*/
-			
+		{	
 			String s = textField.getText().toUpperCase();
-			
-			int spaceCount = 0;
-			
-			for(int i = 0; i < s.length(); i++)
-			{
-				if(s.charAt(i) == ' ')
-				{
-					spaceCount++;
-				}
-			}
-
-			String command = new String();
 			String argument = new String();
-			String argument2 = new String();
+			String c = new String();
 			
-			String[] firstSplit = s.split(" ", 2);
-			command = firstSplit[0];
-			
-			
-			switch(command)
-			{
-			case "TELL":
-				String[] tellSplit = s.split(" ", 3);
-				argument = tellSplit[1];
-				argument2 = tellSplit[2];
-				break;
-			case "GET":
-				
-				//need 2 args version
-				
-				String[] getSplit = s.split(" ", 2);
-				argument = getSplit[1];
-				break;
-			case "GIVE":
-				String[] giveSplit = s.split(" ", 3);
-				argument = giveSplit[1];
-				argument2 = giveSplit[2];
-				
-				break;
-			case "OOC":
-				String[] oocSplit = s.split(" ", 2);
-				argument = oocSplit[1];
-				break;
-			case "LOOK":
-				if(spaceCount == 0)
-					command = s;
-				else
-				{
-					String[] lookSplit = s.split(" ", 2);
-					argument = lookSplit[1];
-				}
-				break;
-			case "INVENTORY":
-				command = s;
-				break;
-			case "SCORE":
-				command = s;
-				break;
-			case "WHO":
-				command = s;
-				break;
-			case "SAY":
-				break;
-			case "COMMANDS":
-				command = s;
-				break;
-			case "USE":
-				break;
-			case "QUIT":
-				//command = s;
-				break;
-			case "DROP":
-				String[] dropSplit = s.split(" ", 2);
-				argument = dropSplit[1];
-				break;
-			case "SHUTDOWN":
-				//command = s;
-				break;
-			case "MOVE":
-				String[] moveSplit = s.split(" ", 2);
-				argument = moveSplit[1];
-				break;
-			
-			}
-			
-			/*if (s.indexOf(" ") > 0)
+			if (s.indexOf("") > 0)
 			{
 				String[] splitS = s.split(" ", 2);
-				//command = splitS[0];
+				c = splitS[0];
 				argument = splitS[1];
 			}
 			
 			else
-			{
-				command = s;
-			}*/
+				c = s;
 			
-			Commands c = Commands.valueOf(command);
-			
+			Commands command = Commands.valueOf(c);
 			
 			try
 			{
-				switch(c)
-				{
-				case DROP:
-				case GET:
-					output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
-					break;
-				case MOVE:
-					if(!argument.equals(""))
-					{
-						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
-					}
-					break;
-				case SCORE:
-				case INVENTORY:
-				case COMMANDS:
-				case WHO:
-				case QUIT:
-				case MAP:
-					output.writeObject(new ForServerCommand(clientName, c));
-					break;
-				case LOOK:
-					if(argument.equals(""))
-						output.writeObject(new ForServerCommand(clientName, c));
-					
-					else
-						output.writeObject(new ForServerWArgsCommand(clientName, argument, c));
-					
-					break;
-				case OOC:
+				if (command == Commands.OOC)
 					output.writeObject(new AddChatMessageCommand(clientName + ":  " + argument));
-					break;
-				case SHUTDOWN:
-					if(clientName.equalsIgnoreCase("alby") || clientName.equalsIgnoreCase("damaris") || clientName.equalsIgnoreCase("alexa")
-							|| clientName.equalsIgnoreCase("lisa")){
-					output.writeObject(new ForServerCommand(clientName, c));
-					}
-					break;
-				case TELL:
-					output.writeObject(new TellMessageCommand(clientName, argument, argument2, c));
-				default:
-					break;
-				}
-
+				
+				else
+					output.writeObject(new ForServerCommand(clientName, command, argument));
 			}
 			catch (Exception e)
 			{
