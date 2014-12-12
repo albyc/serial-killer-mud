@@ -366,30 +366,30 @@ public class Client extends JFrame
 		surroundings += "CurrentRoom: " + room.getRoomDescription()
 				+ "\nPlayers in Room: "
 				+ room.getNamesOfAdjacentRooms();
-//		switch(name){
-//			case "The Lawn":
-//				surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
-//						+ "\nPlayers in Room: " //+ roomCollection.getRoomAt(0).getNamesOfPlayersInRoom()
-//						+ "\nMOB's in Room: " //+ roomCollection.getRoomAt(0).getNamesOfMOBsInRoom()
-//						+ "\nItems in Room: " //+ roomCollection.getRoomAt(0).getNamesOfItemsInRoom()
-//						+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
-//				break;
-//			case "Wisconsin Farmhouse of Horrors":
-//				surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-//						+ "\nPlayers in Room: //" + roomCollection.getRoomAt(1).getNamesOfPlayersInRoom()
-//						+ "\nMOBs in Room: " //+ roomCollection.getRoomAt(1).getNamesOfMOBsInRoom()
-//						+ "\nItems in Room: " //+ roomCollection.getRoomAt(1).getNamesOfItemsInRoom()
-//						+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
-//				break;
-//			case "Murder Castle":
-//				surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-//						+ "\nPlayers in Room: "// + roomCollection.getRoomAt(2).getNamesOfPlayersInRoom()
-//						+ "\nMOB's in Room: " //+ roomCollection.getRoomAt(2).getNamesOfMOBsInRoom()
-//						+ "\nItems in Room: " //+ roomCollection.getRoomAt(2).getNamesOfItemsInRoom()
-//						+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
-//						+ "  Wisconsin Farmhouse of Horrors - to the north\n";
-//				break;
-//		}
+		switch(name){
+			case "The Lawn":
+				surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
+						+ "\nPlayers in Room: " + room.getNamesOfPlayersInRoom()
+						+ "\nMOB's in Room: " + room.getNamesOfMOBsInRoom()
+						+ "\nItems in Room: " + room.getNamesOfItemsInRoom()
+						+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
+				break;
+			case "Wisconsin Farmhouse of Horrors":
+				surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
+						+ "\nPlayers in Room: " + room.getNamesOfPlayersInRoom()
+						+ "\nMOBs in Room: " + room.getNamesOfMOBsInRoom()
+						+ "\nItems in Room: " + room.getNamesOfItemsInRoom()
+						+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
+				break;
+			case "Murder Castle":
+				surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
+						+ "\nPlayers in Room: " + room.getNamesOfPlayersInRoom()
+						+ "\nMOB's in Room: " + room.getNamesOfMOBsInRoom()
+						+ "\nItems in Room: " + room.getNamesOfItemsInRoom()
+						+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
+						+ "  Wisconsin Farmhouse of Horrors - to the north\n";
+				break;
+		}
 		commandMessages.add(surroundings);
 		mainView.updateCommands(commandMessages);
 	}

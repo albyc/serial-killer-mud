@@ -9,47 +9,47 @@ public class MOBCollection
 {
 	private List<MOB> theMOBs;
 	
-	private Killer jefferyDahmer;		//abduct you
-	private Killer lawrenceBittaker;
-	private Killer royNorris;
-	private Killer richardRamirez;				//attack just by being in the same room
-	private Killer andreChikatilo;				//only attack by talking to
-	private Killer richardTrentonChase;
-	private Killer henryLeeLucus;
-	private Killer edGein;
-	private Killer hannibalLecter;		//cooking in kitchen, will make you food but beware
-	private Killer henryHowardHolmes;
+	private MOB jefferyDahmer;		//abduct you
+	private MOB lawrenceBittaker;
+	private MOB royNorris;
+	private MOB richardRamirez;				//attack just by being in the same room
+	private MOB andreChikatilo;				//only attack by talking to
+	private MOB richardTrentonChase;
+	private MOB henryLeeLucus;
+	private MOB edGein;
+	private MOB hannibalLecter;		//cooking in kitchen, will make you food but beware
+	private MOB henryHowardHolmes;
 	
-	private NonKiller victim;			//warn you of upcoming dangers
-	private NonKiller foodStandGuy;		//help you increase you health for battles ahead
+	private MOB victim;			//warn you of upcoming dangers
+	private MOB foodStandGuy;		//help you increase you health for battles ahead
 	
 	public MOBCollection(){
-//		jefferyDahmer = new Killer("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		lawrenceBittaker = new Killer("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		royNorris = new Killer("Roy Norris", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		richardRamirez = new Killer("Richard Ramirez", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		andreChikatilo = new Killer("Andre Chikatilo", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		richardTrentonChase = new Killer("Richard Trenton Chase", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		henryLeeLucus = new Killer("Henry Lee Lucus", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		edGein = new Killer("Ed Gein", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		hannibalLecter = new Killer("Hannibal Lecter", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		henryHowardHolmes = new Killer("Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-		
-//		victim = new NonKiller("Victim", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-//		foodStandGuy = new NonKiller("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>(), rooms.get(0));
-		
-//		theMOBs.add(hannibalLecter);
-//		theMOBs.add(jefferyDahmer);
-//		theMOBs.add(lawrenceBittaker);
-//		theMOBs.add(royNorris);
-//		theMOBs.add(hannibalLecter);
-//		theMOBs.add(richardRamirez);
-//		theMOBs.add(andreChikatilo);
-//		theMOBs.add(richardTrentonChase);
-//		theMOBs.add(henryHowardHolmes);
+		jefferyDahmer = new MOB("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>());
+		lawrenceBittaker = new MOB("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>());
+		royNorris = new MOB("Roy Norris", new ArrayList<Item>(), new ArrayList<String>());
+		richardRamirez = new MOB("Richard Ramirez", new ArrayList<Item>(), new ArrayList<String>());
+		andreChikatilo = new MOB("Andre Chikatilo", new ArrayList<Item>(), new ArrayList<String>());
+		richardTrentonChase = new MOB("Richard Trenton Chase", new ArrayList<Item>(), new ArrayList<String>());
+		henryLeeLucus = new MOB("Henry Lee Lucus", new ArrayList<Item>(), new ArrayList<String>());
+		edGein = new MOB("Ed Gein", new ArrayList<Item>(), new ArrayList<String>());
+		hannibalLecter = new MOB("Hannibal Lecter", new ArrayList<Item>(), new ArrayList<String>());
+		henryHowardHolmes = new MOB("Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>());
 //		
-//		theMOBs.add(victim);
-//		theMOBs.add(foodStandGuy);
+//		victim = new MOB("Victim", new ArrayList<Item>(), new ArrayList<String>());
+//		foodStandGuy = new MOB("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>());
+		
+		theMOBs.add(hannibalLecter);
+		theMOBs.add(jefferyDahmer);
+		theMOBs.add(lawrenceBittaker);
+		theMOBs.add(royNorris);
+		theMOBs.add(hannibalLecter);
+		theMOBs.add(richardRamirez);
+		theMOBs.add(andreChikatilo);
+		theMOBs.add(richardTrentonChase);
+		theMOBs.add(henryHowardHolmes);
+	
+		theMOBs.add(victim);
+		theMOBs.add(foodStandGuy);
 	}
 	
 	public List<MOB> getAllMOBS(){

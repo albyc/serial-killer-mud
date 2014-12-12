@@ -16,7 +16,7 @@ import Rooms.Room;
  * 
  */
 
-public abstract class MOB {
+public class MOB {
 	private String identity;
 	private ArrayList<Item> pocket;
 	private Room currentLocation;
@@ -26,42 +26,32 @@ public abstract class MOB {
 	private final static int MAXHEALTH = 100;
     private final static int MAX_ITEMS = 5;
 
-	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay, Room startLocation) {
+	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay) {
 		randomGenerator = new Random();
 		this.identity = identity;
 		pocket = new ArrayList<Item>();
 		this.speeches = stuffToSay;
-		currentLocation = startLocation;
 		health = 100;
 	}
 
-	public abstract void action1();
-
-	public abstract void action2();
-
-	public abstract void action3();
+//	public abstract void action1();
+//
+//	public abstract void action2();
+//
+//	public abstract void action3();
+//	
+//	public abstract void action4();
+//	
+//	public abstract void action5();
 	
-	public abstract void action4();
 	
-	public abstract void action5();
-	
-	public abstract boolean isKiller();
-	
-	public String getIdentity(){
-		return identity;
-	}
+	public String getIdentity(){ return identity; }
 
-	public void speak(int x) {
-		System.out.println(speeches.get(x));
-	}
+	public void speak(int x) { System.out.println(speeches.get(x)); }
 
-	public void addItemToPocket(Item newItem) {
-		pocket.add(newItem);
-	}
+	public void addItemToPocket(Item newItem) { pocket.add(newItem); }
 
-	public void removeItemFromPocket(Item toBeRemoved) {
-		pocket.remove(toBeRemoved);
-	}
+	public void removeItemFromPocket(Item toBeRemoved) { pocket.remove(toBeRemoved); }
 
 	public void changeRoom(Room newRoom) {
 		currentLocation = newRoom;
