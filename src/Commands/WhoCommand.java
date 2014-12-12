@@ -2,25 +2,21 @@ package Commands;
 
 import java.util.List;
 
-import Controller.Client;
-import Players.Player;
+import Controller.*;
+import Players.*;
 
-public class WhoCommand extends Command<Client>{
-
-	/**
-	 * 
-	 */
+public class WhoCommand extends Command<Client>
+{
 	private static final long serialVersionUID = -8978150445909455283L;
 	private List<Player> players;
 
-	public WhoCommand(List<Player> players) {
+	public WhoCommand(List<Player> players) 
+	{
 		this.players = players;
 	}
 
-	@Override
-	public void execute(Client executeOn) {
+	public void execute(Client executeOn) 
+	{
 		executeOn.listWho(players);
 	}
-
-	
-}
+} // end of class WhoCommand

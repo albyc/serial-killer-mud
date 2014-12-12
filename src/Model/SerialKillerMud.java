@@ -29,15 +29,9 @@ public class SerialKillerMud
 
 	private void addAdmins()
 	{
-		Player adminZero = new Player("damaris", "0000");
-		Player adminOne = new Player("alby", "1111");
-		Player adminThree = new Player("alexa", "3333" );
-		Player adminNine = new Player("lisa", "9999");
+		Player admin = new Player("admin", "0000");
 		
-		administrators.add(adminZero);
-		administrators.add(adminOne);
-		administrators.add(adminThree);
-		administrators.add(adminNine);
+		administrators.add(admin);
 	}
 
 	public void addPlayerToGame(Player player)
@@ -60,7 +54,8 @@ public class SerialKillerMud
 		return administrators;
 	}
 	
-	public RoomCollection getRoomCollection(){
+	public RoomCollection getRoomCollection()
+	{
 		return roomCollection;
 	}
 	
