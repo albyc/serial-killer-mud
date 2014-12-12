@@ -3,9 +3,12 @@ package Players;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 import Items.*;
 import MOBs.MOB;
 import Rooms.*;
+import View.Death;
 
 /**
  * 
@@ -67,6 +70,7 @@ public class Player implements Serializable
     
     public void death(){
     	//create window to state death //deactivate button listener for commands
+    	new Death();
     }
     
     /**
