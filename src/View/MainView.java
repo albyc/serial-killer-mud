@@ -12,9 +12,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
 
 import Commands.AddChatMessageCommand;
+/*import Commands.ForServerCommand;
+import Commands.ForServerW2ArgsCommand;*/
 import Commands.ForServerCommand;
-import Commands.ForServerW2ArgsCommand;
-import Commands.ForServerWArgsCommand;
 import Commands.TellMessageCommand;
 import Enums.Commands;
 import Model.*;
@@ -174,6 +174,35 @@ public class MainView extends JPanel
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
+			
+			String s = textField.getText().toUpperCase();
+			String argument = new String();
+			String c = new String();
+			if(s.indexOf(" ") > 0){
+				String[] splitS = s.split(" ", 2);
+				c = splitS[0];
+				argument = splitS[1];
+				
+			}
+			
+			else{
+				c = s;
+			}
+			
+			Commands command = Commands.valueOf(c);
+			
+			try{
+				output.writeObject(new ForServerCommand(clientName, argument, command));
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+			
+			textField.setText("");
+			
+			
+			
+			
+			
 			/*String s = textField.getText().toUpperCase();
 
 			String command = new String();
@@ -228,9 +257,9 @@ public class MainView extends JPanel
 				command = s;
 			}*/
 			
-			String s = textField.getText().toUpperCase();
+		/*	String s = textField.getText().toUpperCase();*/
 			
-			int spaceCount = 0;
+			/*int spaceCount = 0;
 			
 			for(int i = 0; i < s.length(); i++)
 			{
@@ -314,7 +343,7 @@ public class MainView extends JPanel
 			
 			}
 			
-			/*if (s.indexOf(" ") > 0)
+			if (s.indexOf(" ") > 0)
 			{
 				String[] splitS = s.split(" ", 2);
 				//command = splitS[0];
@@ -324,7 +353,7 @@ public class MainView extends JPanel
 			else
 			{
 				command = s;
-			}*/
+			}
 			
 			Commands c = Commands.valueOf(command);
 			
@@ -380,7 +409,7 @@ public class MainView extends JPanel
 				e.printStackTrace();
 			}
 			
-			textField.setText("");
+			textField.setText("");*/
 		}
 	} // end of private class EnterListener
 	

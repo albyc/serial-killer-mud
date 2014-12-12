@@ -1,8 +1,8 @@
 package Commands;
 
-import View.*;
 import Controller.*;
 import Enums.Commands;
+import View.*;
 
 /**
  * 
@@ -11,18 +11,21 @@ import Enums.Commands;
  */
 public class ForServerCommand extends Command<Server>
 {
-	private static final long serialVersionUID = -4617032470436109312L;
+	private static final long serialVersionUID = 2905888151191273334L;
 	private String clientName;
+	private String argument;
 	private Commands command;
 	
-	public ForServerCommand(String clientName, Commands command)
+	public ForServerCommand(String clientName, String argument, Commands command)
 	{
 		this.clientName = clientName;
+		this.argument = argument;
 		this.command = command;
 	}
 
+	@Override
 	public void execute(Server executeOn) 
 	{
-		executeOn.PrintToClient(clientName, command);
+		executeOn.PrintToClientWArgs(clientName, argument, command);
 	}
-} // end of class ForServerCommand
+} // end of class ForServerWArgsCommand
