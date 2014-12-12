@@ -29,7 +29,7 @@ public class RoomCollection
 	{
 		rooms = new ArrayList<Room>();
 		itemCollection = new ItemCollection();
-		mobCollection = new MOBCollection();
+//		mobCollection = new MOBCollection();
 		
 		addDefaultRooms();
 		setItemsInRooms();
@@ -298,7 +298,16 @@ public class RoomCollection
 	}
 	
 	public void setMOBsInRooms(){
-		
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Jeffery Dahmer"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Lawrence Bittaker"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Roy Norris"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Roy Norris"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Andre Chikatilo"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Richard Trenton Chase"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Henry Lee Lucus"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Ed Gein"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Hannibal Lecter"));
+//		lawn.addMOB(mobCollection.getMOBFromIdentity("Henry Howard Holmes"));
 	}
 	
 	public ItemCollection getItemCollection(){

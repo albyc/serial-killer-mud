@@ -118,12 +118,13 @@ public class Player implements Serializable
     }
     
     public void fight(MOB opponent){
-    	int roll = randomGenerator.nextInt(20);
-        int damage;
-        if(roll > 5){
-       	 damage = roll*-1;
-       	 opponent.incrementHealth(damage);
-        }
+//    	FightView(opponent);
+//    	int roll = randomGenerator.nextInt(20);
+//        int damage;
+//        if(roll > 5){
+//       	 damage = roll*-1;
+//       	 opponent.incrementHealth(damage);
+//        }
     }
     
     /**
