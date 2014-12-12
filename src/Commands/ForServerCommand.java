@@ -16,16 +16,19 @@ public class ForServerCommand extends Command<Server>
 	private String argument;
 	private Commands command;
 	
-	public ForServerCommand(String clientName, String argument, Commands command)
+
+	public ForServerCommand(String clientName, Commands command, String argument)
 	{
 		this.clientName = clientName;
 		this.argument = argument;
 		this.command = command;
+		this.argument = argument;
 	}
 
 	@Override
 	public void execute(Server executeOn) 
 	{
-		executeOn.PrintToClientWArgs(clientName, argument, command);
+
+		executeOn.PrintToClient(clientName, command, argument);
 	}
 } // end of class ForServerWArgsCommand

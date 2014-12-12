@@ -6,19 +6,16 @@ import java.util.*;
 
 import Commands.Command;
 import Commands.DisconnectCommand;
-import Commands.UpdateAClientCommand;
-import Commands.UpdateAClientW2ArgsCommand;
-import Commands.UpdateAClientWArgsCommand;
+import Commands.QuitCommand;
+import Commands.SimpleCommandFactory;
 import Commands.UpdateClientCommand;
 import Commands.UpdateClientsCommand;
-import Commands.WhoCommand;
 import Enums.Administrators;
 import Enums.Commands;
-import MOBs.*;
 import Model.*;
 import Players.*;
-import Rooms.*;
-import View.Map;
+
+
 import javax.swing.Timer;
 
 /**
@@ -35,6 +32,7 @@ public class Server
 	
 	private List<String> chatMessages; // the chat log
 	private SerialKillerMud mud;
+	private SimpleCommandFactory factory;
 	private Timer t = new Timer(500, null);
 	
 	public static void main(String [] args)
@@ -42,15 +40,15 @@ public class Server
 		new Server();
 	}
 	
-	public void startTimer(){ t.start(); }
-	public void stopTimer(){ t.stop(); }
+	public void startTimer() { t.start(); }
+	public void stopTimer() { t.stop(); }
 	
 	public Server()
 	{
 		chatMessages = new ArrayList<String>(); // create the chat log
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
-
-		mud = new SerialKillerMud();
+		mud = new SerialKillerMud(); // setup the model
+		factory = new SimpleCommandFactory();
 		startTimer();
 		
 		try
@@ -153,12 +151,12 @@ public class Server
 	public void addMessage(String message) 
 	{
 		chatMessages.add(message);
-		updateClients();
+		updateAllClients();
 	} // end of method addMessage
 
-	public void updateClients()
+	public void updateAllClients()
 	{
-		// make an UpdatedClientCommand, write to all connected users
+		// make an UpdatedClientsCommand, write to all connected users
 		UpdateClientsCommand update = new UpdateClientsCommand(chatMessages);
 		
 		try
@@ -198,57 +196,28 @@ public class Server
 		}
 	} // end of method disconnect
 
-	@SuppressWarnings("rawtypes")
-	public void PrintToClient(String clientName, Commands command) 
+	public void PrintToClient(String clientName, Commands command, String argument) 
 	{
 		//print commands in client's right side text area
-		// make an UpdatedAClientCommand, write specific user
-		Command update = null;
+		if (command == Commands.SHUTDOWN)
+			closeAllClientsAndServer(clientName);
 		
-		List<Player> temp = mud.getPlayersOnline();
-		List<Player> players = new ArrayList<Player>();
-		players.addAll(temp);
-		
-		
-		
-		
-		try 
+		else
 		{
-			if (command == Commands.WHO)
-				update = new WhoCommand(players);
-			
-			else if (command == Commands.SHUTDOWN)
-				closeAllClientsAndServer(clientName, command);
-			
-			else if (command == Commands.TELL)
-				update = new UpdateAClientCommand(command);
-			
-			else
-				update = new UpdateAClientCommand(command);
-			
-			ObjectOutputStream out = outputs.get(clientName);
-			out.writeObject(update);
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-	}
-
-	public void PrintToClientWArgs(String clientName, String arguments, Commands command)
-	{
-		UpdateAClientWArgsCommand update = new UpdateAClientWArgsCommand(command, arguments);
-		
-		ObjectOutputStream out = outputs.get(clientName);
-		try {
-			out.writeObject(update);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try
+			{
+				Command<Client> update = factory.createCommand(mud, command, argument);
+				ObjectOutputStream out = outputs.get(clientName);
+				out.writeObject(update);
+			} 
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	private void closeAllClientsAndServer(String username, Commands command)
+	private void closeAllClientsAndServer(String username)
 	{
 		username = username.toUpperCase();
 		Administrators admin = Administrators.valueOf(username);
@@ -264,7 +233,7 @@ public class Server
 					// send a message to all client on shutdown tell them to  disconnect and close their GUI 
 					// When that is done close down server
 					// make an UpdatedClientCommand, write to all connected users
-					UpdateAClientCommand update = new UpdateAClientCommand(command);
+					QuitCommand update = new QuitCommand();
 					
 					
 						for(ObjectOutputStream out : outputs.values())
@@ -282,19 +251,6 @@ public class Server
 			default:
 				throw new IllegalArgumentException();
 		}
-	}
-
-	public void PrintToClientW2Args(String clientName, String argument1,
-			String argument2, Commands command) {
-		UpdateAClientW2ArgsCommand update = new UpdateAClientW2ArgsCommand(command, argument1, argument2);
-		
-		ObjectOutputStream out = outputs.get(clientName);
-		try {
-			out.writeObject(update);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
 	}
 
 	public void addTellMessage(String messageSender, String messageReceiver, String message) 
@@ -332,6 +288,4 @@ public class Server
 			e.printStackTrace();
 		}
 	}
-
-
 } // end of class Server
