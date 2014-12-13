@@ -84,8 +84,6 @@ public class MOB {
 		for(Item item : pocket)
 			currentLocation.addItem(item);
 		pocket = null;
-		
-		
 		//leave note telling last words/curses/additional information still useful
 		
 	}

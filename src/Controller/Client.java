@@ -358,6 +358,7 @@ public class Client extends JFrame
 		new Map();
 	}*/
 
+	//needs to be finished
 	public void listSurroundings() 
 	{
 		String surroundings = "";
@@ -614,8 +615,15 @@ public class Client extends JFrame
 
 	public void showMap() {
 		new Map();
-		new MOBdescription("lucus");
+//		new MOBdescription("lucus");
+//		new FightView(player,new MOB("scary mob", new ArrayList<Item>(), new ArrayList<String>()));
 	}
 
-	
+	public void fight(String argument) {
+//		List<MOB> allMOBsInRoom = player.getLocation().getMOBs();
+//		MOB opponent = player.getLocation().getMobByName(argument);
+//		if(opponent != null)
+//			player.fight(opponent);
+	}
+
 }

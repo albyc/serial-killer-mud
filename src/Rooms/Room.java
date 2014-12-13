@@ -102,6 +102,9 @@ public abstract class Room implements Serializable
 		return true;
 	}
 	
+	
+	
+	
 	public boolean hasItem(Item i){
 		if(items.contains(i))
 			return true;
@@ -110,6 +113,14 @@ public abstract class Room implements Serializable
 	
 	
 	
+	
+	public MOB getMobByName(String name) {
+		for(MOB m : mobs){
+			if(m.getIdentity().equals(name))
+				return m;
+		}
+		return null;
+	}
 	
 	
 	

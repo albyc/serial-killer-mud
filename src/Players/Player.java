@@ -126,20 +126,4 @@ public class Player implements Serializable
 //       	 opponent.incrementHealth(damage);
 //        }
     }
-    
-    /**
-     * 
-     */
-    public void defend()
-    {
-         
-    }
-    
-    /**
-     * 
-     */
-    public void run()
-    {
-         
-    }
 }//end of class Player
