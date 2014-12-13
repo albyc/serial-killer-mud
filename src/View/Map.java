@@ -25,8 +25,8 @@ import javax.swing.JTextArea;
 public class Map extends JFrame 
 {
 	private BufferedImage image;
-	private JButton  lawn,  secretRoom,  darkWoods,  basement,  murderCastle,  farmhouse,  cleveland,  factory,  motel , room10;
-	private JButton room11, room12, room13, room14, room15, room16, room17, room18, room19 , room20;
+	private JButton  lawn,  secretRoom,  darkWoods,  basement,  murderCastle,  farmhouse,  cleveland,  factory,  motel , hospital;
+	private JButton dakota, kitchen, room13, room14, room15, room16, room17, room18, room19 , room20;
 	private JButton room21, room22, room23, room24, room25, room26, room27;
 	private JButton spainButton, croissantButton, dubaiButton;
 	private JTextArea infoArea;
@@ -164,35 +164,35 @@ public class Map extends JFrame
 		motel.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
 		motel.addMouseListener(new MouseMoved("room9"));
 		
-		room10 = new JButton("HS");
-		room10.setOpaque(true);
-		room10.setBorderPainted(false);
-		room10.setBackground(new Color(168, 7, 7));
-		room10.setForeground(Color.WHITE);
-		room10.setLocation(250, 413);
-		room10.setSize(67, 62);
-		room10.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
-		room10.addMouseListener(new MouseMoved("room10"));
+		hospital = new JButton("HS");
+		hospital.setOpaque(true);
+		hospital.setBorderPainted(false);
+		hospital.setBackground(new Color(168, 7, 7));
+		hospital.setForeground(Color.WHITE);
+		hospital.setLocation(250, 413);
+		hospital.setSize(67, 62);
+		hospital.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
+		hospital.addMouseListener(new MouseMoved("room10"));
 		
-		room11 = new JButton("DKA");
-		room11.setOpaque(true);
-		room11.setBorderPainted(false);
-		room11.setBackground(new Color(168, 7, 7));
-		room11.setForeground(Color.WHITE);
-		room11.setLocation(330, 413);
-		room11.setSize(67, 62);
-		room11.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
-		room11.addMouseListener(new MouseMoved("room11"));
+		dakota = new JButton("DKA");
+		dakota.setOpaque(true);
+		dakota.setBorderPainted(false);
+		dakota.setBackground(new Color(168, 7, 7));
+		dakota.setForeground(Color.WHITE);
+		dakota.setLocation(330, 413);
+		dakota.setSize(67, 62);
+		dakota.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
+		dakota.addMouseListener(new MouseMoved("room11"));
 		
-		room12 = new JButton("HK");
-		room12.setOpaque(true);
-		room12.setBorderPainted(false);
-		room12.setBackground(new Color(168, 7, 7));
-		room12.setForeground(Color.WHITE);
-		room12.setLocation(410, 413);
-		room12.setSize(67, 62);
-		room12.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
-		room12.addMouseListener(new MouseMoved("room12"));
+		kitchen = new JButton("HK");
+		kitchen.setOpaque(true);
+		kitchen.setBorderPainted(false);
+		kitchen.setBackground(new Color(168, 7, 7));
+		kitchen.setForeground(Color.WHITE);
+		kitchen.setLocation(410, 413);
+		kitchen.setSize(67, 62);
+		kitchen.setFont(getFont("fonts/trajan.ttf").deriveFont(10f));
+		kitchen.addMouseListener(new MouseMoved("room12"));
 		
 		room13 = new JButton("MF");
 		room13.setOpaque(true);
@@ -386,9 +386,9 @@ public class Map extends JFrame
 		this.add(cleveland);
 		this.add(factory);
 		this.add(motel);
-		this.add(room10);
-		this.add(room11);
-		this.add(room12);
+		this.add(hospital);
+		this.add(dakota);
+		this.add(kitchen);
 		this.add(room13);
 		this.add(room14);
 		this.add(room15);
@@ -634,8 +634,8 @@ public class Map extends JFrame
 	        			   + "");
 				break;
 			case "room10":
-				room10.setBackground(Color.BLACK);
-				room10.setEnabled(false);
+				hospital.setBackground(Color.BLACK);
+				hospital.setEnabled(false);
 				infoArea.setText("Location:\nSave Yo Self Hospital\n\n"
 	        			   + "Description: \n"
 	        			   + "Got wounds? Need some patching up?\n"
@@ -655,8 +655,8 @@ public class Map extends JFrame
 	        			   + "");
 				break;
 			case "room11":
-				room11.setBackground(Color.BLACK);
-				room11.setEnabled(false);
+				dakota.setBackground(Color.BLACK);
+				dakota.setEnabled(false);
 				infoArea.setText("Location:\nThe Dakota Apartments\n\n"
 	        			   + "Description: \n"
 	        			   + "Welcome to northwest corner of\n"
@@ -678,22 +678,21 @@ public class Map extends JFrame
 	        			   + "");
 				break;
 			case "room12":
-				room12.setBackground(Color.BLACK);
-				room12.setEnabled(false);
+				kitchen.setBackground(Color.BLACK);
+				kitchen.setEnabled(false);
 				infoArea.setText("Location:\nHannibal’s Kitchen\n\n"
 	        			   + "Description: \n"
-	        			   + "You're in for a treat.\n"
-	        			   + "Pull up a chair and prepare\n"
-	        			   + "to be served the finest white\n"
-	        			   + "meat you'll consume.\n"
-	        			   + "Make sure you try the ribs.\n"
+	        			   + "You're in for a treat. Pull up a chair\n"
+	        			   + "and prepare to be served the finest\n"
+	        			   + "finest white meat you'll consume.\n"
+	        			   + "Make sure you try the ribs."
 	        			   + ""
 	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
 	        			   + "North - Jeffrey Dahmer's Apartment\n"
 	        			   + "East - Manson Family Murder House\n"
 	        			   + "South - The Murder Castle\n"
-	        			   + "West - The Dakota Apartments"
+	        			   + "West - The Dakota Apartments\n\n"
 	        			   + "Initial Items:\n"
 	        			   + "Food\n"
 	        			   + "Water\n"
@@ -704,13 +703,18 @@ public class Map extends JFrame
 				room13.setEnabled(false);
 				infoArea.setText("Location:\nManson Family Murder House\n\n"
 	        			   + "Description: \n"
+	        			   + "This is a really nice home but its best\n"
+	        			   + "that you don’t make yourself\n"
+	        			   + "comfortable. Some really messed up\n"
+	        			   + "murders were planned here. "
 	        			   + ""
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
-	        			   + ""
+	        			   + "North - cemetery\n"
+	        			   + "South - Wisconsin Farmhouse of Horrors\n"
+	        			   + "West - Hannibal’s Kitchen\n\n"
 	        			   + "Initial Items:\n"
-	        			   + "");
+	        			   + "None");
 				break;
 			case "room14":
 				room14.setBackground(Color.BLACK);
@@ -777,13 +781,22 @@ public class Map extends JFrame
 				room17.setEnabled(false);
 				infoArea.setText("Location:\nJeffrey Dahmer's Apartment\n\n"
 	        			   + "Description: \n"
+	        			   + "How is it in Milwaukee? I hope Jeffrey\n"
+	        			   + "hasn’t marked you as his next victim.\n"
+	        			   + "Last time I heard none of his male\n"
+	        			   + "confidants made it out in one piece.\n"
+	        			   + "Do yourself a favor and leave\n"
+	        			   + "apartment 213."
 	        			   + ""
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
-	        			   + ""
+	        			   + "North - Casino Especial\n"
+	        			   + "East - Cemetery\n"
+	        			   + "South - Hannibal's Kitchen\n"
+	        			   + "West - Chi Omega Sorority House\n"
+	        			   + "               of FSU\n\n"
 	        			   + "Initial Items:\n"
-	        			   + "");
+	        			   + "None");
 				break;
 			case "room18":
 				room18.setBackground(Color.BLACK);
@@ -797,7 +810,7 @@ public class Map extends JFrame
 	        			   + "victims, before someone buries\n"
 	        			   + "you.\n"
 	        			   + ""
-	        			   + "\n\n."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
 	        			   + "North - Adventure Land\n"
 	        			   + "South - Manson Family Murder House\n"
@@ -933,13 +946,21 @@ public class Map extends JFrame
 				room25.setEnabled(false);
 				infoArea.setText("Location:\nFox Hollow Farms\n\n"
 	        			   + "Description: \n"
+	        			   + "This elegant Tudor-style farm house\n"
+	        			   + "comes four furnished bedrooms,\n"
+	        			   + "indoor swimming pool, and a riding\n"
+	        			   + "stable. You have plenty of privacy\n"
+	        			   + "since it lies on eighteen and half\n"
+	        			   + "acres of land. Not too shabby right?\n"
+	        			   + "Just ignore the fact that the remains\n"
+	        			   + "of 11 men lie scattered around the\n"
+	        			   + "land."
 	        			   + ""
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
 	        			   + "North - Robert Ben Rhodes' Big Rig\n"
 	        			   + "East - Cleveland Strangler Murder House\n"
-	        			   + "West - Streets of Detroit"
+	        			   + "West - Streets of Detroit\n\n"
 	        			   + ""
 	        			   + "Initial Items:\n"
 	        			   + "Night Vision Goggles"
@@ -951,9 +972,10 @@ public class Map extends JFrame
 				infoArea.setText("Location:\nRobert Ben Rhodes' Big Rig\n\n"
 	        			   + "Description: \n"
 	        			   + "This may look like a normal Big\n"
-	        			   + "Rig, but look closer.  "
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "Rig, but look closer. You probably\n"
+	        			   + "don’t want to be in this mobile\n"
+	        			   + "torture chamber."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
 	        			   + "East - Desert\n"
 	        			   + "South - Fox Hollow Farms\n"
@@ -985,12 +1007,15 @@ public class Map extends JFrame
 				spainButton.setEnabled(false);
 				infoArea.setText("Location:\nSpain\n\n"
 	        			   + "Description: \n"
-	        			   + "Welcome to Spain!"
+	        			   + "Ole ... Welcome to Spain!\n"
+	        			   + "Beware of the bulls that roam the\n"
+	        			   + "street. They pack a punch if you get\n"
+	        			   + "hit by one. It is best not to stay\n"
+	        			   + "here unless you want to die."
 	        			   + ""
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
-	        			   + "North - International Airport\n"
+	        			   + "North - International Airport\n\n"
 	        			   + ""
 	        			   + "Initial Items:\n"
 	        			   + "None"
@@ -1002,16 +1027,23 @@ public class Map extends JFrame
 				infoArea.setText("Location:\nParis\n\n"
 	        			   + "Description: \n"
 	        			   + "Welcome to Paris!\n"
-	        			   + "Visit the crypts under the city\n"
-	        			   + "and get lost in the Louvre.\n"
+	        			   + "Visit the crypts under the city and\n"
+	        			   + "get lost in the Louvre. You wish\n"
+	        			   + "right? Too bad you are restricted to\n"
+	        			   + "the catacombs which lie right\n"
+	        			   + "beneath the heart of Paris. This\n"
+	        			   + "historic labyrinth contains the\n"
+	        			   + "remains of at least six million\n"
+	        			   + "Parisians kept at a chilling 14\n"
+	        			   + "degrees Celsius. Try not to lean on\n"
+	        			   + "the wall made of bones."
 	        			   + ""
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
-	        			   + "East - International Airport\n"
+	        			   + "East - International Airport\n\n"
 	        			   + ""
 	        			   + "Initial Items:\n"
-	        			   + "");
+	        			   + "None");
 				break;
 			case "makeItRain$":
 				dubaiButton.setBackground(Color.BLACK);
@@ -1019,10 +1051,13 @@ public class Map extends JFrame
 				infoArea.setText("Location:\nDubai\n\n"
 	        			   + "Description: \n"
 	        			   + "Welcome to Dubai!\n"
-	        			   + ""
-	        			   + "\n\n."
+	        			   + "Finally a place of relaxation. Nothing\n"
+	        			   + "bad can happen to you here but you\n"
+	        			   + "cannot stay forever. For now enjoy\n"
+	        			   + "your million dollar view."
+	        			   + "\n\n"
 	        			   + "Adjacent Rooms: \n"
-	        			   + "South - International Airport\n"
+	        			   + "South - International Airport\n\n"
 	        			   + ""
 	        			   + "Initial Items:\n"
 	        			   + "Money"
@@ -1085,19 +1120,19 @@ public class Map extends JFrame
 				motel.setEnabled(true);
 				break;
 			case "room10":
-				room10.setBackground(new Color(168, 7, 7));
+				hospital.setBackground(new Color(168, 7, 7));
 				infoArea.setText(defaultString);
-				room10.setEnabled(true);
+				hospital.setEnabled(true);
 				break;
 			case "room11":
-				room11.setBackground(new Color(168, 7, 7));
+				dakota.setBackground(new Color(168, 7, 7));
 				infoArea.setText(defaultString);
-				room11.setEnabled(true);
+				dakota.setEnabled(true);
 				break;
 			case "room12":
-				room12.setBackground(new Color(168, 7, 7));
+				kitchen.setBackground(new Color(168, 7, 7));
 				infoArea.setText(defaultString);
-				room12.setEnabled(true);
+				kitchen.setEnabled(true);
 				break;
 			case "room13":
 				room13.setBackground(new Color(168, 7, 7));
