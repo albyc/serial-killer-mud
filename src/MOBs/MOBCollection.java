@@ -7,7 +7,7 @@ import Rooms.Room;
 
 public class MOBCollection
 {
-	private List<MOB> theMOBs;
+	private ArrayList<MOB> theMOBs;
 	
 	private MOB jefferyDahmer;		//abduct you
 	private MOB lawrenceBittaker;
