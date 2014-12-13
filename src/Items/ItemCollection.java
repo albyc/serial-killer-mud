@@ -12,14 +12,14 @@ public class ItemCollection
 	private EnergyBoostItem bandaid = new EnergyBoostItem("bandaid", "patch up your wound", true, false);
 	private EnergyBoostItem aidKit = new EnergyBoostItem("first aid kit", "patch up your wound", true, false);
 	private EnergyBoostItem energyBoost = new EnergyBoostItem("energy boost", "You look a little tired, use this to increase your energy.", true, false);
-	private FightingItem stick = new FightingItem("stick","Use this fine piece of wood to protect yourself in anyway possible. It's more powerful than you think.", true, false, false);
+	private FightingItem stick = new FightingItem("stick","Use this fine piece of wood to protect yourself in any way possible. It's more powerful than you think.", true, false, false);
 	private FightingItem knife = new FightingItem("knife", "You can stab people with it to stay alive", true, false, false);
 	private FightingItem gun = new FightingItem("gun", "Use this to kill enemies/victims.", true, false, false);
 	private FightingItem sword = new FightingItem("sword", "Use this sleek piece of weaponry to fight any evil MOB's that stand in your way.", true, false, false);
-	private FightingItem shovel = new FightingItem("shovel", "Use this to digg wholes or to whack MOB's upside there heads.", true, false, false);
+	private FightingItem shovel = new FightingItem("shovel", "Use this to dig holes or to whack MOB's upside their heads.", true, false, false);
 	private FightingItem rope = new FightingItem("rope", "Need to tie up a victim?", true, false, false);
 	private ReusableItem handcuffs = new ReusableItem("handcuffs", "Use this to save yourself some time. MOB's will struggle to get free from this restraint.", true, false, false);
-	private ReusableItem flashLight = new ReusableItem("falsh light", "Use this item to light up your night.", true, false, false);
+	private ReusableItem flashLight = new ReusableItem("flash light", "Use this item to light up your night.", true, false, false);
 	private ReusableItem nightVisionGoggles = new ReusableItem("night vision goggles", "Use these to see in dark places to stay alive", true, false, false);
 	private ReusableItem key = new ReusableItem("key", "Use this to unlock doors to run away to stay alive.", true, false, false);
 	private ReusableItem money = new ReusableItem("money", "Use this to buy energy boosts", true, true, true); 

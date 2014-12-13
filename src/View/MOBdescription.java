@@ -46,9 +46,9 @@ public class MOBdescription extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
-		if (mobName.equals("jeffery dahmer") || mobName.equals("dahmer")) {
+		if (mobName.equals("jeffrey dahmer") || mobName.equals("dahmer")) {
 			infoArea = new JTextArea(
-					"\n name: jeffery dahmer\n\n height: 6'1''\n weight: about 180lbs\n born: May 21, 1960. Milwaukee.\narrest: Notorious sex offender and serial killer.\n Sentenced to 15 consecutive life terms.\n killed his first victim with a blow to the head in 1978.\n killed 17 men total, molesting some of them, between 1978 to 1991.");
+					"\n name: jeffrey dahmer\n\n height: 6'1''\n weight: about 180lbs\n born: May 21, 1960. Milwaukee.\narrest: Notorious sex offender and serial killer.\n Sentenced to 15 consecutive life terms.\n killed his first victim with a blow to the head in 1978.\n killed 17 men total, molesting some of them, between 1978 to 1991.");
 			//add images, later make so text showes when hovering over the images
 			ImageIcon iconOne = new ImageIcon("images/dahmer2.jpeg");
 			dahmerImage1 = new JButton(iconOne);
