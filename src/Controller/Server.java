@@ -19,7 +19,6 @@ import Players.*;
 import javax.swing.Timer;
 
 /**
- * The class is the server side of the Serial Killer MUD. The server communicates with clients,
  * sends and receives commands, etc.
  * 
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron

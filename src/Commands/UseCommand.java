@@ -14,6 +14,6 @@ public class UseCommand extends Command<Client>
 	
 	public void execute(Client executeOn)
 	{
-		executeOn.dropItem(argument);
+		executeOn.useItem(argument);
 	}
 } // end of class UseCommand

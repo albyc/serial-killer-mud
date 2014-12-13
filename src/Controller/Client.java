@@ -156,7 +156,9 @@ public class Client extends JFrame
 				+ "WHO: Lists all of the current players\nSCORE: Lists your current score\nGET <item>: Retrieves an item"
 				+ "from the room and adds it to your backpack\nINVENTORY: Lists all of the items in your backpack"
 				+ "\nDROP <item>: Removes the item from your backpack\nLOOK: provides a 360 description of your surroundings"
-				+ "\nLOOK <argument>: provides in depth description of specified argument\nQUIT: quits the game and closes the window\n";
+				+ "\nLOOK <argument>: provides in depth description of specified argument\nQUIT: quits the game and closes the window\n"
+				+ "SAY: send a message to all players in the same room as you\nTELL <player> <message>: Sends a message to the "
+				+ "specified player\n";
 		commandMessages.add(listOfCommands);
 		mainView.updateCommands(commandMessages);
 	}
@@ -624,6 +626,7 @@ public class Client extends JFrame
 		MOB opponent = player.getLocation().getMobByName(argument);
 		if(opponent != null)
 			player.fight(opponent);
+		listScore();
 	}
 
 	public void lookDescription(String argument) {
@@ -915,6 +918,29 @@ public class Client extends JFrame
 		
 		commandMessages.add(description);
 		mainView.updateCommands(commandMessages);
+	}
+
+	public void useItem(String argument) {
+		String toPrint = "";
+		switch(argument.toLowerCase()){
+		case "water":
+		case "food":
+		case "money":
+		case "energy boost":
+			player.incrementHealth(5);
+			toPrint = "You have now used <" +argument + ">. Your health has been incremented. \n";
+			commandMessages.add(toPrint);
+			mainView.updateCommands(commandMessages);
+			listScore();
+			dropItem(argument);
+			break;
+		default:
+			toPrint = "You have now used <" +argument + ">.\n";
+			commandMessages.add(toPrint);
+			mainView.updateCommands(commandMessages);
+			dropItem(argument);
+			break;
+		}
 	}
 
 }

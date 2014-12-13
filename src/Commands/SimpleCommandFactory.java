@@ -64,7 +64,9 @@ public class SimpleCommandFactory
 		case QUIT:
 			result = new QuitCommand();
 			break;
-	
+		case FIGHT:
+			result = new FightCommand(argument);
+			break;
 		default:
 			break;
 		}
