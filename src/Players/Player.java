@@ -58,6 +58,14 @@ public class Player implements Serializable
     
     public List<Item> getItems() { return backpack; }
     
+    public Item getItemInBackpack(String name) {
+    	for(Item i : backpack){
+    		if(i.getName().equals(name))
+    			return i;
+    	}
+    	return null;
+    }
+    
     public int getHealth() { return health; }
     
     public void incrementHealth(int amount){

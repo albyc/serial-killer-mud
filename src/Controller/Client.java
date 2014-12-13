@@ -200,16 +200,10 @@ public class Client extends JFrame
 	 */
 	public void dropItem(String argument) 
 	{
-		//retrieve item from collection
-		Item item;
-		if(argument.equalsIgnoreCase("nvg"))
-			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
-		else
-			item = roomCollection.getItemCollection().getItemFromName(argument.toLowerCase());
-		
-		//drop item if possible
 		String dropped = "";
-		if(player.dropItem(item)){ //drops item if possible and either returns true or false on successfulness
+		Item item = player.getItemInBackpack(argument);
+		if(item != null){
+			player.dropItem(item);
 			player.getLocation().addItem(item);
 			dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
 		}
@@ -219,35 +213,6 @@ public class Client extends JFrame
 		//update gui
 		commandMessages.add(dropped);
 		mainView.updateCommands(commandMessages);
-		
-		/*
-		if(player.getItems() != null){
-			for (Item i : player.getItems())
-			{
-				if(i.getName().equals(argument.toLowerCase()) || (i.getName().equals("night vision goggles") && argument.toLowerCase().equals("nvg")))
-				{
-					/*switch(argument){
-						case "water":
-						break;
-						case "food":
-						break;
-						case "knife":
-						break;
-						case "nvg":
-						break;
-						case "key":
-						break;
-					}
-					player.dropItem(item);
-					String dropped = "You no longer have <" + item.getName() + "> in your inventory." + "\n";
-					commandMessages.add(dropped);
-					mainView.updateCommands(commandMessages);
-					//itemCollection.setbool(index, false);
-					break;
-				}
-			}
-		}*/
-		
 	}
 
 	/**
@@ -257,7 +222,6 @@ public class Client extends JFrame
 	{
 		List<Item> playerBackpack = player.getItems();
 		
-		
 		boolean empty = true;
 		String allItems = "These are the items that are currently in your backpack:\n";
 		
@@ -265,7 +229,6 @@ public class Client extends JFrame
 		{
 			allItems += item.getName() + "\n";
 			empty = false;
-			System.out.print("d");
 		}
 		
 		if (empty)
@@ -294,18 +257,15 @@ public class Client extends JFrame
 	 */
 	public void pickUp(String argument) //not working dammit
 	{
-		Item item;
-		if(argument.equalsIgnoreCase("nvg"))
-			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
-		else
-			item = roomCollection.getItemCollection().getItemFromName(argument.toLowerCase());
+		Item item = player.getLocation().getItemByName(argument);
 		
-		if(player.getLocation().hasItem(item)){
+		if(item != null){
 			if(player.pickUpItem(item)){
-			player.getLocation().removeItem(item);
-			String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-			commandMessages.add(pickUp);
-			mainView.updateCommands(commandMessages);
+				player.getLocation().removeItem(item);
+				System.out.println("item picked up");
+				String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
+				commandMessages.add(pickUp);
+				mainView.updateCommands(commandMessages);
 			}
 			else{
 				String pickUp = "Backpack is full.\n";

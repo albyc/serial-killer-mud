@@ -29,7 +29,7 @@ public class RoomCollection
 	{
 		rooms = new ArrayList<Room>();
 		itemCollection = new ItemCollection();
-//		mobCollection = new MOBCollection();
+		mobCollection = new MOBCollection();
 		
 		addDefaultRooms();
 		setItemsInRooms();
@@ -37,44 +37,7 @@ public class RoomCollection
 	} 
 	
 	private void addDefaultRooms()
-	{
-		//dont have to make all these lists, add items to rooms by saying room.addItem(anItem);
-		// Initializing lists for items in all 30 rooms
-		/*
-		List<Item> itemsInLawn = new ArrayList<Item>();
-		List<Item> itemsInMurderCastle = new ArrayList<Item>();
-		List<Item> itemsInFarmhouse = new ArrayList<Item>();
-		List<Item> itemsInBasement = new ArrayList<Item>();
-		List<Item> itemsInSecret = new ArrayList<Item>();
-		List<Item> itemsInWoods = new ArrayList<Item>();
-		List<Item> itemsInFactory = new ArrayList<Item>();
-		List<Item> itemsInHospital = new ArrayList<Item>();
-		List<Item> itemsInPool = new ArrayList<Item>();
-		List<Item> itemsInKitchen = new ArrayList<Item>();
-		List<Item> itemsInAttic = new ArrayList<Item>();
-		List<Item> itemsInJail = new ArrayList<Item>();
-		List<Item> itemsInPoliceStation= new ArrayList<Item>();
-		List<Item> itemsInGasStation = new ArrayList<Item>();
-		List<Item> itemsInBedroom= new ArrayList<Item>();
-		List<Item> itemsInCemetery = new ArrayList<Item>();
-		List<Item> itemsInBank = new ArrayList<Item>();
-		List<Item> itemsInCasino = new ArrayList<Item>();
-		List<Item> itemsInAdventureLand= new ArrayList<Item>();
-		List<Item> itemsInDarkAlley = new ArrayList<Item>();
-		List<Item> itemsInSpain= new ArrayList<Item>();
-		List<Item> itemsInParis = new ArrayList<Item>();
-		List<Item> itemsInDubai = new ArrayList<Item>();
-		List<Item> itemsInAirport = new ArrayList<Item>();
-		List<Item> itemsInTheStreets = new ArrayList<Item>();
-		List<Item> itemsInSubway = new ArrayList<Item>();
-		List<Item> itemsInDinner = new ArrayList<Item>();
-		List<Item> itemsInDoomsville = new ArrayList<Item>();
-		List<Item> itemsInMotel = new ArrayList<Item>();
-		List<Item> itemsInDesert = new ArrayList<Item>();
-		 */
-		
-
-		
+	{	
 		lawn = new SceneRoom("The Lawn", "small area of dead grass");
 		secret = new SceneRoom("Secret Room", "Under Construction");
 		woods = new SceneRoom("Dark Woods", "Under Construction");

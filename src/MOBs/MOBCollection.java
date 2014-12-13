@@ -35,9 +35,9 @@ public class MOBCollection
 		hannibalLecter = new MOB("Hannibal Lecter", new ArrayList<Item>(), new ArrayList<String>());
 		henryHowardHolmes = new MOB("Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>());
 		
-//		victim = new MOB("Victim", new ArrayList<Item>(), new ArrayList<String>());
-//		foodStandGuy = new MOB("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>());
-//		
+		victim = new MOB("Victim", new ArrayList<Item>(), new ArrayList<String>());
+		foodStandGuy = new MOB("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>());
+		
 //		theMOBs.add(hannibalLecter);
 //		theMOBs.add(jefferyDahmer);
 //		theMOBs.add(lawrenceBittaker);
@@ -47,7 +47,7 @@ public class MOBCollection
 //		theMOBs.add(andreChikatilo);
 //		theMOBs.add(richardTrentonChase);
 //		theMOBs.add(henryHowardHolmes);
-//	
+//
 //		theMOBs.add(victim);
 //		theMOBs.add(foodStandGuy);
 	}

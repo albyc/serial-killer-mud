@@ -103,14 +103,13 @@ public abstract class Room implements Serializable
 	}
 	
 	
-	
-	
-	public boolean hasItem(Item i){
-		if(items.contains(i))
-			return true;
-		return false;
+	public Item getItemByName(String name){
+		for(Item i : items){
+			if(i.getName().equals(name))
+				return i;
+		}
+		return null;
 	}
-	
 	
 	
 	
