@@ -46,6 +46,10 @@ public class MOB {
 		currentLocation = newRoom;
 		// erase self from room and add self to new room
 	}
+	
+	public void movingMOBs(){
+		//
+	}
 
 	public Room getCurrentLocation() { return currentLocation; }
 

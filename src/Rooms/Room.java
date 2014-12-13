@@ -48,7 +48,6 @@ public abstract class Room implements Serializable
 	public List<Item> getItems() { return items; }
 	
 	
-	
 	public void addPlayer(Player aPlayer) { players.add(aPlayer); }
 	
 	public void removePlayer(Player player) { players.remove(player); }	
@@ -130,20 +129,21 @@ public abstract class Room implements Serializable
 	public String getNamesOfMOBsInRoom(){
 		String names = "";
 		for(MOB m : mobs){
-			names += "\t";
+			names += " ";
 			names += m.getIdentity();
-			names += "\n";
 		}
+		names += "\n";
 		return names;
 	}
 
 	public String getNamesOfItemsInRoom(){
 		String names = "";
 		for(Item i : items){
-			names += "\t";
+			names += " ";
 			names += i.getName();
-			names += "\n";
+			names += "               ";
 		}
+		names += "\n";
 		return names;
 	}
 	

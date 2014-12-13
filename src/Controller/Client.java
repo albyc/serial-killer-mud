@@ -59,8 +59,8 @@ public class Client extends JFrame
 	@SuppressWarnings("unchecked")
 	public Client()
 	{
-		String host = JOptionPane.showInputDialog("Host address:");
-		String port = JOptionPane.showInputDialog("Host port:");
+		String host = JOptionPane.showInputDialog("Host address:", "localhost");
+		String port = JOptionPane.showInputDialog("Host port:", "9001");
 		
 		if (host == null || port == null)
 			return;
@@ -369,10 +369,10 @@ public class Client extends JFrame
 		switch(name){
 			case "The Lawn":
 				surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
-						+ "\nPlayers in Room: " + room.getNamesOfPlayersInRoom()
-						+ "\nMOB's in Room: " + room.getNamesOfMOBsInRoom()
-						+ "\nItems in Room: " + room.getNamesOfItemsInRoom()
-						+ "\nAdjacent Rooms:\n  The Murder Castle - to the north\n";
+						+ "\nPlayers in Room:" + room.getNamesOfPlayersInRoom()
+						+ "MOB's in Room:" + room.getNamesOfMOBsInRoom()
+						+ "Items in Room:" + room.getNamesOfItemsInRoom()
+						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
 				break;
 			case "Wisconsin Farmhouse of Horrors":
 				surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
@@ -531,7 +531,6 @@ public class Client extends JFrame
 				break;
 		}
 		listSurroundings();
-
 	}
 
 	/**
@@ -615,6 +614,7 @@ public class Client extends JFrame
 
 	public void showMap() {
 		new Map();
+		new MOBdescription("lucus");
 	}
 
 	
