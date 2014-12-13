@@ -74,7 +74,7 @@ public class LoginView extends JFrame
 		oldUN.setSize(250,30);
 		oldUN.setLocation(100,100);
 		
-		usernameField = new JTextField("");
+		usernameField = new JTextField("admin");
 		usernameField.setFont(getFont("fonts/trajan.ttf").deriveFont(12f));
 		usernameField.setSize(175,30);
 		usernameField.setLocation(200,100);
@@ -85,7 +85,7 @@ public class LoginView extends JFrame
 		oldUP.setSize(250,30);
 		oldUP.setLocation(100,150);
 		
-		passwordField = new JPasswordField("");
+		passwordField = new JPasswordField("0000");
 		passwordField.setSize(175,30);
 		passwordField.setLocation(200,150);
 		

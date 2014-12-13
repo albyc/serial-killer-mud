@@ -615,15 +615,15 @@ public class Client extends JFrame
 
 	public void showMap() {
 		new Map();
-//		new MOBdescription("lucus");
-//		new FightView(player,new MOB("scary mob", new ArrayList<Item>(), new ArrayList<String>()));
 	}
 
+	
+	// if mob is in same room as player, fight
 	public void fight(String argument) {
-//		List<MOB> allMOBsInRoom = player.getLocation().getMOBs();
-//		MOB opponent = player.getLocation().getMobByName(argument);
-//		if(opponent != null)
-//			player.fight(opponent);
+		List<MOB> allMOBsInRoom = player.getLocation().getMOBs();
+		MOB opponent = player.getLocation().getMobByName(argument);
+		if(opponent != null)
+			player.fight(opponent);
 	}
 
 }
