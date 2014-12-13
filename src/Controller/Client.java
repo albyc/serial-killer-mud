@@ -258,192 +258,128 @@ public class Client extends JFrame
 	public void pickUp(String argument) //not working dammit
 	{
 		Item item = player.getLocation().getItemByName(argument);
-		
+		String pickUp = "";
+
 		if(item != null){
 			if(player.pickUpItem(item)){
 				player.getLocation().removeItem(item);
-				System.out.println("item picked up");
-				String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-				commandMessages.add(pickUp);
-				mainView.updateCommands(commandMessages);
+				pickUp = "\nYou have picked up <" + item.getName()+ "> and added it to your inventory.\n";
 			}
-			else{
-				String pickUp = "Backpack is full.\n";
-				commandMessages.add(pickUp);
-				mainView.updateCommands(commandMessages);
-			}
+			else
+				 pickUp = "\nBackpack is full.\n";
 		}
-		
-/*	
-		if (player.getItems() != null)
-		{
-			if (player.getItems().size() < 5)
-			{				
-				if(player.getLocation() == roomCollection.isItemInRoom(player.getLocation(), item ))
-				{
-					boolean inBackpack = false;
-					for(Item i : player.getItems())
-					{
-						if(i == item)
-						{
-							inBackpack = true;
-							break;
-						}
-					}
-					if(inBackpack == false){
-						player.pickUpItem(item);
-						String pickUp = "You have picked up <" + item.getName()+ "> and added it to your inventory.\n";
-						commandMessages.add(pickUp);
-						mainView.updateCommands(commandMessages);
-						if(item.getName().equals("water") || item.getName().equals("food"))
-						{
-							player.incrementHealth(5);//??? arg depend on how much boost
-//							incrementHealth();
-						}
-					}
-				}
-			}
-		}
-
-		if(argument.equalsIgnoreCase("nvg"))
-			item = roomCollection.getItemCollection().getItemFromName("night vision goggles");
+		else if(player.getItemInBackpack(argument) != null)
+			pickUp = "\nyou already hav this item in you backpack sily goose";
 		else
-			item = itemCollection.getItemFromName(argument.toLowerCase());
-*/
+			pickUp = "\nitem does not exists in this room";
+		commandMessages.add(pickUp);
+		mainView.updateCommands(commandMessages);
 	}
 
-	
-	/*public void showMap()
-	{
-		new Map();
-	}*/
-
-	//needs to be finished
 	public void listSurroundings() 
 	{
 		String surroundings = "";
 		Room room = player.getLocation();
 		String name = room.getRoomName();
-		surroundings += "CurrentRoom: " + room.getRoomDescription()
-				+ "\nPlayers in Room: "
-				+ room.getNamesOfAdjacentRooms();
-		switch(name){
-			case "The Lawn":
-				surroundings += "Current Room: The Lawn \nDescription: small area of dead grass in front of the Murder Castle"
-						+ "\nPlayers in Room:" + room.getNamesOfPlayersInRoom()
-						+ "MOB's in Room:" + room.getNamesOfMOBsInRoom()
-						+ "Items in Room:" + room.getNamesOfItemsInRoom()
-						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n";
-				break;
-			case "Wisconsin Farmhouse of Horrors":
-				surroundings += "Current Room: Wisconsin Farmhouse of Horrors\nDescription: Average farmhouse, nothing in particular"
-						+ "\nPlayers in Room: " + room.getNamesOfPlayersInRoom()
-						+ "\nMOBs in Room: " + room.getNamesOfMOBsInRoom()
-						+ "\nItems in Room: " + room.getNamesOfItemsInRoom()
-						+ "Adjacent Rooms:\n  The Murder Castle - to the south\n ";
-				break;
-			case "Murder Castle":
-				surroundings += "Current Room: The Murder Castle\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard Holmes. Three stories and a block long."
-						+ "\nPlayers in Room: " + room.getNamesOfPlayersInRoom()
-						+ "\nMOB's in Room: " + room.getNamesOfMOBsInRoom()
-						+ "\nItems in Room: " + room.getNamesOfItemsInRoom()
-						+ "\nAdjacent Rooms:\n  The Lawn - to the south\n"
-						+ "  Wisconsin Farmhouse of Horrors - to the north\n";
-				break;
-		}
+		surroundings += "CurrentRoom:" + name
+				+ "\nDescription:" + room.getRoomDescription()
+				+ "\nPlayers in Room:" + room.getNamesOfPlayersInRoom()
+				+ "\nMOBs in Room:" + room.getNamesOfMOBsInRoom()
+				+ "\nItems in Room:" + room.getNamesOfItemsInRoom()
+				+ "\nAdjacent Rooms:" +room.getNamesOfAdjacentRooms();
 		commandMessages.add(surroundings);
 		mainView.updateCommands(commandMessages);
 	}
 
-	/**
-	 * lists the details of the specified argument
-	 * @param argument - string name of item/room specified
-	 */
-	public void surroundingsArg(String argument) {
-		String surroundings = "";
-		switch(argument.toLowerCase())
-		{
-			case "water":
-				surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
-				break;
-			case "food":
-				surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
-				break;
-			case "knife":
-				surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
-				break;
-			case "key":
-				surroundings += "KEY:\nThe key locan be used to unlock doors.\n\n";
-				break;
-			case "night vision goggles":
-				surroundings += "NIGHT VISION GOGGLES (NVG):\nThe night vision goggles allow you to see in dark places.\n\n";
-				break;
-			case "lawn":
-				surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
-						+ "\nItems in Room:\n" // + Key\n"
-						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
-				break;
-			case "murder castle":
-				surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
-						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
-						+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
-				break;
-			case "wisconsin farmhouse of horrors":
-				surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
-						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
-						+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
-				break;
-			case "jeffery dahmer":
-			case "dahmer":
-				surroundings += "it works dumbass";
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "lawrence bittaker":
-			case "roy norris":
-			case "bittaker":
-			case "norris":
-			case "toolbox killers":
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "richard ramirez":
-			case "ramirez":
-			case "night stalker":
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "andre chikatilo":
-			case "chikatilo":
-			case "red ripper":
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "richard trenton chase":
-			case "richard chase":
-			case "chase":
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "henry lee lucus":
-			case "henry lucus":
-			case "lucus":
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "ed gein":
-			case "gein":
-			case "psycho":
-				new MOBdescription(argument.toLowerCase());
-				break;
-			case "hannibal lecter":
-			case "hannibal":
-			case "lecter":
-				new MOBdescription(argument.toLowerCase());
-			case "henry howard holmes":
-			case "holmes":
-			case "hhh":
-				new MOBdescription(argument.toLowerCase());
-			default:
-				break;
-		}
-		commandMessages.add(surroundings);
-		mainView.updateCommands(commandMessages);
-	}
+//	/**
+//	 * lists the details of the specified argument
+//	 * @param argument - string name of item/room specified
+//	 */
+//	public void surroundingsArg(String argument) {
+//		String surroundings = "";
+//		switch(argument.toLowerCase())
+//		{
+//			case "water":
+//				surroundings += "WATER:\nThe water item is drinkable water. It increases your health score.\n\n";
+//				break;
+//			case "food":
+//				surroundings += "FOOD:\nThe food item is edible food. It increases your health score.\n\n";
+//				break;
+//			case "knife":
+//				surroundings += "KNIFE:\nThe knife can be used as a weapon against the MOB serial killers and other players.\n\n";
+//				break;
+//			case "key":
+//				surroundings += "KEY:\nThe key locan be used to unlock doors.\n\n";
+//				break;
+//			case "night vision goggles":
+//				surroundings += "NIGHT VISION GOGGLES (NVG):\nThe night vision goggles allow you to see in dark places.\n\n";
+//				break;
+//			case "lawn":
+//				surroundings += "THE LAWN:\nThe lawn is your original starting place. \nDescription: small area of dead grass in front of the Murder Castle"
+//						+ "\nItems in Room:\n" // + Key\n"
+//						+ "Adjacent Rooms:\n  The Murder Castle - to the north\n\n";
+//				break;
+//			case "murder castle":
+//				surroundings += "THE MURDER CASTLE:\nDescription: 601-603 W. 63rd St. Chicago. Home of Dr. Henry Howard\n Holmes. Three stories and a block long."
+//						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n"
+//						+ "  Wisconsin Farmhouse of Horrors - to the north\n\n";
+//				break;
+//			case "wisconsin farmhouse of horrors":
+//				surroundings += "WISCONSIN FARMHOUSE OF HORRORS:\nDescription: Average farmhouse, nothing in particular"
+//						+ "\nItems in Room:\n  Food\n  Water\nAdjacent Rooms:\n  The Lawn - to the south\n  "
+//						+ "Wisconsin Farmhouse of Horrors - to the north\n\n";
+//				break;
+//			case "jeffery dahmer":
+//			case "dahmer":
+//				surroundings += "it works dumbass";
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "lawrence bittaker":
+//			case "roy norris":
+//			case "bittaker":
+//			case "norris":
+//			case "toolbox killers":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "richard ramirez":
+//			case "ramirez":
+//			case "night stalker":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "andre chikatilo":
+//			case "chikatilo":
+//			case "red ripper":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "richard trenton chase":
+//			case "richard chase":
+//			case "chase":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "henry lee lucus":
+//			case "henry lucus":
+//			case "lucus":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "ed gein":
+//			case "gein":
+//			case "psycho":
+//				new MOBdescription(argument.toLowerCase());
+//				break;
+//			case "hannibal lecter":
+//			case "hannibal":
+//			case "lecter":
+//				new MOBdescription(argument.toLowerCase());
+//			case "henry howard holmes":
+//			case "holmes":
+//			case "hhh":
+//				new MOBdescription(argument.toLowerCase());
+//			default:
+//				break;
+//		}
+//		commandMessages.add(surroundings);
+//		mainView.updateCommands(commandMessages);
+//	}
 
 
 	/**
@@ -651,7 +587,7 @@ public class Client extends JFrame
     				+ "is only one way out. Find the key and\n"
     				+ "enter the Murder Castle. You can stay\n"
     				+ "but your chances of survival are slim\n"
-    				+ "to none. Do yourself a favor if you’re\n"
+    				+ "to none. Do yourself a favor if youï¿½re\n"
     				+ "on the lawn, leave at once and save yo\n"
     				+ "ass.\n\n";
 			break;
@@ -666,17 +602,17 @@ public class Client extends JFrame
      			   + "hidden in the brush. Their eyes\n"
      			   + "glow with a lively flourish that\n"
      			   + "juxtaposes your inevitable fate.\n"
-     			   + "There isn’t much to see here since\n"
-     			   + "it is dark. Perhaps you’ll find a\n"
+     			   + "There isnï¿½t much to see here since\n"
+     			   + "it is dark. Perhaps youï¿½ll find a\n"
      			   + "flashlight hidden amongst the trees.\n"
-     			   + "Word of advice… Watch your back!!\n\n";
+     			   + "Word of adviceï¿½ Watch your back!!\n\n";
 			break;
 		case "basement":
 			description = "Basement: Welcome to the deepest trenches\n"
      			   + "of the murder castle. Beware the\n "
      			   + "piles of corpses. That stench isn't\n"
      			   + "just your feet. Besides the eeriness\n"
-     			   + "feeling this room gives you there isn’t\n"
+     			   + "feeling this room gives you there isnï¿½t\n"
      			   + "much within the space enclosed by\n"
      			   + "these nicely painted red walls.\n\n";
 			break;
@@ -684,7 +620,7 @@ public class Client extends JFrame
 			description = "Murder Castle: Welcome to the cozy home of Sir\n"
 		        			   + "HH Holmes. There's no need to be\n"
 		        			   + "afraid. Unless HH comes home. The\n"
-		        			   + "‘Castle’ is located 601-603 W. 63rd St.\n"
+		        			   + "ï¿½Castleï¿½ is located 601-603 W. 63rd St.\n"
 		        			   + "Chicago. It's three stories and a block\n"
 		        			   + "long. The ground floor contains Dr.\n"
 		        			   + "Holmes drugstore. The upper two\n"
@@ -699,22 +635,22 @@ public class Client extends JFrame
 	        			   + "Ed Gein definately does not want to\n"
 	        			   + "scare you away. The house is in\n"
 	        			   + "pristine shape but a little out\n"
-	        			   + "dated. I wouldn’t touch anything Ed\n"
-	        			   + "wouldn’t like that. He should be\n"
+	        			   + "dated. I wouldnï¿½t touch anything Ed\n"
+	        			   + "wouldnï¿½t like that. He should be\n"
 	        			   + "arriving shortly. If I were you get\n"
 	        			   + "what you need and leave.\n";
 			break;
 		case "cleveland strangler murder house":
 			description = "Cleveland Strangler Murder House: You are currently standing in the\n"
-	        			   + "Cleveland Strangler’s living room.\n"
+	        			   + "Cleveland Stranglerï¿½s living room.\n"
 	        			   + "It is here where two bodies were\n"
 	        			   + "found during the time of the\n"
-	        			   + "Strangler’s arrest. Don’t worry he\n"
-	        			   + "won’t be coming for you but someone\n"
+	        			   + "Stranglerï¿½s arrest. Donï¿½t worry he\n"
+	        			   + "wonï¿½t be coming for you but someone\n"
 	        			   + "else could be. There is a couch to\n"
 	        			   + "the north of the room and a\n"
 	        			   + "television. The room is pretty empty\n"
-	        			   + "the Strangler wasn’t too keen on\n"
+	        			   + "the Strangler wasnï¿½t too keen on\n"
 	        			   + "indoor decorating.\n\n";
 			break;
 		case "abandoned factory":
@@ -841,33 +777,50 @@ public class Client extends JFrame
 		case "dubai":
 			description = "Dubai: Welcome to Dubai!\n";
 			break;
+		case "jeffery dahmer":
 		case "dahmer":
-			new MOBdescription("jeffrey dahmer");
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "lawrence bittaker":
+		case "roy norris":
 		case "bittaker":
-			new MOBdescription("lawrence bittaker");
+		case "norris":
+		case "toolbox killers":
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "richard ramirez":
 		case "ramirez":
-			new MOBdescription("richard ramirez");
+		case "night stalker":
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "andre chikatilo":
 		case "chikatilo":
-			new MOBdescription("andre chickatilo");
+		case "red ripper":
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "richard trenton chase":
+		case "richard chase":
 		case "chase":
-			new MOBdescription("richard chase");
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "henry lee lucus":
+		case "henry lucus":
 		case "lucus":
-			new MOBdescription("lucus");
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "ed gein":
 		case "gein":
-			new MOBdescription("gein");
+		case "psycho":
+			new MOBdescription(argument.toLowerCase());
 			break;
+		case "hannibal lecter":
 		case "hannibal":
-			new MOBdescription("hannibal lecter");
-			break;
+		case "lecter":
+			new MOBdescription(argument.toLowerCase());
+		case "henry howard holmes":
 		case "holmes":
-			new MOBdescription("henry howard holmes");
-			break;
+		case "hhh":
+			new MOBdescription(argument.toLowerCase());
 		default:
 			description = "Nothing matches your input. Please try again.";
 			break;

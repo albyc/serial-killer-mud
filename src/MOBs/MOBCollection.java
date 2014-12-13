@@ -90,11 +90,7 @@ public class MOBCollection
 	public MOB getMOBFromIdentity(String theIdentity){
 		for (MOB mob: theMOBs)
 		{
-			if (mob.getIdentity().equals(theIdentity))
-			{
-				System.out.println("found it");
-				return mob;
-			}
+			if (mob.getIdentity().equals(theIdentity)) { return mob; }
 		}
 		return null;
 	}
