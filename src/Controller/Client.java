@@ -626,4 +626,10 @@ public class Client extends JFrame
 //			player.fight(opponent);
 	}
 
+	public void lookDescription(String argument) {
+		switch(argument){
+		case "
+		}
+	}
+
 }
