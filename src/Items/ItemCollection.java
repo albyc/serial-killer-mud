@@ -30,6 +30,11 @@ public class ItemCollection
 	
 	public ItemCollection(){
 		items = new ArrayList<Item>();
+		
+		
+		
+		
+		
 //		this.pickedUp = new boolean[5];
 //		for(int i = 0; i < pickedUp.length; i++){
 //			pickedUp[i] = false;
