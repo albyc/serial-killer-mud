@@ -224,10 +224,8 @@ public class Server
 		
 		switch (admin)
 		{
-			case ALBY: 
-			case ALEXA:
-			case DAMARIS:
-			case LISA:
+			case ADMIN: 
+			
 				try
 				{
 					// send a message to all client on shutdown tell them to  disconnect and close their GUI 

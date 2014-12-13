@@ -5,10 +5,12 @@ import Controller.*;
 public class LookCommand extends Command<Client>
 {
 	private static final long serialVersionUID = 4750185401178793253L;
+	private String argument;
 
 	public LookCommand(String argument)
 	{
-		// TODO Auto-generated constructor stub
+		this.argument = argument;
+		
 	}
 
 	public LookCommand()
@@ -18,6 +20,11 @@ public class LookCommand extends Command<Client>
 
 	public void execute(Client executeOn)
 	{
-		executeOn.listSurroundings();
+		if(argument == null){
+			executeOn.listSurroundings();
+		}
+		else{
+			executeOn.lookDescription(argument);
+		}
 	}
 } // end of class LookCommand

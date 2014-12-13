@@ -586,4 +586,295 @@ public class Client extends JFrame
 			player.fight(opponent);
 	}
 
+	public void lookDescription(String argument) {
+		String description = "";
+		switch(argument.toLowerCase()){
+		case "water":
+			description = "Water: you drink it to stay alive\n";
+			break;
+		case "food":
+			description = "Food: you eat it to stay alive\n";
+			break;
+		case "bandaid":
+			description = "BandAid: patch up your wound\n";
+			break;
+		case "first aid kit":
+			description = "First Aid Kit: patch up your wound\n";
+			break;
+		case "energy boost":
+			description = "Energy Boost: you look a little tired, use this to increase your energy\n";
+			break;
+		case "stick":
+			description = "Stick: use this fine piece of wood to protect yourself in any way possible."
+					+ "It's more powerful than you think.\n";
+			break;
+		case "knife":
+			description = "Knife: You can stab people with it to stay alive\n";
+			break;
+		case "gun":
+			description = "Gun: Use this to kill enemies/victims\n";
+			break;
+		case "sword":
+			description = "Sword: use this sleek piece of weaponry to fight any evil MOB's that stand in your way.\n";
+			break;
+		case "shovel":
+			description = "Shovel: Use this to dig holes or to whack MOB's upside thier heads.\n";
+			break;
+		case "rope":
+			description = "Rope: Need to tie up a victim?\n";
+			break;
+		case "handcuffs":
+			description = "Handcuffs: Use this to save yourself some time. MOB's will struggle to get free from this restraint\n";
+			break;
+		case "flashlight":
+			description = "Flashlight: Use this item to light up your night.\n";
+			break;
+		case "night vision goggles":
+			description = "Night Vision Goggles: Use these to see in dark places\n";
+			break;
+		case "key":
+			description = "Key: Use this to unlock doors\n";
+			break;
+		case "money":
+			description = "Money: Use this to buy energy boosts\n";
+			break;
+		case "disguise":
+			description = "Disguise: This is a rare find. Use this to hide your face from your enemies.\n";
+			break;
+		case "lawn":
+			description = "The Lawn: There is no escaping now! The lawn\n"
+    				+ "is homebase for all players. You are\n"
+    				+ "surrounded by thousands upon\n"
+    				+ "thousands of acres of dead grass and\n"
+    				+ "trees. Daylight does not exist in this\n"
+    				+ "area and anything  can happen. There\n"
+    				+ "is only one way out. Find the key and\n"
+    				+ "enter the Murder Castle. You can stay\n"
+    				+ "but your chances of survival are slim\n"
+    				+ "to none. Do yourself a favor if you’re\n"
+    				+ "on the lawn, leave at once and save yo\n"
+    				+ "ass.\n\n";
+			break;
+		case "secret room":
+			description = "Sorry, the contents within this room\n"
+		        				+ "are confidential. You have to play\n"
+		        				+ "the game and explore it yourself\n\n";
+			break;
+		case "dark woods":
+			description = "Dark Woods: AAAAAOOOOOOWWWWWWWW. Watch\n"
+     			   + "out for those deathly predators\n"
+     			   + "hidden in the brush. Their eyes\n"
+     			   + "glow with a lively flourish that\n"
+     			   + "juxtaposes your inevitable fate.\n"
+     			   + "There isn’t much to see here since\n"
+     			   + "it is dark. Perhaps you’ll find a\n"
+     			   + "flashlight hidden amongst the trees.\n"
+     			   + "Word of advice… Watch your back!!\n\n";
+			break;
+		case "basement":
+			description = "Basement: Welcome to the deepest trenches\n"
+     			   + "of the murder castle. Beware the\n "
+     			   + "piles of corpses. That stench isn't\n"
+     			   + "just your feet. Besides the eeriness\n"
+     			   + "feeling this room gives you there isn’t\n"
+     			   + "much within the space enclosed by\n"
+     			   + "these nicely painted red walls.\n\n";
+			break;
+		case "murder castle":
+			description = "Murder Castle: Welcome to the cozy home of Sir\n"
+		        			   + "HH Holmes. There's no need to be\n"
+		        			   + "afraid. Unless HH comes home. The\n"
+		        			   + "‘Castle’ is located 601-603 W. 63rd St.\n"
+		        			   + "Chicago. It's three stories and a block\n"
+		        			   + "long. The ground floor contains Dr.\n"
+		        			   + "Holmes drugstore. The upper two\n"
+		        			   + "floors consist of 100 windowless\n"
+		        			   + "rooms with doorways opening to\n"
+		        			   + "brick walls, oddly angles hallways,\n"
+		        			   + "and stairways to nowhere.\n";
+			break;
+		case "wisconsin farmhouse of horrors":
+			description = "Wisconsin Farmhouse of Horrors: Welcome to Ed Gein's farmhouse. Pay\n"
+	        			   + "no mind to the human paraphernalia,\n"
+	        			   + "Ed Gein definately does not want to\n"
+	        			   + "scare you away. The house is in\n"
+	        			   + "pristine shape but a little out\n"
+	        			   + "dated. I wouldn’t touch anything Ed\n"
+	        			   + "wouldn’t like that. He should be\n"
+	        			   + "arriving shortly. If I were you get\n"
+	        			   + "what you need and leave.\n";
+			break;
+		case "cleveland strangler murder house":
+			description = "Cleveland Strangler Murder House: You are currently standing in the\n"
+	        			   + "Cleveland Strangler’s living room.\n"
+	        			   + "It is here where two bodies were\n"
+	        			   + "found during the time of the\n"
+	        			   + "Strangler’s arrest. Don’t worry he\n"
+	        			   + "won’t be coming for you but someone\n"
+	        			   + "else could be. There is a couch to\n"
+	        			   + "the north of the room and a\n"
+	        			   + "television. The room is pretty empty\n"
+	        			   + "the Strangler wasn’t too keen on\n"
+	        			   + "indoor decorating.\n\n";
+			break;
+		case "abandoned factory":
+			description = "Abandoned Factory: Creeeeeaak. Low-hanging pipes and\n"
+     			   + "boarded windows haunt this desolate\n"
+     			   + "place. Beware of dangerous machinery.\n"
+     			   + "Some murders can be made to look like\n"
+     			   + "accidents. Spiders aren't the only\n"
+     			   + "thing you should be afraid of.\n";
+			break;
+		case "roach motel":
+			description = "Roach Motel: You have found a safe place. This\n"
+	        			   + "place is pretty dirty. The walls are\n"
+	        			   + "moldy with odd colored stains. No\n"
+	        			   + "one can attack you here, so go ahead.\n"
+	        			   + "Grab a roach filled cot and get some\n"
+	        			   + "Just keep your mouth closed.\n";
+			break;
+		case "save yo self hospital":
+			description = "Save Yo Self Hospital: Got wounds? Need some patching up?\n"
+     			   + "You've come to the right place.\n"
+     			   + "Just make sure you check your\n"
+     			   + "doctor's credentails. Or else you'll\n"
+     			   + "have a one way ticket to the morgue."
+     			   + "\n\n";
+			break;
+		case "dakota apartments":
+			description = "The Dakota Apartments: Welcome to northwest corner of\n"
+     			   + "72nd Street and Central Park West in\n"
+     			   + "New York City. This place is also\n"
+     			   + "known to be the famous murder place\n"
+     			   + "of John Lennon. Come here to see\n"
+     			   + "music die.\n";
+			break;
+		case "hannibal's kitchen":
+			description = "Hannibal's Kitchen: You're in for a treat.\n"
+	        			   + "Pull up a chair and prepare\n"
+	        			   + "to be served the finest white\n"
+	        			   + "meat you'll consume.\n"
+	        			   + "Make sure you try the ribs.\n";
+			break;
+		case "dead end jail":
+			description = "Dead End Jail: Bars and Stripes. Welcome to\n"
+     			   + "jail.  Your backpack has been\n"
+     			   + "taken into custody. You have\n"
+     			   + "lost all your items.\n";
+			break;
+		case "police station":
+			description = "Police Station: Got a crime to report?\n"
+	        			   + "Of course you do, you snitch.\n"
+	        			   + "You are safe... for now.\n";
+			break;
+		case "chi omega sorority house":
+			description = "Chi Omega Sorority House at FSU: Wild parties, catty drama, and\n"
+	        			   + "psycho murders. Come for fun,\n"
+	        			   + "because this is a party you'll\n"
+	        			   + "never forget.\n";
+			break;
+		case "jeffrey dahmer's apartment":
+			description = "This is Jeffrey Dahmer's Apartment.\n";
+			break;
+		case "cemetery":
+			description = "Cemetery: Tombstones and coffins and dead\n"
+     			   + "people sleeping. These are a few\n"
+     			   + "of my fa-vor-ite things.\n"
+     			   + "Pick up a shovel and bury your\n"
+     			   + "victims, before someone buries\n"
+     			   + "you.\n";
+			break;
+		case "kingsfield bank":
+			description = "Kingsfield Bank: Out of money? You've come to\n"
+	        			   + "the right place. Finance your\n"
+	        			   + "bribes here.\n";
+			break;
+		case "casino especial":
+			description = "Casino Especial: Gamble all your problems away.\n";
+			break;
+		case "adventure land":
+			description = "Adventure Land Theme Park: Step right up and claim your prize.\n"
+	        			   + "I recommend you check out Devil's\n"
+	        			   + "Flight before you reach your final\n"
+	        			   + "destination. Keep your hands and\n"
+	        			   + "feet in the ride at all times and\n"
+	        			   + "don't forget to kiss yo ass\n"
+	        			   + "goodbye.\n";
+			break;
+		case "dark alleyway":
+			description = "Dark Alleyway: The best place for illegal transactions.\n"
+	        			   + "But watch out. Not all sharks\n"
+	        			   + "live in the ocean.\n";
+			break;
+		case "international airport":
+			description = "International Airport: Need to get away or do some\n"
+	        			   + "international business? Travel\n"
+	        			   + "to Paris, Spain, or Dubai!\n"
+	        			   + "This is a safe zone!\n";
+			break;
+		case "streets of detroit":
+			description = "Streets of Detroit: Welcome to the streets of Detroit.\n"
+	        			   + "Watch yo self. These streets\n"
+	        			   + "are not safe.\n";
+			break;
+		case "fox hollow farms":
+			description = "Fox Hollow Farms: Needs a Description.\n";
+			break;
+		case "big rig":
+			description = "Robert Ben Rhodes' Big Rig: This may look like a normal Big\n"
+	        			   + "Rig, but look closer.\n";
+			break;
+		case "desert":
+			description = "Desert: I hope you brought plenty of water.\n"
+	        			   + "And watch out for those scorpions\n"
+	        			   + "too.  Stay here too long, and yo ass\n"
+	        			   + "will suffer death by dehydration.\n";
+			break;
+		case "spain":
+			description = "Spain: Welcome to Spain!\n";
+			break;
+		case "paris":
+			description = "Paris: Welcome to Paris!\n"
+     			   + "Visit the crypts under the city\n"
+     			   + "and get lost in the Louvre.\n";
+			break;
+		case "dubai":
+			description = "Dubai: Welcome to Dubai!\n";
+			break;
+		case "dahmer":
+			new MOBdescription("jeffrey dahmer");
+			break;
+		case "bittaker":
+			new MOBdescription("lawrence bittaker");
+			break;
+		case "ramirez":
+			new MOBdescription("richard ramirez");
+			break;
+		case "chikatilo":
+			new MOBdescription("andre chickatilo");
+			break;
+		case "chase":
+			new MOBdescription("richard chase");
+			break;
+		case "lucus":
+			new MOBdescription("lucus");
+			break;
+		case "gein":
+			new MOBdescription("gein");
+			break;
+		case "hannibal":
+			new MOBdescription("hannibal lecter");
+			break;
+		case "holmes":
+			new MOBdescription("henry howard holmes");
+			break;
+		default:
+			description = "Nothing matches your input. Please try again.";
+			break;
+		}
+		
+		commandMessages.add(description);
+		mainView.updateCommands(commandMessages);
+	}
+
 }

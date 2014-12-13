@@ -64,6 +64,7 @@ public class SimpleCommandFactory
 		case QUIT:
 			result = new QuitCommand();
 			break;
+	
 		default:
 			break;
 		}
