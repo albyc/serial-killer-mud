@@ -8,10 +8,10 @@ import java.util.*;
 
 import javax.swing.*;
 
+import Commands.AddPlayerCommand;
 import Commands.Command;
 import Commands.DisconnectCommand;
 import Commands.GetItemFromPlayerCommand;
-
 import Items.EnergyBoostItem;
 import Items.FightingItem;
 import Items.Item;
@@ -47,6 +47,7 @@ public class Client extends JFrame {
 	// be passed from Server to client, and to the Server from the
 	// SerialKillerMud
 	// keep as instance variables but change that not new
+	
 	RoomCollection roomCollection = new RoomCollection();
 
 	public static void main(String[] args) {
@@ -396,7 +397,7 @@ public class Client extends JFrame {
 				currentLocation = player.getLocation();
 				player.getLocation().removePlayer(player);
 				player.changeRoom(currentLocation.getNorthRoom());
-				player.setLocation(currentLocation.getNorthRoom());
+				//player.setLocation(currentLocation.getNorthRoom());
 				System.out.println(player.getLocation().getRoomName());
 				String movedTo = "You have moved north into "
 						+ player.getLocation().getRoomName() + "\n";
@@ -479,10 +480,12 @@ public class Client extends JFrame {
 	 *            The player this client is associated with.
 	 */
 	public void setPlayer(Player player) {
+		
 		this.player = player;
+		//
 		roomCollection.addNewPlayerToRooms(player);
 		/*try {
-			out.writeObject(new SetUpPlayerCommand(player));
+			out.writeObject(new AddPlayerCommand(player));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -890,11 +893,14 @@ public class Client extends JFrame {
 		switch (argument.toLowerCase()) {
 		case "water":
 		case "food":
-		case "money":
 		case "energy boost":
 			player.incrementHealth(5);
 			toPrint = "You have now used <" + argument
 					+ ">. Your health has been incremented. \n";
+		case "money":
+			
+			
+			
 			commandMessages.add(toPrint);
 			mainView.updateCommands(commandMessages);
 			listScore();

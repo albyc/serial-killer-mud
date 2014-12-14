@@ -57,7 +57,7 @@ public class Server
 
 //		t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
 		//504.53
-		t = new Timer(5000, new MoveListener());
+		//t = new Timer(5000, new MoveListener());
 		t.start();
 		t2 = new Timer(20000, new MoveListener());
 		t2.start();
@@ -127,6 +127,7 @@ public class Server
 					break;
 				}
 			}
+			System.out.println();
 		}
 		
 	}
@@ -140,16 +141,9 @@ public class Server
 			Object[] usernames = names.toArray();*/
 			for(int i = 0; i < 9; i++){				
 				for(Player p : mud.getPlayersOnline()){
-					PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, "Hello.");
-					/*if(mud.getListOfMOBs().get(i).getCurrentLocation() == )
-					addMessage(mud.getListOfMOBs().get(i).getIdentity() + ": Hello");*/
+					System.out.println(mud.getListOfMOBs().get(i).getIdentity());
 					addSayMessage(p.getUsername(), "Helllloooooo. I am an MOB.", mud.getListOfMOBs().get(i).getCurrentLocation(), mud.getListOfMOBs().get(i).getIdentity());
-					/*try {
-						o.writeObject(new ForServerCommand(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, "Hello."));
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}*/
+					
 				}
 			}
 		}
@@ -185,6 +179,9 @@ public class Server
 					
 					// Add the player to the MUD. 
 					mud.addPlayerToGame(player);
+					/*Room toAdd = mud.getRoomCollection().getRoomByName("The Lawn");
+					mud.getPlayersOnline().get(mud.getPlayersOnline().size()-1).changeRoom(toAdd);
+					System.out.println("Player's location" + player.getLocation().getRoomName());*/
 					
 					// Map the player's username to the output stream.
 					outputs.put(player.getUsername(), output);
@@ -390,7 +387,7 @@ public class Server
 		}
 		else{
 			String mess = mob + " to those in " + currentLocation.getRoomName() + ": " + argument;
-			//System.out.println(mess);
+			System.out.println(mess);
 			List<String> newMessages = new ArrayList<String>();
 			for( String m : chatMessages){
 				newMessages.add(m);
@@ -478,6 +475,11 @@ public class Server
 		}
 		
 	}
+
+	public void addPlayer(Player player) {
+		mud.getRoomCollection().getRoomByName("The Lawn").addPlayer(player);
+	}
+	
 
 	/*public void setPlayerStart(Player player) {
 		mud.addPlayerToGame(player);
