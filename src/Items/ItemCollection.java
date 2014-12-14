@@ -19,7 +19,7 @@ public class ItemCollection
 	private FightingItem shovel = new FightingItem("shovel", "Use this to dig holes or to whack MOB's upside their heads.", true, false, false);
 	private FightingItem rope = new FightingItem("rope", "Need to tie up a victim?", true, false, false);
 	private ReusableItem handcuffs = new ReusableItem("handcuffs", "Use this to save yourself some time. MOB's will struggle to get free from this restraint.", true, false, false);
-	private ReusableItem flashLight = new ReusableItem("flash light", "Use this item to light up your night.", true, false, false);
+	private ReusableItem flashLight = new ReusableItem("flashlight", "Use this item to light up your night.", true, false, false);
 	private ReusableItem nightVisionGoggles = new ReusableItem("night vision goggles", "Use these to see in dark places to stay alive", true, false, false);
 	private ReusableItem key = new ReusableItem("key", "Use this to unlock doors to run away to stay alive.", true, false, false);
 	private ReusableItem money = new ReusableItem("money", "Use this to buy energy boosts", true, true, true); 

@@ -48,7 +48,7 @@ public class Player implements Serializable
 	}
     
     public String getUsername() { return username; }
-     
+         
     public void changeRoom(Room room){
     	//erase self from room and add self to new room
         currentLocation = room;

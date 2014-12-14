@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import Commands.Command;
 import Commands.DisconnectCommand;
+import Commands.GetItemFromPlayerCommand;
 import Items.EnergyBoostItem;
 import Items.FightingItem;
 import Items.Item;
@@ -942,5 +943,22 @@ public class Client extends JFrame
 			break;
 		}
 	}
+
+	public void getItemFromPlayer(String item, String player) {
+		String getMessage = "You are trying to get <" + item + "> from <" + player + ">. Please wait for their confirmation.";
+		commandMessages.add(getMessage);
+		mainView.updateCommands(commandMessages);
+		try {
+			out.writeObject(new GetItemFromPlayerCommand(item, player));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	/*public void getConfirmation(String item, String player) {
+		
+	}*/
 
 }
