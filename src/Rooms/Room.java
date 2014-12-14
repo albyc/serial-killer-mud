@@ -105,15 +105,6 @@ public abstract class Room implements Serializable
 	
 	
 	
-	public boolean hasItem(Item i){
-		if(items.contains(i))
-			return true;
-		return false;
-	}
-	
-	
-	
-	
 	public MOB getMobByName(String name) {
 		for(MOB m : mobs){
 			if(m.getIdentity().equals(name))
@@ -123,16 +114,22 @@ public abstract class Room implements Serializable
 	}
 	
 	
-	
+	public Item getItemByName(String name){
+		name = name.toLowerCase();
+		for(Item i : items){
+			if(i.getName().equals(name))
+				return i;
+		}
+		return null;
+	}
 	
 	
 	
 	public String getNamesOfPlayersInRoom(){
 		String names = "";
 		for(Player p : players){
-			names += "\t";
+			names += "\n  ";
 			names += p.getUsername();
-			names += "\n";
 		}
 		return names;
 	}
@@ -140,25 +137,31 @@ public abstract class Room implements Serializable
 	public String getNamesOfMOBsInRoom(){
 		String names = "";
 		for(MOB m : mobs){
-			names += " ";
+			names += "\n  ";
 			names += m.getIdentity();
 		}
-		names += "\n";
 		return names;
 	}
 
 	public String getNamesOfItemsInRoom(){
 		String names = "";
 		for(Item i : items){
-			names += " ";
+			names += "\n  ";
 			names += i.getName();
-			names += "               ";
 		}
-		names += "\n";
 		return names;
 	}
 	
 	public String getNamesOfAdjacentRooms(){
+		String theRooms = "";
+		if(hasNorth())
+			theRooms += "\n" + getNorthRoom().getRoomName();
+		if(hasSouth())
+			theRooms += "\n" + getNorthRoom().getRoomName();
+		if(hasEast())
+			theRooms += "\n" + getNorthRoom().getRoomName();
+		if(hasWest())
+			theRooms += "\n" + getNorthRoom().getRoomName();
 		return "";
 	}
 }

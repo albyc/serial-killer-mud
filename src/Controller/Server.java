@@ -274,8 +274,6 @@ public class Server
 				System.out.println(clientName);
 				if (clientName.equalsIgnoreCase(messageReceiver) || clientName.equalsIgnoreCase(messageSender)){
 					outputs.get(clientName).writeObject(update);
-					
-					
 				}
 			}
 		

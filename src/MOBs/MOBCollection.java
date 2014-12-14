@@ -7,7 +7,7 @@ import Rooms.Room;
 
 public class MOBCollection
 {
-	private List<MOB> theMOBs;
+	private ArrayList<MOB> theMOBs;
 	
 	private MOB jefferyDahmer;		//abduct you
 	private MOB lawrenceBittaker;
@@ -35,21 +35,21 @@ public class MOBCollection
 		hannibalLecter = new MOB("Hannibal Lecter", new ArrayList<Item>(), new ArrayList<String>());
 		henryHowardHolmes = new MOB("Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>());
 		
-//		victim = new MOB("Victim", new ArrayList<Item>(), new ArrayList<String>());
-//		foodStandGuy = new MOB("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>());
-//		
-//		theMOBs.add(hannibalLecter);
-//		theMOBs.add(jefferyDahmer);
-//		theMOBs.add(lawrenceBittaker);
-//		theMOBs.add(royNorris);
-//		theMOBs.add(hannibalLecter);
-//		theMOBs.add(richardRamirez);
-//		theMOBs.add(andreChikatilo);
-//		theMOBs.add(richardTrentonChase);
-//		theMOBs.add(henryHowardHolmes);
-//	
-//		theMOBs.add(victim);
-//		theMOBs.add(foodStandGuy);
+		victim = new MOB("Victim", new ArrayList<Item>(), new ArrayList<String>());
+		foodStandGuy = new MOB("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>());
+		
+		theMOBs.add(hannibalLecter);
+		theMOBs.add(jefferyDahmer);
+		theMOBs.add(lawrenceBittaker);
+		theMOBs.add(royNorris);
+		theMOBs.add(hannibalLecter);
+		theMOBs.add(richardRamirez);
+		theMOBs.add(andreChikatilo);
+		theMOBs.add(richardTrentonChase);
+		theMOBs.add(henryHowardHolmes);
+
+		theMOBs.add(victim);
+		theMOBs.add(foodStandGuy);
 	}
 	
 	public List<MOB> getAllMOBS(){
@@ -90,11 +90,7 @@ public class MOBCollection
 	public MOB getMOBFromIdentity(String theIdentity){
 		for (MOB mob: theMOBs)
 		{
-			if (mob.getIdentity().equals(theIdentity))
-			{
-				System.out.println("found it");
-				return mob;
-			}
+			if (mob.getIdentity().equals(theIdentity)) { return mob; }
 		}
 		return null;
 	}
