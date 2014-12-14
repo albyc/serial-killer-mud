@@ -54,9 +54,8 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
-		t  = new Timer();
-		//startTimer();
-		t.scheduleAtFixedRate(UpdateMOBs(), 25000, 5000);
+		t = new Timer();
+		t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
 		
 		try
 		{
@@ -78,10 +77,7 @@ public class Server
 		}
 	} // end of constructor Server
 	
-	private TimerTask UpdateMOBs() {
-		
-		return null;
-	}
+	
 
 	private class MoveListener implements ActionListener{
 
@@ -401,4 +397,9 @@ public class Server
 		}
 		
 	}
+
+	/*public void setPlayerStart(Player player) {
+		mud.addPlayerToGame(player);
+		player.setLocation(mud.getRoomCollection().getRoomByName("The Lawn"));
+	}*/
 } // end of class Server

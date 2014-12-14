@@ -11,6 +11,7 @@ import javax.swing.*;
 import Commands.Command;
 import Commands.DisconnectCommand;
 import Commands.GetItemFromPlayerCommand;
+
 import Items.EnergyBoostItem;
 import Items.FightingItem;
 import Items.Item;
@@ -489,7 +490,14 @@ public class Client extends JFrame
 	{
 		this.player = player;
 		roomCollection.addNewPlayerToRooms(player);
+		/*try {
+			out.writeObject(new SetUpPlayerCommand(player));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
+	
 
 	/**
 	 * Finishes setting up the player as well as displaying the main 
