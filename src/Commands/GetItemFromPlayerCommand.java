@@ -1,8 +1,9 @@
 package Commands;
 
 import Controller.Client;
+import Controller.Server;
 
-public class GetItemFromPlayerCommand extends Command<Client>{
+public class GetItemFromPlayerCommand extends Command<Server>{
 
 	/**
 	 * 
@@ -10,15 +11,17 @@ public class GetItemFromPlayerCommand extends Command<Client>{
 	private static final long serialVersionUID = 9056280413654856961L;
 	private String item;
 	private String player;
+	private String clientName;
 	
-	public GetItemFromPlayerCommand(String item, String player){
+	public GetItemFromPlayerCommand(String item, String player, String clientName){
 		this.item = item;
 		this.player = player;
+		this.clientName = clientName;
 	}
 
 	@Override
-	public void execute(Client executeOn) {
-		//executeOn.getConfirmation(item, player);
+	public void execute(Server executeOn) {
+		executeOn.getConfirmation(item, player, clientName);
 	}
 
 }
