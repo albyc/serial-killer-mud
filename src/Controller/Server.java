@@ -8,13 +8,17 @@ import Commands.Command;
 import Commands.DisconnectCommand;
 import Commands.QuitCommand;
 import Commands.SimpleCommandFactory;
+import Commands.TellMessageCommand;
 import Commands.UpdateClientCommand;
 import Commands.UpdateClientsCommand;
 import Commands.UpdateCommandsOfClient;
 import Enums.Administrators;
 import Enums.Commands;
+import MOBs.MOB;
 import Model.*;
 import Players.*;
+import Rooms.Room;
+import Rooms.SceneRoom;
 
 import javax.swing.Timer;
 
@@ -54,7 +58,12 @@ public class Server
 		{
 			// start a new server on port 9001
 			socket = new ServerSocket(9001);
+			String mobs = "";
+			for (MOB mob : mud.getListOfMOBs()){
+				mobs += mob.getIdentity() + "\n";
+			}
 			System.out.println("MUD Server started on port 9001");
+			
 			
 			// spawn a client accepter thread
 			new Thread(new ClientAccepter()).start();
@@ -203,11 +212,38 @@ public class Server
 		else if (command == Commands.OOC){
 			addMessage(clientName + ": " + argument);
 		}
+		else if(command == Commands.TELL){
+	/*		TellMessageCommand t = new TellMessageCommand(clientName, argument, command);
+			ObjectOutputStream out = outputs.get(clientName);
+			System.out.println("Clientname: " + clientName + "\nArgument: " + argument);*/
+			String receiver = argument.substring(0, argument.indexOf(" "));
+			String message = argument.substring(argument.indexOf(" ") + 1);
+			
+			addTellMessage(clientName, receiver, message);
+			/*try {
+				out.writeObject(t);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		}
+		
+		else if(command == Commands.SAY){
+			List<Player> ps = mud.getPlayersOnline();
+			Room currentLocation = new SceneRoom(null, null);
+			for (Player p : ps){
+				if(p.getUsername() == clientName){
+					currentLocation = p.getLocation();
+				}
+			}
+			addSayMessage(clientName, argument, currentLocation);
+		}
+		
 		else
 		{
 			try
 			{
-				Command<Client> update = factory.createCommand(mud, command, argument);
+				Command<Client> update = factory.createCommand(mud, command, argument, clientName);
 				ObjectOutputStream out = outputs.get(clientName);
 				out.writeObject(update);
 			} 
@@ -218,6 +254,8 @@ public class Server
 		}
 	}
 	
+	
+
 	private void closeAllClientsAndServer(String username)
 	{
 		username = username.toUpperCase();
@@ -251,7 +289,18 @@ public class Server
 				throw new IllegalArgumentException();
 		}
 	}
+	
+	private void addSayMessage(String clientName, String argument, Room currentLocation) {
+		String mess = clientName + "to everyone in the room: " + argument;
+		List<String> newMessages = new ArrayList<String>();
+		for( String m : chatMessages){
+			newMessages.add(m);
+		}
+		newMessages.add(mess);
+		UpdateClientSay(clientName, newMessages, currentLocation);
+	}
 
+	
 	public void addTellMessage(String messageSender, String messageReceiver, String message) 
 	{
 		
@@ -285,11 +334,48 @@ public class Server
 			e.printStackTrace();
 		}
 	}
+	private void UpdateClientSay(String clientName, List<String> newMessages, Room currentLocation) {
+		
+		
+		try
+		{
+			List<Player> ps = mud.getPlayersOnline();
+			List<Player> inRoom = new ArrayList<Player>();
+			for(Player p : ps){
+				if(p.getLocation() == currentLocation){
+					UpdateClientCommand update = new UpdateClientCommand(newMessages, p.getUsername(), clientName);
+					outputs.get(p.getUsername()).writeObject(update);
+					inRoom.add(p);
+				}
+			}
+			
+			for(Player p : inRoom){
+				System.out.println(p.getUsername());
+			}
+			/*for(String clients: outputs.keySet()){
+				
+				if (clients.getLocation()){
+					outputs.get(clientName).writeObject(update);
+				}
+			}*/
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}		
+	}
+
 
 
 	public void getConfirmation(String item, String player, String clientName) {
-		//UpdateCommandsOfClient update = new UpdateCommandsOfClient(item, player, clientName);
-		//outputs.get(player).writeObject(update);
+		UpdateCommandsOfClient update = new UpdateCommandsOfClient(item, player, clientName);
+		try {
+			outputs.get(player).writeObject(update);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 } // end of class Server

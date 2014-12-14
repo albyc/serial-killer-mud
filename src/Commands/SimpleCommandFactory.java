@@ -10,7 +10,7 @@ import Players.Player;
 
 public class SimpleCommandFactory
 {
-	public Command<Client> createCommand(SerialKillerMud mud, Commands command, String argument)
+	public Command<Client> createCommand(SerialKillerMud mud, Commands command, String argument, String clientName)
 	{
 		Command<Client> result = null;
 		
@@ -42,15 +42,16 @@ public class SimpleCommandFactory
 			break;
 		case SAY:
 			break;
-		case TELL: // not done yet - still needs to take arguments
-			break;
+	/*	case TELL: // not done yet - still needs to take arguments
+			result = new TellMessageCommand();
+			break;*/
 		case SCORE:
 			result = new ScoreCommand();
 			break;
 		case GIVE: // not done yet - still needs to take arguments
 			break;
 		case GET: // not done yet - still needs to take two arguments
-			result = new GetCommand(argument);
+			result = new GetCommand(argument, clientName);
 			break;
 		case INVENTORY:
 			result = new InventoryCommand();

@@ -856,21 +856,28 @@ public class Client extends JFrame
 		}
 	}
 
-	public void getItemFromPlayer(String item, String player, String clientName) {
+	public void getItemFromPlayer(String item, String player) {
 		String getMessage = "You are trying to get <" + item + "> from <" + player + ">. Please wait for their confirmation.";
 		commandMessages.add(getMessage);
 		mainView.updateCommands(commandMessages);
 		try {
-			out.writeObject(new GetItemFromPlayerCommand(item, player, clientName));
+			out.writeObject(new GetItemFromPlayerCommand(item, player, getName()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
 
-	public void addConfirmationCommand(String item, String player2,
-			String clientName) {
-		
+	public void addConfirmationCommand(String item, String player, String clientName) {
+		String confirmation = "Would you like to give " + item + " to " + clientName + "?";
+		commandMessages.add(confirmation);
+		mainView.updateCommands(commandMessages);
+	}
+
+	public void addTellMessage(String clientName, String messageReceiver,
+			String message) {
+		commandMessages.add(clientName +" to " + messageReceiver + ": " + message);
+		mainView.updateCommands(commandMessages);
 	}
 
 	/*public void getConfirmation(String item, String player) {

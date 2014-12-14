@@ -24,16 +24,25 @@ public class MOBCollection
 	private MOB foodStandGuy;		//help you increase you health for battles ahead
 	
 	public MOBCollection(){
-		jefferyDahmer = new MOB("Jeffery Dahmer", new ArrayList<Item>(), new ArrayList<String>());
-		lawrenceBittaker = new MOB("Lawrence Bittaker", new ArrayList<Item>(), new ArrayList<String>());
-		royNorris = new MOB("Roy Norris", new ArrayList<Item>(), new ArrayList<String>());
-		richardRamirez = new MOB("Richard Ramirez", new ArrayList<Item>(), new ArrayList<String>());
-		andreChikatilo = new MOB("Andre Chikatilo", new ArrayList<Item>(), new ArrayList<String>());
-		richardTrentonChase = new MOB("Richard Trenton Chase", new ArrayList<Item>(), new ArrayList<String>());
-		henryLeeLucus = new MOB("Henry Lee Lucus", new ArrayList<Item>(), new ArrayList<String>());
-		edGein = new MOB("Ed Gein", new ArrayList<Item>(), new ArrayList<String>());
-		hannibalLecter = new MOB("Hannibal Lecter", new ArrayList<Item>(), new ArrayList<String>());
-		henryHowardHolmes = new MOB("Henry Howard Holmes", new ArrayList<Item>(), new ArrayList<String>());
+		theMOBs = new ArrayList<MOB>();
+		ArrayList<String> mobMessages = new ArrayList<String>();
+		mobMessages.add("Hello there.");
+		mobMessages.add("Who are you lookin' at? Do you wanna fight?");
+		mobMessages.add("Get outta here.");
+		mobMessages.add("Want to go for a ride in my van?");
+		mobMessages.add("mwahahahhaha");
+		mobMessages.add("Prepare to die.");
+		mobMessages.add("You would look good tied up in my basement.");
+		jefferyDahmer = new MOB("Jeffery Dahmer", new ArrayList<Item>(), mobMessages);
+		lawrenceBittaker = new MOB("Lawrence Bittaker", new ArrayList<Item>(), mobMessages);
+		royNorris = new MOB("Roy Norris", new ArrayList<Item>(), mobMessages);
+		richardRamirez = new MOB("Richard Ramirez", new ArrayList<Item>(), mobMessages);
+		andreChikatilo = new MOB("Andre Chikatilo", new ArrayList<Item>(), mobMessages);
+		richardTrentonChase = new MOB("Richard Trenton Chase", new ArrayList<Item>(), mobMessages);
+		henryLeeLucus = new MOB("Henry Lee Lucus", new ArrayList<Item>(), mobMessages);
+		edGein = new MOB("Ed Gein", new ArrayList<Item>(), mobMessages);
+		hannibalLecter = new MOB("Hannibal Lecter", new ArrayList<Item>(), mobMessages);
+		henryHowardHolmes = new MOB("Henry Howard Holmes", new ArrayList<Item>(), mobMessages);
 		
 		victim = new MOB("Victim", new ArrayList<Item>(), new ArrayList<String>());
 		foodStandGuy = new MOB("Food Stand Guy", new ArrayList<Item>(), new ArrayList<String>());
@@ -50,6 +59,8 @@ public class MOBCollection
 
 		theMOBs.add(victim);
 		theMOBs.add(foodStandGuy);
+		
+		
 	}
 	
 	public List<MOB> getAllMOBS(){

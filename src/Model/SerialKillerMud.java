@@ -18,12 +18,16 @@ public class SerialKillerMud
 	private RoomCollection roomCollection;
 	private transient List<Player> playersOnline;
 	private transient List<Player> administrators;
+	private transient MOBCollection mobc;
+	private transient List<MOB> mobs;
 	
 	public SerialKillerMud()
 	{
 		roomCollection = new RoomCollection();
 		playersOnline = new ArrayList<Player>();
 		administrators = new ArrayList<Player>();
+		mobc = new MOBCollection();
+		mobs = mobc.getAllMOBS();
 		addAdmins();
 	}
 
@@ -57,6 +61,16 @@ public class SerialKillerMud
 	public RoomCollection getRoomCollection()
 	{
 		return roomCollection;
+	}
+	
+	public MOBCollection getMOBCollection()
+	{
+		return mobc;
+	}
+	
+	public List<MOB> getListOfMOBs()
+	{
+		return mobs;
 	}
 	
 } // end of class SerialKillerMud

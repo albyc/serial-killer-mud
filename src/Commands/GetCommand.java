@@ -11,10 +11,10 @@ public class GetCommand extends Command<Client>
 	private ItemCollection itemCollection;
 	private String clientName;
 	
-	public GetCommand(String argument)
+	public GetCommand(String argument, String clientName)
 	{
 		this.argument = argument;
-		//this.clientName = clientName;
+		this.clientName = clientName;
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class GetCommand extends Command<Client>
 			System.out.println(item);
 			player = argument.substring(lastIndex + 1).trim();
 			System.out.println(player);
-			executeOn.getItemFromPlayer(item, player, clientName);
+			executeOn.getItemFromPlayer(item, player);
 			}
 			break;
 		}

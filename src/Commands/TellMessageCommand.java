@@ -1,9 +1,10 @@
 package Commands;
 
+import Controller.Client;
 import Controller.Server;
 import Enums.Commands;
 
-public class TellMessageCommand extends Command<Server>{
+public class TellMessageCommand extends Command<Client>{
 
 	/**
 	 * 
@@ -15,15 +16,23 @@ public class TellMessageCommand extends Command<Server>{
 	private String message;
 	private Commands command;
 	
-	public TellMessageCommand(String clientName, String argument1, String argument2, Commands command){
+	public TellMessageCommand(String clientName, String argument, Commands command){
+		int index = argument.indexOf(" ");
+		this.messageReceiver = argument.substring(0, index);
+		this.message = argument.substring(index + 1);
 		this.clientName = clientName;
-		this.messageReceiver = argument1;
-		this.message = argument2;
 		this.command = command;
 	}
 
-	@Override
+	/*@Override
 	public void execute(Server executeOn) {
+		executeOn.addTellMessage(clientName, messageReceiver, message);
+		System.out.println("We made it to tellmessagecommand");
+	}*/
+
+	@Override
+	public void execute(Client executeOn) {
+		System.out.println("Maybe this time it will work?");
 		executeOn.addTellMessage(clientName, messageReceiver, message);
 	}
 
