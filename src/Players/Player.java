@@ -81,7 +81,8 @@ public class Player implements Serializable
     }
     
     public void death(){
-    	//create window to state death //deactivate button listener for commands
+    	//create window to state death
+    	//deactivate button listener for commands
     	new Death();
     }
     
@@ -111,26 +112,7 @@ public class Player implements Serializable
     	return false;
     }
     
-    /**
-     * 
-     */
-    public void interactWithOtherPlayer(Player thePlayer)
-    {
-         //talk to other player determine if going to fight or what
-    	//fight()
-    }
-    
-    /**
-     * 
-     */
-    public void InteractWithMOB(MOB theMOB)
-    {
-         //mob talks and states what items it holds, good or bad, etc
-    	//fight()
-    }
-    
     public void fight(MOB opponent){
-//    	FightView(opponent);
 //    	int roll = randomGenerator.nextInt(20);
 //        int damage;
 //        if(roll > 5){

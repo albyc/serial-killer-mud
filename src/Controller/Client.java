@@ -42,6 +42,7 @@ public class Client extends JFrame
 	private Player player;
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
+	private Random randomGenerator;
 	
 	// These instance variables shouldn't be in Client, they should
 	// be passed from Server to client, and to the Server from the 
@@ -61,6 +62,8 @@ public class Client extends JFrame
 	@SuppressWarnings("unchecked")
 	public Client()
 	{
+		randomGenerator = new Random();
+		
 		String host = JOptionPane.showInputDialog("Host address:", "localhost");
 		String port = JOptionPane.showInputDialog("Host port:", "9001");
 		
@@ -574,11 +577,22 @@ public class Client extends JFrame
 	
 	// if mob is in same room as player, fight
 	public void fight(String argument) {
-		List<MOB> allMOBsInRoom = player.getLocation().getMOBs();
-		MOB opponent = player.getLocation().getMobByName(argument);
-		if(opponent != null)
-			player.fight(opponent);
-		listScore();
+		
+		if(player.getLocation().hasMOB(argument)){
+			MOB opponent = player.getLocation().getMobByName(argument);
+			int playerRoll = randomGenerator.nextInt(6);
+			int oppenentRoll = randomGenerator.nextInt(6);
+			if(playerRoll >= oppenentRoll){
+				
+			}
+			else{
+				
+			}
+			listScore();
+		}
+		else{
+			
+		}
 	}
 
 	public void lookDescription(String argument) {

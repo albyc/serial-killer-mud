@@ -20,16 +20,13 @@ public class SerialKillerMud
 	private RoomCollection roomCollection;
 	private transient List<Player> playersOnline;
 	private transient List<Player> administrators;
-	private transient MOBCollection mobc;
-	private transient List<MOB> mobs;
 	
 	public SerialKillerMud()
 	{
 		roomCollection = new RoomCollection();
 		playersOnline = new ArrayList<Player>();
 		administrators = new ArrayList<Player>();
-		mobc = new MOBCollection();
-		mobs = mobc.getAllMOBS();
+		roomCollection.setMOBsInRooms();
 		addAdmins();
 	}
 
@@ -65,20 +62,25 @@ public class SerialKillerMud
 		return roomCollection;
 	}
 	
-	public MOBCollection getMOBCollection()
-	{	
-		return mobc;
+
+	public MOBCollection getMobCollection()
+	{
+		return roomCollection.getMobCollection();
 	}
 	
 	public List<MOB> getListOfMOBs()
 	{
-		return mobs;
+		return getMobCollection().getAllMOBS();
 	}
 
 	public TimerTask updateMOBsOnTimer() {
+
 		Random random = new Random();
-		for(MOB m : mobs){
-			System.out.println(m.getIdentity());
+		for(MOB m : roomCollection.getMobCollection().getAllMOBS()){
+			m.getCurrentLocation();
+			
+			System.out.println(m.getCurrentLocation().getRoomName());
+			//null pointer exception
 			int direction = random.nextInt(4);
 			switch(direction){
 			case 0:
@@ -117,6 +119,7 @@ public class SerialKillerMud
 				}
 				break;
 			}
+
 			
 		}
 		return null;
