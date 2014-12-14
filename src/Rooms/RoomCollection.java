@@ -32,8 +32,7 @@ public class RoomCollection
 //		mobCollection = new MOBCollection();
 		
 		addDefaultRooms();
-		setItemsInRooms();
-		setMOBsInRooms();
+//		setMOBsInRooms();
 	} 
 	
 	private void addDefaultRooms()

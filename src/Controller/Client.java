@@ -836,23 +836,23 @@ public class Client extends JFrame
 	public void useItem(String argument) {
 		String toPrint = "";
 		switch(argument.toLowerCase()){
-		case "water":
-		case "food":
-		case "money":
-		case "energy boost":
-			player.incrementHealth(5);
-			toPrint = "You have now used <" +argument + ">. Your health has been incremented. \n";
-			commandMessages.add(toPrint);
-			mainView.updateCommands(commandMessages);
-			listScore();
-			dropItem(argument);
-			break;
-		default:
-			toPrint = "You have now used <" +argument + ">.\n";
-			commandMessages.add(toPrint);
-			mainView.updateCommands(commandMessages);
-			dropItem(argument);
-			break;
+			case "water":
+			case "food":
+			case "money":
+			case "energy boost":
+				player.incrementHealth(5);
+				toPrint = "You have now used <" +argument + ">. Your health has been incremented. \n";
+				commandMessages.add(toPrint);
+				mainView.updateCommands(commandMessages);
+				listScore();
+				dropItem(argument);
+				break;
+			default:
+				toPrint = "You have now used <" +argument + ">.\n";
+				commandMessages.add(toPrint);
+				mainView.updateCommands(commandMessages);
+				dropItem(argument);
+				break;
 		}
 	}
 

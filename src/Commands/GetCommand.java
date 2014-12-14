@@ -40,22 +40,22 @@ public class GetCommand extends Command<Client>
 			break;
 		}
 		
-		String item = "";
-		String player = "";
-		int lastIndex = argument.length();
-		
-		for( int i = 0; i < argument.length(); i++){
-			if(argument.charAt(i) == ' '){
-				lastIndex = i;
-			}
-		}
-		
-		if(lastIndex != argument.length()-1){
-		item = argument.substring(0, lastIndex).trim();
-		player = argument.substring(lastIndex + 1).trim();
-		
-		executeOn.getItemFromPlayer(item, player);
-		}
+//		String item = "";
+//		String player = "";
+//		int lastIndex = argument.length();
+//		
+//		for( int i = 0; i < argument.length(); i++){
+//			if(argument.charAt(i) == ' '){
+//				lastIndex = i;
+//			}
+//		}
+//		
+//		if(lastIndex != argument.length()-1){
+//		item = argument.substring(0, lastIndex).trim();
+//		player = argument.substring(lastIndex + 1).trim();
+//		
+//		executeOn.getItemFromPlayer(item, player);
+//		}
 		
 		
 		
