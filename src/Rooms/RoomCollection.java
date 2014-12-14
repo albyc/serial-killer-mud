@@ -412,12 +412,16 @@ public class RoomCollection implements Serializable {
 	}
 
 	public void addNewPlayerToRooms(Player player) {
-		entrance.addPlayer(player);
+		lawn.addPlayer(player);
 
 		// Make sure that the player is holding a reference
 		// to the room it is located in. In this case, that
 		// would be the entrance to the game.
-		player.setLocation(entrance);
+		player.setLocation(lawn);
+	}
+	
+	public void removePlayerFromRoom(Player player, Room room){
+		room.removePlayer(player);
 	}
 
 	public MOBCollection getMobCollection() {
