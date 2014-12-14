@@ -57,23 +57,19 @@ public class MOB implements Serializable{
 	public void giveItemToPlayer(Item item) {
 		// give item to player
 	}
-
-	public void attack(Player thePlayer) {
-		int points = randomGenerator.nextInt(10);
-		thePlayer.incrementHealth(points);
-		
-	}
-
-	public void run() {
-		//exit to next nearest room
-//		if(currentLocation.getNorthRoom() != null)
-//			change
-	}
 	
 	public void incrementHealth(int amount){
 		health += amount;
 		if(health <= 0)
 			death();
+	}
+	
+	public int getHealth(){ return health; }
+	
+	public boolean isAlive(){
+		if(health > 0)
+			return true;
+		return false;
 	}
 	
 	public void whoAmI() {

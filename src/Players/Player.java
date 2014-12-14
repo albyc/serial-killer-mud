@@ -72,6 +72,12 @@ public class Player implements Serializable
     
     public int getHealth() { return health; }
     
+    public boolean isAlive(){
+    	if(health > 0)
+    		return true;
+    	return false;
+    }
+    
     public void incrementHealth(int amount){
     	health += amount;
     	if(health > MAXHEALTH)
@@ -110,14 +116,5 @@ public class Player implements Serializable
     		return true;
     	}
     	return false;
-    }
-    
-    public void fight(MOB opponent){
-//    	int roll = randomGenerator.nextInt(20);
-//        int damage;
-//        if(roll > 5){
-//       	 damage = roll*-1;
-//       	 opponent.incrementHealth(damage);
-//        }
     }
 }//end of class Player
