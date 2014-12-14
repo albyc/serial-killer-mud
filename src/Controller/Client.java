@@ -555,11 +555,11 @@ public class Client extends JFrame {
 				int oppenentRoll = randomGenerator.nextInt(6);
 				if(playerRoll >= oppenentRoll){
 					theFight += "You hit him!\n\n";
-					opponent.incrementHealth(-20);
+					opponent.incrementHealth(player.getAttackPoints());
 				}
 				else{
 					theFight += "Ouch! He got you.\nDon't worry, it's only a flesh wound!\n\n";
-					player.incrementHealth(-20);
+					player.incrementHealth(-10);
 				}
 			}
 			if(player.isAlive())
@@ -574,6 +574,8 @@ public class Client extends JFrame {
 		mainView.updateCommands(commandMessages);
 		if(!player.isAlive())
 			player.death();
+		else
+			new Saved();
 	}
 
 	public void lookDescription(String argument) {

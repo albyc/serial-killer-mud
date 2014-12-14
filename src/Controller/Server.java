@@ -53,7 +53,7 @@ public class Server
 		factory = new SimpleCommandFactory();
 		t  = new Timer();
 //		t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
-		
+		//504.53
 		try
 		{
 			// start a new server on port 9001
