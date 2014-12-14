@@ -287,7 +287,7 @@ public class Client extends JFrame
 				+ "\nPlayers in Room:" + room.getNamesOfPlayersInRoom()
 				+ "\nMOBs in Room:" + room.getNamesOfMOBsInRoom()
 				+ "\nItems in Room:" + room.getNamesOfItemsInRoom()
-				+ "\nAdjacent Rooms:" +room.getNamesOfAdjacentRooms()
+				+ "\nAdjacent Rooms:" + room.getNamesOfAdjacentRooms()
 				+ "\n";
 		commandMessages.add(surroundings);
 		mainView.updateCommands(commandMessages);
