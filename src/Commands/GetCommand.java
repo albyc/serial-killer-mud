@@ -42,7 +42,7 @@ public class GetCommand extends Command<Client>
 		
 		String item = "";
 		String player = "";
-		int lastIndex = -1;
+		int lastIndex = argument.length();
 		
 		for( int i = 0; i < argument.length(); i++){
 			if(argument.charAt(i) == ' '){
@@ -50,10 +50,12 @@ public class GetCommand extends Command<Client>
 			}
 		}
 		
+		if(lastIndex != argument.length()-1){
 		item = argument.substring(0, lastIndex).trim();
 		player = argument.substring(lastIndex + 1).trim();
 		
 		executeOn.getItemFromPlayer(item, player);
+		}
 		
 		
 		

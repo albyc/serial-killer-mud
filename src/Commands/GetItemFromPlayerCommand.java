@@ -18,7 +18,7 @@ public class GetItemFromPlayerCommand extends Command<Client>{
 
 	@Override
 	public void execute(Client executeOn) {
-		
+		//executeOn.getConfirmation(item, player);
 	}
 
 }
