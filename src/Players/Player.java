@@ -25,6 +25,7 @@ public class Player implements Serializable
     private int health;
     private final static int MAXHEALTH = 100;
     private final static int MAX_ITEMS = 5;
+    private int attackPoints;
     
     Random randomGenerator = new Random();
     
@@ -35,7 +36,12 @@ public class Player implements Serializable
         this.password = password;
         backpack = new ArrayList<Item>();
         health = 50;
+        attackPoints = -30;
         
+    }
+    
+    public int getAttackPoints(){
+    	return attackPoints;
     }
     
     public void setLocation(Room aRoom)

@@ -106,9 +106,7 @@ public abstract class Room implements Serializable
 	
 	public boolean hasMOB(String name) {
 		name = name.toLowerCase();
-		System.out.println("name   " + name);
 		for(MOB m : mobs){
-			System.out.println("m   " + m.getIdentity());
 			if(m.getIdentity().toLowerCase().equals(name))
 				return true;
 		}
