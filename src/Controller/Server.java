@@ -10,11 +10,11 @@ import Commands.QuitCommand;
 import Commands.SimpleCommandFactory;
 import Commands.UpdateClientCommand;
 import Commands.UpdateClientsCommand;
+import Commands.UpdateCommandsOfClient;
 import Enums.Administrators;
 import Enums.Commands;
 import Model.*;
 import Players.*;
-
 
 import javax.swing.Timer;
 
@@ -200,7 +200,9 @@ public class Server
 		//print commands in client's right side text area
 		if (command == Commands.SHUTDOWN)
 			closeAllClientsAndServer(clientName);
-		
+		else if (command == Commands.OOC){
+			addMessage(clientName + ": " + argument);
+		}
 		else
 		{
 			try
@@ -282,5 +284,12 @@ public class Server
 		{
 			e.printStackTrace();
 		}
+	}
+
+
+	public void getConfirmation(String item, String player, String clientName) {
+		//UpdateCommandsOfClient update = new UpdateCommandsOfClient(item, player, clientName);
+		//outputs.get(player).writeObject(update);
+		
 	}
 } // end of class Server

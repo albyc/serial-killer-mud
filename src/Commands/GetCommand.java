@@ -9,10 +9,12 @@ public class GetCommand extends Command<Client>
 	private static final long serialVersionUID = 853680469911913921L;
 	private String argument;
 	private ItemCollection itemCollection;
+	private String clientName;
 	
 	public GetCommand(String argument)
 	{
 		this.argument = argument;
+		//this.clientName = clientName;
 	}
 
 	@Override
@@ -38,7 +40,6 @@ public class GetCommand extends Command<Client>
 		case "disguise":
 			executeOn.pickUp(argument);
 			break;
-		}
 		
 //		String item = "";
 //		String player = "";
@@ -56,6 +57,29 @@ public class GetCommand extends Command<Client>
 //		
 //		executeOn.getItemFromPlayer(item, player);
 //		}
+		default:
+			String item = "";
+			String player = "";
+			int lastIndex = argument.length();
+			
+			for( int i = 0; i < argument.length(); i++){
+				if(argument.charAt(i) == ' '){
+					lastIndex = i;
+				}
+			}
+			System.out.println(item);
+			System.out.println(player);
+			
+			if(lastIndex != argument.length()-1){
+				
+			item = argument.substring(0, lastIndex).trim();
+			System.out.println(item);
+			player = argument.substring(lastIndex + 1).trim();
+			System.out.println(player);
+			executeOn.getItemFromPlayer(item, player, clientName);
+			}
+			break;
+		}
 		
 		
 		
