@@ -23,12 +23,11 @@ public class MOB implements Serializable{
 	private Room currentLocation;
 	private ArrayList<String> speeches;
 	private int health;
-	private Random randomGenerator;
+	private int attackPoints;
 	private final static int MAXHEALTH = 100;
     private final static int MAX_ITEMS = 5;
 
 	public MOB(String identity, ArrayList<Item> items, ArrayList<String> stuffToSay) {
-		randomGenerator = new Random();
 		this.identity = identity;
 		pocket = new ArrayList<Item>();
 		this.speeches = stuffToSay;
@@ -41,9 +40,7 @@ public class MOB implements Serializable{
 
 	public void addItemToPocket(Item newItem) { pocket.add(newItem); }
 	
-	public void setLocation(Room room){
-		currentLocation = room;
-	}
+	public void setLocation(Room room){ currentLocation = room; }
 
 	public void removeItemFromPocket(Item toBeRemoved) { pocket.remove(toBeRemoved); }
 
@@ -51,16 +48,14 @@ public class MOB implements Serializable{
 		currentLocation = newRoom;
 		// erase self from room and add self to new room
 	}
-	
-	public void movingMOBs(){
-		//
-	}
 
 	public Room getCurrentLocation() { return currentLocation; }
 
 	public void giveItemToPlayer(Item item) {
 		// give item to player
 	}
+	
+	public int getAttackPoints(){ return attackPoints; }
 	
 	public void incrementHealth(int amount){
 		health += amount;
@@ -76,9 +71,7 @@ public class MOB implements Serializable{
 		return false;
 	}
 	
-	public void whoAmI() {
-		System.out.println("I am" + identity);
-	}
+	public void whoAmI() { System.out.println("I am" + identity); }
 	
 	public void death(){
 		//drop all holding items
@@ -87,11 +80,6 @@ public class MOB implements Serializable{
 		pocket = null;
 		//leave note telling last words/curses/additional information still useful
 		
-	}
-	
-	public void interactWithPlayer(Player player){
-		//speak to player
-		//choose whether to fight to sit back
 	}
 
 }

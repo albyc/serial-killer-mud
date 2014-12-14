@@ -484,14 +484,19 @@ public class Client extends JFrame {
 		this.player = player;
 		//
 		roomCollection.addNewPlayerToRooms(player);
+
 		/*try {
 			out.writeObject(new AddPlayerCommand(player));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		/*
+		 * try { out.writeObject(new SetUpPlayerCommand(player)); } catch
+		 * (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 	}
-	
 
 	/**
 	 * Finishes setting up the player as well as displaying the main view of the
@@ -559,34 +564,33 @@ public class Client extends JFrame {
 	// if mob is in same room as player, fight
 	public void fight(String argument) {
 		String theFight = "Wat is this???\nIt looks like it is gonna be a fight!\n\n";
-		if(player.getLocation().hasMOB(argument)){
+		if (player.getLocation().hasMOB(argument)) {
 			MOB opponent = player.getLocation().getMobByName(argument);
-			while(player.isAlive() && opponent.isAlive()){
+			while (player.isAlive() && opponent.isAlive()) {
 				int playerRoll = randomGenerator.nextInt(6);
 				int oppenentRoll = randomGenerator.nextInt(6);
-				if(playerRoll >= oppenentRoll){
+				if (playerRoll >= oppenentRoll) {
 					theFight += "You hit him!\n\n";
 					opponent.incrementHealth(player.getAttackPoints());
-				}
-				else{
+				} else {
 					theFight += "Ouch! He got you.\nDon't worry, it's only a flesh wound!\n\n";
-					player.incrementHealth(-10);
+					player.incrementHealth(opponent.getAttackPoints());
 				}
 			}
-			if(player.isAlive())
-				theFight += "rightous! won;t be seeing him any time soon. that's for sure.";
-			else
+			if (player.isAlive()) {
+				theFight += "rightous! won't be seeing him any time soon. that's for sure.";
+				opponent.death();
+				new Saved();
+			} else {
 				theFight += "I guess it wasn't just a flesh wound after all.\n Tell lucy I've always loved her...";
-		}
-		else{
-			theFight = argument + " is not around at the moment. Maybe wait a while.";
+				player.death();
+			}
+		} else {
+			theFight = argument
+					+ " is not around at the moment. Maybe wait a while.";
 		}
 		commandMessages.add(theFight);
 		mainView.updateCommands(commandMessages);
-		if(!player.isAlive())
-			player.death();
-		else
-			new Saved();
 	}
 
 	public void lookDescription(String argument) {

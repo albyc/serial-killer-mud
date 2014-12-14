@@ -53,19 +53,16 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
+
+
 		t = new Timer(5000, new SayListener());
 
-//		t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
-		//504.53
-		//t = new Timer(5000, new MoveListener());
 		t.start();
 		t2 = new Timer(20000, new MoveListener());
 		t2.start();
 		/*t = new Timer();
 		mud.updateMOBsOnTimer();*/
 		//t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
-
-		
 		try
 		{
 			// start a new server on port 9001
