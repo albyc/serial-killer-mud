@@ -75,7 +75,7 @@ public class SerialKillerMud
 
 	public TimerTask updateMOBsOnTimer() {
 
-		Random random = new Random();
+		/*Random random = new Random();
 		for(MOB m : roomCollection.getMobCollection().getAllMOBS()){
 			m.getCurrentLocation();
 			
@@ -121,7 +121,7 @@ public class SerialKillerMud
 			}
 
 			
-		}
+		}*/
 		return null;
 	}
 	

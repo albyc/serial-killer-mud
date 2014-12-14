@@ -8,6 +8,7 @@ import java.util.*;
 
 import Commands.Command;
 import Commands.DisconnectCommand;
+import Commands.ForServerCommand;
 import Commands.QuitCommand;
 import Commands.SimpleCommandFactory;
 import Commands.TellMessageCommand;
@@ -22,7 +23,7 @@ import Players.*;
 import Rooms.Room;
 import Rooms.SceneRoom;
 
-import java.util.Timer;
+import javax.swing.Timer;
 
 /**
  * sends and receives commands, etc.
@@ -51,8 +52,10 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
-		t = new Timer();
-		mud.updateMOBsOnTimer();
+		t = new Timer(5000, new MoveListener());
+		t.start();
+		/*t = new Timer();
+		mud.updateMOBsOnTimer();*/
 		//t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
 
 		
@@ -81,10 +84,23 @@ public class Server
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			for(int i = 0; i < 10; i++){
+			/*Set<String> names = outputs.keySet();
+			Object[] usernames = names.toArray();*/
+			for(int i = 0; i < 9; i++){
 				System.out.println("i");
-//				PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, mud.getMOBCollection().getMOBMessages().get(i/2));
 				
+				for(Player p : mud.getPlayersOnline()){
+					PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, "Hello.");
+					/*if(mud.getListOfMOBs().get(i).getCurrentLocation() == )
+					addMessage(mud.getListOfMOBs().get(i).getIdentity() + ": Hello");*/
+					addSayMessage(p.getUsername(), "Helllloooooo. I am an MOB.", mud.getListOfMOBs().get(i).getCurrentLocation(), mud.getListOfMOBs().get(i).getIdentity());
+					/*try {
+						o.writeObject(new ForServerCommand(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, "Hello."));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}*/
+				}
 			}
 		}
 		
@@ -245,6 +261,7 @@ public class Server
 		}
 		
 		else if(command == Commands.SAY){
+			System.out.println("Here");
 			List<Player> ps = mud.getPlayersOnline();
 			Room currentLocation = new SceneRoom(null, null);
 			for (Player p : ps){
@@ -253,7 +270,7 @@ public class Server
 					System.out.println("Current Location: " + p.getLocation().getRoomName());
 				}
 			}
-			addSayMessage(clientName, argument, currentLocation);
+			addSayMessage(clientName, argument, currentLocation, "");
 		}
 		
 		else
@@ -307,7 +324,8 @@ public class Server
 		}
 	}
 	
-	private void addSayMessage(String clientName, String argument, Room currentLocation) {
+	private void addSayMessage(String clientName, String argument, Room currentLocation, String mob) {
+		if(mob.equals("")){
 		String mess = clientName + "to everyone in the room: " + argument;
 		List<String> newMessages = new ArrayList<String>();
 		for( String m : chatMessages){
@@ -315,6 +333,17 @@ public class Server
 		}
 		newMessages.add(mess);
 		UpdateClientSay(clientName, newMessages, currentLocation);
+		}
+		else{
+			String mess = mob + " to those in " + currentLocation.getRoomName() + ": " + argument;
+			System.out.println(mess);
+			List<String> newMessages = new ArrayList<String>();
+			for( String m : chatMessages){
+				newMessages.add(m);
+			}
+			newMessages.add(mess);
+			UpdateClientSay(clientName, newMessages, currentLocation);
+		}
 	}
 
 	

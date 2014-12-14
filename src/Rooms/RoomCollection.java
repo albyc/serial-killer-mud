@@ -381,6 +381,18 @@ public class RoomCollection implements Serializable {
 		farmhouse.addMOB(mobCollection.getMOB(7));
 		kitchen.addMOB(mobCollection.getMOB(8));
 		murderCastle.addMOB(mobCollection.getMOB(9));
+		
+		mobCollection.getMOB(0).changeRoom(dahmerApt);
+		mobCollection.getMOB(1).changeRoom(lawn);
+		mobCollection.getMOB(2).changeRoom(lawn);
+		mobCollection.getMOB(3).changeRoom(theStreets);
+		mobCollection.getMOB(4).changeRoom(spain);
+		mobCollection.getMOB(5).changeRoom(woods);
+		mobCollection.getMOB(6).changeRoom(factory);
+		mobCollection.getMOB(7).changeRoom(farmhouse);
+		mobCollection.getMOB(8).changeRoom(kitchen);
+		mobCollection.getMOB(9).changeRoom(murderCastle);
+		
 	}
 
 	public ItemCollection getItemCollection() {
