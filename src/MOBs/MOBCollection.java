@@ -9,6 +9,7 @@ import Rooms.Room;
 public class MOBCollection implements Serializable
 {
 	private ArrayList<MOB> theMOBs;
+	private ArrayList<String> mobMessages;
 	
 	private MOB jefferyDahmer;		//abduct you
 	private MOB lawrenceBittaker;
@@ -26,15 +27,15 @@ public class MOBCollection implements Serializable
 	
 	public MOBCollection(){
 		theMOBs = new ArrayList<MOB>();
-		
+		mobMessages = new ArrayList<String>();
 		ArrayList<String> mobMessages = new ArrayList<String>();
-		mobMessages.add("Hello there.");
-		mobMessages.add("Who are you lookin' at? Do you wanna fight?");
-		mobMessages.add("Get outta here.");
-		mobMessages.add("Want to go for a ride in my van?");
-		mobMessages.add("mwahahahhaha");
-		mobMessages.add("Prepare to die.");
-		mobMessages.add("You would look good tied up in my basement.");
+		this.mobMessages.add("Hello there.");
+		this.mobMessages.add("Who are you lookin' at? Do you wanna fight?");
+		this.mobMessages.add("Get outta here.");
+		this.mobMessages.add("Want to go for a ride in my van?");
+		this.mobMessages.add("mwahahahhaha");
+		this.mobMessages.add("Prepare to die.");
+		this.mobMessages.add("You would look good tied up in my basement.");
 		jefferyDahmer = new MOB("Jeffery Dahmer", new ArrayList<Item>(), mobMessages);
 		lawrenceBittaker = new MOB("Lawrence Bittaker", new ArrayList<Item>(), mobMessages);
 		royNorris = new MOB("Roy Norris", new ArrayList<Item>(), mobMessages);
@@ -105,5 +106,9 @@ public class MOBCollection implements Serializable
 			if (mob.getIdentity().equals(theIdentity)) { return mob; }
 		}
 		return null;
+	}
+	
+	public ArrayList<String> getMOBMessages(){
+		return mobMessages;
 	}
 }

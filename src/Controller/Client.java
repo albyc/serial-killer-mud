@@ -389,13 +389,20 @@ public class Client extends JFrame
 	 * @param argument - string the direction
 	 */
 	public void movePlayer(String argument) {
+		System.out.println(argument);
 		switch(argument.toLowerCase())
+		
 		{
 			case "north":
 				if(player.getLocation().getNorthRoom() != null)
 				{
-					player.changeRoom(player.getLocation().getNorthRoom());
-	
+					System.out.println("In north case.");
+					Room currentLocation = new SceneRoom(null, null);
+					currentLocation = player.getLocation();
+					player.getLocation().removePlayer(player);
+					player.changeRoom(currentLocation.getNorthRoom());
+					player.setLocation(currentLocation.getNorthRoom());
+					System.out.println(player.getLocation().getRoomName());
 					String movedTo = "You have moved north into " + player.getLocation().getRoomName() + "\n"; 
 					commandMessages.add(movedTo);
 					mainView.updateCommands(commandMessages);
@@ -411,7 +418,10 @@ public class Client extends JFrame
 			case "south":
 				if(player.getLocation().getSouthRoom() != null)
 				{
-					player.changeRoom(player.getLocation().getSouthRoom());
+					Room currentLocation = new SceneRoom(null, null);
+					currentLocation = player.getLocation();
+					player.getLocation().removePlayer(player);
+					player.changeRoom(currentLocation.getSouthRoom());
 	
 					String movedTo = "You have moved south into " + player.getLocation().getRoomName() + "\n"; 
 					commandMessages.add(movedTo);
@@ -420,6 +430,43 @@ public class Client extends JFrame
 				else
 				{
 					String movedTo = "There is no room to the south of your current location. Use the LOOK\ncommand to see "
+							+ "the adjacent rooms.\n";
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				break;
+			case "east":
+				if(player.getLocation().getEastRoom() != null){
+					Room currentLocation = new SceneRoom(null, null);
+					currentLocation = player.getLocation();
+					player.getLocation().removePlayer(player);
+					player.changeRoom(currentLocation.getEastRoom());
+					
+					String movedTo = "You have moved east into " + player.getLocation().getRoomName() + "\n";
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				else{
+					String movedTo = "There is no room to the east of your current location. Use the LOOK\ncommand to see "
+							+ "the adjacent rooms.\n";
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				break;
+			case "west":
+				if(player.getLocation().getWestRoom() != null){
+					Room currentLocation = new SceneRoom(null, null);
+					currentLocation = player.getLocation();
+					player.getLocation().removePlayer(player);
+					player.changeRoom(currentLocation.getWestRoom());
+					player.setLocation(currentLocation.getWestRoom());
+					
+					String movedTo = "You have moved west into " + player.getLocation().getRoomName() + "\n";
+					commandMessages.add(movedTo);
+					mainView.updateCommands(commandMessages);
+				}
+				else{
+					String movedTo = "There is no room to the west of your current location. Use the LOOK\ncommand to see "
 							+ "the adjacent rooms.\n";
 					commandMessages.add(movedTo);
 					mainView.updateCommands(commandMessages);
@@ -455,6 +502,7 @@ public class Client extends JFrame
 			
 			commandMessages = new ArrayList<String>();
 			commandMessages.add(welcomeMessage(player.getUsername()));
+			
 			
 			// Write out player associated with this client
 			out.writeObject(player);

@@ -1,5 +1,7 @@
 package Controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -36,7 +38,7 @@ public class Server
 	private List<String> chatMessages; // the chat log
 	private SerialKillerMud mud;
 	private SimpleCommandFactory factory;
-	private Timer t = new Timer(500, null);
+	private Timer t;
 	
 	public static void main(String [] args)
 	{
@@ -52,16 +54,17 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
+		t  = new Timer(500, new MoveListener());
 		startTimer();
 		
 		try
 		{
 			// start a new server on port 9001
 			socket = new ServerSocket(9001);
-			String mobs = "";
+			/*String mobs = "";
 			for (MOB mob : mud.getListOfMOBs()){
 				mobs += mob.getIdentity() + "\n";
-			}
+			}*/
 			System.out.println("MUD Server started on port 9001");
 			
 			
@@ -73,6 +76,18 @@ public class Server
 			e.printStackTrace();
 		}
 	} // end of constructor Server
+	
+	private class MoveListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			for(int i = 0; i < 10; i++){
+				PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, mud.getMOBCollection().getMOBMessages().get(i/2));
+				
+			}
+		}
+		
+	}
 	
 	/**
 	 * This thread listens for and sets up connections to new clients
@@ -234,6 +249,7 @@ public class Server
 			for (Player p : ps){
 				if(p.getUsername() == clientName){
 					currentLocation = p.getLocation();
+					System.out.println("Current Location: " + p.getLocation().getRoomName());
 				}
 			}
 			addSayMessage(clientName, argument, currentLocation);
