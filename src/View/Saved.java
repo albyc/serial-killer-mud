@@ -32,7 +32,7 @@ public class Saved extends JFrame{
 			e.printStackTrace();
 		}
 		*/
-		this.setSize(300, 200);
+		this.setSize(350, 200);
 		this.setLayout(null);
 		getContentPane().setBackground(Color.BLACK);
 		this.setResizable(false);
