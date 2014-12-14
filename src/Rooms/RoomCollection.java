@@ -29,10 +29,9 @@ public class RoomCollection
 	{
 		rooms = new ArrayList<Room>();
 		itemCollection = new ItemCollection();
-//		mobCollection = new MOBCollection();
+		mobCollection = new MOBCollection();
 		
 		addDefaultRooms();
-		setItemsInRooms();
 		setMOBsInRooms();
 	} 
 	
