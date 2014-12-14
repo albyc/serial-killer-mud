@@ -60,8 +60,8 @@ public class MOBCollection implements Serializable
 		theMOBs.add(richardTrentonChase);
 		theMOBs.add(henryHowardHolmes);
 
-		theMOBs.add(victim);
-		theMOBs.add(foodStandGuy);
+		//theMOBs.add(victim);
+		//theMOBs.add(foodStandGuy);
 
 	}
 	

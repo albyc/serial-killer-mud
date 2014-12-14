@@ -40,6 +40,10 @@ public class MOB implements Serializable{
 	public void speak(int x) { System.out.println(speeches.get(x)); }
 
 	public void addItemToPocket(Item newItem) { pocket.add(newItem); }
+	
+	public void setLocation(Room room){
+		currentLocation = room;
+	}
 
 	public void removeItemFromPocket(Item toBeRemoved) { pocket.remove(toBeRemoved); }
 

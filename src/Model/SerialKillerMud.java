@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.TimerTask;
 
 import Rooms.*;
@@ -25,6 +26,7 @@ public class SerialKillerMud
 		roomCollection = new RoomCollection();
 		playersOnline = new ArrayList<Player>();
 		administrators = new ArrayList<Player>();
+		roomCollection.setMOBsInRooms();
 		addAdmins();
 	}
 
@@ -60,6 +62,7 @@ public class SerialKillerMud
 		return roomCollection;
 	}
 	
+
 	public MOBCollection getMobCollection()
 	{
 		return roomCollection.getMobCollection();
@@ -71,9 +74,54 @@ public class SerialKillerMud
 	}
 
 	public TimerTask updateMOBsOnTimer() {
-		for(MOB m : getListOfMOBs()){
+
+		/*Random random = new Random();
+		for(MOB m : roomCollection.getMobCollection().getAllMOBS()){
+			m.getCurrentLocation();
 			
-		}
+			System.out.println(m.getCurrentLocation().getRoomName());
+			//null pointer exception
+			int direction = random.nextInt(4);
+			switch(direction){
+			case 0:
+				try{
+					m.changeRoom(m.getCurrentLocation().getEastRoom());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
+			case 1:
+				try{
+					m.changeRoom(m.getCurrentLocation().getWestRoom());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
+			case 2:
+				try{
+					m.changeRoom(m.getCurrentLocation().getNorthRoom());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
+			case 3:
+				try{
+					m.changeRoom(m.getCurrentLocation().getSouthRoom());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
+			default:
+				try{
+					m.changeRoom(m.getCurrentLocation().getNorthRoom());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				break;
+			}
+
+			
+		}*/
 		return null;
 	}
 	
