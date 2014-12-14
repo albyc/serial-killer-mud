@@ -19,16 +19,12 @@ public class SerialKillerMud
 	private RoomCollection roomCollection;
 	private transient List<Player> playersOnline;
 	private transient List<Player> administrators;
-	private transient MOBCollection mobc;
-	private transient List<MOB> mobs;
 	
 	public SerialKillerMud()
 	{
 		roomCollection = new RoomCollection();
 		playersOnline = new ArrayList<Player>();
 		administrators = new ArrayList<Player>();
-		mobc = new MOBCollection();
-		mobs = mobc.getAllMOBS();
 		addAdmins();
 	}
 
@@ -64,18 +60,20 @@ public class SerialKillerMud
 		return roomCollection;
 	}
 	
-	public MOBCollection getMOBCollection()
+	public MOBCollection getMobCollection()
 	{
-		return mobc;
+		return roomCollection.getMobCollection();
 	}
 	
 	public List<MOB> getListOfMOBs()
 	{
-		return mobs;
+		return getMobCollection().getAllMOBS();
 	}
 
 	public TimerTask updateMOBsOnTimer() {
-		// TODO Auto-generated method stub
+		for(MOB m : getListOfMOBs()){
+			
+		}
 		return null;
 	}
 	

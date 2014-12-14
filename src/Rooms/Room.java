@@ -104,6 +104,14 @@ public abstract class Room implements Serializable
 	
 	
 	
+	public boolean hasMOB(String name) {
+		name = name.toLowerCase();
+		for(MOB m : mobs){
+			if(m.getIdentity().equals(name))
+				return true;
+		}
+		return false;
+	}
 	
 	public MOB getMobByName(String name) {
 		for(MOB m : mobs){
@@ -154,8 +162,6 @@ public abstract class Room implements Serializable
 	
 	public String getNamesOfAdjacentRooms(){
 		String theRooms = "";
-//		System.out.println(hasSouth());
-//		System.out.println(getSouthRoom().getRoomName());
 		if(hasNorth())
 			theRooms += "\n  to the north -- " + getNorthRoom().getRoomName();
 		if(hasSouth())
@@ -166,4 +172,6 @@ public abstract class Room implements Serializable
 			theRooms += "\n  to the west -- " + getWestRoom().getRoomName();
 		return theRooms;
 	}
+
+
 }

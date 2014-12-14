@@ -45,29 +45,14 @@ public class Server
 		new Server();
 	}
 	
-<<<<<<< HEAD
-//	public void startTimer() { t.start(); }
-//	public void stopTimer() { t.stop(); }
-=======
-/*	public void startTimer() { t.start(); }
-	public void stopTimer() { t.stop(); }*/
->>>>>>> 2ecf3548f4050fdd0920aa6546dad2b155502153
-	
 	public Server()
 	{
 		chatMessages = new ArrayList<String>(); // create the chat log
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
-<<<<<<< HEAD
-//		this.t = new Timer();
-//		t  = new Timer(500, new MoveListener());
-//		startTimer();
-=======
 		t  = new Timer();
-		//startTimer();
-		t.scheduleAtFixedRate(UpdateMOBs(), 25000, 5000);
->>>>>>> 2ecf3548f4050fdd0920aa6546dad2b155502153
+//		t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
 		
 		try
 		{
@@ -88,11 +73,6 @@ public class Server
 			e.printStackTrace();
 		}
 	} // end of constructor Server
-	
-	private TimerTask UpdateMOBs() {
-		
-		return null;
-	}
 
 	private class MoveListener implements ActionListener{
 
@@ -100,7 +80,7 @@ public class Server
 		public void actionPerformed(ActionEvent e) {
 			for(int i = 0; i < 10; i++){
 				System.out.println("i");
-				PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, mud.getMOBCollection().getMOBMessages().get(i/2));
+//				PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, mud.getMOBCollection().getMOBMessages().get(i/2));
 				
 			}
 		}
