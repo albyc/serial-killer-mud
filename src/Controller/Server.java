@@ -40,6 +40,7 @@ public class Server
 	private SerialKillerMud mud;
 	private SimpleCommandFactory factory;
 	private Timer t;
+	private Timer t2;
 	
 	public static void main(String [] args)
 	{
@@ -52,8 +53,10 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
-		t = new Timer(5000, new MoveListener());
+		t = new Timer(5000, new SayListener());
 		t.start();
+		t2 = new Timer(20000, new MoveListener());
+		t2.start();
 		/*t = new Timer();
 		mud.updateMOBsOnTimer();*/
 		//t.scheduleAtFixedRate(mud.updateMOBsOnTimer(), 25000, 5000);
@@ -78,17 +81,60 @@ public class Server
 			e.printStackTrace();
 		}
 	} // end of constructor Server
-
-
+	
 	private class MoveListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Random random = new Random();
+			
+			for(MOB mob : mud.getListOfMOBs()){
+				int r = random.nextInt(4);
+				switch(r){
+				case 0:
+					if(mob.getCurrentLocation().hasEast()){
+						mob.changeRoom(mob.getCurrentLocation().getEastRoom());
+						System.out.println(mob.getIdentity() + "new location: " + mob.getCurrentLocation().getRoomName());
+					}
+					break;
+				case 1:
+					if(mob.getCurrentLocation().hasWest()){
+						mob.changeRoom(mob.getCurrentLocation().getWestRoom());
+						System.out.println(mob.getIdentity() + "new location: " + mob.getCurrentLocation().getRoomName());
+
+					}
+					break;
+				case 2:
+					if(mob.getCurrentLocation().hasNorth()){
+						mob.changeRoom(mob.getCurrentLocation().getNorthRoom());
+						System.out.println(mob.getIdentity() + "new location: " + mob.getCurrentLocation().getRoomName());
+
+					}
+					break;
+				case 3:
+					if(mob.getCurrentLocation().hasSouth()){
+						mob.changeRoom(mob.getCurrentLocation().getSouthRoom());
+						System.out.println(mob.getIdentity() + "new location: " + mob.getCurrentLocation().getRoomName());
+
+					}
+					break;
+				default:
+					System.out.println("Didn't move");
+					break;
+				}
+			}
+		}
+		
+	}
+
+
+	private class SayListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			/*Set<String> names = outputs.keySet();
 			Object[] usernames = names.toArray();*/
-			for(int i = 0; i < 9; i++){
-				System.out.println("i");
-				
+			for(int i = 0; i < 9; i++){				
 				for(Player p : mud.getPlayersOnline()){
 					PrintToClient(mud.getListOfMOBs().get(i).getIdentity(), Commands.SAY, "Hello.");
 					/*if(mud.getListOfMOBs().get(i).getCurrentLocation() == )
@@ -242,7 +288,11 @@ public class Server
 		if (command == Commands.SHUTDOWN)
 			closeAllClientsAndServer(clientName);
 		else if (command == Commands.OOC){
-			addMessage(clientName + ": " + argument);
+			String pl = "";
+			for (Player p : mud.getPlayersOnline()){
+				pl += p.getLocation().getRoomName() + "\n";
+			}
+			addMessage(clientName + ": " + argument + pl);
 		}
 		else if(command == Commands.TELL){
 	/*		TellMessageCommand t = new TellMessageCommand(clientName, argument, command);
@@ -336,7 +386,7 @@ public class Server
 		}
 		else{
 			String mess = mob + " to those in " + currentLocation.getRoomName() + ": " + argument;
-			System.out.println(mess);
+			//System.out.println(mess);
 			List<String> newMessages = new ArrayList<String>();
 			for( String m : chatMessages){
 				newMessages.add(m);
