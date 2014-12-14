@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 
 import Rooms.*;
 import Items.Item;
@@ -71,6 +72,11 @@ public class SerialKillerMud
 	public List<MOB> getListOfMOBs()
 	{
 		return mobs;
+	}
+
+	public TimerTask updateMOBsOnTimer() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 } // end of class SerialKillerMud
