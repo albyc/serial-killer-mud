@@ -59,6 +59,7 @@ public class Player implements Serializable
     public List<Item> getItems() { return backpack; }
     
     public Item getItemInBackpack(String name) {
+    	name = name.toLowerCase();
     	for(Item i : backpack){
     		if(i.getName().equals(name))
     			return i;
