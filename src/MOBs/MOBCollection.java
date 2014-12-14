@@ -1,11 +1,12 @@
 package MOBs;
 
+import java.io.Serializable;
 import java.util.*;
 
 import Items.Item;
 import Rooms.Room;
 
-public class MOBCollection
+public class MOBCollection implements Serializable
 {
 	private ArrayList<MOB> theMOBs;
 	
@@ -25,6 +26,7 @@ public class MOBCollection
 	
 	public MOBCollection(){
 		theMOBs = new ArrayList<MOB>();
+		
 		ArrayList<String> mobMessages = new ArrayList<String>();
 		mobMessages.add("Hello there.");
 		mobMessages.add("Who are you lookin' at? Do you wanna fight?");
@@ -59,8 +61,7 @@ public class MOBCollection
 
 		theMOBs.add(victim);
 		theMOBs.add(foodStandGuy);
-		
-		
+
 	}
 	
 	public List<MOB> getAllMOBS(){

@@ -1,6 +1,7 @@
 package MOBs;
 
 //import java.awt.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Random;
@@ -16,7 +17,7 @@ import Rooms.Room;
  * 
  */
 
-public class MOB {
+public class MOB implements Serializable{
 	private String identity;
 	private ArrayList<Item> pocket;
 	private Room currentLocation;

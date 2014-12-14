@@ -1,5 +1,6 @@
 package Rooms;
 
+import java.io.Serializable;
 import java.util.*;
 
 import Items.Item;
@@ -13,7 +14,7 @@ import Players.*;
  * @author Team Alpha-Super-Awesome-Cool-Dynamite-Wolf-Squadron     
  *
  */
-public class RoomCollection 
+public class RoomCollection implements Serializable
 {
 	private List<Room> rooms;
 
@@ -31,11 +32,11 @@ public class RoomCollection
 		itemCollection = new ItemCollection();
 		mobCollection = new MOBCollection();
 		
-		addDefaultRooms();
+		addDefaultRoomsAndItems();
 		setMOBsInRooms();
 	} 
 	
-	private void addDefaultRooms()
+	private void addDefaultRoomsAndItems()
 	{	
 		lawn = new SceneRoom("The Lawn", "small area of dead grass");
 		secret = new SceneRoom("Secret Room", "Under Construction");
@@ -252,24 +253,19 @@ public class RoomCollection
 		rooms.add(dinner);
 		rooms.add(doomsville);
 		rooms.add(desert);
-		
-	}
-	
-	public void setItemsInRooms(){
-		
 	}
 	
 	public void setMOBsInRooms(){
-//		jdapartment.addMOB(mobCollection.getMOBFromIdentity("Jeffery Dahmer"));
-//		lawn.addMOB(mobCollection.getMOBFromIdentity("Lawrence Bittaker"));
-//		lawn.addMOB(mobCollection.getMOBFromIdentity("Roy Norris"));
-//		theStreets.addMOB(mobCollection.getMOBFromIdentity("Richard Ramirez"));
-//		spain.addMOB(mobCollection.getMOBFromIdentity("Andre Chikatilo"));
-//		woods.addMOB(mobCollection.getMOBFromIdentity("Richard Trenton Chase"));
-//		factory.addMOB(mobCollection.getMOBFromIdentity("Henry Lee Lucus"));
-//		farmhouse.addMOB(mobCollection.getMOBFromIdentity("Ed Gein"));
-//		kitchen.addMOB(mobCollection.getMOBFromIdentity("Hannibal Lecter"));
-//		murderCastle.addMOB(mobCollection.getMOBFromIdentity("Henry Howard Holmes"));
+//		jdapartment.addMOB(mobCollection.getMOB(0);
+		lawn.addMOB(mobCollection.getMOB(1));
+		lawn.addMOB(mobCollection.getMOB(2));
+		theStreets.addMOB(mobCollection.getMOB(3));
+		spain.addMOB(mobCollection.getMOB(4));
+		woods.addMOB(mobCollection.getMOB(5));
+		factory.addMOB(mobCollection.getMOB(6));
+		farmhouse.addMOB(mobCollection.getMOB(7));
+		kitchen.addMOB(mobCollection.getMOB(8));
+		murderCastle.addMOB(mobCollection.getMOB(9));
 	}
 	
 	public ItemCollection getItemCollection(){

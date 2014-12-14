@@ -50,6 +50,7 @@ public class Player implements Serializable
     public String getUsername() { return username; }
          
     public void changeRoom(Room room){
+    	currentLocation.removePlayer(this);
     	//erase self from room and add self to new room
         currentLocation = room;
     }
