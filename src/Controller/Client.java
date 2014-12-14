@@ -389,16 +389,20 @@ public class Client extends JFrame
 	 * @param argument - string the direction
 	 */
 	public void movePlayer(String argument) {
+		System.out.println(argument);
 		switch(argument.toLowerCase())
+		
 		{
 			case "north":
 				if(player.getLocation().getNorthRoom() != null)
 				{
+					System.out.println("In north case.");
 					Room currentLocation = new SceneRoom(null, null);
 					currentLocation = player.getLocation();
 					player.getLocation().removePlayer(player);
 					player.changeRoom(currentLocation.getNorthRoom());
-	
+					player.setLocation(currentLocation.getNorthRoom());
+					System.out.println(player.getLocation().getRoomName());
 					String movedTo = "You have moved north into " + player.getLocation().getRoomName() + "\n"; 
 					commandMessages.add(movedTo);
 					mainView.updateCommands(commandMessages);
@@ -455,6 +459,7 @@ public class Client extends JFrame
 					currentLocation = player.getLocation();
 					player.getLocation().removePlayer(player);
 					player.changeRoom(currentLocation.getWestRoom());
+					player.setLocation(currentLocation.getWestRoom());
 					
 					String movedTo = "You have moved west into " + player.getLocation().getRoomName() + "\n";
 					commandMessages.add(movedTo);
@@ -497,6 +502,7 @@ public class Client extends JFrame
 			
 			commandMessages = new ArrayList<String>();
 			commandMessages.add(welcomeMessage(player.getUsername()));
+			
 			
 			// Write out player associated with this client
 			out.writeObject(player);

@@ -35,6 +35,7 @@ public class Player implements Serializable
         this.password = password;
         backpack = new ArrayList<Item>();
         health = 50;
+        
     }
     
     public void setLocation(Room aRoom)
@@ -51,6 +52,7 @@ public class Player implements Serializable
          
     public void changeRoom(Room room){
     	//erase self from room and add self to new room
+    	currentLocation.removePlayer(this);
         currentLocation = room;
     }
     
