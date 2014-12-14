@@ -45,8 +45,8 @@ public class Server
 		new Server();
 	}
 	
-	public void startTimer() { t.start(); }
-	public void stopTimer() { t.stop(); }
+//	public void startTimer() { t.start(); }
+//	public void stopTimer() { t.stop(); }
 	
 	public Server()
 	{
@@ -54,8 +54,9 @@ public class Server
 		outputs = new HashMap<String, ObjectOutputStream>(); // setup the map
 		mud = new SerialKillerMud(); // setup the model
 		factory = new SimpleCommandFactory();
-		t  = new Timer(500, new MoveListener());
-		startTimer();
+//		this.t = new Timer();
+//		t  = new Timer(500, new MoveListener());
+//		startTimer();
 		
 		try
 		{
