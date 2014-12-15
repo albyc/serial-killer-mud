@@ -139,7 +139,7 @@ public class Server
 			for(int i = 0; i < 9; i++){				
 				for(Player p : mud.getPlayersOnline()){
 					System.out.println(mud.getListOfMOBs().get(i).getIdentity());
-					addSayMessage(p.getUsername(), "Helllloooooo. I am an MOB.", mud.getListOfMOBs().get(i).getCurrentLocation(), mud.getListOfMOBs().get(i).getIdentity());
+					addSayMessage(p.getUsername(), mud.getMobCollection().getMessage(), mud.getListOfMOBs().get(i).getCurrentLocation(), mud.getListOfMOBs().get(i).getIdentity());
 					
 				}
 			}

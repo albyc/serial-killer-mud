@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -84,6 +85,7 @@ public class Client extends JFrame {
 
 			// From here, the LoginView will take the reins.
 			new LoginView(Client.this, players, admins);
+			this.addWindowListener(new SaveDataListener());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -949,6 +951,73 @@ public class Client extends JFrame {
 		mainView.updateCommands(commandMessages);
 	}
 
+	private class SaveDataListener implements WindowListener {
+
+		public void windowActivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowClosed(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowClosing(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			int answer = JOptionPane.showConfirmDialog(null, "save data?",
+					"save data?", JOptionPane.YES_NO_OPTION);
+			if (answer == JOptionPane.YES_OPTION) {
+				// save data
+				 saveData();
+			}
+		}
+
+		public void windowDeactivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowDeiconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowIconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowOpened(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	public boolean loadData() {
+		try{
+			FileInputStream inStream = new FileInputStream(new File("accounts.dat"));
+			ObjectInputStream inObject = new ObjectInputStream(inStream);
+			roomCollection = (RoomCollection) inObject.readObject();
+			player = (Player) inObject.readObject();
+			//administrators = (List<Player>) inObject.readObject();
+			/*roomCollection.getPlaylist().resetListDataListeners();
+			jukebox.getSongList().resetTableModelListeners();*/
+			inObject.close();
+		} catch(Exception e) {
+			System.out.println("Unable to load data");
+			return false;
+		}
+		return true;
+}
+
+public void saveData() {
+try{
+	FileOutputStream outStream = new FileOutputStream(new File("accounts.dat"));
+	ObjectOutputStream outObject = new ObjectOutputStream(outStream);
+	outObject.writeObject(roomCollection);
+	outObject.writeObject(player);
+	//outObject.writeObject(playersOnline);
+	//outObject.writeObject(administrators);
+	outObject.close();
+} catch(Exception e) {
+	e.printStackTrace();
+}	
+}
 	/*
 	 * public void getConfirmation(String item, String player) {
 	 * 

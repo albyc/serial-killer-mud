@@ -75,9 +75,9 @@ public class MOB implements Serializable{
 	
 	public void death(){
 		//drop all holding items
-		for(Item item : pocket)
+		/*for(Item item : pocket)
 			currentLocation.addItem(item);
-		pocket = null;
+		pocket = null;*/
 		//leave note telling last words/curses/additional information still useful
 		
 	}

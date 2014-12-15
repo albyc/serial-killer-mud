@@ -111,4 +111,9 @@ public class MOBCollection implements Serializable
 	public ArrayList<String> getMOBMessages(){
 		return mobMessages;
 	}
+
+	public String getMessage() {
+		Random random = new Random();
+		int messageIndex = random.nextInt(mobMessages.size());
+		return mobMessages.get(messageIndex);	}
 }

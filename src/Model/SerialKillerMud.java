@@ -40,7 +40,7 @@ public class SerialKillerMud
 			roomCollection.setMOBsInRooms();
 			addAdmins();
 		}
-		this.addWindowListener(new SaveDataListener());
+		//this.addWindowListener(new SaveDataListener());
 	
 	}
 
