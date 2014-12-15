@@ -897,6 +897,7 @@ public class Client extends JFrame {
 
 	public void useItem(String argument) {
 		String toPrint = "";
+		
 		switch (argument.toLowerCase()) {
 		case "water":
 		case "food":
@@ -911,6 +912,12 @@ public class Client extends JFrame {
 			commandMessages.add(toPrint);
 			mainView.updateCommands(commandMessages);
 			listScore();
+			dropItem(argument);
+			break;
+		case "shovel":
+			toPrint = "You have now used <" + argument + ">.\n";
+			commandMessages.add(toPrint);
+			mainView.updateCommands(commandMessages);
 			dropItem(argument);
 			break;
 		default:
