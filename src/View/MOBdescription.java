@@ -26,6 +26,7 @@ public class MOBdescription extends JFrame {
 	private JButton gein1, gein2, gein3, gein4;
 	private JButton hannibal1, hannibal2, hannibal3, hannibal4;
 	private JButton holmes1, holmes2, holmes3, holmes4;
+	private JButton toolBox1, toolBox2, toolBox3, toolBox4;
 	private JTextArea infoArea;
 
 	public MOBdescription(String mobName) {
@@ -88,7 +89,23 @@ public class MOBdescription extends JFrame {
 				|| mobName.equals("roy norris") || mobName.equals("bittaker")
 				|| mobName.equals("norris")
 				|| mobName.equals("toolbox killers")) {
-			infoArea = new JTextArea("\n\tthe toolbox killers info");
+			infoArea = new JTextArea("\n\tthe toolbox killers info\n"
+					+ "name: Lawrence bittaker\n"
+					+ "height: N/A\n "
+					+ "weight: N/A\n "
+					+ "name: roy norris\n"
+					+ "height: N/A\n"
+					+ "weight: N/a n"
+					+ "arrest: committed the kidnap, rape, torture and murder of five teenage girls over a period of five months\n"
+					+ " in southern California in 1979");
+			ImageIcon iconOne = new ImageIcon("images/toolKillers.jpg");
+			toolBox1 = new JButton(iconOne);
+			toolBox1.setContentAreaFilled(false);
+			toolBox1.setBorderPainted(false);
+			toolBox1.setLocation(50, 250);
+			toolBox1.setSize(iconOne.getIconWidth(),iconOne.getIconHeight());
+			
+			this.add(toolBox1);
 			// add images
 		} else if (mobName.equals("richard ramirez")
 				|| mobName.equals("ramirez")) {
