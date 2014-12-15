@@ -589,6 +589,7 @@ public class Client extends JFrame {
 			theFight = argument
 					+ " is not around at the moment. Maybe wait a while.";
 		}
+	
 		commandMessages.add(theFight);
 		mainView.updateCommands(commandMessages);
 	}

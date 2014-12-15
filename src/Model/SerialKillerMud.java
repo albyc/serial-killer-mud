@@ -1,9 +1,18 @@
 package Model;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.TimerTask;
+
+import javax.swing.JOptionPane;
 
 import Rooms.*;
 import Items.Item;
@@ -23,11 +32,16 @@ public class SerialKillerMud
 	
 	public SerialKillerMud()
 	{
-		roomCollection = new RoomCollection();
-		playersOnline = new ArrayList<Player>();
-		administrators = new ArrayList<Player>();
-		roomCollection.setMOBsInRooms();
-		addAdmins();
+		int answer = JOptionPane.showConfirmDialog(null, "Start with previous saved state?", "Select an Option", JOptionPane.YES_NO_OPTION);
+		if(answer == JOptionPane.NO_OPTION || !loadData()){
+			roomCollection = new RoomCollection();
+			playersOnline = new ArrayList<Player>();
+			administrators = new ArrayList<Player>();
+			roomCollection.setMOBsInRooms();
+			addAdmins();
+		}
+		this.addWindowListener(new SaveDataListener());
+	
 	}
 
 	private void addAdmins()
@@ -123,6 +137,73 @@ public class SerialKillerMud
 			
 		}*/
 		return null;
+	}
+	
+	private class SaveDataListener implements WindowListener {
+
+		public void windowActivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowClosed(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowClosing(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			int answer = JOptionPane.showConfirmDialog(null, "save data?",
+					"save data?", JOptionPane.YES_NO_OPTION);
+			if (answer == JOptionPane.YES_OPTION) {
+				// save data
+				 saveData();
+			}
+		}
+
+		public void windowDeactivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowDeiconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowIconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		public void windowOpened(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+	}
+	
+	public boolean loadData() {
+				try{
+					FileInputStream inStream = new FileInputStream(new File("accounts.dat"));
+					ObjectInputStream inObject = new ObjectInputStream(inStream);
+					roomCollection = (RoomCollection) inObject.readObject();
+					playersOnline = (List<Player>) inObject.readObject();
+					administrators = (List<Player>) inObject.readObject();
+					/*roomCollection.getPlaylist().resetListDataListeners();
+					jukebox.getSongList().resetTableModelListeners();*/
+					inObject.close();
+				} catch(Exception e) {
+					System.out.println("Unable to load data");
+					return false;
+				}
+				return true;
+	}
+	
+	public void saveData() {
+		try{
+			FileOutputStream outStream = new FileOutputStream(new File("accounts.dat"));
+			ObjectOutputStream outObject = new ObjectOutputStream(outStream);
+			outObject.writeObject(roomCollection);
+			outObject.writeObject(playersOnline);
+			outObject.writeObject(administrators);
+			outObject.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
 	}
 	
 } // end of class SerialKillerMud
